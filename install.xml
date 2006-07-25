@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<installation version="1.0">
+
+	<info>
+		<appname>Freenet</appname>
+		<appversion>0.7-a2-pre</appversion>
+		<url>http://freenetproject.org/</url>
+		<javaversion>1.4</javaversion>
+		<uninstaller write="yes"/>
+		<authors>
+			<author name="Ian Clarke" email="ian@freenetproject.org"/>
+			<author name="Florent Daignière" email="nextgens@freenetproject.org"/>
+			<author name="Scott Miller" email="scgmille@freenetproject.org"/>
+			<author name="Oskar Sandberg" email="oskar@freenetproject.org"/>
+			<author name="Matthew Toseland" email="toad@freenetproject.org"/>
+			<author name="Many unlisted volunteers" email=""/>
+		</authors>
+	</info>
+
+
+	<!-- remove labels or icons on buttons ? -->
+	<guiprefs width="640" height="480" resizable="no">
+		<laf name="looks">
+			<os family="windows"/>
+			<param name="variant" value="plasticXP"/>
+		</laf>
+		<laf name="liquid">
+			<os family="unix"/>
+		</laf>
+	</guiprefs>
+
+	<locale>
+		<langpack iso3="eng"/>
+		<langpack iso3="fra"/>
+		<langpack iso3="deu"/>
+		<langpack iso3="ita"/>
+		<langpack iso3="jpn"/>
+		<langpack iso3="spa"/>
+		<langpack iso3="dan"/>
+		<langpack iso3="ell" />
+		<langpack iso3="cat"/>
+		<langpack iso3="ned"/>
+		<langpack iso3="fin"/>
+		<langpack iso3="swe"/>
+		<langpack iso3="por"/>
+		<langpack iso3="pol"/>
+		<langpack iso3="rus"/>
+		<langpack iso3="ukr"/>
+		<langpack iso3="hun"/>
+		<langpack iso3="svk"/>
+		<langpack iso3="rom"/>
+		<langpack iso3="mys"/>
+		<langpack iso3="nor"/>
+		<langpack iso3="chn"/>
+		<langpack iso3="scg"/>
+		<langpack iso3="cze"/>
+		<langpack iso3="kor"/>
+	</locale>
+
+	<variables>
+		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
+		<variable name="app-version" value="0.7-a2"/>
+		<variable name="released-on" value="not yet :þ"/>
+	</variables>
+
+	<resources>
+		<res src="RegistrySpec.xml" id="RegistrySpec.xml"/>
+		<res id="ProcessPanel.Spec.xml" src="ProcessPanel.Spec.xml"/> 
+		<res src="res/img/title.png" id="installer.langsel.img"/>
+		<res src="res/img/title.png" id="Installer.image"/>
+		<res id="LicencePanel.licence" src="res/license/LICENSE.Freenet"/>
+		<res id="InfoPanel.info" src="res/README"/>
+		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>
+		<res src="Win_shortcutSpec.xml" id="Win_shortcutSpec.xml"/>
+		<res src="Unix_shortcutSpec.xml" id="Unix_shortcutSpec.xml"/>
+		<res src="res/img/border1.png" id="Installer.image.0"/>
+		<res src="res/img/border2.png" id="Installer.image.1"/>
+		<res src="res/img/border3.png" id="Installer.image.2"/>
+		<res src="res/img/border4.png" id="Installer.image.3"/>
+		<res src="res/img/border5.png" id="Installer.image.4"/>
+		<res src="res/img/border5.png" id="Installer.image.5"/>
+		<res src="res/img/border6.png" id="Installer.image.6"/>
+		<res src="res/img/border7.png" id="Installer.image.7"/>
+		<res src="res/img/border8.png" id="Installer.image.8"/>
+	</resources>
+
+	<!-- The listeners section for CustomActions -->
+	<listeners>
+		<listener installer="SummaryLoggerInstallerListener"/>
+
+		<listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener">
+			<os family="windows"/>
+		</listener>
+	</listeners>
+
+	<panels>
+		<panel classname="CheckedHelloPanel"/>
+		<panel classname="InfoPanel"/>
+		<panel classname="LicencePanel"/>
+		<panel classname="TargetPanel"/> 
+		<panel classname="PacksPanel"/>
+		<panel classname="InstallPanel"/>
+		<panel classname="ProcessPanel"/>
+		<panel classname="ShortcutPanel"/>
+		<panel classname="SimpleFinishPanel"/>
+	</panels>
+
+	<packs>
+		<pack name="Base" required="yes">
+			<description>The base files</description>
+			<fileset dir="res/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="lib/**/*"/>
+				<include name="bin/**/*"/>
+				<include name="wrapper.conf"/>
+				<include name="freenet.ini"/>
+				<include name="update.cmd"/>
+			</fileset>
+			<parsable targetfile="$INSTALL_PATH/freenet.ini"/> 
+		</pack>
+
+		<pack name="License" required="yes">
+			<description>The licence files</description>
+			<file src="res/license/LICENSE.Freenet" targetdir="$INSTALL_PATH"/>
+			<file src="res/license/LICENSE.Mantissa" targetdir="$INSTALL_PATH"/>
+			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
+		</pack>
+
+		<pack name="Windows" required="yes" os="windows">
+			<os family="windows"/>
+			<description>A windows specific catch-all pack</description>
+
+			<fileset dir="res/windows/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="freenet.ico"/>
+				<include name="lib/**/*"/>
+				<include name="bin/**/*"/>
+			</fileset>
+			<parsable targetfile="$INSTALL_PATH\bin\1run.cmd"/> 
+			<parsable targetfile="$INSTALL_PATH\bin\install_jSite.cmd"/> 
+			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" os="windows" keep="true" stage="uninstall"/>
+		</pack>
+
+		<pack name="Unix" required="yes" os="unix">
+			<os family="unix"/>
+			<description>An UNIX specific catch-all pack</description>
+
+			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="**/*"/>
+			</fileset>
+
+			<executable targetfile="$INSTALL_PATH/bin/update.sh" type="bin" stage="never" keep="true"/>
+			<executable targetfile="$INSTALL_PATH/bin/wrapper-linux-x86-32" type="bin" stage="never" keep="true"/>
+			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
+			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never" keep="true"/>
+			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 
+			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/> 
+			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/> 
+			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/> 
+		</pack>
+		<pack name="UninstallStuff" required="no">
+			<os family="windows"/>
+			<description>Create uninstallation hooks in the registry</description>
+			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
+		</pack>
+		<pack name="STUN" required="no">
+			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router (i.e. most nodes).</description>
+			<fileset dir="res/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="plugins/JSTUN.jar"/>
+			</fileset>
+		</pack>
+		<pack name="jSite" required="no">
+			<description>A tool to ease the insertion of freesites</description>
+			<executable targetfile="$INSTALL_PATH/bin/install_jSite.sh" type="bin" stage="postinstall" os="unix"/>
+			<executable targetfile="$INSTALL_PATH\bin\install_jSite.cmd" type="bin" stage="postinstall" os="windows"/>
+		</pack>
+		<pack name="frost" required="no">
+			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/</description>
+			<executable targetfile="$INSTALL_PATH/bin/install_frost.sh" type="bin" stage="postinstall" os="unix"/>
+			<executable targetfile="$INSTALL_PATH\bin\install_frost.cmd" type="bin" stage="postinstall" os="windows"/>
+		</pack>
+		<pack name="thaw" required="no">
+			<description>A powerfull filesharing tool designed for freenet</description>
+			<executable targetfile="$INSTALL_PATH/bin/install_thaw.sh" type="bin" stage="postinstall" os="unix"/>
+			<executable targetfile="$INSTALL_PATH\bin\install_thaw.cmd" type="bin" stage="postinstall" os="windows"/>
+		</pack>
+	</packs>
+
+	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->
+	<native type="3rdparty" name="COIOSHelper.dll" stage="both">
+		<os family="windows"/>
+	</native>
+	<native type="izpack" name="ShellLink.dll" stage="install">
+		<os family="windows"/>
+	</native>
+
+	<jar src="res/bin/sha1test.jar"/>
+
+</installation>

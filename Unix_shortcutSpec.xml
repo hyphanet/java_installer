@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+	<skipIfNotSupported/>
+
+	<programGroup defaultName="The Free Network Project" location="applications"/>
+	<shortcut
+		name="Show Fproxy"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		iconFile="$INSTALL_PATH/freenet.ico"
+		iconIndex="0" 
+		type="Link"
+		url="http://localhost:8888"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This starts a browser pointing to Fproxy">
+
+		<createForPack name="Base" />
+	</shortcut>
+	
+	<shortcut
+		name="The Freenet Project Website"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		iconFile="$INSTALL_PATH/freenet.ico"
+		iconIndex="0" 
+		type="Link"
+		url="http://freenetproject.org"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This starts a browser pointing to http://freenetproject.org">
+
+		<createForPack name="Base" />
+	</shortcut>
+
+	<shortcut
+		name="Uninstaller"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="java"
+		commandLine="-jar &quot;$INSTALL_PATH/Uninstaller/uninstaller.jar&quot;"
+
+		initialState="noShow"
+		iconFile="trashcan_full"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This uninstalls Freenet">
+
+		<createForPack name="Base" />
+	</shortcut>
+</shortcuts>

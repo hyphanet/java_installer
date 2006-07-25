@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!-- ant build file for the freenet installer -->
+
+<project name="Freenet" default="dist" basedir=".">
+	<description>
+		This file builds the freenet installer...
+	</description>
+
+	<property name="config" value="install.xml"/>
+	<property name="dest" value="install.jar"/>
+	<property name="build" value="build"/>
+	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
+
+	<taskdef name="izpack" classpath="${basedir}/lib/standalone-compiler.jar" classname="com.izforge.izpack.ant.IzPackTask"/>
+
+	<target name="dist" description="generate the distribution" depends="compile_sha1test, compile_browser, compile_uncompress">
+		<echo message="Build the installer"/>
+		<izpack input="${config}" output="${dest}" baseDir="${basedir}"/>
+	</target>
+
+	<!-- ================================================== -->
+	<target name="clean" description="Delete the installer">
+		<delete file="${dest}"/>
+		<delete dir="${build}"/>
+		<delete dir="${build}_sha1test"/>
+		<delete dir="${build}_browser"/>
+		<delete dir="${build}_uncompress"/>
+	</target>
+
+	<target name="compile_sha1test">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+
+		<mkdir dir="${build}_sha1test"/>
+		<javac srcdir="./src" destdir="./${build}_sha1test" optimize="on" source="1.4">
+			<classpath>
+				<pathelement location="${izPack.lib}"/>
+			</classpath>
+
+			<include name="gnu/**/*.java"/>
+			<include name="freenet/support/HexUtil"/>
+			<include name="Sha1Test.java"/>
+		</javac>
+		<jar jarfile="./res/bin/sha1test.jar" basedir="./${build}_sha1test">
+			<manifest>
+				<attribute name="Main-Class" value="Sha1Test"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="compile_browser">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+
+		<mkdir dir="${build}_browser"/>
+		<javac srcdir="./src" destdir="./${build}_browser" optimize="on" source="1.4">
+			<include name="BareBonesBrowserLaunch.java"/>
+		</javac>
+		<jar jarfile="./res/bin/browser.jar" basedir="./${build}_browser">
+			<manifest>
+				<attribute name="Main-Class" value="BareBonesBrowserLaunch"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="compile_uncompress">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+
+		<mkdir dir="${build}_uncompress"/>
+		<javac srcdir="./src" destdir="./${build}_uncompress" optimize="on" source="1.4">
+			<include name="Uncompress.java"/>
+		</javac>
+		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}_uncompress">
+			<manifest>
+				<attribute name="Main-Class" value="Uncompress$Test"/>
+			</manifest>
+		</jar>
+	</target>
+</project>

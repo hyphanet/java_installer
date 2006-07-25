@@ -1,0 +1,10 @@
+<processing>
+	<job name="Downloading required files (windows)">
+		<os family="windows" />
+		<executefile name="$INSTALL_PATH\bin\1run.cmd"/>
+	</job>
+	<job name="Downloading required files (unix)">
+		<os family="unix" />
+		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
+	</job>
+</processing>

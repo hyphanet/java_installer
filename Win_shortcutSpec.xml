@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+
+	<skipIfNotSupported />
+
+	<programGroup defaultName="The Free Network Project" location="applications"/>
+
+	<shortcut
+		name="Start the node"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="$INSTALL_PATH\bin\start.cmd"
+		commandLine=""
+		description="This starts the freenet node"
+		workingDirectory="$INSTALL_PATH"
+	>
+		<createForPack name="Base" />
+	</shortcut>
+	
+	<shortcut
+		name="Stop the node"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="$INSTALL_PATH\bin\stop.cmd"
+		commandLine=""
+		workingDirectory="$INSTALL_PATH"
+		description="This stops the freenet node">
+
+		<createForPack name="Base" />
+	</shortcut>
+	
+	<shortcut
+		name="Browse Freenet"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		iconFile="$INSTALL_PATH\freenet.ico"
+		iconIndex="0"
+		target="http://localhost:8888/"
+		description="It opens a browser pointing to Fproxy">
+
+		<createForPack name="Base" />
+	</shortcut>
+	
+	<shortcut
+		name="Browse our website"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="yes"
+		startup="no"
+		iconFile="$INSTALL_PATH\freenet.ico"
+		iconIndex="0"
+		target="http://freenetproject.org"
+		description="It opens a browser pointing to our website">
+
+		<createForPack name="Base" />
+	</shortcut>
+</shortcuts>

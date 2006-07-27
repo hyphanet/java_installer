@@ -70,7 +70,6 @@
 		<res src="res/img/title.png" id="installer.langsel.img"/>
 		<res src="res/img/title.png" id="Installer.image"/>
 		<res id="LicencePanel.licence" src="res/license/LICENSE.Freenet"/>
-		<res id="InfoPanel.info" src="res/README"/>
 		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>
 		<res src="Win_shortcutSpec.xml" id="Win_shortcutSpec.xml"/>
 		<res src="Unix_shortcutSpec.xml" id="Unix_shortcutSpec.xml"/>
@@ -82,7 +81,6 @@
 		<res src="res/img/border5.png" id="Installer.image.5"/>
 		<res src="res/img/border6.png" id="Installer.image.6"/>
 		<res src="res/img/border7.png" id="Installer.image.7"/>
-		<res src="res/img/border8.png" id="Installer.image.8"/>
 	</resources>
 
 	<!-- The listeners section for CustomActions -->
@@ -96,7 +94,6 @@
 
 	<panels>
 		<panel classname="CheckedHelloPanel"/>
-		<panel classname="InfoPanel"/>
 		<panel classname="LicencePanel"/>
 		<panel classname="TargetPanel"/> 
 		<panel classname="PacksPanel"/>

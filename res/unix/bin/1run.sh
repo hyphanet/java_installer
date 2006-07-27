@@ -4,6 +4,18 @@ DST="$INSTALL_PATH"
 
 echo "install: $INSTALL_PATH"
 cd "$DST"
+if [[ -e stun ]]
+then
+	echo "Enabling the STUN plugin"
+	echo "pluginmanager.loadplugin=*@file://$INSTALL_PATH/plugins/JSTUN.jar;" >> freenet.ini
+	rm -f stun
+fi
+if [[ -e update ]]
+then
+	echo "Enabling the auto-update feature"
+	echo "node.updater.autoupdate=true" >> freenet.ini
+	rm -f update
+fi
 echo "Downloading freenet-cvs-snapshot.jar"
 java -jar bin/sha1test.jar freenet-cvs-snapshot.jar "$DST" || exit 1
 echo "Downloading freenet-ext.jar"

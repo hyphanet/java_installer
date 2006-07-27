@@ -168,6 +168,10 @@
 			<description>Create uninstallation hooks in the registry</description>
 			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
 		</pack>
+		<pack name="AutoUpdater" required="no">
+			<description>A plugin enabling the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
+		</pack>
 		<pack name="STUN" required="no">
 			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router (i.e. most nodes).</description>
 			<fileset dir="res/" targetdir="$INSTALL_PATH">
@@ -175,6 +179,7 @@
 				<exclude name="*/**/.svn/**"/>
 				<include name="plugins/JSTUN.jar"/>
 			</fileset>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
 		<pack name="jSite" required="no">
 			<description>A tool to ease the insertion of freesites</description>

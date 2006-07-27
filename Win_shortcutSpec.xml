@@ -52,7 +52,7 @@
 	</shortcut>
 	
 	<shortcut
-		name="Browse our website"
+		name="Browse http://freenetproject.org"
 		programGroup="yes"
 		desktop="no"
 		applications="no"

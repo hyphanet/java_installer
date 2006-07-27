@@ -4,6 +4,4 @@ TODO:
 	* more support for unix
 	* Welcome page
 	* Fix uninstallation hooks
-	* Don't bundle JSTUN but download it
 	* New packs:
-		- auto-update

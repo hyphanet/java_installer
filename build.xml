@@ -25,6 +25,7 @@
 		<delete dir="${build}_sha1test"/>
 		<delete dir="${build}_browser"/>
 		<delete dir="${build}_uncompress"/>
+		<delete file="freenet-win32.exe"/>
 	</target>
 
 	<target name="compile_sha1test">
@@ -79,5 +80,12 @@
 				<attribute name="Main-Class" value="Uncompress$Test"/>
 			</manifest>
 		</jar>
+	</target>
+
+	<target name="win32" depends="dist">
+		<copy file="res/installer.exe" tofile="freenet-win32.exe"/>
+		<exec  executable="rar">
+			<arg line="a freenet-win32.exe install.jar"/>
+		</exec>
 	</target>
 </project>

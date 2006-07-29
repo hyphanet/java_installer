@@ -16,4 +16,5 @@
 @ping -n 5 127.0.0.1 >nul
 @echo "Spawing up a browser"
 @start http://127.0.0.1:8888
+@start file:///$INSTALL_PATH/welcome.html
 @echo "Finished"

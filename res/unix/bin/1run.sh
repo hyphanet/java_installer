@@ -25,6 +25,7 @@ echo "Waiting for Freenet to startup"
 sleep 10
 echo "Starting up a browser"
 java -cp bin/browser.jar BareBonesBrowserLaunch "http://127.0.0.1:8888/"
+java -cp bin/browser.jar BareBonesBrowserLaunch "http://$INSTALL_PATH/welcome.html"
 
 echo "Finished"
 

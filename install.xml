@@ -116,6 +116,7 @@
 				<include name="wrapper.conf"/>
 				<include name="freenet.ini"/>
 				<include name="update.cmd"/>
+				<include name="welcome.html"/>
 			</fileset>
 			<parsable targetfile="$INSTALL_PATH/freenet.ini"/> 
 		</pack>
@@ -159,7 +160,7 @@
 			<executable targetfile="$INSTALL_PATH/bin/update.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/wrapper-linux-x86-32" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
-			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never" keep="true"/>
+			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/> 
@@ -174,7 +175,7 @@
 		</pack>
 		
 		<pack name="AutoUpdater" required="no">
-			<description>A plugin enabling the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
+			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
 		</pack>
 		<pack name="STUN" required="no">

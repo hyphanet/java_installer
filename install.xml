@@ -66,13 +66,15 @@
 
 	<resources>
 		<res src="RegistrySpec.xml" id="RegistrySpec.xml"/>
-		<res id="ProcessPanel.Spec.xml" src="ProcessPanel.Spec.xml"/> 
-		<res src="res/img/title.png" id="installer.langsel.img"/>
-		<res src="res/img/title.png" id="Installer.image"/>
-		<res id="LicencePanel.licence" src="res/license/LICENSE.Freenet"/>
+		<res src="ProcessPanel.Spec.xml" id="ProcessPanel.Spec.xml"/> 
+		<res src="res/license/LICENSE.Freenet" id="LicencePanel.licence"/>
+		
 		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>
 		<res src="Win_shortcutSpec.xml" id="Win_shortcutSpec.xml"/>
 		<res src="Unix_shortcutSpec.xml" id="Unix_shortcutSpec.xml"/>
+		
+		<res src="res/img/title.png" id="installer.langsel.img"/>
+		<res src="res/img/title.png" id="Installer.image"/>
 		<res src="res/img/border1.png" id="Installer.image.0"/>
 		<res src="res/img/border2.png" id="Installer.image.1"/>
 		<res src="res/img/border3.png" id="Installer.image.2"/>
@@ -164,31 +166,36 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/install_jstun.sh"/> 
 		</pack>
+		
 		<pack name="UninstallStuff" required="no">
 			<os family="windows"/>
 			<description>Create uninstallation hooks in the registry</description>
 			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
 		</pack>
+		
 		<pack name="AutoUpdater" required="no">
 			<description>A plugin enabling the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
 		</pack>
 		<pack name="STUN" required="no">
-			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router (i.e. most nodes).</description>
+			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamical IP addresses (i.e. most nodes).</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_jstun.sh" type="bin" stage="postinstall" os="unix"/>
 			<executable targetfile="$INSTALL_PATH\bin\install_jstun.cmd" type="bin" stage="postinstall" os="windows"/>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
+		
 		<pack name="jSite" required="no">
 			<description>A tool to ease the insertion of freesites</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_jSite.sh" type="bin" stage="postinstall" os="unix"/>
 			<executable targetfile="$INSTALL_PATH\bin\install_jSite.cmd" type="bin" stage="postinstall" os="windows"/>
 		</pack>
+		
 		<pack name="frost" required="no">
 			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_frost.sh" type="bin" stage="postinstall" os="unix"/>
 			<executable targetfile="$INSTALL_PATH\bin\install_frost.cmd" type="bin" stage="postinstall" os="windows"/>
 		</pack>
+		
 		<pack name="thaw" required="no">
 			<description>A powerfull filesharing tool designed for freenet</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_thaw.sh" type="bin" stage="postinstall" os="unix"/>
@@ -200,10 +207,8 @@
 	<native type="3rdparty" name="COIOSHelper.dll" stage="both">
 		<os family="windows"/>
 	</native>
+
 	<native type="izpack" name="ShellLink.dll" stage="install">
 		<os family="windows"/>
 	</native>
-
-	<jar src="res/bin/sha1test.jar"/>
-
 </installation>

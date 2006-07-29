@@ -185,7 +185,7 @@
 		</pack>
 		
 		<pack name="jSite" required="no">
-			<description>A tool to ease the insertion of freesites</description>
+			<description>A tool to upload websites to freenet</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_jSite.sh" type="bin" stage="postinstall" os="unix"/>
 			<executable targetfile="$INSTALL_PATH\bin\install_jSite.cmd" type="bin" stage="postinstall" os="windows"/>
 		</pack>
@@ -197,7 +197,7 @@
 		</pack>
 		
 		<pack name="thaw" required="no">
-			<description>A powerfull filesharing tool designed for freenet</description>
+			<description>A powerful filesharing tool designed for freenet</description>
 			<executable targetfile="$INSTALL_PATH/bin/install_thaw.sh" type="bin" stage="postinstall" os="unix"/>
 			<executable targetfile="$INSTALL_PATH\bin\install_thaw.cmd" type="bin" stage="postinstall" os="windows"/>
 		</pack>

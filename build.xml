@@ -10,6 +10,7 @@
 	<property name="dest" value="install.jar"/>
 	<property name="build" value="build"/>
 	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
+	<property name="jre.lib" value="lib/jre-1_5_0_07-windows-i586-p.exe"/>
 
 	<taskdef name="izpack" classpath="${basedir}/lib/standalone-compiler.jar" classname="com.izforge.izpack.ant.IzPackTask"/>
 
@@ -26,6 +27,8 @@
 		<delete dir="${build}_browser"/>
 		<delete dir="${build}_uncompress"/>
 		<delete file="freenet-win32.exe"/>
+		<delete file="freenet-win32-with_jre.exe"/>
+		<delete file="jre.exe"/>
 	</target>
 
 	<target name="compile_sha1test">
@@ -86,6 +89,12 @@
 		<copy file="res/installer.exe" tofile="freenet-win32.exe"/>
 		<exec  executable="rar">
 			<arg line="a freenet-win32.exe install.jar"/>
+		</exec>
+		
+		<copy file="freenet-win32.exe" tofile="freenet-win32-with_jre.exe"/>
+		<copy file="${jre.lib}" tofile="jre.exe"/>
+		<exec  executable="rar">
+			<arg line="a freenet-win32-with_jre.exe jre.exe"/>
 		</exec>
 	</target>
 </project>

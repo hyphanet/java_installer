@@ -8,6 +8,8 @@
 @java -jar bin\sha1test.jar freenet-cvs-snapshot.jar "$INSTALL_PATH"
 @echo "Downloading freenet-ext.jar"
 @java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH"
+@echo "Downloading update.cmd"
+@java -jar bin\sha1test.jar update/update.cmd "$INSTALL_PATH"
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

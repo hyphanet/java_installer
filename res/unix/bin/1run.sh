@@ -20,6 +20,9 @@ echo "Downloading freenet-cvs-snapshot.jar"
 java -jar bin/sha1test.jar freenet-cvs-snapshot.jar "$DST" || exit 1
 echo "Downloading freenet-ext.jar"
 java -jar bin/sha1test.jar freenet-ext.jar "$DST" || exit 1
+echo "Downloading update.sh"
+java -jar bin/sha1test.jar update/update.sh "$DST" || exit 1
+chmod +x $DST/update.sh
 ./run.sh start
 echo "Waiting for Freenet to startup"
 sleep 10

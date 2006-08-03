@@ -17,7 +17,7 @@ then
 	rm -f update
 fi
 
-chmod a+rX -R $INSTALL_PATH/bin $INSTALL_PATH/lib
+chmod a+rx -R $INSTALL_PATH/bin $INSTALL_PATH/lib
 
 echo "Downloading freenet-cvs-snapshot.jar"
 java -jar bin/sha1test.jar freenet-cvs-snapshot.jar "$DST" || exit 1

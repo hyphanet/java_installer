@@ -158,7 +158,6 @@
 			</fileset>
 
 			<executable targetfile="$INSTALL_PATH/bin/update.sh" type="bin" stage="never" keep="true"/>
-			<executable targetfile="$INSTALL_PATH/bin/wrapper-linux-x86-32" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 

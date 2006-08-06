@@ -115,7 +115,6 @@
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="freenet.ini"/>
-				<include name="update.cmd"/>
 				<include name="welcome.html"/>
 			</fileset>
 			<parsable targetfile="$INSTALL_PATH/freenet.ini"/> 
@@ -157,7 +156,6 @@
 				<include name="**/*"/>
 			</fileset>
 
-			<executable targetfile="$INSTALL_PATH/bin/update.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 

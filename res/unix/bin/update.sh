@@ -21,12 +21,12 @@ if [[ ! -x "$(which wget)" ]]
 then
 	WGET=0
 	DOWNLOADER="curl --insecure -q -f -L -O "
-	DOWNLOADER2="curl --insecure -q -f -L -O http://downloads.freenetproject.org/alpha/freenet-cvs-snapshot.jar"
+	DOWNLOADER2="curl --insecure -q -f -L -O http://downloads.freenetproject.org/alpha/freenet-stable-latest.jar"
 	DOWNLOADER3="curl --insecure -q -f -L -O "
 else
 	WGET=1
 	DOWNLOADER="wget $THEMASK -N "
-	DOWNLOADER2="wget $THEMASK -N -i freenet-cvs-snapshot.jar.url"
+	DOWNLOADER2="wget $THEMASK -N -i freenet-stable-latest.jar.url"
 	DOWNLOADER3="wget $THEMASK -N -O update2.sh $NOCERT "
 fi
 
@@ -54,14 +54,14 @@ then
 	fi
 fi
 
-cp freenet-cvs-snapshot.jar freenet-cvs-snapshot.jar.old
+cp freenet-stable-latest.jar freenet-stable-latest.jar.old
 cp freenet-ext.jar freenet-ext.jar.old
 
-if java -cp sha1test.jar Sha1Test freenet-cvs-snapshot.jar
+if java -cp sha1test.jar Sha1Test freenet-stable-latest.jar
 then
-	echo Downloaded freenet-cvs-snapshot.jar
+	echo Downloaded freenet-stable-latest.jar
 else
-	echo Could not download new freenet-cvs-snapshot.jar.
+	echo Could not download new freenet-stable-latest.jar.
 	exit
 fi
 
@@ -82,9 +82,9 @@ then
 		./run.sh restart
 	else
 		echo hmmm
-		if [[ "$(md5sum freenet-cvs-snapshot.jar)" != "$(md5sum freenet-cvs-snapshot.jar.old)" ]]
+		if [[ "$(md5sum freenet-stable-latest.jar)" != "$(md5sum freenet-stable-latest.jar.old)" ]]
 		then
-			echo Restarting node because freenet-cvs-snapshot.jar updated.
+			echo Restarting node because freenet-stable-latest.jar updated.
 			./run.sh restart
 		elif [[ "$(md5sum freenet-ext.jar)" != "$(md5sum freenet-ext.jar.old)" ]]
 		then
@@ -93,11 +93,11 @@ then
 		fi
 	fi
 else
-	if cmp freenet-cvs-snapshot.jar freenet-cvs-snapshot.jar.old && cmp freenet-ext.jar freenet-ext.jar.old
+	if cmp freenet-stable-latest.jar freenet-stable-latest.jar.old && cmp freenet-ext.jar freenet-ext.jar.old
 	then
 		echo Your node is up to date
 	else
-		echo Restarting node because freenet-cvs-snapshot.jar or freenet-ext.jar updated.
+		echo Restarting node because freenet-stable-latest.jar or freenet-ext.jar updated.
 		./run.sh restart
 	fi
 fi

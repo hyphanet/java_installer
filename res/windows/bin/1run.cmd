@@ -4,8 +4,8 @@
 @del /F stun > NUL
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
-@echo "Downloading freenet-cvs-snapshot.jar"
-@java -jar bin\sha1test.jar freenet-cvs-snapshot.jar "$INSTALL_PATH"
+@echo "Downloading freenet-stable-latest.jar"
+@java -jar bin\sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH"
 @echo "Downloading freenet-ext.jar"
 @java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH"
 @echo "Downloading update.cmd"

@@ -3,28 +3,32 @@
 @cd %INSTALL_PATH%
 
 :: Tweak freenet.ini
-@if exist stun echo pluginmanager.loadplugin=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar >> freenet.ini
+@if not exist stun goto nostun 
+@echo pluginmanager.loadplugin=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar >> freenet.ini
+@mkdir plugins
+@java -jar bin\sha1test.jar JSTUN.jar plugins
 @del /F stun > NUL
+:nostun
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
 
 :: Try to detect a free, aviable port for fproxy
 @set FPROXY_PORT=8888
-@java -jar bin\bindtest.java %FPROXY_PORT% 
+@java -jar bin\bindtest.jar %FPROXY_PORT% 
 @if not errorlevel 0 set FPROXY_PORT=8889
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
 
 :: Try to detect a free, aviable port for fcp
 @set FCP_PORT=9481
-@java -jar bin\bindtest.java %FCP_PORT% 
+@java -jar bin\bindtest.jar %FCP_PORT% 
 @if not errorlevel 0 set FCP_PORT=9482
 @echo fcp.enable=true >>freenet.ini
 @echo fcp.port=%FCP_PORT% >>freenet.ini
 
 :: Try to detect a free, aviable port for console
 @set CONSOLE_PORT=2323
-@java -jar bin\bindtest.java %CONSOLE_PORT% 
+@java -jar bin\bindtest.jar %CONSOLE_PORT% 
 @if not errorlevel 0 set CONSOLE_PORT=2324
 @echo console.enable=true >>freenet.ini
 @echo console.port=%CONSOLE_PORT% >>freenet.ini

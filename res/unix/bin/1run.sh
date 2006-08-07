@@ -8,6 +8,7 @@ cd "$DST"
 # Tweak freenet.ini before the first startup
 if [[ -e stun ]]
 then
+	./bin/install_jstun.sh
 	echo "Enabling the STUN plugin"
 	echo "pluginmanager.loadplugin=plugins.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;" >> freenet.ini
 	rm -f stun

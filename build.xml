@@ -14,7 +14,7 @@
 
 	<taskdef name="izpack" classpath="${basedir}/lib/standalone-compiler.jar" classname="com.izforge.izpack.ant.IzPackTask"/>
 
-	<target name="dist" description="generate the distribution" depends="compile_sha1test, compile_browser, compile_uncompress">
+	<target name="dist" description="generate the distribution" depends="compile_sha1test, compile_browser, compile_uncompress, compile_bindtest">
 		<echo message="Build the installer"/>
 		<izpack input="${config}" output="${dest}" baseDir="${basedir}"/>
 	</target>
@@ -26,6 +26,7 @@
 		<delete dir="${build}_sha1test"/>
 		<delete dir="${build}_browser"/>
 		<delete dir="${build}_uncompress"/>
+		<delete dir="${build}_bindtest"/>
 		<delete file="freenet-win32.exe"/>
 		<delete file="freenet-win32-with_jre.exe"/>
 		<delete file="jre.exe"/>
@@ -81,6 +82,22 @@
 		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}_uncompress">
 			<manifest>
 				<attribute name="Main-Class" value="Uncompress$Test"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="compile_bindtest">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+
+		<mkdir dir="${build}_bindtest"/>
+		<javac srcdir="./src" destdir="./${build}_bindtest" optimize="on" source="1.4">
+			<include name="BindTest.java"/>
+		</javac>
+		<jar jarfile="./res/bin/bindtest.jar" basedir="./${build}_bindtest">
+			<manifest>
+				<attribute name="Main-Class" value="BindTest"/>
 			</manifest>
 		</jar>
 	</target>

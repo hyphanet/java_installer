@@ -1,6 +1,5 @@
 TODO:
 	* l10n
-	* x86_64 support
-	* more support for unix
 	* Fix uninstallation hooks
 	* New packs:
+		-Freemail

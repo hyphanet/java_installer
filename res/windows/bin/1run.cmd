@@ -1,5 +1,5 @@
 @set PATH=%SYSTEMROOT%\System32\;%PATH%
-@set INSTALL_PATH="$INSTALL_PATH"
+@set INSTALL_PATH=$INSTALL_PATH
 @cd %INSTALL_PATH%
 
 :: Tweak freenet.ini
@@ -46,5 +46,5 @@
 
 @echo "Spawing up a browser"
 @start http://127.0.0.1:%FPROXY_PORT%/
-@start file:///%INSTALL_PATH%/welcome.html
+@start welcome.html
 @echo "Finished"

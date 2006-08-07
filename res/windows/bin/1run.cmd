@@ -1,5 +1,6 @@
 @set PATH=%SYSTEMROOT%\System32\;%PATH%
-@cd "$INSTALL_PATH"
+@set INSTALL_PATH="$INSTALL_PATH"
+@cd %INSTALL_PATH%
 
 :: Tweak freenet.ini
 @if exist stun echo pluginmanager.loadplugin=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar >> freenet.ini
@@ -45,5 +46,5 @@
 
 @echo "Spawing up a browser"
 @start http://127.0.0.1:%FPROXY_PORT%/
-@start file:///$INSTALL_PATH/welcome.html
+@start file:///%INSTALL_PATH%/welcome.html
 @echo "Finished"

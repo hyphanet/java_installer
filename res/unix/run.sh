@@ -234,6 +234,8 @@ else
                         echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
                         echo "  $WRAPPER_CMD-$DIST_OS-universal-64"
                         echo "  $WRAPPER_CMD"
+			echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
+			java -cp freenet-ext.jar:freenet-stable-latest.jar freenet.node.NodeStarter
                         exit 1
                     fi
                 fi
@@ -251,6 +253,8 @@ else
                 echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-32"
                 echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
                 echo "  $WRAPPER_CMD"
+		echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
+		java -cp freenet-ext.jar:freenet-stable-latest.jar freenet.node.NodeStarter
                 exit 1
             fi
         fi

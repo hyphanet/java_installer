@@ -35,6 +35,7 @@
 
 @echo "Downloading freenet-stable-latest.jar"
 @java -jar bin\sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH"
+@copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Downloading freenet-ext.jar"
 @java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH"
 @echo "Downloading update.cmd"

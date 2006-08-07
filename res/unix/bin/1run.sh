@@ -61,6 +61,7 @@ chmod a+rx -R $INSTALL_PATH/bin $INSTALL_PATH/lib
 
 echo "Downloading freenet-stable-latest.jar"
 java -jar bin/sha1test.jar freenet-stable-latest.jar "$DST" || exit 1
+ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
 java -jar bin/sha1test.jar freenet-ext.jar "$DST" || exit 1
 echo "Downloading update.sh"

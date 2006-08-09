@@ -2,13 +2,13 @@
 
 DST="$INSTALL_PATH"
 
-echo "install: $INSTALL_PATH"
+echo "Installing freenet in $INSTALL_PATH"
 cd "$DST"
 
 # Tweak freenet.ini before the first startup
 if [[ -e stun ]]
 then
-	./bin/install_jstun.sh
+	chmod +x ./bin/install_jstun.sh ; ./bin/install_jstun.sh &>/dev/null && rm -f ./bin/install_jstun.sh
 	echo "Enabling the STUN plugin"
 	echo "pluginmanager.loadplugin=plugins.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;" >> freenet.ini
 	rm -f stun
@@ -20,9 +20,10 @@ then
 	rm -f update
 fi
 
+echo "Detecting tcp-ports aviability..."
 # Try to auto-detect the first aviable port for fproxy
 FPROXY_PORT=8888
-java -jar bin/bindtest.jar $FPROXY_PORT
+java -jar bin/bindtest.jar $FPROXY_PORT &>/dev/null
 if [[ $? -ne 0 ]]
 then
 	FPROXY_PORT=8889
@@ -31,7 +32,7 @@ then
 	if [[ $? -ne 0 ]]
 	then
 		FPROXY_PORT=9999
-		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT insteed. You might have to edit freenet.ini by hand yourself to choose an aviable, bindable tcp port."
+		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT insteed."
 	fi
 fi
 echo -e "fproxy.enabled=true\nfproxy.port=$FPROXY_PORT" >> freenet.ini
@@ -42,7 +43,7 @@ java -jar bin/bindtest.jar $FCP_PORT
 if [[ $? -ne 0 ]]
 then
 	FCP_PORT=9482
-	echo "Can not bind fcp to 9481: force it to $FCP_PORT insteed. You might have to edit freenet.ini by hand yourself to choose an aviable, bindable tcp port."
+	echo "Can not bind fcp to 9481: force it to $FCP_PORT insteed."
 fi
 echo -e "fcp.enabled=true\nfcp.port=$FCP_PORT" >> freenet.ini
 
@@ -52,20 +53,20 @@ java -jar bin/bindtest.jar $CONSOLE_PORT
 if [[ $? -ne 0 ]]
 then
 	CONSOLE_PORT=2324
-	echo "Can not bind console to 2323: force it to $CONSOLE_PORT insteed. You might have to edit freenet.ini by hand yourself to choose an aviable, bindable tcp port."
+	echo "Can not bind console to 2323: force it to $CONSOLE_PORT insteed."
 fi
 echo -e "console.enabled=true\nconsole.port=$CONSOLE_PORT" >> freenet.ini
 
 # We need the exec flag on /bin
-chmod a+rx -R $INSTALL_PATH/bin $INSTALL_PATH/lib
+chmod a+rx -R $INSTALL_PATH/bin $INSTALL_PATH/lib &>/dev/null
 
 echo "Downloading freenet-stable-latest.jar"
-java -jar bin/sha1test.jar freenet-stable-latest.jar "$DST" || exit 1
+java -jar bin/sha1test.jar freenet-stable-latest.jar "$DST" &>/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java -jar bin/sha1test.jar freenet-ext.jar "$DST" || exit 1
+java -jar bin/sha1test.jar freenet-ext.jar "$DST" &>/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh "$DST" || exit 1
+java -jar bin/sha1test.jar update/update.sh "$DST" &>/dev/null || exit 1
 chmod +x $DST/update.sh
 
 # Starting the node up

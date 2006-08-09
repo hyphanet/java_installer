@@ -6,7 +6,7 @@
 @if not exist stun goto nostun 
 @echo pluginmanager.loadplugin=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar >> freenet.ini
 @mkdir plugins
-@java -jar bin\sha1test.jar JSTUN.jar plugins
+@java -jar bin\sha1test.jar JSTUN.jar plugins > NUL
 @del /F stun > NUL
 :nostun
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
@@ -34,12 +34,12 @@
 @echo console.port=%CONSOLE_PORT% >>freenet.ini
 
 @echo "Downloading freenet-stable-latest.jar"
-@java -jar bin\sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH"
+@java -jar bin\sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH" > NUL
 @copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Downloading freenet-ext.jar"
-@java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH"
+@java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH" > NUL
 @echo "Downloading update.cmd"
-@java -jar bin\sha1test.jar update/update.cmd "$INSTALL_PATH"
+@java -jar bin\sha1test.jar update/update.cmd "$INSTALL_PATH" > NUL
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

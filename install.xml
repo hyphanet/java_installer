@@ -142,7 +142,7 @@
 			<parsable targetfile="$INSTALL_PATH\bin\install_jSite.cmd"/> 
 			<parsable targetfile="$INSTALL_PATH\bin\install_frost.cmd"/> 
 			<parsable targetfile="$INSTALL_PATH\bin\install_jSite.cmd"/> 
-			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" os="windows" keep="true" stage="uninstall"/>
+			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 		</pack>
 
 		<pack name="Unix" required="yes" os="unix">

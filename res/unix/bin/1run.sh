@@ -34,6 +34,8 @@ then
 		FPROXY_PORT=9999
 		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT insteed."
 	fi
+	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
+	mv welcome2.html welcome.html
 fi
 echo -e "fproxy.enabled=true\nfproxy.port=$FPROXY_PORT" >> freenet.ini
 

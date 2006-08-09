@@ -52,4 +52,30 @@
 @echo "Spawing up a browser"
 @start http://127.0.0.1:%FPROXY_PORT%/
 @start welcome.html
+
+:: Installing additionnal softwares
+@if not exist jsite goto nojsite 
+@del /F jsite > NUL
+@echo "Downloading jSite"
+@java -jar bin\sha1test.jar jSite/jSite.jar .
+@echo "Done"
+:nojsite
+
+@if not exist thaw goto nothaw 
+@del /F thaw > NUL
+@echo "Downloading Thaw"
+@java -jar bin\sha1test.jar Thaw/Thaw.jar .
+@echo "Done"
+:nothaw
+
+@if not exist frost goto nofrost 
+@del /F frost > NUL
+@echo "Downloading Frost"
+@java -jar bin\sha1test.jar frost/frost.zip .
+@echo "Setting Frost up"
+@mkdir frost
+@java -jar uncompress.jar frost.zip frost
+@echo "Done"
+:nofrost
+
 @echo "Finished"

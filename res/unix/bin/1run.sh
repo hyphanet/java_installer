@@ -77,6 +77,30 @@ echo "Starting up a browser"
 java -cp bin/browser.jar BareBonesBrowserLaunch "http://127.0.0.1:$FPROXY_PORT/"
 java -cp bin/browser.jar BareBonesBrowserLaunch "file:///$INSTALL_PATH/welcome.html"
 
+if [[ -e thaw ]]
+then
+	rm -f thaw
+	echo "Downloading Thaw"
+	java -jar bin/sha1test.jar Thaw/Thaw.jar ./ &>/dev/null || exit 1
+fi
+
+if [[ -e jsite ]]
+then
+	rm -f jsite
+	echo "Downloading jSite"
+	java -jar bin/sha1test.jar jSite/jSite.jar ./ &>/dev/null || exit 1
+fi
+
+if [[ -e frost ]]
+then
+	rm -f frost
+	echo "Downloading frost"
+	java -jar bin/sha1test.jar frost/frost.zip ./ &>/dev/null || exit 1
+	echo "Unzipping frost"
+	mkdir frost
+	java -jar bin/uncompress.jar frost.zip frost &>/dev/null
+fi
+
 echo "Finished"
 
 exit 0

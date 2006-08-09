@@ -57,25 +57,22 @@
 @if not exist jsite goto nojsite 
 @del /F jsite > NUL
 @echo "Downloading jSite"
-@java -jar bin\sha1test.jar jSite/jSite.jar .
-@echo "Done"
+@java -jar bin\sha1test.jar jSite/jSite.jar . > NUL
 :nojsite
 
 @if not exist thaw goto nothaw 
 @del /F thaw > NUL
 @echo "Downloading Thaw"
-@java -jar bin\sha1test.jar Thaw/Thaw.jar .
-@echo "Done"
+@java -jar bin\sha1test.jar Thaw/Thaw.jar . > NUL
 :nothaw
 
 @if not exist frost goto nofrost 
 @del /F frost > NUL
 @echo "Downloading Frost"
-@java -jar bin\sha1test.jar frost/frost.zip .
+@java -jar bin\sha1test.jar frost/frost.zip . > NUL
 @echo "Setting Frost up"
 @mkdir frost
-@java -jar uncompress.jar frost.zip frost
-@echo "Done"
+@java -jar bin\uncompress.jar frost.zip frost > NUL
 :nofrost
 
 @echo "Finished"

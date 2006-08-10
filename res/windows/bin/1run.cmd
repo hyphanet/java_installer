@@ -4,11 +4,21 @@
 
 :: Tweak freenet.ini
 @if not exist stun goto nostun 
-@echo pluginmanager.loadplugin=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar >> freenet.ini
-@mkdir plugins
+@set PLUGINS=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar;%PLUGINS%
+@mkdir plugins > NUL
 @java -jar bin\sha1test.jar JSTUN.jar plugins > NUL
 @del /F stun > NUL
 :nostun
+
+@if not exist librarian goto nolibrarian 
+@mkdir plugins > NUL
+@set PLUGINS=plugins.Librarian@file:///$INSTALL_PATH\plugins\Librarian.jar.url;%PLUGINS%
+@java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
+@del /F librarian > NUL
+:nolibrarian
+
+@echo pluginmanager.loadplugin=%PLUGINS% >> freenet.ini
+
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
 

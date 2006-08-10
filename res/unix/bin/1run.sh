@@ -6,13 +6,28 @@ echo "Installing freenet in $INSTALL_PATH"
 cd "$DST"
 
 # Tweak freenet.ini before the first startup
+PLUGINS=""
 if [[ -e stun ]]
 then
-	chmod +x ./bin/install_jstun.sh ; ./bin/install_jstun.sh &>/dev/null && rm -f ./bin/install_jstun.sh
 	echo "Enabling the STUN plugin"
-	echo "pluginmanager.loadplugin=plugins.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;" >> freenet.ini
+	mkdir plugins &>/dev/null
+	PLUGINS="plugins.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;$PLUGINS"
+	java -jar bin/sha1test.jar JSTUN.jar plugins &>/dev/null
 	rm -f stun
 fi
+
+if [[ -e librarian ]]
+then
+	echo "Enabling the Librarian plugin"
+	mkdir plugins &>/dev/null
+	PLUGINS="plugins.Librarian@@file://$INSTALL_PATH/plugins/Librarian.jar.url;$PLUGINS"
+	java -jar bin/sha1test.jar plugins/Librarian.jar.url plugins &>/dev/null
+	rm -f librarian
+fi
+
+# Register plugins
+echo "pluginmanager.loadplugin=$PLUGINS" >> freenet.ini
+
 if [[ -e update ]]
 then
 	echo "Enabling the auto-update feature"

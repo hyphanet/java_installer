@@ -155,7 +155,6 @@
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/1run.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 
-			<parsable targetfile="$INSTALL_PATH/bin/install_jstun.sh"/> 
 		</pack>
 		
 		<pack name="UninstallStuff" required="no">
@@ -168,9 +167,15 @@
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
 		</pack>
+
 		<pack name="STUN" required="no">
 			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamical IP addresses (i.e. most nodes).</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
+		</pack>
+
+		<pack name="Librarian" required="no">
+			<description>A plugin allowing you to search the freenet.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/librarian"/>
 		</pack>
 		
 		<pack name="jSite" required="no">

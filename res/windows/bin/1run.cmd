@@ -1,10 +1,28 @@
 @set PATH=%SYSTEMROOT%\System32\;%PATH%
-@set INSTALL_PATH=$INSTALL_PATH
+@set INSTALL_PATH=C:\Program Files\Freenet
+@set JAVA_HOME=C:\Program Files\Java\jre1.5.0_07
 @cd %INSTALL_PATH%
 
+@echo "Registering FREF file extention"
+@echo Windows Registry Editor Version 5.00 >> fref.reg
+@echo [HKEY_CLASSES_ROOT\fref_auto_file] >> fref.reg
+@echo @="Freenet node reference" >> fref.reg
+@echo "EditFlags"=dword:00000000 >> fref.reg
+@echo "BrowserFlags"=dword:00000008 >> fref.reg
+@echo [HKEY_CLASSES_ROOT\fref_auto_file\DefaultIcon] >> fref.reg
+@echo @="shell32.dll,56" >> fref.reg
+@echo [HKEY_CLASSES_ROOT\fref_auto_file\shell] >> fref.reg
+@echo @="Connect" >> fref.reg
+@echo [HKEY_CLASSES_ROOT\fref_auto_file\shell\Connect] >> fref.reg
+@echo [HKEY_CLASSES_ROOT\fref_auto_file\shell\Connect\command] >> fref.reg
+@echo @="\"%JAVA_HOME%\\bin\\java.exe\"  \"-cp\"  \"%INSTALL_PATH%\\freenet.jar\" \"freenet.support.AddRef\" \"%1\"" >> fref.reg
+@regedit /s fref.reg
+:: @del /F fref.reg
+
+@echo "Setting up plugins"
 :: Tweak freenet.ini
 @if not exist stun goto nostun 
-@set PLUGINS=plugins.JSTUN@file:///$INSTALL_PATH\plugins\JSTUN.jar;%PLUGINS%
+@set PLUGINS=plugins.JSTUN@file:///C:\Program Files\Freenet\plugins\JSTUN.jar;%PLUGINS%
 @mkdir plugins > NUL
 @java -jar bin\sha1test.jar JSTUN.jar plugins > NUL
 @del /F stun > NUL
@@ -12,8 +30,9 @@
 
 @if not exist librarian goto nolibrarian 
 @mkdir plugins > NUL
-@set PLUGINS=plugins.Librarian@file:///$INSTALL_PATH\plugins\Librarian.jar.url;%PLUGINS%
+@set PLUGINS=plugins.Librarian@file:///C:\Program Files\Freenet\plugins\Librarian.jar;%PLUGINS%
 @java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
+@copy plugins\Librarian.jar.url plugins\Librarian.jar > NUL
 @del /F librarian > NUL
 :nolibrarian
 
@@ -22,6 +41,7 @@
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
 
+@echo "Detecting tcp port abiability"
 :: Try to detect a free, aviable port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
@@ -44,12 +64,12 @@
 @echo console.port=%CONSOLE_PORT% >>freenet.ini
 
 @echo "Downloading freenet-stable-latest.jar"
-@java -jar bin\sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH" > NUL
+@java -jar bin\sha1test.jar freenet-stable-latest.jar "C:\Program Files\Freenet" > NUL
 @copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Downloading freenet-ext.jar"
-@java -jar bin\sha1test.jar freenet-ext.jar "$INSTALL_PATH" > NUL
+@java -jar bin\sha1test.jar freenet-ext.jar "C:\Program Files\Freenet" > NUL
 @echo "Downloading update.cmd"
-@java -jar bin\sha1test.jar update/update.cmd "$INSTALL_PATH" > NUL
+@java -jar bin\sha1test.jar update/update.cmd "C:\Program Files\Freenet" > NUL
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

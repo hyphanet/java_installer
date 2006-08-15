@@ -20,7 +20,7 @@
 :: @echo [HKEY_CLASSES_ROOT\fref_auto_file\shell\Connect\command] >> fref.reg
 :: @echo @="\"%JAVA%\\bin\\java.exe\"  \"-cp\"  \"%INST%\\freenet.jar\" \"freenet.support.AddRef\" \"%%1\"" >> fref.reg
 @regedit /s fref.reg > NUL
-@FTYPE fref_auto_file="$JAVA_HOME\bin\javaw.exe" -cp "$INSTALL_PATH\freenet.jar" freenet.support.AddRef "%%1" > NUL
+@FTYPE fref_auto_file="$JAVA_HOME\bin\javaw.exe" -cp "$INSTALL_PATH\freenet.jar" freenet.tools.AddRef "%%1" > NUL
 @del /F fref.reg
 
 @echo "Setting up plugins"

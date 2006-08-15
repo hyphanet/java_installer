@@ -26,7 +26,7 @@
 @echo "Setting up plugins"
 :: Tweak freenet.ini
 @if not exist stun goto nostun 
-@set PLUGINS=plugins.JSTUN@file:///C:\Program Files\Freenet\plugins\JSTUN.jar;%PLUGINS%
+@set PLUGINS=plugins.JSTUN@file:///%INSTALL_PATH%\plugins\JSTUN.jar;%PLUGINS%
 @mkdir plugins > NUL
 @java -jar bin\sha1test.jar JSTUN.jar plugins > NUL
 @del /F stun > NUL
@@ -34,7 +34,7 @@
 
 @if not exist librarian goto nolibrarian 
 @mkdir plugins > NUL
-@set PLUGINS=plugins.Librarian@file:///C:\Program Files\Freenet\plugins\Librarian.jar;%PLUGINS%
+@set PLUGINS=plugins.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%
 @java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
 @copy plugins\Librarian.jar.url plugins\Librarian.jar > NUL
 @del /F librarian > NUL
@@ -67,13 +67,13 @@
 @echo console.enable=true >>freenet.ini
 @echo console.port=%CONSOLE_PORT% >>freenet.ini
 
-@echo "Downloading freenet-stable-latest.jar"
-@java -jar bin\sha1test.jar freenet-stable-latest.jar "C:\Program Files\Freenet" > NUL
-@copy freenet-stable-latest.jar freenet.jar > NUl
-@echo "Downloading freenet-ext.jar"
-@java -jar bin\sha1test.jar freenet-ext.jar "C:\Program Files\Freenet" > NUL
 @echo "Downloading update.cmd"
-@java -jar bin\sha1test.jar update/update.cmd "C:\Program Files\Freenet" > NUL
+@java -jar bin\sha1test.jar update/update.cmd . > NUL
+@echo "Downloading freenet-ext.jar"
+@java -jar bin\sha1test.jar freenet-ext.jar . > NUL
+@echo "Downloading freenet-stable-latest.jar"
+@java -jar bin\sha1test.jar freenet-stable-latest.jar . > NUL
+@copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

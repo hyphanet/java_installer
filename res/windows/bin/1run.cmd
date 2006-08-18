@@ -1,7 +1,7 @@
 @set PATH=%SYSTEMROOT%\System32\;%PATH%
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
-@cd %INSTALL_PATH%
+@cd /D %INSTALL_PATH%
 
 @echo "Registering .fref file extention"
 @echo Windows Registry Editor Version 5.00 >> fref.reg

@@ -72,6 +72,18 @@
     <str id="ImgPacksPanel.dependencyList" txt="Dependencies"/>
 		<str id="PacksPanel.notEnoughSpace" txt="Disk space required for the installation exceeds available disk space."/>
     <str id="PacksPanel.notAscertainable" txt="not ascertainable"/>
+
+    <str id="base.description" txt="The base files."/>
+    <str id="license.description" txt="The licence files."/>
+    <str id="windows.description" txt="A windows specific catch-all pack."/>
+    <str id="unix.description" txt="An UNIX specific catch-all pack."/>
+    <str id="uninstall.description" txt="Create uninstallation hooks in the registry."/>
+    <str id="autoupdater.description" txt="Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date."/>
+    <str id="stun.description" txt="A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamical IP addresses (i.e. most nodes)."/>
+    <str id="librarian.description" txt="A plugin allowing you to search the freenet."/>
+    <str id="jsite.description" txt="A tool to upload websites to freenet."/>
+    <str id="frost.description" txt="A message board application for freenet (http://jtcfrost.sourceforge.net/)."/>
+    <str id="thaw.description" txt="A powerful filesharing tool designed for freenet."/>
     
     <str id="InstallPanel.info" txt="Click 'Install!' to begin the installation process"/>
     <str id="InstallPanel.install" txt="Install!"/>

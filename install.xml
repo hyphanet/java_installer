@@ -68,6 +68,8 @@
 		<res src="RegistrySpec.xml" id="RegistrySpec.xml"/>
 		<res src="ProcessPanel.Spec.xml" id="ProcessPanel.Spec.xml"/> 
 		<res src="res/license/LICENSE.Freenet" id="LicencePanel.licence"/>
+
+		<res src="langpacks/fra.xml" id="packsLang.xml_fra"/>
 		
 		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>
 		<res src="Win_shortcutSpec.xml" id="Win_shortcutSpec.xml"/>
@@ -106,7 +108,7 @@
 	</panels>
 
 	<packs>
-		<pack name="Base" required="yes">
+		<pack name="Base" id="base" required="yes">
 			<description>The base files</description>
 			<fileset dir="res/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
@@ -120,14 +122,14 @@
 			<parsable targetfile="$INSTALL_PATH/freenet.ini"/> 
 		</pack>
 
-		<pack name="License" required="yes">
+		<pack name="License" id="license" required="yes">
 			<description>The licence files</description>
 			<file src="res/license/LICENSE.Freenet" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/LICENSE.Mantissa" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
-		<pack name="Windows" required="yes" os="windows">
+		<pack name="Windows" id="windows" required="yes" os="windows">
 			<os family="windows"/>
 			<description>A windows specific catch-all pack</description>
 
@@ -142,7 +144,7 @@
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 		</pack>
 
-		<pack name="Unix" required="yes" os="unix">
+		<pack name="Unix" id="unix" required="yes" os="unix">
 			<os family="unix"/>
 			<description>An UNIX specific catch-all pack</description>
 
@@ -157,38 +159,38 @@
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/> 
 		</pack>
 		
-		<pack name="UninstallStuff" required="no">
+		<pack name="UninstallStuff" id="uninstall" required="no">
 			<os family="windows"/>
 			<description>Create uninstallation hooks in the registry</description>
 			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
 		</pack>
 		
-		<pack name="AutoUpdater" required="no">
+		<pack name="AutoUpdater" id="autoupdater" required="no">
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
 		</pack>
 
-		<pack name="STUN" required="no">
+		<pack name="STUN" id="stun" required="no">
 			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamical IP addresses (i.e. most nodes).</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
 
-		<pack name="Librarian" required="no">
+		<pack name="Librarian" id="librarian" required="no">
 			<description>A plugin allowing you to search the freenet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/librarian"/>
 		</pack>
 		
-		<pack name="jSite" required="no">
+		<pack name="jSite" id="jsite" required="no">
 			<description>A tool to upload websites to freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite"/>
 		</pack>
 		
-		<pack name="frost" required="no">
-			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/</description>
+		<pack name="frost" id="frost" required="no">
+			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/)</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/frost"/>
 		</pack>
 		
-		<pack name="thaw" required="no">
+		<pack name="thaw" id="thaw" required="no">
 			<description>A powerful filesharing tool designed for freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thaw"/>
 		</pack>

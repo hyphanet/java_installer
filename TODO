@@ -1,6 +1,5 @@
 TODO:
 	* update the welcome page if the fproxy port has changed (windows only)
-	* l10n
 	* Fix uninstallation hooks
 	* New packs:
 		-Freemail

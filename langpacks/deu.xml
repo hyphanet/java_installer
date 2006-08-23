@@ -167,6 +167,17 @@
     <!-- Strings for the Registry -->
     <str id="functionFailed.RegOpenKeyEx" txt="Der Registry-Schlüssel {0}\\{1} konnte nicht geöffnet werden."/>
     
+    <str id="base.description" txt="Die Freenet Basisdateien."/>
+    <str id="license.description" txt="Die Lizenzdateien."/>
+    <str id="windows.description" txt="Ein alles Windows-spezifisches beinhaltendes Paket."/>
+    <str id="unix.description" txt="Ein alles UNIX-spezifisches beinhaltendes Paket."/>
+    <str id="uninstall.description" txt="Erzeuge Deinstallationsinformationen in der Registry."/>
+    <str id="autoupdater.description" txt="Der Node erlauben sich automatich und sicher über Freenet zu aktualisieren. Es wird empfohlen diese Option zu aktivieren, damit ihre Node immer auf dem neusten Stand bleibt."/>
+    <str id="stun.description" txt="Ein Plugin, das der Node erlaubt STUN zu benutzen um ihre externe Internetadresse herauszufinden. Bedenken sie, dass dies das Kontaktieren eines externen Servers beinhaltet, was ein Sicherheitsrisiko darstellen kann. Wie auch immer, es verbessert die Konnektivität ihrer Node erheblich, wenn sie sich hinter einem Router mit dynamischer IP-Adresse befinden (trifft auf die meisten Nodes zu)."/>
+    <str id="librarian.description" txt="Ein Plugin, das Suchen im Freenet ermoeglicht."/>
+    <str id="jsite.description" txt="Ein Programm um Webseiten ins Freenet hochzuladen."/>
+    <str id="frost.description" txt="Eine Diskussionsplatform für Freenet (http://jtcfrost.sourceforge.net/)."/>
+    <str id="thaw.description" txt="Eine mächtige filesharing Anwendung für Freenet."/>
 
     <!-- Add your own panels specific strings here if you need -->
 

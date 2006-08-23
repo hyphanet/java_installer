@@ -70,6 +70,7 @@
 		<res src="res/license/LICENSE.Freenet" id="LicencePanel.licence"/>
 
 		<res src="langpacks/fra.xml" id="packsLang.xml_fra"/>
+		<res src="langpacks/deu.xml" id="packsLang.xml_deu"/>
 		
 		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>
 		<res src="Win_shortcutSpec.xml" id="Win_shortcutSpec.xml"/>

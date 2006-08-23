@@ -76,6 +76,7 @@
 @copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
+@bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
 
 :: Start the node up

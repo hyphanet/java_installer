@@ -80,6 +80,10 @@
 @copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
+@IF %FPROXY_PORT% == 8888 GOTO no_alternate
+@bin\cat.exe wrapper.conf | bin\sed.exe "s/freenet-darknet/freenet-%FPROXY_PORT%/g" > wrapper2.conf 
+@move /Y wrapper2.conf wrapper.conf > NUL
+:no_alternate
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
 

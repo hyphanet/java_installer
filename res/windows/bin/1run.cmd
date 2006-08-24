@@ -80,9 +80,8 @@
 @copy freenet-stable-latest.jar freenet.jar > NUl
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
-@IF %FPROXY_PORT% == 8888 GOTO no_alternate
+::
 :: It's likely that a node has already been set up; handle it
-
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
 
@@ -98,12 +97,11 @@
 @bin\cat bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
 @move /Y stop.cmd bin\stop.cmd
 
-:no_alternate
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
 
 :: Start the node up
-@net start freenet-darknet
+@net start freenet-darknet-%FPROXY_PORT%
 @echo "Waiting for freenet to startup"
 @ping -n 5 127.0.0.1 >nul
 

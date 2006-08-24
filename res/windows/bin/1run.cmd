@@ -49,7 +49,11 @@
 :: Try to detect a free, aviable port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
-@if not errorlevel 0 set FPROXY_PORT=8889
+@if errorlevel 0 goto configure_fproxy
+@set FPROXY_PORT=8889
+@bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
+@move /Y welcome2.html welcome.html > NUL
+:configure_fproxy
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
 

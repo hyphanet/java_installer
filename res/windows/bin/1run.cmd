@@ -45,7 +45,7 @@
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
 
-@echo "Detecting tcp port abiability"
+@echo "Detecting tcp port aviability"
 :: Try to detect a free, aviable port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
@@ -81,8 +81,23 @@
 @echo "Installing the wrapper"
 @echo "Registering Freenet as a system service"
 @IF %FPROXY_PORT% == 8888 GOTO no_alternate
-@bin\cat.exe wrapper.conf | bin\sed.exe "s/freenet-darknet/freenet-%FPROXY_PORT%/g" > wrapper2.conf 
+:: It's likely that a node has already been set up; handle it
+
+@bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
+
+@bin\cat bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
+@move /Y install_service.bat bin\install_service.bat
+
+@bin\cat bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
+@move /Y remove_service.bat bin\remove_service.bat
+
+@bin\cat bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
+@move /Y start.cmd bin\start.cmd
+
+@bin\cat bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
+@move /Y stop.cmd bin\stop.cmd
+
 :no_alternate
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

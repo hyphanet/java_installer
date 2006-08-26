@@ -179,8 +179,11 @@ esac
 # Resolve the architecture
 DIST_ARCH=`uname -m | tr [:upper:] [:lower:] | tr -d [:blank:]`
 case "$DIST_ARCH" in
-    'amd64' | 'ia32' | 'ia64' | 'i386' | 'i486' | 'i586' | 'i686' | 'x86_64')
-        DIST_ARCH="x86"
+    'amd64' | 'ia64' | 'x86_64')
+        DIST_ARCH="x86-64"
+        ;;
+    'ia32' | 'i386' | 'i486' | 'i586' | 'i686')
+        DIST_ARCH="x86-32"
         ;;
     'ip27')
         DIST_ARCH="mips"
@@ -204,7 +207,7 @@ esac
 #  platforms, if the 64-bit binary exists then the distribution most
 #  likely wants to use long names.  Otherwise, look for the default.
 # For macosx, we also want to look for universal binaries.
-WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-32"
+WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH"
 if [ -x $WRAPPER_TEST_CMD ]
 then
     WRAPPER_CMD="$WRAPPER_TEST_CMD"

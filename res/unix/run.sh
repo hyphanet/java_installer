@@ -199,29 +199,50 @@ case "$DIST_ARCH" in
         ;;
 esac
 
+# Check if we are running on 64bit platform, seems like a workaround for now...
+DIST_BIT=`uname -m | tr [:upper:] [:lower:] | tr -d [:blank:]`
+case "$DIST_BIT" in
+    'amd64' | 'ia64' | 'x86_64' | 'ppc64')
+        DIST_BIT="64"
+        ;;
+#    'pa_risc' | 'pa-risc') # Are some of these 64bit? Least not all...
+#       BIT="64"
+#        ;;
+    'sun4u' | 'sparcv9') # Are all sparcs 64?
+        DIST_BIT="64"
+        ;;
+#    '9000/800')
+#       DIST_BIT="64"
+#        ;;
+    *) # In any other case default to 32
+        DIST_BIT="32"
+        ;;
+esac
+
 # Decide on the wrapper binary to use.
-# If a 32-bit wrapper binary exists then it will work on 32 or 64 bit
-#  platforms, if the 64-bit binary exists then the distribution most
-#  likely wants to use long names.  Otherwise, look for the default.
+# 64bit wrapper by default on 64bit platforms, because
+# they might not have 32bit emulation libs installed. 
 # For macosx, we also want to look for universal binaries.
-WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-32"
+
+WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
+
 if [ -x $WRAPPER_TEST_CMD ]
 then
     WRAPPER_CMD="$WRAPPER_TEST_CMD"
 else
-    if [ "$DIST_OS" = "macosx" ]
+    if [ "$DIST_OS" = "macosx" ] # Some osx weirdness, someone please check that this still works
     then
-        WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-32"
+        WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
         if [ -x $WRAPPER_TEST_CMD ]
         then
             WRAPPER_CMD="$WRAPPER_TEST_CMD"
         else
-            WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
+            WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
             if [ -x $WRAPPER_TEST_CMD ]
             then
                 WRAPPER_CMD="$WRAPPER_TEST_CMD"
             else
-                WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-64"
+                WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
                 if [ -x $WRAPPER_TEST_CMD ]
                 then
                     WRAPPER_CMD="$WRAPPER_TEST_CMD"
@@ -229,38 +250,25 @@ else
                     if [ ! -x $WRAPPER_CMD ]
                     then
                         echo "Unable to locate any of the following binaries:"
-                        echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-32"
-                        echo "  $WRAPPER_CMD-$DIST_OS-universal-32"
-                        echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
-                        echo "  $WRAPPER_CMD-$DIST_OS-universal-64"
+                        echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
+                        echo "  $WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
                         echo "  $WRAPPER_CMD"
-			echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
-			java -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter
-                        exit 1
+                        NO_WRAPPER="java -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi
         fi
     else
-        WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
-        if [ -x $WRAPPER_TEST_CMD ]
+        if [ ! -x $WRAPPER_CMD ]
         then
-            WRAPPER_CMD="$WRAPPER_TEST_CMD"
-        else
-            if [ ! -x $WRAPPER_CMD ]
-            then
-                echo "Unable to locate any of the following binaries:"
-                echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-32"
-                echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-64"
-                echo "  $WRAPPER_CMD"
-		echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
-		java -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter
-                exit 1
-            fi
+            echo "Unable to locate any of the following binaries:"
+            echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
+            echo "  $WRAPPER_CMD"
+            NO_WRAPPER="java -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter"
         fi
     fi
 fi
- 
+
 # Build the nice clause
 if [ "X$PRIORITY" = "X" ]
 then
@@ -409,8 +417,14 @@ start() {
     getpid
     if [ "X$pid" = "X" ]
     then
-        COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"
-        exec $COMMAND_LINE
+        if [ "$NO_WRAPPER" ] # Check if we don't have usable wrapper, and run without it
+        then
+            echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
+            exec $NO_WRAPPER
+        else                 # Otherwise use the wrapper
+            COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"
+            exec $COMMAND_LINE
+        fi
     else
         echo "$APP_LONG_NAME is already running."
         exit 1

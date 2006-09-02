@@ -5,6 +5,9 @@ DST="$INSTALL_PATH"
 echo "Installing freenet in $INSTALL_PATH"
 cd "$DST"
 
+# We need the exec flag on /bin
+chmod a+rx bin/* lib/* &>/dev/null
+
 # Tweak freenet.ini before the first startup
 PLUGINS=""
 if [[ -e stun ]]
@@ -73,9 +76,6 @@ then
 	echo "Can not bind console to 2323: force it to $CONSOLE_PORT insteed."
 fi
 echo -e "console.enabled=true\nconsole.port=$CONSOLE_PORT" >> freenet.ini
-
-# We need the exec flag on /bin
-chmod a+rx -R $INSTALL_PATH/bin $INSTALL_PATH/lib &>/dev/null
 
 echo "Downloading freenet-stable-latest.jar"
 java -jar bin/sha1test.jar freenet-stable-latest.jar "$DST" &>/dev/null || exit 1 

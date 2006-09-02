@@ -45,8 +45,8 @@
 @if exist update echo node.updater.autoupdate=true >> freenet.ini
 @del /F update > NUL
 
-@echo "Detecting tcp port aviability"
-:: Try to detect a free, aviable port for fproxy
+@echo "Detecting tcp port availability"
+:: Try to detect a free, available port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
 @IF NOT ERRORLEVEL 1 GOTO configure_fproxy

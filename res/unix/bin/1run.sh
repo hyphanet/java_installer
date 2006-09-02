@@ -14,8 +14,8 @@ if [[ -e stun ]]
 then
 	echo "Enabling the STUN plugin"
 	mkdir plugins &>/dev/null
-	PLUGINS="plugins.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;$PLUGINS"
-	java -jar bin/sha1test.jar JSTUN.jar plugins &>/dev/null
+	PLUGINS="plugins.JSTUN.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar.url;$PLUGINS"
+	java -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins &>/dev/null
 	rm -f stun
 fi
 
@@ -23,7 +23,7 @@ if [[ -e librarian ]]
 then
 	echo "Enabling the Librarian plugin"
 	mkdir plugins &>/dev/null
-	PLUGINS="plugins.Librarian@@file://$INSTALL_PATH/plugins/Librarian.jar.url;$PLUGINS"
+	PLUGINS="plugins.Librarian.Librarian@file://$INSTALL_PATH/plugins/Librarian.jar.url;$PLUGINS"
 	java -jar bin/sha1test.jar plugins/Librarian.jar.url plugins &>/dev/null
 	rm -f librarian
 fi

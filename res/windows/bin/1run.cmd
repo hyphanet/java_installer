@@ -57,14 +57,14 @@
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
 
-:: Try to detect a free, aviable port for fcp
+:: Try to detect a free, available port for fcp
 @set FCP_PORT=9481
 @java -jar bin\bindtest.jar %FCP_PORT% 
 @if not errorlevel 0 set FCP_PORT=9482
 @echo fcp.enable=true >>freenet.ini
 @echo fcp.port=%FCP_PORT% >>freenet.ini
 
-:: Try to detect a free, aviable port for console
+:: Try to detect a free, available port for console
 @set CONSOLE_PORT=2323
 @java -jar bin\bindtest.jar %CONSOLE_PORT% 
 @if not errorlevel 0 set CONSOLE_PORT=2324

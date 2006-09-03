@@ -92,11 +92,6 @@ chmod +x $DST/update.sh
 
 # Starting the node up
 ./run.sh start
-echo "Waiting for Freenet to startup"
-sleep 10
-echo "Starting up a browser"
-java -cp bin/browser.jar BareBonesBrowserLaunch "http://127.0.0.1:$FPROXY_PORT/"
-java -cp bin/browser.jar BareBonesBrowserLaunch "file:///$INSTALL_PATH/welcome.html"
 
 if [[ -e thaw ]]
 then
@@ -121,6 +116,10 @@ then
 	mkdir frost
 	java -jar bin/uncompress.jar frost.zip frost &>/dev/null
 fi
+
+echo "Starting up a browser"
+java -cp bin/browser.jar BareBonesBrowserLaunch "http://127.0.0.1:$FPROXY_PORT/"
+java -cp bin/browser.jar BareBonesBrowserLaunch "file:///$INSTALL_PATH/welcome.html"
 
 echo "Finished"
 

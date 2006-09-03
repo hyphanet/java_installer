@@ -103,12 +103,6 @@
 
 :: Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
-@echo "Waiting for freenet to startup"
-@ping -n 5 127.0.0.1 >nul
-
-@echo "Spawing up a browser"
-@start http://127.0.0.1:%FPROXY_PORT%/
-@start welcome.html
 
 :: Installing additionnal softwares
 @if not exist jsite goto nojsite 
@@ -131,5 +125,9 @@
 @mkdir frost
 @java -jar bin\uncompress.jar frost.zip frost > NUL
 :nofrost
+
+@echo "Spawing up a browser"
+@start http://127.0.0.1:%FPROXY_PORT%/
+@start welcome.html
 
 @echo "Finished"

@@ -27,14 +27,14 @@
 :: Tweak freenet.ini
 @if not exist stun goto nostun 
 @set PLUGINS=plugins.JSTUN.JSTUN@file:///%INSTALL_PATH%\plugins\JSTUN.jar;%PLUGINS%
-@mkdir plugins > NUL
+@mkdir plugins 2> NUL
 @java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins > NUL
 @copy plugins\JSTUN.jar.url plugins\JSTUN.jar > NUL
 @del /F stun > NUL
 :nostun
 
 @if not exist librarian goto nolibrarian 
-@mkdir plugins > NUL
+@mkdir plugins 2> NUL
 @set PLUGINS=plugins.Librarian.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%
 @java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
 @copy plugins\Librarian.jar.url plugins\Librarian.jar > NUL

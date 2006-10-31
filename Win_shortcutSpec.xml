@@ -35,6 +35,22 @@
 
 		<createForPack name="Base" />
 	</shortcut>
+
+	<shortcut
+		name="Freenet Uninstaller"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="javaw -jar $INSTALL_PATH\Uninstaller\uninstaller.jar"     
+		commandLine=""
+		iconFile="%SystemRoot%\system32\SHELL32.dll"
+		iconIndex="31" 
+		description="This uninstalls Freenet">
+
+		<createForPack name="UninstallStuff" />
+	</shortcut>
 	
 	<shortcut
 		name="Browse Freenet"

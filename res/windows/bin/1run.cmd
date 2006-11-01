@@ -26,6 +26,7 @@
 @echo "Setting up plugins"
 :: Tweak freenet.ini
 @if not exist stun goto nostun 
+@echo 	-JSTUN
 @set PLUGINS=plugins.JSTUN.JSTUN@file:///%INSTALL_PATH%\plugins\JSTUN.jar;%PLUGINS%
 @mkdir plugins 2> NUL
 @java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins > NUL
@@ -34,6 +35,7 @@
 :nostun
 
 @if not exist librarian goto nolibrarian 
+@echo 	-Librarian
 @mkdir plugins 2> NUL
 @set PLUGINS=plugins.Librarian.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%
 @java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL

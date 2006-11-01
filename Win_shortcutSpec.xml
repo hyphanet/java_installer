@@ -13,29 +13,14 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
-		target="$INSTALL_PATH\bin\start.cmd"
+		target="&quot;$INSTALL_PATH\bin\start.cmd&quot;"
 		commandLine=""
 		description="This starts the freenet node"
-		workingDirectory="$INSTALL_PATH"
+		workingDirectory="&quot;$INSTALL_PATH&quot;"
 	>
 		<createForPack name="Base" />
 	</shortcut>
 	
-	<shortcut
-		name="Stop the node"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\bin\stop.cmd"
-		commandLine=""
-		workingDirectory="$INSTALL_PATH"
-		description="This stops the freenet node">
-
-		<createForPack name="Base" />
-	</shortcut>
-
 	<shortcut
 		name="Freenet Uninstaller"
 		programGroup="yes"
@@ -43,10 +28,11 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
-		target="javaw -jar $INSTALL_PATH\Uninstaller\uninstaller.jar"     
+		target="&quot;javaw -jar $INSTALL_PATH\Uninstaller\uninstaller.jar&quot;"     
 		commandLine=""
 		iconFile="%SystemRoot%\system32\SHELL32.dll"
 		iconIndex="31" 
+		workingDirectory="&quot;$INSTALL_PATH&quot;"
 		description="This uninstalls Freenet">
 
 		<createForPack name="UninstallStuff" />
@@ -59,8 +45,8 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
-		iconFile="$INSTALL_PATH\freenet.ico"
-		iconIndex="0"
+		iconFile="%SystemRoot%\system32\SHELL32.dll"
+		iconIndex="13" 
 		target="http://localhost:8888/"
 		description="It opens a browser pointing to Fproxy">
 
@@ -74,27 +60,12 @@
 		applications="no"
 		startMenu="yes"
 		startup="no"
-		iconFile="$INSTALL_PATH\freenet.ico"
-		iconIndex="0"
 		target="http://freenetproject.org"
+		iconFile="%SystemRoot%\system32\SHELL32.dll"
+		iconIndex="13" 
 		description="It opens a browser pointing to our website">
 
 		<createForPack name="Base" />
-	</shortcut>
-
-	<shortcut
-		name="Frost"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\frost\frost.bat"
-		commandLine=""
-		description="This starts Frost"
-		workingDirectory="$INSTALL_PATH\frost"
-	>
-		<createForPack name="frost" />
 	</shortcut>
 
 	<shortcut
@@ -105,9 +76,9 @@
 		startMenu="no"
 		startup="no"
 		target="start"
-		commandLine="javaw -jar jSite.jar"
+		commandLine="&quot;javaw -jar jSite.jar&quot;"
 		description="This starts jSite"
-		workingDirectory="$INSTALL_PATH\"
+		workingDirectory="&quot;$INSTALL_PATH&quot;"
 	>
 		<createForPack name="jSite" />
 	</shortcut>
@@ -120,10 +91,40 @@
 		startMenu="no"
 		startup="no"
 		target="start"
-		commandLine="javaw -jar Thaw.jar"
+		commandLine="&quot;javaw -jar Thaw.jar&quot;"
 		description="This starts Thaw"
-		workingDirectory="$INSTALL_PATH\"
+		workingDirectory="&quot;$INSTALL_PATH&quot;"
 	>
 		<createForPack name="thaw" />
+	</shortcut>
+
+	<shortcut
+		name="Frost"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="&quot;$INSTALL_PATH\frost\frost.bat&quot;"
+		commandLine=""
+		description="This starts Frost"
+		workingDirectory="&quot;$INSTALL_PATH\frost&quot;"
+	>
+		<createForPack name="frost" />
+	</shortcut>
+	
+	<shortcut
+		name="Stop the node"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="&quot;$INSTALL_PATH\bin\stop.cmd&quot;"
+		commandLine=""
+		workingDirectory="&quot;$INSTALL_PATH&quot;"
+		description="This stops the freenet node">
+
+		<createForPack name="Base" />
 	</shortcut>
 </shortcuts>

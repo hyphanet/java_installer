@@ -1,9 +1,19 @@
 #!/bin/bash
 
-DST="$INSTALL_PATH"
+if [[ -n $DST]]
+then
+	DST="$INSTALL_PATH"
+else
+	DST="."
+fi
 
 echo "Installing freenet in $INSTALL_PATH"
 cd "$DST"
+if [[ -s freenet-ext.jar ]]
+then
+	echo "This script isn't meant to be used more than once."
+	exit
+fi
 
 # We need the exec flag on /bin
 chmod a+rx bin/* lib/* &>/dev/null

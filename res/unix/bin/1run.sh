@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-if [[ -n $DST]]
+if test -n $DST
 then
 	DST="$INSTALL_PATH"
 else
@@ -9,7 +9,7 @@ fi
 
 echo "Installing freenet in $INSTALL_PATH"
 cd "$DST"
-if [[ -s freenet-ext.jar ]]
+if test -s freenet-ext.jar
 then
 	echo "This script isn't meant to be used more than once."
 	exit
@@ -20,7 +20,7 @@ chmod a+rx bin/* lib/* &>/dev/null
 
 # Tweak freenet.ini before the first startup
 PLUGINS=""
-if [[ -e stun ]]
+if test -e stun
 then
 	echo "Enabling the STUN plugin"
 	mkdir plugins &>/dev/null
@@ -31,7 +31,7 @@ then
 	rm -f stun
 fi
 
-if [[ -e librarian ]]
+if test -e librarian
 then
 	echo "Enabling the Librarian plugin"
 	mkdir plugins &>/dev/null
@@ -45,7 +45,7 @@ fi
 # Register plugins
 echo "pluginmanager.loadplugin=$PLUGINS" >> freenet.ini
 
-if [[ -e update ]]
+if test -e update
 then
 	echo "Enabling the auto-update feature"
 	echo "node.updater.autoupdate=true" >> freenet.ini
@@ -56,12 +56,12 @@ echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy
 FPROXY_PORT=8888
 java -jar bin/bindtest.jar $FPROXY_PORT &>/dev/null
-if [[ $? -ne 0 ]]
+if test $? -ne 0
 then
 	FPROXY_PORT=8889
 	echo "Can not bind fproxy to 8888: let's try $FPROXY_PORT insteed."
 	java -jar bin/bindtest.jar $FPROXY_PORT
-	if [[ $? -ne 0 ]]
+	if test $? -ne 0
 	then
 		FPROXY_PORT=9999
 		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT insteed."
@@ -74,7 +74,7 @@ echo -e "fproxy.enabled=true\nfproxy.port=$FPROXY_PORT" >> freenet.ini
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
 java -jar bin/bindtest.jar $FCP_PORT
-if [[ $? -ne 0 ]]
+if test $? -ne 0
 then
 	FCP_PORT=9482
 	echo "Can not bind fcp to 9481: force it to $FCP_PORT insteed."
@@ -84,7 +84,7 @@ echo -e "fcp.enabled=true\nfcp.port=$FCP_PORT" >> freenet.ini
 # Try to auto-detect the first available port for console
 CONSOLE_PORT=2323
 java -jar bin/bindtest.jar $CONSOLE_PORT
-if [[ $? -ne 0 ]]
+if test $? -ne 0
 then
 	CONSOLE_PORT=2324
 	echo "Can not bind console to 2323: force it to $CONSOLE_PORT insteed."
@@ -103,21 +103,21 @@ chmod +x $DST/update.sh
 # Starting the node up
 ./run.sh start
 
-if [[ -e thaw ]]
+if test -e thaw
 then
 	rm -f thaw
 	echo "Downloading Thaw"
 	java -jar bin/sha1test.jar Thaw/Thaw.jar ./ &>/dev/null || exit 1
 fi
 
-if [[ -e jsite ]]
+if test -e jsite
 then
 	rm -f jsite
 	echo "Downloading jSite"
 	java -jar bin/sha1test.jar jSite/jSite.jar ./ &>/dev/null || exit 1
 fi
 
-if [[ -e frost ]]
+if test -e frost
 then
 	rm -f frost
 	echo "Downloading frost"

@@ -56,7 +56,7 @@
 		<langpack iso3="scg"/>
 		<langpack iso3="cze"/>
 		<langpack iso3="kor"/>
-		<langpack iso3="epo"/>
+		<!-- <langpack iso3="epo"/> -->
 	</locale>
 
 	<variables>
@@ -115,7 +115,6 @@
 			<fileset dir="res/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
-				<include name="lib/**/*"/>
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="freenet.ini"/>

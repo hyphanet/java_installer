@@ -12,7 +12,6 @@ No actual 'install' process is needed: you need a working Java, best would be th
 Basically, all you need to do is make a directoy for freenet, unpack the tarball into that directory, change the permissions so that you can read write and execute as user (non-root) in thet directory and run the start script using the following commands :
 
 "
-chmod a+rx bin/* run.sh
 ./bin/1run.sh
 ./run.sh start 
 "

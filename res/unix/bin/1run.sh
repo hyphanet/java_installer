@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if test -n $DST
+if test $DST
 then
 	DST="$INSTALL_PATH"
 else

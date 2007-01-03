@@ -1,15 +1,8 @@
 #!/bin/sh
 
-if test $DST
-then
-	DST="$INSTALL_PATH"
-else
-	echo "Installing from tarball"
-	DST="."
-fi
+INSTALL_PATH=${INSTALL_PATH:-$PWD}
 
-echo "Installing freenet in $INSTALL_PATH"
-cd "$DST"
+cd $INSTALL_PATH
 if test -s freenet-ext.jar
 then
 	echo "This script isn't meant to be used more than once."
@@ -93,13 +86,13 @@ fi
 echo -e "console.enabled=true\nconsole.port=$CONSOLE_PORT" >> freenet.ini
 
 echo "Downloading freenet-stable-latest.jar"
-java -jar bin/sha1test.jar freenet-stable-latest.jar "$DST" &>/dev/null || exit 1 
+java -jar bin/sha1test.jar freenet-stable-latest.jar $INSTALL_PATH &>/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java -jar bin/sha1test.jar freenet-ext.jar "$DST" &>/dev/null || exit 1
+java -jar bin/sha1test.jar freenet-ext.jar $INSTALL_PATH &>/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh "$DST" &>/dev/null || exit 1
-chmod +x $DST/update.sh
+java -jar bin/sha1test.jar update/update.sh $INSTALL_PATH &>/dev/null || exit 1
+chmod +x $INSTALL_PATH/update.sh
 
 # Starting the node up
 ./run.sh start
@@ -130,7 +123,7 @@ fi
 
 echo "Starting up a browser"
 java -cp bin/browser.jar BareBonesBrowserLaunch "http://127.0.0.1:$FPROXY_PORT/"
-java -cp bin/browser.jar BareBonesBrowserLaunch "file:///$INSTALL_PATH/welcome.html"
+java -cp bin/browser.jar BareBonesBrowserLaunch "file://$INSTALL_PATH/welcome.html"
 
 echo "Finished"
 

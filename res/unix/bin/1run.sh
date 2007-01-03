@@ -4,6 +4,7 @@ if test -n $DST
 then
 	DST="$INSTALL_PATH"
 else
+	echo "Installing from tarball"
 	DST="."
 fi
 

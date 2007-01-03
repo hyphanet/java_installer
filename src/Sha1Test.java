@@ -14,7 +14,7 @@ public class Sha1Test {
 
 	public static void main(String[] args) {
 		final String URI2 = args[0];
-		final String path = args[1]+"/";
+		final String path = (args[1] == null ? '.' : args[1] )+"/";
 		int count = 0;
 		if(URI2 == null) System.exit(2);
 

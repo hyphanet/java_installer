@@ -1,8 +1,8 @@
 #!/bin/sh
 
-INSTALL_PATH=${INSTALL_PATH:-$PWD}
+INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
-cd $INSTALL_PATH
+cd "$INSTALL_PATH"
 if test -s freenet-ext.jar
 then
 	echo "This script isn't meant to be used more than once."
@@ -86,12 +86,12 @@ fi
 echo -e "console.enabled=true\nconsole.port=$CONSOLE_PORT" >> freenet.ini
 
 echo "Downloading freenet-stable-latest.jar"
-java -jar bin/sha1test.jar freenet-stable-latest.jar $INSTALL_PATH &>/dev/null || exit 1 
+java -jar bin/sha1test.jar freenet-stable-latest.jar "$INSTALL_PATH" &>/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java -jar bin/sha1test.jar freenet-ext.jar $INSTALL_PATH &>/dev/null || exit 1
+java -jar bin/sha1test.jar freenet-ext.jar "$INSTALL_PATH" &>/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh $INSTALL_PATH &>/dev/null || exit 1
+java -jar bin/sha1test.jar update/update.sh "$INSTALL_PATH" &>/dev/null || exit 1
 chmod +x $INSTALL_PATH/update.sh
 
 # Starting the node up

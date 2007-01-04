@@ -70,7 +70,7 @@
 		startMenu="no"
 		startup="no"
 		target="java"
-		commandLine="-jar &quot;$INSTALL_PATH/thaw.jar&quot;"
+		commandLine="-jar &quot;$INSTALL_PATH/Thaw.jar&quot;"
 
 		initialState="noShow"
 		iconFile="trashcan_full"

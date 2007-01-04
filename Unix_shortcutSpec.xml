@@ -59,6 +59,50 @@
 		createForAll="false"
 		description="This uninstalls Freenet">
 
-		<createForPack name="Base" />
+		<createForPack name="UninstallStuff" />
+	</shortcut>
+
+	<shortcut
+		name="Thaw"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="java"
+		commandLine="-jar &quot;$INSTALL_PATH/thaw.jar&quot;"
+
+		initialState="noShow"
+		iconFile="trashcan_full"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This starts Thaw: a tool to manage your node's global queue">
+
+		<createForPack name="thaw" />
+	</shortcut>
+
+	<shortcut
+		name="Frost"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="java"
+		commandLine="sh &quot;$INSTALL_PATH/frost/frost.sh&quot;"
+
+		initialState="noShow"
+		iconFile="trashcan_full"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH/frost"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This starts frost: a news like messenging utility for freenet">
+
+		<createForPack name="frost" />
 	</shortcut>
 </shortcuts>

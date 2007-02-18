@@ -92,7 +92,7 @@ echo "Downloading freenet-ext.jar"
 java -jar bin/sha1test.jar freenet-ext.jar "$INSTALL_PATH" &>/dev/null || exit 1
 echo "Downloading update.sh"
 java -jar bin/sha1test.jar update/update.sh "$INSTALL_PATH" &>/dev/null || exit 1
-chmod a+rx $INSTALL_PATH/update.sh
+chmod a+rx "$INSTALL_PATH/update.sh"
 
 # Starting the node up
 ./run.sh start

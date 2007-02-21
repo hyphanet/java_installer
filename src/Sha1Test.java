@@ -122,6 +122,7 @@ public class Sha1Test {
 
 		} catch (Exception ioe) {
 			System.out.println(ioe);
+			ioe.printStackTrace();
 		} finally {
 			try {
 				if(is != null) is.close();

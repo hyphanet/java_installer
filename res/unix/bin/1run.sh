@@ -3,16 +3,24 @@
 INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
-if test -s freenet-ext.jar
+if test -s freenet.ini
 then
-	echo "This script isn't meant to be used more than once."
-	exit
+	echo "This script isn't meant to be used more than once. I will rename your freenet.ini to freenet.old.ini and go on, but don't complain if it breaks\!"
+	mv freenet.ini freenet.old.ini
 fi
 
 # We need the exec flag on /bin
 chmod a+rx bin/* lib/* &>/dev/null
 
 # Tweak freenet.ini before the first startup
+echo "node.updater.enabled=true" > freenet.ini
+if test -e update
+then
+	echo "Enabling the auto-update feature"
+	echo "node.updater.autoupdate=true" >> freenet.ini
+	rm -f update
+fi
+
 PLUGINS=""
 if test -e stun
 then
@@ -38,13 +46,6 @@ fi
 
 # Register plugins
 echo "pluginmanager.loadplugin=$PLUGINS" >> freenet.ini
-
-if test -e update
-then
-	echo "Enabling the auto-update feature"
-	echo "node.updater.autoupdate=true" >> freenet.ini
-	rm -f update
-fi
 
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy

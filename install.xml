@@ -117,10 +117,8 @@
 				<exclude name="*/**/.svn/**"/>
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
-				<include name="freenet.ini"/>
 				<include name="welcome.html"/>
 			</fileset>
-			<parsable targetfile="$INSTALL_PATH/freenet.ini"/> 
 		</pack>
 
 		<pack name="License" id="license" required="yes">

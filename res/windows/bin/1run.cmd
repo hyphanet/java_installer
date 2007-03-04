@@ -5,8 +5,8 @@
 
 @if not exist freenet.ini goto nocleanup
 @echo I found a freenet.ini file in the directory !!! it shouldn't exist! I will rename it to freenet.old.ini and go on but don't complain if it breaks : the installer is meant to be used in an empty directory!
-@rename freenet.ini freenet.old.ini
-@del /F freenet.ini
+@rename freenet.ini freenet.old.ini > NUL
+@del /F freenet.ini > NUL
 :nocleanup
 
 @echo "Registering .fref file extention"

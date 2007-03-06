@@ -40,6 +40,15 @@
 @del /F stun > NUL
 :nostun
 
+@if not exist mdns goto nomdns 
+@echo 	-MDNSDiscovery
+@set PLUGINS=plugins.MDNSDiscovery.MDNSDiscovery@file:///%INSTALL_PATH%\plugins\MDNSDiscovery.jar;%PLUGINS%
+@mkdir plugins 2> NUL
+@java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar.url plugins > NUL
+@copy plugins\MDNSDiscovery.jar.url plugins\MDNSDiscovery.jar > NUL
+@del /F mdns > NUL
+:nomdns
+
 @if not exist librarian goto nolibrarian 
 @echo 	-Librarian
 @mkdir plugins 2> NUL
@@ -49,6 +58,7 @@
 @del /F librarian > NUL
 :nolibrarian
 
+@del /F *.jar.url > NUL
 @echo pluginmanager.loadplugin=%PLUGINS% >> freenet.ini
 
 @echo node.updater.enabled=true >> freenet.ini

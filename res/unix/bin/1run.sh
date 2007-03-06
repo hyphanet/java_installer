@@ -33,6 +33,17 @@ then
 	rm -f stun
 fi
 
+if test -e mdns
+then
+	echo "Enabling the MDNSDiscovery plugin"
+	mkdir plugins &>/dev/null
+	PLUGINS="plugins.MDNSDiscovery.MDNSDiscovery@file://$INSTALL_PATH/plugins/MDNSDiscovery.jar;$PLUGINS"
+	java -jar bin/sha1test.jar plugins/MDNSDiscovery.jar.url plugins &>/dev/null
+	mv plugins/MDNSDiscovery.jar.url plugins/MDNSDiscovery.jar
+	rm -f plugins/MDNSDiscovery.jar.url
+	rm -f mdns
+fi
+
 if test -e librarian
 then
 	echo "Enabling the Librarian plugin"

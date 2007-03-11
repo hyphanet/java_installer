@@ -115,19 +115,18 @@ public class Sha1Test {
 			os.close();
 
 		} catch (MalformedURLException mue) {
-
-			System.out.println("Ouch - a MalformedURLException happened.");
+			System.out.println("Ouch - a MalformedURLException happened ; please report it.");
 			mue.printStackTrace();
 			System.exit(2);
-
-		} catch (Exception ioe) {
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException();
+		} catch (IOException ioe) {
 			System.out.println(ioe);
 			ioe.printStackTrace();
 		} finally {
 			try {
 				if(is != null) is.close();
-			} catch (IOException ioe) {
-			}
+			} catch (IOException ioe) {}
 		}
 	}
 }

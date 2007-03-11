@@ -34,7 +34,7 @@ public class Sha1Test {
 			count++;
 			try{
 				Thread.sleep(5000);
-			}catch(IOException e){
+			}catch(InterruptedException e){
 			}
 		}
 		System.out.println("No mirror is available at the moment, please try again later");

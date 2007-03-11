@@ -29,12 +29,12 @@ public class Sha1Test {
 				if(sha1test(path+filename)) System.exit(0);
 				get(URI2, path+filename);
 			}catch(FileNotFoundException e){
-				System.out.println("Not found, ignoring");
+				System.out.println("Not found, let's ignore that mirror.");
 			}
 			count++;
 			try{
 				Thread.sleep(5000);
-			}catch(Exception e){
+			}catch(IOException e){
 			}
 		}
 		System.out.println("No mirror is available at the moment, please try again later");
@@ -46,7 +46,7 @@ public class Sha1Test {
 		try{
 			FileInputStream fis = null;
 			BufferedInputStream bis = null;
-			String result=new String();
+			String result = "";
 
 			// We compute the hash
 			// http://java.sun.com/developer/TechTips/1998/tt0915.html#tip2

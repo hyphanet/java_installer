@@ -98,22 +98,20 @@ public class Sha1Test {
 
 	public static void get(String file, String filename) throws FileNotFoundException{
 		URL url;
-		InputStream is = null;
 		DataInputStream dis;
-		String s;
+		InputStream is = null;
+		BufferedOutputStream os = null;
 
 		try {
 			url = new URL(base+file);
-			is = url.openStream();         // throws an IOException
+			is = url.openStream();
 			dis = new DataInputStream(new BufferedInputStream(is));
 			File f = new File(filename);
-			BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(f));
+			os = new BufferedOutputStream(new FileOutputStream(f));
 			int b;
 			while ((b = dis.read()) != -1) {
 				os.write(b);
 			}
-			os.close();
-
 		} catch (MalformedURLException mue) {
 			System.out.println("Ouch - a MalformedURLException happened ; please report it.");
 			mue.printStackTrace();
@@ -121,11 +119,12 @@ public class Sha1Test {
 		} catch (FileNotFoundException e) {
 			throw new FileNotFoundException();
 		} catch (IOException ioe) {
-			System.out.println(ioe);
+			System.out.println("Caught :"+ioe.getMessage());
 			ioe.printStackTrace();
 		} finally {
 			try {
 				if(is != null) is.close();
+				if(os != null) os.close();
 			} catch (IOException ioe) {}
 		}
 	}

@@ -117,7 +117,7 @@ public class Sha1Test {
 			mue.printStackTrace();
 			System.exit(2);
 		} catch (FileNotFoundException e) {
-			throw new FileNotFoundException();
+			throw e;
 		} catch (IOException ioe) {
 			System.out.println("Caught :"+ioe.getMessage());
 			ioe.printStackTrace();

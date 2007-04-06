@@ -27,6 +27,7 @@
 		</laf>
 		<laf name="liquid">
 			<os family="unix"/>
+			<os family="mac"/>
 		</laf>
 	</guiprefs>
 
@@ -145,6 +146,7 @@
 
 		<pack name="Unix" id="unix" required="yes" os="unix">
 			<os family="unix"/>
+			<os family="mac"/>
 			<description>An UNIX specific catch-all pack</description>
 
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">

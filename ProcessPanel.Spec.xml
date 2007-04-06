@@ -7,4 +7,8 @@
 		<os family="unix" />
 		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
 	</job>
+	<job name="Downloading required files (unix)">
+		<os family="mac" />
+		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
+	</job>
 </processing>

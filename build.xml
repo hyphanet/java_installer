@@ -10,7 +10,7 @@
 	<property name="dest" value="install.jar"/>
 	<property name="build" value="build"/>
 	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
-	<property name="jre.lib" value="lib/jre-1_5_0_11-windows-i586-p-s.exe"/>
+	<property name="jre.lib" value="lib/jre-6u1-windows-i586-p.exe"/>
 
 	<taskdef name="izpack" classpath="${basedir}/lib/standalone-compiler.jar" classname="com.izforge.izpack.ant.IzPackTask"/>
 

@@ -1,99 +1,163 @@
 <processing>
 	<!-- Must be first! -->
 	<job name="Setting up the environment">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/setup.sh"/>
+	</job>
+	<job name="Setting up the environment">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/setup.sh"/>
+	</job>
+	<job name="Setting up the environment">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\setup.cmd"/>
 	</job>
 
 	<job name="Setting the Updater up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>
 	</job>
+	<job name="Setting the Updater up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>
+	</job>
+	<job name="Setting the Updater up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_updater.cmd"/>
+	</job>
+
 	<job name="Setting MDNS up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>
+	</job>
+	<job name="Setting MDNS up">
+		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>
 	</job>
 	<job name="Setting JSTUN up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/install_stun.sh"/>
+	</job>
+	<job name="Setting JSTUN up">
+		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_stun.sh"/>
 	</job>
 	<job name="Setting Librarian up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
+	</job>
+	<job name="Setting Librarian up">
+		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
 	</job>
 
 	<!-- no plugin below that line! -->
-	<job name="Setting Plugins up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+	<job name="Setting plugins up">
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_plugins.sh"/>
 	</job>
-	<job name="Detecting port availability">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
-		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
+	<job name="Setting plugins up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_plugins.sh"/>
+	</job>
+	<job name="Setting plugins up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_plugins.cmd"/>
 	</job>
 	<job name="Downloading freenet-stable-latest">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 	</job>
+	<job name="Downloading freenet-stable-latest">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
+	</job>
+	<job name="Downloading freenet-stable-latest">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
+	</job>
 	<job name="Downloading freenet-ext">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 	</job>
+	<job name="Downloading freenet-ext">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
+	</job>
+	<job name="Downloading freenet-ext">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
+	</job>
+	<job name="Detecting port availability">
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
+	</job>
+	<job name="Detecting port availability">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
+	</job>
+	<job name="Register the system service">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_wrapper.cmd"/>
+	</job>
 	<job name="Starting the node up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
+	</job>
+	<job name="Starting the node up">
+		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
 	</job>
 
 	<!-- Applications now  -->
 	<job name="Setting Thaw up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_thaw.sh"/>
 	</job>
+	<job name="Setting Thaw up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_thaw.sh"/>
+	</job>
+	<job name="Setting Thaw up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH/bin/install_thaw.cmd"/>
+	</job>
 	<job name="Setting Frost up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_frost.sh"/>
 	</job>
+	<job name="Setting Frost up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_frost.sh"/>
+	</job>
+	<job name="Setting Frost up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH/bin/install_frost.cmd"/>
+	</job>
 	<job name="Setting jSite up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_jSite.sh"/>
+	</job>
+	<job name="Setting jSite up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_jSite.sh"/>
+	</job>
+	<job name="Setting jSite up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH/bin/install_jsite.cmd"/>
 	</job>
 
 	<!-- Do I have to mention that nothing ought to be below ?  -->
 	<job name="Cleaning up">
-		<os family="unix" />
-		<os family="mac" />
-		<os family="macosx" />
+		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/cleanup.sh"/>
 	</job>
-
-	<job name="Downloading required files (windows)">
-		<os family="windows" />
-		<executefile name="$INSTALL_PATH\bin\1run.cmd"/>
+	<job name="Cleaning up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/cleanup.sh"/>
+	</job>
+	<job name="Cleaning up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH/bin/cleanup.cmd"/>
 	</job>
 </processing>

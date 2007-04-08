@@ -1,0 +1,62 @@
+@set PATH=%SYSTEMROOT%\System32\;%PATH%
+@set INSTALL_PATH=$INSTALL_PATH
+@set JAVA_HOME=$JAVA_HOME
+@cd /D %INSTALL_PATH%
+
+@echo "Detecting tcp port availability"
+:: Try to detect a free, available port for fproxy
+@set FPROXY_PORT=8888
+@java -jar bin\bindtest.jar %FPROXY_PORT% 
+@IF NOT ERRORLEVEL 1 GOTO configure_fproxy
+@set FPROXY_PORT=8889
+@bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
+@move /Y welcome2.html welcome.html > NUL
+:configure_fproxy
+@echo fproxy.enable=true >>freenet.ini
+@echo fproxy.port=%FPROXY_PORT% >>freenet.ini
+
+:: Try to detect a free, available port for fcp
+@set FCP_PORT=9481
+@java -jar bin\bindtest.jar %FCP_PORT% 
+@if not errorlevel 0 set FCP_PORT=9482
+@echo fcp.enable=true >>freenet.ini
+@echo fcp.port=%FCP_PORT% >>freenet.ini
+
+:: Try to detect a free, available port for console
+@set CONSOLE_PORT=2323
+@java -jar bin\bindtest.jar %CONSOLE_PORT% 
+@if not errorlevel 0 set CONSOLE_PORT=2324
+@echo console.enable=true >>freenet.ini
+@echo console.port=%CONSOLE_PORT% >>freenet.ini
+
+
+@bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
+@move /Y wrapper2.conf wrapper.conf > NUL
+
+@bin\cat bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
+@move /Y install_service.bat bin\install_service.bat
+
+@bin\cat bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
+@move /Y remove_service.bat bin\remove_service.bat
+
+@bin\cat bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
+@move /Y start.cmd bin\start.cmd
+
+@bin\cat bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
+@move /Y stop.cmd bin\stop.cmd
+
+@echo "Installing the wrapper"
+@echo "Registering Freenet as a system service"
+
+:: It's likely that a node has already been set up; handle it
+@bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
+@bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
+
+:: Start the node up
+@net start freenet-darknet-%FPROXY_PORT%
+
+@echo "Spawning up a browser"
+@start http://127.0.0.1:%FPROXY_PORT%/
+@start welcome.html
+
+@echo "Finished"

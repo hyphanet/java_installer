@@ -27,8 +27,9 @@
 		</laf>
 		<laf name="liquid">
 			<os family="unix"/>
+		</laf>
+		<laf name="liquid">
 			<os family="mac"/>
-			<os family="macosx"/>
 		</laf>
 	</guiprefs>
 
@@ -93,11 +94,7 @@
 
 	<!-- The listeners section for CustomActions -->
 	<listeners>
-		<listener installer="SummaryLoggerInstallerListener"/>
-
-		<listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener">
-			<os family="windows"/>
-		</listener>
+		<listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener" os="windows"/>
 	</listeners>
 
 	<panels>
@@ -130,31 +127,65 @@
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
-		<pack name="Windows" id="windows" required="yes" os="windows">
+		<pack name="Windows" id="windows" required="yes">
 			<os family="windows"/>
 			<description>A windows specific catch-all pack</description>
 
 			<fileset dir="res/windows/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
-				<include name="freenet.ico"/>
-				<include name="lib/**/*"/>
-				<include name="bin/**/*"/>
+				<include name="*/**"/>
 			</fileset>
-			<parsable targetfile="$INSTALL_PATH\bin\1run.cmd"/> 
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
+			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_frost.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_jsite.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_plugins.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_thaw.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_updater.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_wrapper.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\setup.cmd"/>
 		</pack>
 
-		<pack name="Unix" id="unix" required="yes" os="unix">
+		<pack name="Unix" id="unix" required="yes">
 			<os family="unix"/>
-			<os family="mac"/>
-			<os family="macosx"/>
 			<description>An UNIX specific catch-all pack</description>
 
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
-				<include name="**/*"/>
+				<include name="*/**"/>
+			</fileset>
+
+			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
+			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
+			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
+			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/detect_port_availability.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_mdns.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
+		</pack>
+
+		<!-- Yes it's a rip of the unix one, but I haven't found any smarter way to do it! -->
+		<pack name="MacOSX" id="unix" required="yes">
+			<os family="mac"/>
+			<description>An MacOSx specific catch-all pack</description>
+
+			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="*/**"/>
 			</fileset>
 
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
@@ -175,8 +206,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 		
-		<pack name="UninstallStuff" id="uninstall" required="no">
-			<os family="windows"/>
+		<pack name="UninstallStuff" id="uninstall" required="no" os="windows">
 			<description>Create uninstallation hooks in the registry</description>
 			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
 		</pack>
@@ -218,11 +248,6 @@
 	</packs>
 
 	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->
-	<native type="3rdparty" name="COIOSHelper.dll" stage="both">
-		<os family="windows"/>
-	</native>
-
-	<native type="izpack" name="ShellLink.dll" stage="install">
-		<os family="windows"/>
-	</native>
+	<native type="3rdparty" name="COIOSHelper.dll" stage="both" os="windows"/>
+	<native type="izpack" name="ShellLink.dll" stage="install" os="windows"/>
 </installation>

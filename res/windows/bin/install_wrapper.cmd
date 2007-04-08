@@ -58,5 +58,3 @@
 @echo "Spawning up a browser"
 @start http://127.0.0.1:%FPROXY_PORT%/
 @start welcome.html
-
-@echo "Finished"

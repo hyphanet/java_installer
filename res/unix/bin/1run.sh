@@ -9,7 +9,3 @@ cd "$INSTALL_PATH"
 
 echo "Starting up a browser"
 java -cp bin/browser.jar BareBonesBrowserLaunch "file://$INSTALL_PATH/welcome.html"
-
-echo "Finished"
-
-exit 0

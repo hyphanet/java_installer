@@ -5,4 +5,4 @@
 
 :: Keep application installers in case users want to perform updates
 @cd bin
-@del /F 1run.cmd setup.cmd detect_port_availability.cmd install_freenet-ext.cmd install_freenet-stable-latest.cmd install_plugins.cmd install_updater.cmd install_wrapper.cmd setup.cmd > NUL
+@del /F 1run.cmd setup.cmd detect_port_availability.cmd install_freenet-ext.cmd install_freenet-stable-latest.cmd install_plugins.cmd install_updater.cmd install_wrapper.cmd setup.cmd 2> NUL > NUL

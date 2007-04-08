@@ -6,6 +6,6 @@
 @if not exist jsite goto nojsite 
 @del /F jsite > NUL
 @echo "Downloading jSite"
-@echo start javaw -jar jSite.jar > jsite.cmd
+@echo @start javaw -jar jSite.jar > jsite.cmd
 @java -jar bin\sha1test.jar jSite/jSite.jar . > NUL
 :nojsite

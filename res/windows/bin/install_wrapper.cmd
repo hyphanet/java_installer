@@ -46,13 +46,30 @@
 @move /Y stop.cmd bin\stop.cmd
 
 @echo "Installing the wrapper"
-@echo "Registering Freenet as a system service"
+@echo 	- Creating a user for freenet
+@set PASSWORD=%random%%random%
+@net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
+@echo wrapper.ntservice.password=%PASSWORD%>> wrapper.conf
+
+@echo 	- Tweaking the permissions of the freenet user
+:: yes it belongs to the ressource kit... But the licence specifies that it's redistribuable.
+@bin\ntrights.exe -u freenet +r SeServiceLogonRight > NUL
+@bin\ntrights.exe -u freenet -r SeDenyServiceLogonRight > NUL
+@bin\ntrights.exe -u freenet +r SeIncreaseBasePriorityPrivilege > NUL
+@bin\ntrights.exe -u freenet +r SeDenyNetworkLogonRight > NUL
+@bin\ntrights.exe -u freenet +r SeDenyInteractiveLogonRight > NUL
+@bin\ntrights.exe -u freenet -r SeShutdownPrivilege > NUL
+
+@echo 	- Changing file permissions
+@cacls . /E /T /C /G freenet:f 2> NUL > NUL
+@echo 	- Registering Freenet as a system service
 
 :: It's likely that a node has already been set up; handle it
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
 
 :: Start the node up
+@echo 	- Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
 
 @echo "Spawning up a browser"

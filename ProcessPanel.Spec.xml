@@ -120,7 +120,7 @@
 	</job>
 	<job name="Setting Thaw up">
 		<os family="windows"/>
-		<executefile name="$INSTALL_PATH/bin/install_thaw.cmd"/>
+		<executefile name="$INSTALL_PATH\bin\install_thaw.cmd"/>
 	</job>
 	<job name="Setting Frost up">
 		<os family="unix"/>
@@ -132,7 +132,7 @@
 	</job>
 	<job name="Setting Frost up">
 		<os family="windows"/>
-		<executefile name="$INSTALL_PATH/bin/install_frost.cmd"/>
+		<executefile name="$INSTALL_PATH\bin\install_frost.cmd"/>
 	</job>
 	<job name="Setting jSite up">
 		<os family="unix"/>
@@ -144,7 +144,7 @@
 	</job>
 	<job name="Setting jSite up">
 		<os family="windows"/>
-		<executefile name="$INSTALL_PATH/bin/install_jsite.cmd"/>
+		<executefile name="$INSTALL_PATH\bin\install_jsite.cmd"/>
 	</job>
 
 	<!-- Do I have to mention that nothing ought to be below ?  -->
@@ -158,6 +158,6 @@
 	</job>
 	<job name="Cleaning up">
 		<os family="windows"/>
-		<executefile name="$INSTALL_PATH/bin/cleanup.cmd"/>
+		<executefile name="$INSTALL_PATH\bin\cleanup.cmd"/>
 	</job>
 </processing>

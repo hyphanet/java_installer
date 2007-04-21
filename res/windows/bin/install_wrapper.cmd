@@ -51,6 +51,14 @@
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.conf
 
+@echo 	- Hiding the freenet user from the login screen
+@echo "Registering .fref file extension"
+@echo Windows Registry Editor Version 5.00 >> hide_user.reg
+@echo [HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Winlogon\SpecialAccounts\UserList] >> hide_user.reg
+@echo "freenet"=dword:00000000 >> hide_user.reg
+@regedit /s hide_user.reg > NUL
+@del /F hide_user.reg > NUL
+
 @echo 	- Tweaking the permissions of the freenet user
 :: yes it belongs to the ressource kit... But the licence specifies that it's redistribuable.
 @bin\ntrights.exe -u freenet +r SeServiceLogonRight > NUL

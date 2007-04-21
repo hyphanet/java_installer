@@ -52,7 +52,6 @@
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.conf
 
 @echo 	- Hiding the freenet user from the login screen
-@echo "Registering .fref file extension"
 @echo Windows Registry Editor Version 5.00 >> hide_user.reg
 @echo [HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Winlogon\SpecialAccounts\UserList] >> hide_user.reg
 @echo "freenet"=dword:00000000 >> hide_user.reg

@@ -4,7 +4,7 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e librarian
+if test -e librarian -a -e plug
 then
 	echo "Enabling the Librarian plugin"
 	mkdir plugins &>/dev/null

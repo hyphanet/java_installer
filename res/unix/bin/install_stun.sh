@@ -4,7 +4,7 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e stun
+if test -e stun -a -e plug
 then
 	echo "Enabling the STUN plugin"
 	mkdir plugins &>/dev/null

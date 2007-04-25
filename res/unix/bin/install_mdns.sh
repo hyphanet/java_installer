@@ -4,7 +4,7 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e mdns
+if test -e mdns -a -e plug
 then
 	echo "Enabling the MDNSDiscovery plugin"
 	mkdir plugins &>/dev/null

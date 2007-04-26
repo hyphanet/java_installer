@@ -1,3 +1,4 @@
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -11,8 +12,12 @@ public class BindTest {
 	public static void main(String[] args) {
 		try{
 			Integer port = Integer.valueOf(args[0]);
-			ServerSocket ss = new ServerSocket(port.intValue());
+			ServerSocket ss = new ServerSocket();
+			ss.setReuseAddress(false);
 			ss.setSoTimeout(200);
+			ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
+			if(!ss.isBound())
+				System.exit(1);
 			ss.accept();
 		}catch (SocketTimeoutException ste){
 		}catch (SocketException e){

@@ -30,5 +30,6 @@ rm -f $SCRIPT_PLIST
 echo '{' >>  $SCRIPT_PLIST
 echo "Description = \"Freenet\";" >>  $SCRIPT_PLIST
 echo "Provides = (\"Freenet\");" >>  $SCRIPT_PLIST
-echo "OrderPreference = \"None\";" >>  $SCRIPT_PLIST
+echo "Requires        = (\"NetInfo\");" >>  $SCRIPT_PLIST
+echo "OrderPreference = \"last\";" >>  $SCRIPT_PLIST
 echo '}' >>  $SCRIPT_PLIST

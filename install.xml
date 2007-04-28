@@ -174,7 +174,6 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_startup_hook-mac.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 
@@ -204,6 +203,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_startup_hook-mac.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 		

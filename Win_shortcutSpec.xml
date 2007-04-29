@@ -21,7 +21,7 @@
 
 		<createForPack name="UninstallStuff" />
 	</shortcut>
-	
+
 	<shortcut
 		name="Browse Freenet"
 		programGroup="yes"
@@ -31,9 +31,9 @@
 		startup="no"
 		iconFile="%SystemRoot%\system32\SHELL32.dll"
 		iconIndex="13" 
-		target="http://localhost:8888/"
-		description="It opens a browser pointing to Fproxy">
-
+		target="$INSTALL_PATH\browse.cmd"
+		description="It opens a browser pointing to Fproxy"
+		workingDirectory="$INSTALL_PATH">
 		<createForPack name="Base" />
 	</shortcut>
 	

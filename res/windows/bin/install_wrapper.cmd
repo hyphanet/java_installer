@@ -16,7 +16,7 @@
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
 
 :: Create a script for the "browse shortcut"
-@echo @start http://127.0.0.1:%FPROXY_PORT%/ > bin\browse.cmd
+@echo @start http://127.0.0.1:%FPROXY_PORT%/ > browse.cmd
 
 :: Try to detect a free, available port for fcp
 @set FCP_PORT=9481

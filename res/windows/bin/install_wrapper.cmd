@@ -7,7 +7,7 @@
 :: Try to detect a free, available port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
-@IF NOT ERRORLEVEL 1 GOTO configure_fproxy
+@if errorlevel 0 goto configure_fproxy
 @set FPROXY_PORT=8889
 @bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
 @move /Y welcome2.html welcome.html > NUL

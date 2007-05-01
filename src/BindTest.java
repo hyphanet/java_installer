@@ -20,12 +20,12 @@ public class BindTest {
 			else {
 				ss = new ServerSocket();
 				ss.setReuseAddress(false);
+				ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
+				if(!ss.isBound())
+					System.exit(1);
 			}
 
 			ss.setSoTimeout(200);
-			ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
-			if(!ss.isBound())
-				System.exit(1);
 			ss.accept();
 		}catch (SocketTimeoutException ste){
 		}catch (SocketException e){

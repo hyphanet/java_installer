@@ -20,7 +20,7 @@ public class BindTest {
 				ss.setReuseAddress(false);
 			ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
 			if(!ss.isBound())
-				System.exit(1);
+				System.exit(2);
 
 			ss.setSoTimeout(200);
 			ss.accept();
@@ -28,10 +28,10 @@ public class BindTest {
 		}catch (SocketException e){
 			System.exit(1);
 		}catch (IOException io){
-			System.exit(2);
+			System.exit(127);
 		}catch (ArrayIndexOutOfBoundsException aioobe){
 			System.err.println("Please give a port number as the first parameter!");
-			System.exit(-1);
+			System.exit(126);
 		}
 		System.exit(0);
 	}

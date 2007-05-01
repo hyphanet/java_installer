@@ -14,16 +14,13 @@ public class BindTest {
 			Integer port = Integer.valueOf(args[0]);
 			ServerSocket ss = null;
 			/* workaround a macos|windows problem */
-			String os = System.getProperty("os.name");
-			if(os != null && os.equalsIgnoreCase("Windows"))
-				ss = new ServerSocket(port.intValue());
-			else {
-				ss = new ServerSocket();
+			String os = System.getProperty("os.name").toLowerCase();
+			ss = new ServerSocket();
+			if(os.startsWith("mac"))
 				ss.setReuseAddress(false);
-				ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
-				if(!ss.isBound())
-					System.exit(1);
-			}
+			ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
+			if(!ss.isBound())
+				System.exit(1);
 
 			ss.setSoTimeout(200);
 			ss.accept();

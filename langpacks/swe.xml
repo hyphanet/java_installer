@@ -151,7 +151,7 @@
     <str id="CompilePanel.choose_compiler" txt="Använd kompilator:" />
     <str id="CompilePanel.additional_arguments" txt="Extra kompilator-argument:" />
 
-    <str id="ProcessPanel.heading" txt="Processar" />
+    <str id="ProcessPanel.heading" txt="Bearbetar" />
 
     <!-- Strings for the summary of panels --- START -->
     <str id="SummaryPanel.info" txt="Färdig att installera. Viktiga inställningar anges nedan. Tryck &quot;Nästa&quot; för att starta installationen, "/>

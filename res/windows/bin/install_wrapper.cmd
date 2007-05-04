@@ -50,7 +50,7 @@
 
 @echo "Installing the wrapper"
 @echo 	- Creating a user for freenet
-@set PASSWORD=%random%%random%
+@set PASSWORD=FreeNet-%random%%random%
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
 :: Force the password in case it's a re-installation
 @net user freenet %PASSWORD% > NUL

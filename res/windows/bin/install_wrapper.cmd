@@ -50,10 +50,21 @@
 
 @echo "Installing the wrapper"
 @echo 	- Creating a user for freenet
-@set PASSWORD=FreeNet@%random%%random%@
+:: A ugly hack to workaround password policy enforcements
+@set PASSWORD=%random%%random%
+:: remove the user, just in case...
+@net user freenet /delete > NUL
+@net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
+@if errorlevel 0 goto pwgenerated
+@echo "Error while creating the freenet user! let's try something else..."
+:: try with a better password
+@set PASSWORD=Freenet_0@%PASSWORD%-
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user"
-:: Force the password in case it's a re-installation
-@net user freenet %PASSWORD% > NUL
+@if errorlevel 0 goto pwgenerated
+:: We shouldn't reach that point
+@echo "The workaround is still not working! will install freenet to run as SYSTEM"
+@goto registerS
+:pwgenerated
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.conf
 
 @echo 	- Hiding the freenet user from the login screen
@@ -74,6 +85,7 @@
 
 @echo 	- Changing file permissions
 @cacls . /E /T /C /G freenet:f 2> NUL > NUL
+:registerS
 @echo 	- Registering Freenet as a system service
 
 :: It's likely that a node has already been set up; handle it

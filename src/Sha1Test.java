@@ -5,8 +5,8 @@ import gnu.crypto.hash.*;
 import com.izforge.izpack.util.AbstractUIProcessHandler;
 
 public class Sha1Test {
-	protected static int BUFFERSIZE=8192;
-	private static final String base = new String("http://downloads.freenetproject.org/alpha/");
+	final static int BUFFERSIZE = 4096;
+	final static String base = "http://downloads.freenetproject.org/alpha/";
 
 	public static void run(AbstractUIProcessHandler handler, String[] args){
 		main(args);
@@ -34,14 +34,18 @@ public class Sha1Test {
 			count++;
 			try{
 				Thread.sleep(5000);
-			}catch(InterruptedException e){
-			}
+			}catch(InterruptedException e){}
 		}
 		System.out.println("No mirror is available at the moment, please try again later");
 		System.exit(1);
 	}
 
 	public static boolean sha1test(String file) {
+		File shaFile = new File(file+".sha1");
+		File realFile = new File(file);
+		if(!shaFile.exists() || !realFile.exists() || !realFile.canRead() || !shaFile.canRead())
+			return false;
+
 		Sha160 hash=new Sha160();
 		try{
 			FileInputStream fis = null;
@@ -51,7 +55,7 @@ public class Sha1Test {
 			// We compute the hash
 			// http://java.sun.com/developer/TechTips/1998/tt0915.html#tip2
 			try {
-				fis = new FileInputStream(file);
+				fis = new FileInputStream(realFile);
 				bis = new BufferedInputStream(fis);
 				int len = 0;
 				byte[] buffer = new byte[BUFFERSIZE];
@@ -65,7 +69,7 @@ public class Sha1Test {
 
 			// We read the hash-file
 			try {
-				fis = new FileInputStream(file+".sha1");
+				fis = new FileInputStream(shaFile);
 				bis = new BufferedInputStream(fis);
 				int len = 0;
 				byte[] buffer = new byte[BUFFERSIZE];
@@ -84,12 +88,8 @@ public class Sha1Test {
 
 			int i=result.indexOf(' ');
 			result=result.substring(0,i);
-			if(result.equalsIgnoreCase(HexUtil.bytesToHex(digest))){
-				return true;
-			}else {
-				return false;
-			}
 
+			return result.equalsIgnoreCase(HexUtil.bytesToHex(digest));
 		}catch (Exception e){
 			return false;
 		}

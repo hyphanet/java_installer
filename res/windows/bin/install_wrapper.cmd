@@ -65,7 +65,8 @@
 @echo "The workaround is still not working! will install freenet to run as SYSTEM"
 @goto registerS
 :pwgenerated
-@echo wrapper.ntservice.password=%PASSWORD%>> wrapper.conf
+@echo wrapper.ntservice.password=%PASSWORD%>> wrapper.password
+@type wrapper.password >> wrapper.conf
 
 @echo 	- Hiding the freenet user from the login screen
 @echo Windows Registry Editor Version 5.00 >> hide_user.reg

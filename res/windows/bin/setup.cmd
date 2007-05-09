@@ -28,3 +28,6 @@
 @regedit /s fref.reg > NUL
 @FTYPE fref_auto_file="$JAVA_HOME\bin\javaw.exe" -cp "$INSTALL_PATH\freenet.jar" freenet.tools.AddRef "%%1" > NUL
 @del /F fref.reg
+
+:: Are we in offline mode ?
+@if exist offline echo "Offline installation mode"

@@ -7,6 +7,9 @@ cd "$INSTALL_PATH"
 if test -e jsite
 then
 	rm -f jsite
-	echo "Downloading jSite"
-	java -jar bin/sha1test.jar jSite/jSite.jar ./ &>/dev/null || exit 1
+	if test ! -e offline
+	then
+		echo "Downloading jSite"
+		java -jar bin/sha1test.jar jSite/jSite.jar ./ &>/dev/null || exit 1
+	fi
 fi

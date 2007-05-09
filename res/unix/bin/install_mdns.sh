@@ -11,7 +11,10 @@ then
 	PLUGINS=`cat plug`
 	echo "plugins.MDNSDiscovery.MDNSDiscovery@file://$INSTALL_PATH/plugins/MDNSDiscovery.jar;$PLUGINS" > plug2
 	mv -f plug2 plug
-	java -jar bin/sha1test.jar plugins/MDNSDiscovery.jar.url plugins &>/dev/null
+	if test ! -e offline
+	then
+		java -jar bin/sha1test.jar plugins/MDNSDiscovery.jar.url plugins &>/dev/null
+	fi
 	mv plugins/MDNSDiscovery.jar.url plugins/MDNSDiscovery.jar
 	rm -f plugins/MDNSDiscovery.jar.url
 	rm -f mdns

@@ -15,3 +15,11 @@ touch plug
 
 # We need the exec flag on /bin
 chmod u+x bin/*sh bin/wrapper-* lib/* &>/dev/null
+
+# Are we in offline mode ?
+if test -e offline
+then
+	echo "Offline installation mode"
+else
+	echo "Online installation mode"
+fi

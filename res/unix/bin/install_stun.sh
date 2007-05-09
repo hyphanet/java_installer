@@ -11,7 +11,10 @@ then
 	PLUGINS=`cat plug`
 	echo "plugins.JSTUN.JSTUN@file://$INSTALL_PATH/plugins/JSTUN.jar;$PLUGINS" > plug2
 	mv -f plug2 plug
-	java -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins &>/dev/null
+	if test ! -e offline
+	then
+		java -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins &>/dev/null
+	fi
 	mv plugins/JSTUN.jar.url plugins/JSTUN.jar
 	rm -f plugins/JSTUN.jar.url
 	rm -f stun

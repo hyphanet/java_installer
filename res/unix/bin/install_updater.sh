@@ -13,6 +13,9 @@ then
 	rm -f update
 fi
 
-echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh "$INSTALL_PATH" &>/dev/null || exit 1
+if test ! -e offline
+then
+	echo "Downloading update.sh"
+	java -jar bin/sha1test.jar update/update.sh "$INSTALL_PATH" &>/dev/null || exit 1
+fi
 chmod a+rx "$INSTALL_PATH/update.sh"

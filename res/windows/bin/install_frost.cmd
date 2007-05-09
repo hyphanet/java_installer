@@ -5,8 +5,10 @@
 
 @if not exist frost goto nofrost 
 @del /F frost > NUL
+@if not exist offline goto end
 @echo "Downloading Frost"
 @java -jar bin\sha1test.jar frost/frost.zip . > NUL
+:end
 @echo "Setting Frost up"
 @mkdir frost
 @java -jar bin\uncompress.jar frost.zip frost > NUL

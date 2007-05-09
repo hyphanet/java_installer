@@ -136,6 +136,13 @@
 				<exclude name="*/**/.svn/**"/>
 				<include name="*/**"/>
 			</fileset>
+
+			<fileset dir="offline" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="*/**"/>
+			</fileset>
+
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
@@ -154,6 +161,12 @@
 			<description>An UNIX specific catch-all pack</description>
 
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="*/**"/>
+			</fileset>
+
+			<fileset dir="offline" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
 				<include name="*/**"/>
@@ -183,6 +196,12 @@
 			<description>An MacOSx specific catch-all pack</description>
 
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
+				<exclude name="*/**/.svn"/>
+				<exclude name="*/**/.svn/**"/>
+				<include name="*/**"/>
+			</fileset>
+
+			<fileset dir="offline" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
 				<include name="*/**"/>

@@ -14,7 +14,7 @@ public class BindTest {
 			Integer port = Integer.valueOf(args[0]);
 			ServerSocket ss = new ServerSocket();
 			ss.setReuseAddress(false);
-			ss.bind(new InetSocketAddress("127.0.0.1:", port.intValue()));
+			ss.bind(new InetSocketAddress("127.0.0.1", port.intValue()));
 			if(!ss.isBound())
 				System.exit(2);
 

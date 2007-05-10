@@ -54,7 +54,7 @@
 @set TMPPASSWORD=%random%%random%
 @set PASSWORD=%TMPPASSWORD:~0,12%
 :: remove the user, just in case...
-@net user freenet /delete > NUL
+@net user freenet /delete 2> NUL > NUL
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
 @if errorlevel 0 goto pwgenerated
 @echo "Error while creating the freenet user! let's try something else..."

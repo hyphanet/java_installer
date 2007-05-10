@@ -52,21 +52,24 @@
 @echo 	- Creating a user for freenet
 :: A ugly hack to workaround password policy enforcements
 @set TMPPASSWORD=%random%%random%
+:: trim to 12 chars (13 chars and above passwords aren't backcompatible; a warning might get displayed)
 @set PASSWORD=%TMPPASSWORD:~0,12%
 :: remove the user, just in case...
 @net user freenet /delete 2> NUL > NUL
+:: create the user
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
-@if errorlevel 0 goto pwgenerated
+@if errorlevel 0 goto pwgen
 @echo "Error while creating the freenet user! let's try something else..."
-:: try with a better password
+:: try with a stronger password
 @set TMPPASSWORD=Freenet_0@%PASSWORD%-
 @set PASSWORD=%TMPPASSWORD:~0,12%
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user"
-@if errorlevel 0 goto pwgenerated
+@if errorlevel 0 goto pwgen
 :: We shouldn't reach that point
 @echo "The workaround is still not working! will install freenet to run as SYSTEM"
 @goto registerS
-:pwgenerated
+
+:pwgen
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.password
 @type wrapper.password >> wrapper.conf
 

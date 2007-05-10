@@ -51,7 +51,8 @@
 @echo "Installing the wrapper"
 @echo 	- Creating a user for freenet
 :: A ugly hack to workaround password policy enforcements
-@set PASSWORD=%random%%random%
+@set TMPPASSWORD=%random%%random%
+@set PASSWORD=%TMPPASSWORD:~0,12%
 :: remove the user, just in case...
 @net user freenet /delete > NUL
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL

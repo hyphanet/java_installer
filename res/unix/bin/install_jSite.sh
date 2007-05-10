@@ -10,6 +10,7 @@ then
 	if test ! -e offline
 	then
 		echo "Downloading jSite"
-		java -jar bin/sha1test.jar jSite/jSite.jar ./ &>/dev/null || exit 1
+		mkdir jSite
+		java -jar bin/sha1test.jar jSite/jSite.jar jSite &>/dev/null || exit 1
 	fi
 fi

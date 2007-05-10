@@ -10,6 +10,7 @@ then
 	if test ! -e offline
 	then
 		echo "Downloading Thaw"
-		java -jar bin/sha1test.jar Thaw/Thaw.jar ./ &>/dev/null || exit 1
+		mkdir Thaw
+		java -jar bin/sha1test.jar Thaw/Thaw.jar Thaw &>/dev/null || exit 1
 	fi
 fi

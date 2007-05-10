@@ -7,7 +7,8 @@
 @del /F jsite > NUL
 @if exist offline goto end
 @echo "Downloading jSite"
-@java -jar bin\sha1test.jar jSite/jSite.jar . > NUL
+@mkdir jSite
+@java -jar bin\sha1test.jar jSite/jSite.jar jSite > NUL
 :end
-@echo @start javaw -jar jSite.jar > jsite.cmd
+@echo @start javaw -jar jSite\jSite.jar > jsite.cmd
 :nojsite

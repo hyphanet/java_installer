@@ -3,7 +3,7 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@if not exist offline goto end
+@if exist offline goto end
 @echo "Downloading freenet-ext.jar"
 @java -jar bin\sha1test.jar freenet-ext.jar . > NUL
 :end

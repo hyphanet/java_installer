@@ -5,7 +5,7 @@
 
 @if not exist jsite goto nojsite 
 @del /F jsite > NUL
-@if not exist offline goto end
+@if exist offline goto end
 @echo "Downloading jSite"
 @java -jar bin\sha1test.jar jSite/jSite.jar . > NUL
 :end

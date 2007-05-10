@@ -10,7 +10,7 @@
 @if not exist stun goto nostun 
 @echo 	-JSTUN
 @set PLUGINS=plugins.JSTUN.JSTUN@file:///%INSTALL_PATH%\plugins\JSTUN.jar;%PLUGINS%
-@if not exist offline goto end1
+@if exist offline goto end1
 @java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins > NUL
 :end1
 @copy plugins\JSTUN.jar.url plugins\JSTUN.jar > NUL
@@ -20,7 +20,7 @@
 @if not exist mdns goto nomdns 
 @echo 	-MDNSDiscovery
 @set PLUGINS=plugins.MDNSDiscovery.MDNSDiscovery@file:///%INSTALL_PATH%\plugins\MDNSDiscovery.jar;%PLUGINS%
-@if not exist offline goto end2
+@if exist offline goto end2
 @java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar.url plugins > NUL
 :end2
 @copy plugins\MDNSDiscovery.jar.url plugins\MDNSDiscovery.jar > NUL
@@ -30,7 +30,7 @@
 @if not exist librarian goto nolibrarian 
 @echo 	-Librarian
 @set PLUGINS=plugins.Librarian.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%
-@if not exist offline goto end3
+@if exist offline goto end3
 @java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
 :end3
 @copy plugins\Librarian.jar.url plugins\Librarian.jar > NUL

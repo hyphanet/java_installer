@@ -59,7 +59,8 @@
 @if errorlevel 0 goto pwgenerated
 @echo "Error while creating the freenet user! let's try something else..."
 :: try with a better password
-@set PASSWORD=Freenet_0@%PASSWORD%-
+@set TMPPASSWORD=Freenet_0@%PASSWORD%-
+@set PASSWORD=%TMPPASSWORD:~0,12%
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user"
 @if errorlevel 0 goto pwgenerated
 :: We shouldn't reach that point

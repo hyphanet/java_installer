@@ -8,7 +8,8 @@
 @if exist offline goto end
 @echo "Downloading jSite"
 @mkdir jSite
-@java -jar bin\sha1test.jar jSite/jSite.jar jSite > NUL
+@java -jar bin\sha1test.jar jSite/jSite.jar > NUL
+@move jSite.jar jSite > NUL
 :end
 @echo @start javaw -jar jSite\jSite.jar > jsite.cmd
 :nojsite

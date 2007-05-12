@@ -8,7 +8,8 @@
 @echo "Downloading Thaw"
 @if exist offline goto end
 @mkdir Thaw
-@java -jar bin\sha1test.jar Thaw/Thaw.jar Thaw > NUL
+@java -jar bin\sha1test.jar Thaw/Thaw.jar > NUL
+@move Thaw.jar Thaw > NUL
 :end
 @echo @start javaw -jar Thaw\Thaw.jar > thaw.cmd
 :nothaw

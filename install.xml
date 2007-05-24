@@ -182,6 +182,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_mdns.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
@@ -217,6 +218,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_mdns.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
@@ -234,6 +236,11 @@
 		<pack name="AutoUpdater" id="autoupdater" required="no">
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
+		</pack>
+
+		<pack name="UPnP" id="upnp" required="no">
+			<description>A plugin enabling the node to use Universal Plug and Play to determine your external internet address and set up port forwarding on your router. Note that this involves contacting your default gateway and may be a security risk on an untrusted LAN, however it improves connectivity significantly.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/upnp"/>
 		</pack>
 
 		<pack name="STUN" id="stun" required="no">

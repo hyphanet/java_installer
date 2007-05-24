@@ -42,6 +42,14 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_stun.sh"/>
 	</job>
+	<job name="Setting UPnP up">
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/install_upnp.sh"/>
+	</job>
+	<job name="Setting UPnP up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_upnp.sh"/>
+	</job>
 	<job name="Setting Librarian up">
 		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>

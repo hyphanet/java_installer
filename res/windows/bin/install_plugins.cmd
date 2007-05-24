@@ -27,6 +27,16 @@
 @del /F mdns > NUL
 :nomdns
 
+@if not exist upnp goto noupnp 
+@echo 	-UPnP
+@set PLUGINS=plugins.UPnP.UPnP@file:///%INSTALL_PATH%\plugins\UPnP.jar;%PLUGINS%
+@if exist offline goto end2
+@java -jar bin\sha1test.jar plugins/UPnP.jar.url plugins > NUL
+:end2
+@copy plugins\UPnP.jar.url plugins\UPnP.jar > NUL
+@del /F upnp > NUL
+:noupnp
+
 @if not exist librarian goto nolibrarian 
 @echo 	-Librarian
 @set PLUGINS=plugins.Librarian.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%

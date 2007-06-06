@@ -6,7 +6,8 @@
 		<appname>Freenet</appname>
 		<appversion>0.7-a2-pre</appversion>
 		<url>http://freenetproject.org/</url>
-		<javaversion>1.4</javaversion>
+		<!-- we are 1.4 compatible but we need SHA-256 -->
+		<javaversion>1.4.2.10</javaversion>
 		<uninstaller write="yes"/>
 		<authors>
 			<author name="Ian Clarke" email="ian@freenetproject.org"/>

@@ -8,7 +8,7 @@ if test -e librarian -a -e plug
 then
 	echo "Enabling the Librarian plugin"
 	mkdir plugins &>/dev/null
-	PLUGINS=`cat plug`
+	PLUGINS="`cat plug`"
 	echo "plugins.Librarian.Librarian@file://$INSTALL_PATH/plugins/Librarian.jar;$PLUGINS" > plug2
 	mv -f plug2 plug
 	if test ! -e offline

@@ -8,7 +8,7 @@ if test -e upnp -a -e plug
 then
 	echo "Enabling the UP&P plugin"
 	mkdir plugins &>/dev/null
-	PLUGINS=`cat plug`
+	PLUGINS="`cat plug`"
 	echo "plugins.UPnP.UPnP@file://$INSTALL_PATH/plugins/UPnP.jar;$PLUGINS" > plug2
 	mv -f plug2 plug
 	if test ! -e offline

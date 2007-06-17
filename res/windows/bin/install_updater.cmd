@@ -3,7 +3,7 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@echo "Downloading update.cmd"
+@echo Downloading update.cmd
 @if exist offline goto end
 @java -jar bin\sha1test.jar update/update.cmd . > NUL
 :end

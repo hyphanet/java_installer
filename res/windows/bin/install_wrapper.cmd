@@ -3,7 +3,7 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@echo "Detecting tcp port availability"
+@echo Detecting tcp port availability
 :: Try to detect a free, available port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
@@ -48,7 +48,7 @@
 @bin\cat bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
 @move /Y stop.cmd bin\stop.cmd
 
-@echo "Installing the wrapper"
+@echo Installing the wrapper
 @echo 	- Creating a user for freenet
 :: A ugly hack to workaround password policy enforcements
 @set TMPPASSWORD=%random%%random%
@@ -59,14 +59,14 @@
 :: create the user
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
 @if errorlevel 0 goto pwgen
-@echo "Error while creating the freenet user! let's try something else..."
+@echo Error while creating the freenet user! let's try something else...
 :: try with a stronger password
 @set TMPPASSWORD=Freenet_0@%PASSWORD%-
 @set PASSWORD=%TMPPASSWORD:~0,12%
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user"
 @if errorlevel 0 goto pwgen
 :: We shouldn't reach that point
-@echo "The workaround is still not working! will install freenet to run as SYSTEM"
+@echo The workaround is still not working! will install freenet to run as SYSTEM
 @goto registerS
 
 :pwgen
@@ -102,6 +102,5 @@
 @echo 	- Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
 
-@echo "Spawning up a browser"
-@start http://127.0.0.1:%FPROXY_PORT%/
+@echo Spawning up a browser
 @start welcome.html

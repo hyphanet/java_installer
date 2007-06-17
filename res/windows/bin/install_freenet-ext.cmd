@@ -4,6 +4,6 @@
 @cd /D %INSTALL_PATH%
 
 @if exist offline goto end
-@echo "Downloading freenet-ext.jar"
+@echo Downloading freenet-ext.jar
 @java -jar bin\sha1test.jar freenet-ext.jar . > NUL
 :end

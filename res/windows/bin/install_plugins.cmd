@@ -3,7 +3,7 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@echo "Setting up plugins"
+@echo Setting up plugins
 @mkdir plugins 2> NUL
 @set PLUGINS=
 

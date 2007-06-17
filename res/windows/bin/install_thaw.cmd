@@ -5,7 +5,7 @@
 
 @if not exist thaw goto nothaw 
 @del /F thaw > NUL
-@echo "Downloading Thaw"
+@echo Downloading Thaw
 @if exist offline goto end
 @mkdir Thaw
 @java -jar bin\sha1test.jar Thaw/Thaw.jar > NUL

@@ -9,7 +9,7 @@
 @del /F freenet.ini > NUL
 :nocleanup
 
-@echo "Registering .fref file extension"
+@echo Registering .fref file extension
 @echo Windows Registry Editor Version 5.00 >> fref.reg
 @echo [HKEY_CLASSES_ROOT\.fref] >> fref.reg
 @echo @="fref_auto_file" >> fref.reg

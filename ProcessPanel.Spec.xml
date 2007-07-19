@@ -26,19 +26,6 @@
 		<executefile name="$INSTALL_PATH\bin\install_updater.cmd"/>
 	</job>
 
-	<job name="Setting Opennet up">
-		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_opennet.sh"/>
-	</job>
-	<job name="Setting the Opennet up">
-		<os family="mac"/>
-		<executefile name="$INSTALL_PATH/bin/install_opennet.sh"/>
-	</job>
-	<job name="Setting the Opennet up">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_opennet.cmd"/>
-	</job>
-
 	<job name="Setting MDNS up">
 		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>

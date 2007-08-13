@@ -70,7 +70,7 @@
 		startMenu="no"
 		startup="no"
 		target="java"
-		commandLine="-jar &quot;$INSTALL_PATH/Thaw.jar&quot;"
+		commandLine="-jar &quot;$INSTALL_PATH/Thaw/Thaw.jar&quot;"
 
 		initialState="noShow"
 		iconFile="trashcan_full"
@@ -91,8 +91,8 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
-		target="java"
-		commandLine="sh &quot;$INSTALL_PATH/frost/frost.sh&quot;"
+		target="sh"
+		commandLine=" &quot;$INSTALL_PATH/frost/frost.sh&quot;"
 
 		initialState="noShow"
 		iconFile="trashcan_full"

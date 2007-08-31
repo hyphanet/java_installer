@@ -67,7 +67,7 @@
     <str id="CheckedHelloPanel.infoOverUninstallKey" txt="La clave de desinstalación se llamará: " />
 
 
-    <str id="LicencePanel.info" txt="Por favor, lea atentamente el convenio de licencia:"/>
+    <str id="LicencePanel.info" txt="Lea el convenio de licencia:"/>
 
     <str id="LicencePanel.agree" txt="¿Acepta los términos de este convenio de licencia?"/>
 
@@ -79,35 +79,35 @@
 
 
 
-    <str id="InfoPanel.info" txt="Por favor, lea la siguiente información:"/>
+    <str id="InfoPanel.info" txt="Leer la siguiente información:"/>
 
 
 
-	<str id="PathInputPanel.required" txt="El directorio seleccionado debe existir"/>
+	<str id="PathInputPanel.required" txt="Debe seleccionar un directorio existente"/>
 
-	<str id="PathInputPanel.notValid" txt="El directorio no contiene el producto requerido"/>
+	<str id="PathInputPanel.notValid" txt="El directorio seleccionado no contiene el producto requerido"/>
 
 
 
-    <str id="TargetPanel.info" txt="Seleccione la ruta de instalación:"/>
+    <str id="TargetPanel.info" txt="Seleccionar la ruta de instalación:"/>
 
     <str id="TargetPanel.browse" txt="Escoger ..."/>
 
     <str id="TargetPanel.warn"
 
-         txt="¡El directorio ya existe! ¿Confirma su deseo de hacer la instalación ahí y sobreescribir posibles ficheros existentes?"/>
+         txt="El directorio ya existe. Si confirma la dirección podria sobreescribir ficheros existentes."/>
 
     <str id="TargetPanel.empty_target"
 
-         txt="¡Ha hecho una designación sin nombre! ¿Desea hacerlo así?"/>
+         txt="¡Ha hecho una designación sin nombre! ¿Desea continuar?"/>
 
 	<str id="TargetPanel.createdir" txt="El directorio será creado:" />
 
 
 
-    <str id="JDKPathPanel.intro" txt="La aplicación necesita un JDK. Un Java Runtime Environment (JRE) no es suficiente."/>
+    <str id="JDKPathPanel.intro" txt="La aplicación necesita JDK. Java Runtime Environment; (JRE) no es suficiente."/>
 
-    <str id="JDKPathPanel.info" txt="Seleccione el directorio del JDK:"/>
+    <str id="JDKPathPanel.info" txt="Seleccione el directorio para JDK:"/>
 
     <str id="JDKPathPanel.badVersion1" txt="El JDK seleccionado es una versión incorrecta (disponible: "/>
 
@@ -123,13 +123,13 @@
 
     <str id="PacksPanel.space" txt="Espacio total requerido: "/>
 
-    <str id="PacksPanel.description" txt="Description"/>
+    <str id="PacksPanel.description" txt="Descripción"/>
 
 
 
     <str id="PacksPanel.freespace" txt="Espacio disponible: "/>
 
-    <str id="PacksPanel.dependencyList" txt="El paquete elegido requere los siguientes paquetes para ser instalado"/>
+    <str id="PacksPanel.dependencyList" txt="El paquete elegido requiere los siguientes paquetes para ser instalado"/>
 
     <str id="ImgPacksPanel.dependencyList" txt="Dependencias"/>
 
@@ -139,9 +139,9 @@
 
 
 
-    <str id="InstallPanel.info" txt="Haga clic en ¡Instalar! para iniciar el proceso de instalación"/>
+    <str id="InstallPanel.info" txt="Haga clic en `Instalar` para iniciar el proceso de instalación"/>
 
-    <str id="InstallPanel.install" txt="¡Instalar!"/>
+    <str id="InstallPanel.install" txt="Instalar"/>
 
     <str id="InstallPanel.tip" txt="Progreso de la instalación:"/>
 
@@ -153,23 +153,23 @@
 
     <str id="InstallPanel.overwrite.title" txt="El fichero ya existe"/>
 
-    <str id="InstallPanel.overwrite.question" txt="El fichero siguiente ya existe. ¿Desea sobreescribirlo?"/>
+    <str id="InstallPanel.overwrite.question" txt="El siguiente fichero ya existe. ¿Desea sobreescribirlo?"/>
 
 
 
-    <str id="FinishPanel.success" txt="¡Instalación completada con éxito!"/>
+    <str id="FinishPanel.success" txt="Instalación completada con éxito"/>
 
     <str id="FinishPanel.done" txt="Hecho"/>
 
     <str id="FinishPanel.fail" txt="La instalación ha fallado!"/>
 
-    <str id="FinishPanel.uninst.info" txt="Se ha puesto un programa de desinstalación en:"/>
+    <str id="FinishPanel.uninst.info" txt="El programa de desinstalación se encuentra en:"/>
 
     <str id="FinishPanel.auto" txt="Generar un guión para replicar esta misma instalación"/>
 
     <str id="FinishPanel.auto.tip"
 
-         txt="Use este guión para hacer automáticamente la misma instalación en otras máquinas."/>
+         txt="Use este guión para repetir automáticamente la misma instalación en otras máquinas."/>
 
 
 
@@ -177,7 +177,7 @@
 
     <str id="ImgPacksPanel.snap" txt="Captura de pantalla asociada:"/>
 
-    <str id="ImgPacksPanel.checkbox" txt=" Instalar este paquete"/>
+    <str id="ImgPacksPanel.checkbox" txt=" Instalar el siguiente paquete"/>
 
     <str id="ShortcutPanel.headline" txt="Configuración de accesos directos"/>
 
@@ -185,7 +185,7 @@
 
     <str id="ShortcutPanel.regular.default" txt="Por defecto"/>
 
-    <str id="ShortcutPanel.regular.desktop" txt="Crear accesos directos adicionales en el escritorio"/>
+    <str id="ShortcutPanel.regular.desktop" txt="Crear accesos directos adicionales en escritorio"/>
 
     <str id="ShortcutPanel.regular.create" txt="Crear accesos directos"/>
 
@@ -197,11 +197,11 @@
 
 
 
-    <str id="ShortcutPanel.alternate.apology" txt="Lo sentimos, IzPack no puede crear accesos directos en este sistema operativo. Para crearlos, por favor consulte su manual del sistema operativo."/>
+    <str id="ShortcutPanel.alternate.apology" txt="Lo sentimos, IzPack no puede crear accesos directos en este sistema operativo. Para crearlos, por favor consulte el manual de su sistema operativo."/>
 
-    <str id="ShortcutPanel.alternate.targetsLabel" txt="La siguiente es una lista de ficheros ejecutables a los que el creador de este producto quisiera que usted tuviera acceso mediante accesos directos."/>
+    <str id="ShortcutPanel.alternate.targetsLabel" txt="La siguiente es una lista de ficheros ejecutables que el creador de este producto quisiera que usted acceda mediante accesos directos."/>
 
-    <str id="ShortcutPanel.alternate.textFileExplanation" txt="Puede guardar información detallada sobre los ficheros ejecutables de la aplicación en un fichero de texto para referencia posterior."/>
+    <str id="ShortcutPanel.alternate.textFileExplanation" txt="Puede guardar información detallada sobre los ficheros ejecutables de la aplicación en un fichero de texto para posterior referencia."/>
 
     <str id="ShortcutPanel.alternate.saveButton" txt="Guardar texto"/>
 
@@ -259,7 +259,7 @@
 
     <str id="UserInputPanel.search.browse"           txt="Buscar..."/>
 
-    <str id="UserInputPanel.search.wrongselection.message"   txt="El fichero o directorio elegido no existe o no es apropiado."/>
+    <str id="UserInputPanel.search.wrongselection.message"   txt="El fichero o directorio elegido es inexistente o inapropiado."/>
 
     <str id="UserInputPanel.search.wrongselection.caption"   txt="Selección inválida."/>
 
@@ -279,9 +279,9 @@
 
     <str id="CompilePanel.progress.finished" txt="[Finalizado]" />
 
-    <str id="CompilePanel.progress.overall" txt="Progreso global de la compilación:" />
+    <str id="CompilePanel.progress.overall" txt="Progreso total de la compilación:" />
 
-    <str id="CompilePanel.error" txt="Compilación ha fallado" />
+    <str id="CompilePanel.error" txt="La compilación ha fallado" />
 
     <str id="CompilePanel.error.reconfigure" txt="Reconfigurar" />
 
@@ -289,7 +289,7 @@
 
     <str id="CompilePanel.error.abort" txt="Abortar" />
 
-    <str id="CompilePanel.error.seebelow" txt="Mire abajo el comando que ha fallado y su salida." />
+    <str id="CompilePanel.error.seebelow" txt="Lea abajo el comando que ha fallado y su salida." />
 
     <str id="CompilePanel.error.nofiles" txt="Error al escanear ficheros a compilar." />
 
@@ -297,7 +297,7 @@
 
     <str id="CompilePanel.error.invalidarguments" txt="El compilador no acepta los argumentos proporcionados." />
 
-    <str id="CompilePanel.error.noclassfile" txt="El compilador no ha producido un fichero class a partir del fichero fuente." />
+    <str id="CompilePanel.error.noclassfile" txt="El compilador no ha producido un fichero de tipo class a partir del fichero fuente." />
 
     <str id="CompilePanel.choose_compiler" txt="Compilador a usar:" />
 

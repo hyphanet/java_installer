@@ -68,6 +68,9 @@
 :: We shouldn't reach that point
 @echo The workaround is still not working! will install freenet to run as SYSTEM
 @goto registerS
+:: We don't want the password to expire
+:: FIXME: what about that 3rd party code I haven't audited yet ? - Consider using something else
+@bin\netuser.exe freenet /pwnexp:y
 
 :pwgen
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.password

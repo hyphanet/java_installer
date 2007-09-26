@@ -7,7 +7,7 @@ cd "$INSTALL_PATH"
 if test -e librarian -a -e plug
 then
 	echo "Enabling the Librarian plugin"
-	if test ! -e plugins; then mkdir plugins; fi 2>&1 >/dev/null
+	if test ! -e plugins; then mkdir plugins; fi
 	PLUGINS="`cat plug`"
 	echo "plugins.Librarian.Librarian@file://$INSTALL_PATH/plugins/Librarian.jar;$PLUGINS" > plug2
 	mv -f plug2 plug

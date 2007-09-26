@@ -7,7 +7,7 @@ cd "$INSTALL_PATH"
 if test -e upnp -a -e plug
 then
 	echo "Enabling the UP&P plugin"
-	if test ! -e plugins; then mkdir plugins; fi 2>&1 >/dev/null
+	if test ! -e plugins; then mkdir plugins; fi
 	PLUGINS="`cat plug`"
 	echo "plugins.UPnP.UPnP@file://$INSTALL_PATH/plugins/UPnP.jar;$PLUGINS" > plug2
 	mv -f plug2 plug

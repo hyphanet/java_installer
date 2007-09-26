@@ -11,4 +11,4 @@ then
 fi
 
 rm -f freenet.jar
-ln -sf freenet-stable-latest.jar freenet.jar 2>&1 > >/dev/null
+ln -sf freenet-stable-latest.jar freenet.jar 2>&1 >/dev/null

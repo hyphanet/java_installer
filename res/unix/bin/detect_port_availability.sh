@@ -25,7 +25,7 @@ echo -e "fproxy.enabled=true\nfproxy.port=$FPROXY_PORT" >> freenet.ini
 
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
-java -jar bin/bindtest.jar $FCP_PORT
+java -jar bin/bindtest.jar $FCP_PORT 2>&1 >/dev/null
 if test $? -ne 0
 then
 	FCP_PORT=9482
@@ -35,7 +35,7 @@ echo -e "fcp.enabled=true\nfcp.port=$FCP_PORT" >> freenet.ini
 
 # Try to auto-detect the first available port for console
 CONSOLE_PORT=2323
-java -jar bin/bindtest.jar $CONSOLE_PORT
+java -jar bin/bindtest.jar $CONSOLE_PORT 2>&1 >/dev/null
 if test $? -ne 0
 then
 	CONSOLE_PORT=2324

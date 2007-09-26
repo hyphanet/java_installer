@@ -11,10 +11,10 @@ echo "Creating a startup script for Freenet"
 
 if test ! -d $STARTUP_PATH
 then
-	mkdir $STARTUP_PATH 2>&1 >/dev/null
+	mkdir $STARTUP_PATH 2>&1 > >/dev/null
 fi
 
-mkdir $STARTUP_PATH/Freenet 2>&1 >/dev/null
+mkdir $STARTUP_PATH/Freenet 2>&1 > >/dev/null
 rm -f $SCRIPT
 echo "#!/bin/sh" >> $SCRIPT
 echo ". /etc/rc.common" >> $SCRIPT

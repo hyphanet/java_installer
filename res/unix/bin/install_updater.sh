@@ -16,6 +16,6 @@ fi
 if test ! -e offline
 then
 	echo "Downloading update.sh"
-	java -jar bin/sha1test.jar update/update.sh 2>&1/dev/null || exit 1
+	java -jar bin/sha1test.jar update/update.sh 2>&1 >/dev/null || exit 1
 fi
 chmod a+rx update.sh

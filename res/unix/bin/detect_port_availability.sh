@@ -7,7 +7,7 @@ cd "$INSTALL_PATH"
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy
 FPROXY_PORT=8888
-java -jar bin/bindtest.jar $FPROXY_PORT 2>&1/dev/null
+java -jar bin/bindtest.jar $FPROXY_PORT 2>&1 >/dev/null
 if test $? -ne 0
 then
 	FPROXY_PORT=8889

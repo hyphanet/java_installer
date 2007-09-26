@@ -14,7 +14,7 @@ fi
 touch plug
 
 # We need the exec flag on /bin
-chmod u+x bin/*sh bin/wrapper-* lib/* 2>&1 >/dev/null
+chmod u+x bin/*sh bin/wrapper-* lib/* >/dev/null 2>&1
 
 # Are we in offline mode ?
 if test -e offline

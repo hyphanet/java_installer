@@ -11,6 +11,6 @@ then
 	then
 		echo "Downloading jSite"
 		mkdir jSite
-		java -jar bin/sha1test.jar jSite/jSite.jar jSite 2>&1 >/dev/null || exit 1
+		java -jar bin/sha1test.jar jSite/jSite.jar jSite >/dev/null 2>&1 || exit 1
 	fi
 fi

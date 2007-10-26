@@ -254,9 +254,9 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/mdns"/>
 		</pack>
 
-		<pack name="Librarian" id="librarian" required="no">
+		<pack name="XMLLibrarian" id="xmllibrarian" required="no">
 			<description>A plugin allowing you to search the freenet.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/librarian"/>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
 		
 		<pack name="jSite" id="jsite" required="no">

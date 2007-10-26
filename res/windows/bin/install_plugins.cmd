@@ -37,14 +37,14 @@
 @del /F upnp > NUL
 :noupnp
 
-@if not exist librarian goto nolibrarian 
-@echo 	-Librarian
-@set PLUGINS=plugins.Librarian.Librarian@file:///%INSTALL_PATH%\plugins\Librarian.jar;%PLUGINS%
+@if not exist xmllibrarian goto nolibrarian 
+@echo 	-XMLLibrarian
+@set PLUGINS=plugins.XMLLibrarian.XMLLibrarian@file:///%INSTALL_PATH%\plugins\XMLLibrarian.jar;%PLUGINS%
 @if exist offline goto end4
-@java -jar bin\sha1test.jar plugins/Librarian.jar.url plugins > NUL
+@java -jar bin\sha1test.jar plugins/XMLLibrarian.jar.url plugins > NUL
 :end4
-@copy plugins\Librarian.jar.url plugins\Librarian.jar > NUL
-@del /F librarian > NUL
+@copy plugins\XMLLibrarian.jar.url plugins\XMLLibrarian.jar > NUL
+@del /F xmllibrarian > NUL
 :nolibrarian
 
 @echo pluginmanager.loadplugin=%PLUGINS% >> freenet.ini

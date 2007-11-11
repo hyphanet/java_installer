@@ -9,13 +9,11 @@ then
 	echo "Enabling the UP&P plugin"
 	if test ! -e plugins; then mkdir plugins; fi
 	PLUGINS="`cat plug`"
-	echo "plugins.UPnP.UPnP@file://$INSTALL_PATH/plugins/UPnP.jar;$PLUGINS" > plug2
+	echo "UPnP;$PLUGINS" > plug2
 	mv -f plug2 plug
 	if test ! -e offline
 	then
 		java -jar bin/sha1test.jar plugins/UPnP.jar.url plugins >/dev/null 2>&1
 	fi
-	mv -f plugins/UPnP.jar.url plugins/UPnP.jar
-	rm -f plugins/UPnP.jar.url
 	rm -f upnp
 fi

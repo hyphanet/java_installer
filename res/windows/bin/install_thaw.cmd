@@ -11,5 +11,6 @@
 @java -jar bin\sha1test.jar Thaw/Thaw.jar > NUL
 @move Thaw.jar Thaw > NUL
 :end
+@echo Setting Thaw up
 @echo @start javaw -jar Thaw\Thaw.jar > thaw.cmd
 :nothaw

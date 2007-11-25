@@ -12,5 +12,6 @@
 @move Thaw.jar Thaw > NUL
 :end
 @echo Setting Thaw up
-@echo @start javaw -jar Thaw\Thaw.jar > thaw.cmd
+@echo @cd Thaw >thaw.cmd
+@echo @start javaw -jar Thaw.jar >> thaw.cmd
 :nothaw

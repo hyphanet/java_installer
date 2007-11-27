@@ -7,9 +7,9 @@
 @if exist offline goto end
 @java -jar bin\sha1test.jar update/update.cmd . > NUL
 :end
-@echo node.updater.enabled=true >> freenet.ini
+@echo node.updater.enabled=true>> freenet.ini
 
 @if not exist update goto noautoupdate
-@echo node.updater.autoupdate=true >> freenet.ini
+@echo node.updater.autoupdate=true>> freenet.ini
 @del /F update > NUL
 :noautoupdate

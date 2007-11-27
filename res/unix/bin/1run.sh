@@ -4,6 +4,8 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
+echo End >> freenet.ini
+
 # Starting the node up
 ./run.sh start
 

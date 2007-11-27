@@ -3,7 +3,6 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@echo End >> freenet.ini
 :: Keep application installers in case users want to perform updates
 @cd bin
 @del /F 1run.cmd setup.cmd detect_port_availability.cmd install_freenet-ext.cmd install_freenet-stable-latest.cmd install_plugins.cmd install_updater.cmd install_wrapper.cmd setup.cmd offline 2> NUL > NUL

@@ -97,6 +97,7 @@
 :registerS
 @echo 	- Registering Freenet as a system service
 
+@echo End >> freenet.ini
 :: It's likely that a node has already been set up; handle it
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf

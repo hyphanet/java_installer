@@ -5,6 +5,22 @@
 	<skipIfNotSupported />
 
 	<programGroup defaultName="The Free Network Project" location="applications"/>
+	
+	<shortcut
+		name="Freenet Uninstaller"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="$INSTALL_PATH\Uninstaller\Uninstaller.jar"
+		iconFile="%SystemRoot%\system32\SHELL32.dll"
+		iconIndex="31" 
+		workingDirectory="$INSTALL_PATH"
+		description="This uninstalls Freenet">
+
+		<createForPack name="UninstallStuff" />
+	</shortcut>
 
 	<shortcut
 		name="Browse Freenet"

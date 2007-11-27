@@ -231,7 +231,7 @@
 		
 		<pack name="UninstallStuff" id="uninstall" required="no" os="windows">
 			<description>Create uninstallation hooks in the registry</description>
-			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" os="windows" keep="true" stage="uninstall"/>
+			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd"/>
 		</pack>
 		
 		<pack name="AutoUpdater" id="autoupdater" required="no">

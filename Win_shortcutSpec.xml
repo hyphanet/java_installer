@@ -13,10 +13,10 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
-		target="$INSTALL_PATH\Uninstaller\Uninstaller.jar"
+		target="$INSTALL_PATH\Uninstaller\Uninstall.cmd"
 		iconFile="%SystemRoot%\system32\SHELL32.dll"
 		iconIndex="31" 
-		workingDirectory="$INSTALL_PATH"
+		workingDirectory="$INSTALL_PATH\Uninstaller"
 		description="This uninstalls Freenet">
 
 		<createForPack name="UninstallStuff" />

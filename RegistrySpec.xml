@@ -20,7 +20,7 @@ $Id: RegistrySpec.xml 1335 2005-09-02 11:02:23Z bartzkau $
 		<value name="UninstallString" 
 			keypath="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$UNINSTALL_NAME"  
 			root="HKLM" 
-			string="http://wiki.freenetproject.org/FreenetUninstall"/>
+			string="&quot;$INSTALL_PATH\uninstaller\uninstall.cmd&quot;"/>
 		<value name="DisplayIcon" 
 			keypath="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$UNINSTALL_NAME"  
 			root="HKLM" 

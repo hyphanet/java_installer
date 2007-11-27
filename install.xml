@@ -231,7 +231,7 @@
 		
 		<pack name="UninstallStuff" id="uninstall" required="no" os="windows">
 			<description>Create uninstallation hooks in the registry</description>
-			<executable targetfile="$INSTALL_PATH\bin\uninstall_service.bat" os="windows" keep="true" stage="uninstall"/>
+			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" os="windows" keep="true" stage="uninstall"/>
 		</pack>
 		
 		<pack name="AutoUpdater" id="autoupdater" required="no">
@@ -261,17 +261,17 @@
 		
 		<pack name="jSite" id="jsite" required="no">
 			<description>A tool to upload websites to freenet</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite"/>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite.install"/>
 		</pack>
 		
 		<pack name="frost" id="frost" required="no">
 			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/)</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/frost"/>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/frost.install"/>
 		</pack>
 		
 		<pack name="thaw" id="thaw" required="no">
 			<description>A powerful filesharing tool designed for freenet</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thaw"/>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thaw.install"/>
 		</pack>
 	</packs>
 

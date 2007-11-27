@@ -3,8 +3,8 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@if not exist thaw goto nothaw 
-@del /F thaw > NUL
+@if not exist thaw.install goto nothaw 
+@del /F thaw.install > NUL
 @echo Downloading Thaw
 @if exist offline goto end
 @mkdir Thaw

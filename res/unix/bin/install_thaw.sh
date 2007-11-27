@@ -4,9 +4,9 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e thaw
+if test -e thaw.install
 then
-	rm -f thaw
+	rm -f thaw.install
 	if test ! -e offline
 	then
 		echo "Downloading Thaw"

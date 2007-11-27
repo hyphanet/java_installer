@@ -4,9 +4,9 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e jsite
+if test -e jsite.install
 then
-	rm -f jsite
+	rm -f jsite.install
 	if test ! -e offline
 	then
 		echo "Downloading jSite"

@@ -4,9 +4,9 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 
 cd "$INSTALL_PATH"
 
-if test -e frost
+if test -e frost.install
 then
-	rm -f frost
+	rm -f frost.install
 	if test ! -e offline
 	then
 		echo "Downloading frost"

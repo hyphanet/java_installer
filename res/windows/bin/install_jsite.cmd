@@ -3,8 +3,8 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@if not exist jsite goto nojsite 
-@del /F jsite > NUL
+@if not exist jsite.install goto nojsite.install 
+@del /F jsite.install > NUL
 @if exist offline goto end
 @echo Downloading jSite
 @mkdir jSite

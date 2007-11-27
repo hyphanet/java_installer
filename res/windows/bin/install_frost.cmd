@@ -3,7 +3,7 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
-@if not exist frost.install goto nofrost.install 
+@if not exist frost.install goto nofrost
 @del /F frost.install > NUL
 @if exist offline goto end
 @echo Downloading Frost

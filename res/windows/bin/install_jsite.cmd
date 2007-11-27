@@ -11,5 +11,6 @@
 @java -jar bin\sha1test.jar jSite/jSite.jar > NUL
 @move jSite.jar jSite > NUL
 :end
-@echo @start javaw -jar jSite\jSite.jar > jsite.cmd
+@echo @cd jSite > jsite.cmd
+@echo @start javaw -jar jSite.jar >> jsite.cmd
 :nojsite

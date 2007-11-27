@@ -61,7 +61,7 @@
 		startup="no"
 		target="$INSTALL_PATH\jsite.cmd"
 		description="This starts jSite"
-		workingDirectory="$INSTALL_PATH\jSite"
+		workingDirectory="$INSTALL_PATH\"
 	>
 		<createForPack name="jSite" />
 	</shortcut>

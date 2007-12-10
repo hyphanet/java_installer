@@ -128,7 +128,7 @@
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
-		<pack name="OpenNet" id="opennet" required="yes">
+		<pack name="OpenNet" id="opennet" required="no">
 			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
 			<file src="res/opennet/seednodes.fref" targetdir="$INSTALL_PATH"/>
 		</pack>

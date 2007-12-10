@@ -129,7 +129,7 @@
 		</pack>
 
 		<pack name="OpenNet" id="opennet" required="yes">
-			<description>The opennet seednodes file</description>
+			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
 			<file src="res/opennet/seednodes.fref" targetdir="$INSTALL_PATH"/>
 		</pack>
 

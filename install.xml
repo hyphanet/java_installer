@@ -128,6 +128,11 @@
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
+		<pack name="OpenNet" id="opennet" required="yes">
+			<description>The opennet seednodes file</description>
+			<file src="res/opennet/seednodes.fref" targetdir="$INSTALL_PATH"/>
+		</pack>
+
 		<pack name="Windows" id="windows" required="yes">
 			<os family="windows"/>
 			<description>A windows specific catch-all pack</description>

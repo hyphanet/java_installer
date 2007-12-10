@@ -104,14 +104,14 @@
 
 	<target name="win32" depends="dist">
 		<copy file="res/installer.exe" tofile="freenet-win32.exe"/>
-		<exec  executable="rar">
-			<arg line="a freenet-win32.exe install.jar"/>
+		<exec  executable="7z">
+			<arg line="a -sfx freenet-win32.exe install.jar"/>
 		</exec>
 		
 		<copy file="freenet-win32.exe" tofile="freenet-win32-with_jre.exe"/>
 		<copy file="${jre.lib}" tofile="jre.exe"/>
-		<exec  executable="rar">
-			<arg line="a freenet-win32-with_jre.exe jre.exe"/>
+		<exec  executable="7z">
+			<arg line="a -sfx freenet-win32-with_jre.exe jre.exe"/>
 		</exec>
 	</target>
 </project>

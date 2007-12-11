@@ -154,6 +154,7 @@
 			<parsable targetfile="$INSTALL_PATH\bin\install_thaw.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_updater.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_wrapper.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_opennet.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\setup.cmd"/>
 		</pack>
 
@@ -189,6 +190,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_opennet.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 
@@ -225,6 +227,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_opennet.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_startup_hook-mac.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>

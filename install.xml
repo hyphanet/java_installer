@@ -253,7 +253,7 @@
 		</pack>
 
 		<pack name="STUN" id="stun" required="no">
-			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamical IP addresses (i.e. most nodes).</description>
+			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamic IP addresses (i.e. most nodes).</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
 

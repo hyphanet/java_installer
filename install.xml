@@ -128,11 +128,6 @@
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
-		<pack name="OpenNet" id="opennet" required="no">
-			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
-			<file src="res/opennet/seednodes.fref" targetdir="$INSTALL_PATH"/>
-		</pack>
-
 		<pack name="Windows" id="windows" required="yes">
 			<os family="windows"/>
 			<description>A windows specific catch-all pack</description>
@@ -242,6 +237,11 @@
 		<pack name="AutoUpdater" id="autoupdater" required="no">
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
+		</pack>
+
+		<pack name="OpenNet" id="opennet" required="no">
+			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/opennet.install"/>
 		</pack>
 
 		<pack name="UPnP" id="upnp" required="no">

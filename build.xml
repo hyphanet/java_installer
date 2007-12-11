@@ -116,13 +116,12 @@
 		</copy>
 
 		<exec  executable="7z" dir="${temp}">
-			<arg line="a freenet-win32.7z *"/>
+			<arg line="a -x!*7z freenet-win32.7z *"/>
 		</exec>
-		<delete file="${temp}/freenet-win32.7z"/>
 		
 		<copy file="${jre.lib}" tofile="${temp}/jre.exe"/>
 		<exec  executable="7z" dir="${temp}">
-			<arg line="a freenet-win32-with_jre.7z *"/>
+			<arg line="a -x!*7z freenet-win32-with_jre.7z *"/>
 		</exec>
 	</target>
 </project>

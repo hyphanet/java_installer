@@ -9,13 +9,23 @@
 	<property name="config" value="install.xml"/>
 	<property name="dest" value="install.jar"/>
 	<property name="build" value="build"/>
+
 	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
-	<property name="jre.lib" value="lib/jre-6u3-windows-i586-p.exe"/>
-	<property name="temp" value="temp"/>
+	<property name="launch4j.dir" location="lib/launch4j/" />
 
-	<taskdef name="izpack" classpath="${basedir}/lib/standalone-compiler.jar" classname="com.izforge.izpack.ant.IzPackTask"/>
+	<available file="${izPack.lib}" property="izPack_available" />
+	<fail unless="izPack_available" status="1"
+		message="You need to download izPack and to put standalone-compiler.jar into lib/" />
 
-	<target name="dist" description="generate the distribution" depends="clean,compile_sha1test, compile_browser, compile_uncompress, compile_bindtest">
+	<available file="${launch4j.dir}" property="launch4j_available" />
+	<fail unless="launch4j_available" status="1"
+		message="You need to download launch4j and to put it into lib/" />
+
+	<taskdef name="izpack" classpath="${izPack.lib}" classname="com.izforge.izpack.ant.IzPackTask"/>
+
+	<!-- ================================================== -->
+
+	<target name="dist" description="generate the distribution" depends="compile_sha1test, compile_browser, compile_uncompress, compile_bindtest">
 		<echo message="Build the installer"/>
 		<izpack input="${config}" output="${dest}" baseDir="${basedir}"/>
 	</target>
@@ -28,10 +38,6 @@
 		<delete dir="${build}_browser"/>
 		<delete dir="${build}_uncompress"/>
 		<delete dir="${build}_bindtest"/>
-		<delete dir="${temp}"/>
-		<delete file="freenet-win32.exe"/>
-		<delete file="freenet-win32-with_jre.exe"/>
-		<delete file="jre.exe"/>
 	</target>
 
 	<target name="compile_sha1test">
@@ -104,24 +110,11 @@
 		</jar>
 	</target>
 
-	<target name="win32" depends="dist">
-		<mkdir dir="${temp}"/>
-		<copy todir="${temp}">
-			<fileset dir=".">
-				<include name="install.jar"/>
-			</fileset>
-			<fileset dir="launcher">
-				<include name="*"/>
-			</fileset>
-		</copy>
+	<!-- ================================================== -->
 
-		<exec  executable="7z" dir="${temp}">
-			<arg line="a -x!*7z freenet-win32.7z *"/>
-		</exec>
-		
-		<copy file="${jre.lib}" tofile="${temp}/jre.exe"/>
-		<exec  executable="7z" dir="${temp}">
-			<arg line="a -x!*7z freenet-win32-with_jre.7z *"/>
-		</exec>
+	<target name="win32" depends="dist">
+		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar
+		    :${launch4j.dir}/lib/xstream.jar" />
+		<launch4j configFile="./l4j/installer.xml" />
 	</target>
 </project>

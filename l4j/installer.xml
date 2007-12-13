@@ -1,7 +1,7 @@
 <launch4jConfig>
 	<headerType>gui</headerType>
 	<jar>../install.jar</jar>
-	<outfile>../setup.exe</outfile>
+	<outfile>../install.exe</outfile>
 	<errTitle>Freenet 0.7</errTitle>
 	<chdir>.</chdir>
 	<downloadUrl>http://www.java.com/getjava/</downloadUrl>
@@ -25,7 +25,7 @@
 		<txtProductVersion> </txtProductVersion>
 		<productName>Freenet</productName>
 		<companyName>Freenet Project Inc.</companyName>
-		<originalFilename>setup.exe</originalFilename>
+		<originalFilename>install.exe</originalFilename>
 		<internalName> </internalName>
 	</versionInfo>
 </launch4jConfig>

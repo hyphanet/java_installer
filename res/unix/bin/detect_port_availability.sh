@@ -32,13 +32,3 @@ then
 	echo "Can not bind fcp to 9481: force it to $FCP_PORT instead."
 fi
 echo -e "fcp.enabled=true\nfcp.port=$FCP_PORT" >> freenet.ini
-
-# Try to auto-detect the first available port for console
-CONSOLE_PORT=2323
-java -jar bin/bindtest.jar $CONSOLE_PORT 2>&1 >/dev/null
-if test $? -ne 0
-then
-	CONSOLE_PORT=2324
-	echo "Can not bind console to 2323: force it to $CONSOLE_PORT instead."
-fi
-echo -e "console.enabled=true\nconsole.port=$CONSOLE_PORT" >> freenet.ini

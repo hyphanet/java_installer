@@ -25,14 +25,6 @@
 @echo fcp.enable=true >>freenet.ini
 @echo fcp.port=%FCP_PORT% >>freenet.ini
 
-:: Try to detect a free, available port for console
-@set CONSOLE_PORT=2323
-@java -jar bin\bindtest.jar %CONSOLE_PORT% 
-@if not errorlevel 0 set CONSOLE_PORT=2324
-@echo console.enable=true >>freenet.ini
-@echo console.port=%CONSOLE_PORT% >>freenet.ini
-
-
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
 

@@ -99,4 +99,9 @@
 @net start freenet-darknet-%FPROXY_PORT%
 
 @echo Spawning up a browser
+@if not exist welcome.%ISO3_LANG%.html goto nol10n
+@start welcome.%ISO3_LANG%.html
+@goto endl10n
+:nol10n
 @start welcome.html
+:endl10n

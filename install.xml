@@ -118,6 +118,7 @@
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="welcome.html"/>
+				<include name="welcome.*.html"/>
 			</fileset>
 		</pack>
 

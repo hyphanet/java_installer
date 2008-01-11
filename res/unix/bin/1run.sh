@@ -10,4 +10,10 @@ echo End >> freenet.ini
 ./run.sh start
 
 echo "Starting up a browser"
-java -cp bin/browser.jar BareBonesBrowserLaunch "file://$INSTALL_PATH/welcome.html"
+if test -e welcome.$ISO3_LANG.html
+then
+	HTMLFILE="file://$INSTALL_PATH/welcome.$ISO3_LANG.html"
+else
+	HTMLFILE="file://$INSTALL_PATH/welcome.html"
+fi
+java -cp bin/browser.jar BareBonesBrowserLaunch "$HTMLFILE"

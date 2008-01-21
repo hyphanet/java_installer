@@ -7,27 +7,14 @@ There is an IRC support channel available in case you have questions : #freenet@
 
 INSTALL:
 
-No actual 'install' process is needed: you need a working Java, best would be the latest version of the 1.5 branch (For now freenet has a 1.4 strict compatibility policy but for performances reasons you might want a newer version).
+No actual 'install' process is needed: you need a working Java, best would be the latest version of the 1.6 branch (For now freenet has a 1.4 strict compatibility policy but for performances reasons you might want a newer version).
 
-Basically, all you need to do is make a directoy for freenet, unpack the tarball into that directory, change the permissions so that you can read write and execute as user (non-root) in thet directory and run the start script using the following commands :
+Basically, all you need to do is make a directoy for freenet, unpack the tarball into that directory, change the permissions so that you can read write and execute as user (non-root) and run the start script using the following command :
 
 "
-./bin/1run.sh
 ./run.sh start 
 "
 
-Then, fire up your favorite web browser and point it to http://127.0.0.1:8888 : if you get to a freenet page, your freenet node is up and running.
+Then, fire up your favorite web browser and point it to http://127.0.0.1:8888/wizard/ : if you get to a freenet page, your freenet node is up and running.
 
-AT THIS STAGE THE INSTALL IS DONE	
-
-Now you need to name your node, and get it connected to the freenet nework.
-
-- To name your node:
-	From your fproxy home page (that's http://127.0.0.1:8888) click on 'configuration', on the left hand side. Find the line  'Node name for darknet' (in the NODE section) and change the default name 'node created around<long string>' to a name of your choice (doesn't need to be unique if possible it ought to contain your email or your IRC nick)
-
-- To get your new freenet node connected to other nodes : 
-	Click on the 'darknet' link (that will take you to http://127.0.0.1:8888/darknet) ; at the bottom of the page, you'll see a section called 'My Reference': copy all the text from and including 'LastGoodVersion', to and including 'End'
-Using another browser window (or tab) go to http://dark-code.bulix.org or to http://pastebin.ca or to any paste-bin of your choice, paste the reference you copied from your darknet page, hit 'submit', OK, or whatever that's called, and save the url you get: that should look like the address to the pastebin, plus a number or an alphanumeric string after a slash. copy that url.
-Using an IRC client, connect to irc.freenode.net and join the channel #freenet-refs ; Post your url, go to other people's urls, copy their references and add them in the big field in your darknet page.
-
-You need to get people to add you: simply adding their refs won't work: you add their refs, they add yours, then your nodes will connect.
+AT THIS STAGE THE INSTALL PROCESS IS *DONE*

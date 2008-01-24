@@ -16,7 +16,7 @@
 		iconFile="%SystemRoot%\system32\SHELL32.dll"
 		iconIndex="13" 
 		target="$INSTALL_PATH\browse.cmd"
-		description="Open the freenet web interface in a browser"
+		description="Open the Freenet web interface in a browser"
 		workingDirectory="$INSTALL_PATH">
 		<createForPack name="Base" />
 	</shortcut>

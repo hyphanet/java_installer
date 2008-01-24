@@ -17,7 +17,7 @@
 		url="http://localhost:8888"
 		encoding="UTF-8"
 		createForAll="false"
-		description="Open the freenet web interface in a browser">
+		description="Open the Freenet web interface in a browser">
 
 		<createForPack name="Base" />
 	</shortcut>

@@ -5,7 +5,7 @@
 
 	<programGroup defaultName="The Free Network Project" location="applications"/>
 	<shortcut
-		name="Show Fproxy"
+		name="Show Freenet"
 		programGroup="yes"
 		desktop="yes"
 		applications="no"
@@ -17,7 +17,7 @@
 		url="http://localhost:8888"
 		encoding="UTF-8"
 		createForAll="false"
-		description="This starts a browser pointing to Fproxy">
+		description="This starts a browser pointing to the Freenet web interface">
 
 		<createForPack name="Base" />
 	</shortcut>
@@ -60,6 +60,50 @@
 		description="This uninstalls Freenet">
 
 		<createForPack name="UninstallStuff" />
+	</shortcut>
+
+	<shortcut
+		name="Restart Freenet"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="INSTALL_PATH/run.sh"
+		commandLine="restart"
+
+		initialState="noShow"
+		iconFile="$INSTALL_PATH/freenet.ico"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="Start or restart Freenet">
+
+		<createForPack name="Base" />
+	</shortcut>
+
+	<shortcut
+		name="Shutdown Freenet"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="INSTALL_PATH/run.sh"
+		commandLine="stop"
+
+		initialState="noShow"
+		iconFile="$INSTALL_PATH/freenet.ico"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="Shut down Freenet">
+
+		<createForPack name="Base" />
 	</shortcut>
 
 	<shortcut

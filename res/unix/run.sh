@@ -20,7 +20,11 @@ WRAPPER_CONF="./wrapper.conf"
 
 # Priority at which to run the wrapper.  See "man nice" for valid priorities.
 #  nice is only used if a priority is specified.
-PRIORITY=15
+
+# Note that Freenet will scale its usage within the speicifed niceness, some
+# threads will have a lower priority (higher nice value) than this. Also please
+# don't renice Freenet once it's started.
+PRIORITY=12
 
 # Location of the pid file.
 PIDDIR="."

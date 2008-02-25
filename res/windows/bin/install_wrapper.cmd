@@ -7,7 +7,7 @@
 :: Try to detect a free, available port for fproxy
 @set FPROXY_PORT=8888
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
-@if errorlevel 0 goto configure_fproxy
+@if %ERRORLEVEL% EQ 0 goto configure_fproxy
 @set FPROXY_PORT=8889
 @bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
 @move /Y welcome2.html welcome.html > NUL
@@ -21,7 +21,7 @@
 :: Try to detect a free, available port for fcp
 @set FCP_PORT=9481
 @java -jar bin\bindtest.jar %FCP_PORT% 
-@if not errorlevel 0 set FCP_PORT=9482
+@if %ERRORLEVEL% NEQ 0 set FCP_PORT=9482
 @echo fcp.enable=true >>freenet.ini
 @echo fcp.port=%FCP_PORT% >>freenet.ini
 
@@ -50,13 +50,13 @@
 @net user freenet /delete 2> NUL > NUL
 :: create the user
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
-@if errorlevel 0 goto pwgen
+@if %ERRORLEVEL% EQ 0 goto pwgen
 @echo Error while creating the freenet user! let's try something else...
 :: try with a stronger password
 @set TMPPASSWORD=Freenet_0@%PASSWORD%-
 @set PASSWORD=%TMPPASSWORD:~0,12%
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user"
-@if errorlevel 0 goto pwgen
+@if %ERRORLEVEL% EQ 0 goto pwgen
 :: We shouldn't reach that point
 @echo The workaround is still not working! will install freenet to run as SYSTEM
 @goto registerS

@@ -12,6 +12,10 @@
 @echo Unregistering the system service
 @"../bin/wrapper-windows-x86-32.exe" -r ../wrapper.conf 
 @echo Deleting the freenet user
+@../bin/ntrights.exe -u freenet -r SeServiceLogonRight > NUL
+@../bin/ntrights.exe -u freenet -r SeIncreaseBasePriorityPrivilege > NUL
+@../bin/ntrights.exe -u freenet -r SeDenyNetworkLogonRight > NUL
+@../bin/ntrights.exe -u freenet -r SeDenyInteractiveLogonRight > NUL
 @net user freenet /delete > NUL 2> NUL
 @echo Cleaning up the registry
 @echo Windows Registry Editor Version 5.00 >> fref.reg

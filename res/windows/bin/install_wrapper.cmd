@@ -65,6 +65,7 @@
 :: We don't want the password to expire
 :: FIXME: what about that 3rd party code I haven't audited yet ? - Consider using something else
 @bin\netuser.exe freenet /pwnexp:y > NUL
+@echo wrapper.ntservice.account=.\freenet >> wrapper.conf
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.password
 @type wrapper.password >> wrapper.conf
 

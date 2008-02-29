@@ -423,7 +423,8 @@ start() {
     then
         if [ "$NO_WRAPPER" ] # Check if we don't have usable wrapper, and run without it
         then
-            echo -e "\n Let's start the node without the wrapper, you'll have to daemonize it yourself."
+            echo ""
+	    echo "Let's start the node without the wrapper, you'll have to daemonize it yourself."
             exec $NO_WRAPPER
         else                 # Otherwise use the wrapper
             COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"

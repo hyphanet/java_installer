@@ -21,7 +21,8 @@ then
 	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
 	mv welcome2.html welcome.html
 fi
-echo -e "fproxy.enabled=true\nfproxy.port=$FPROXY_PORT" >> freenet.ini
+echo "fproxy.enabled=true" >> freenet.ini
+echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
@@ -31,4 +32,5 @@ then
 	FCP_PORT=9482
 	echo "Can not bind fcp to 9481: force it to $FCP_PORT instead."
 fi
-echo -e "fcp.enabled=true\nfcp.port=$FCP_PORT" >> freenet.ini
+echo "fcp.enabled=true" >> freenet.ini
+echo "fcp.port=$FCP_PORT" >> freenet.ini

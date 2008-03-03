@@ -129,6 +129,28 @@
 	</shortcut>
 
 	<shortcut
+		name="Thingamablog"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="java"
+		commandLine="-jar &quot;$INSTALL_PATH/thingamablog-testing/thingamablog.jar&quot;"
+
+		initialState="noShow"
+		iconFile="trashcan_full"
+		iconIndex="0" 
+		workingDirectory="$INSTALL_PATH/thingamablog-testing"
+		type="Application"
+		encoding="UTF-8"
+		createForAll="false"
+		description="This starts Thingamablog: a tool that makes authoring and publishing your flogs (freenet blogs) almost effortless">
+
+		<createForPack name="thingamablog" />
+	</shortcut>
+
+	<shortcut
 		name="Frost"
 		programGroup="yes"
 		desktop="no"

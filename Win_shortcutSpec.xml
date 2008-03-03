@@ -51,6 +51,20 @@
 	</shortcut>
 
 	<shortcut
+		name="Thingamablog"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="$INSTALL_PATH\thingamablog.cmd"
+		description="This starts Thingamablog: a tool that makes authoring and publishing your flogs (freenet blogs) almost effortless"
+		workingDirectory="$INSTALL_PATH\thingamablog-testing"
+	>
+		<createForPack name="thingamablog" />
+	</shortcut>
+
+	<shortcut
 		name="Thaw"
 		programGroup="yes"
 		desktop="no"

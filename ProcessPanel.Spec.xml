@@ -147,6 +147,18 @@
 		<os family="windows"/>
 		<executefile name="$INSTALL_PATH\bin\install_thaw.cmd"/>
 	</job>
+	<job name="Setting Thingamablog up">
+		<os family="unix"/>
+		<executefile name="$INSTALL_PATH/bin/install_thingamablog.sh"/>
+	</job>
+	<job name="Setting Thingamablog up">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_thingamablog.sh"/>
+	</job>
+	<job name="Setting Thingamablog up">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_thingamablog.cmd"/>
+	</job>
 	<job name="Setting Frost up">
 		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_frost.sh"/>

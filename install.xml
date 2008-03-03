@@ -153,6 +153,7 @@
 			<parsable targetfile="$INSTALL_PATH\bin\install_jsite.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_plugins.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_thaw.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_thingamablog.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_updater.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_wrapper.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_opennet.cmd"/>
@@ -187,6 +188,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_thingamablog.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
@@ -224,6 +226,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
+			<parsable targetfile="$INSTALL_PATH/bin/install_thingamablog.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
@@ -271,6 +274,11 @@
 		<pack name="jSite" id="jsite" required="no">
 			<description>A tool to upload websites to freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite.install"/>
+		</pack>
+
+		<pack name="thingamablog" id="thingamablog" required="no">
+			<description>Thingamablog is a cross-platform, standalone blogging application that makes authoring and publishing your flogs (freenet blogs) almost effortless.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thingamablog.install"/>
 		</pack>
 		
 		<pack name="frost" id="frost" required="no">

@@ -85,6 +85,7 @@
     <str id="jsite.description" txt="Un pack installant jSite, un outil pour insérer et maintenir un 'freesite' sur freenet."/>
     <str id="frost.description" txt="Un pack installant frost, un logiciel de newsgroup pour freenet (http://jtcfrost.sourceforge.net)."/>
     <str id="thaw.description" txt="Un pack installant thaw, un outil de transfert de fichier pour freenet."/>
+    <str id="thingamablog.description" txt="Un pack installant thingamablog, un outil d'assistance à la création de flogs (blogs pour freenet)."/>
 
     
     <!-- InstallPanel strings -->

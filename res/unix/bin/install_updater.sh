@@ -18,4 +18,8 @@ then
 	echo "Downloading update.sh"
 	java -jar bin/sha1test.jar update/update.sh >/dev/null 2>&1 || exit 1
 fi
-chmod a+rx update.sh
+
+if test -e update.sh
+then
+	chmod a+rx update.sh
+fi

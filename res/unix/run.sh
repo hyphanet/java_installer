@@ -186,7 +186,7 @@ case "$DIST_ARCH" in
     'amd64' | 'ia32' | 'ia64' | 'i386' | 'i486' | 'i586' | 'i686' | 'x86_64')
         DIST_ARCH="x86"
         ;;
-    'ip27')
+    'ip27' | 'mips')
         DIST_ARCH="mips"
         ;;
     'power' | 'powerpc' | 'power_pc' | 'ppc64')

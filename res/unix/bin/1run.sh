@@ -16,4 +16,4 @@ then
 else
 	HTMLFILE="file://$INSTALL_PATH/welcome.html"
 fi
-java -cp bin/browser.jar BareBonesBrowserLaunch "$HTMLFILE"
+java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$HTMLFILE"

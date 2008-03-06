@@ -257,7 +257,10 @@ else
                         echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
                         echo "  $WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
                         echo "  $WRAPPER_CMD"
-                        NO_WRAPPER="java -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter"
+			#
+			# We need -Djava.net.preferIPv4Stack=true on FreeBSD, otherwise recent jvms thow an IllegalArgumentException when we create the socket
+			#
+                        NO_WRAPPER="java -Djava.net.preferIPv4Stack=true -cp freenet-ext.jar:freenet.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi

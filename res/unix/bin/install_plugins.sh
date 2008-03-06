@@ -1,8 +1,7 @@
 #!/bin/bash
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 if test -e plug
 then

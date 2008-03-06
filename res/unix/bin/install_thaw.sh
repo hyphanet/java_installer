@@ -1,8 +1,7 @@
 #!/bin/bash
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 if test -e thaw.install
 then
@@ -11,6 +10,6 @@ then
 	then
 		echo "Downloading Thaw"
 		mkdir Thaw
-		java -jar bin/sha1test.jar Thaw/Thaw.jar Thaw >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar Thaw/Thaw.jar Thaw >/dev/null 2>&1 || exit 1
 	fi
 fi

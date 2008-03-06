@@ -1,18 +1,17 @@
 #!/bin/sh
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy
 FPROXY_PORT=8888
-java -jar bin/bindtest.jar $FPROXY_PORT 2>&1 >/dev/null
+java $JOPTS -jar bin/bindtest.jar $FPROXY_PORT 2>&1 >/dev/null
 if test $? -ne 0
 then
 	FPROXY_PORT=8889
 	echo "Can not bind fproxy to 8888: let's try $FPROXY_PORT instead."
-	java -jar bin/bindtest.jar $FPROXY_PORT
+	java $JOPTS -jar bin/bindtest.jar $FPROXY_PORT
 	if test $? -ne 0
 	then
 		FPROXY_PORT=9999
@@ -26,7 +25,7 @@ echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
-java -jar bin/bindtest.jar $FCP_PORT 2>&1 >/dev/null
+java $JOPTS -jar bin/bindtest.jar $FCP_PORT 2>&1 >/dev/null
 if test $? -ne 0
 then
 	FCP_PORT=9482

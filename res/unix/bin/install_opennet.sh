@@ -1,8 +1,7 @@
 #!/bin/bash
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 if test -e opennet.install
 then
@@ -10,6 +9,6 @@ then
 	if test ! -e offline
 	then
 		echo "Downloading the Opennet seednode file"
-		java -jar bin/sha1test.jar opennet/seednodes.fref . >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar opennet/seednodes.fref . >/dev/null 2>&1 || exit 1
 	fi
 fi

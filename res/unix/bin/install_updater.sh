@@ -1,8 +1,7 @@
 #!/bin/sh
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 # Tweak freenet.ini before the first startup
 echo "node.updater.enabled=true" > freenet.ini
@@ -16,7 +15,7 @@ fi
 if test ! -e offline
 then
 	echo "Downloading update.sh"
-	java -jar bin/sha1test.jar update/update.sh >/dev/null 2>&1 || exit 1
+	java $JOPTS -jar bin/sha1test.jar update/update.sh >/dev/null 2>&1 || exit 1
 fi
 
 if test -e update.sh

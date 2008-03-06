@@ -1,8 +1,11 @@
 #!/bin/sh
 
 INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+
+echo '#!/bin/sh' > _install_toSource.sh
+echo INSTALL_PATH=\"$INSTALL_PATH\" >> _install_toSource.sh
+echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> _install_toSource.sh
 
 if test -s freenet.ini
 then

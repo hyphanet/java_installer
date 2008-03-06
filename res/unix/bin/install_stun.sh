@@ -1,8 +1,7 @@
 #!/bin/sh
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
 cd "$INSTALL_PATH"
+source _install_toSource.sh
 
 if test -e stun -a -e plug
 then
@@ -13,7 +12,7 @@ then
 	mv -f plug2 plug
 	if test ! -e offline
 	then
-		java -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins >/dev/null 2>&1
+		java $JOPTS -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins >/dev/null 2>&1
 	fi
 	rm -f stun
 fi

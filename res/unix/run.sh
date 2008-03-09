@@ -24,7 +24,7 @@ WRAPPER_CONF="./wrapper.conf"
 # Note that Freenet will scale its usage within the specifed niceness, some
 # threads will have a lower priority (higher nice value) than this. Also please
 # don't renice Freenet once it's started.
-PRIORITY=12
+PRIORITY=10
 
 # Location of the pid file.
 PIDDIR="."

@@ -281,10 +281,12 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thingamablog.install"/>
 		</pack>
 		
+		<!--
 		<pack name="frost" id="frost" required="no">
 			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/)</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/frost.install"/>
 		</pack>
+		-->
 		
 		<pack name="thaw" id="thaw" required="no">
 			<description>A powerful filesharing tool designed for freenet</description>

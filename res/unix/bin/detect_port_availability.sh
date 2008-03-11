@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd "$INSTALL_PATH"
-source _install_toSource.sh
+. _install_toSource.sh
 
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy

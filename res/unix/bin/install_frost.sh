@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$INSTALL_PATH"
-source _install_toSource.sh
+. _install_toSource.sh
 
 if test -e frost.install
 then

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd "$INSTALL_PATH"
-source _install_toSource.sh
+. _install_toSource.sh
 
 if test -e thingamablog.install
 then

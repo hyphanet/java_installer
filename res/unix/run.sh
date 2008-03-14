@@ -521,7 +521,7 @@ dump() {
         echo "$APP_LONG_NAME was not running."
 
     else
-        kill -3 $pid
+        kill -QUIT $pid
 
         if [ $? -ne 0 ]
         then

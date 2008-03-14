@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cd "$INSTALL_PATH"
 . _install_toSource.sh

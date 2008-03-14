@@ -19,6 +19,11 @@ then
 	fi
 	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
 	mv welcome2.html welcome.html
+	if test -e firefox_profile/user.js
+	then
+		cat firefox_profile/user.js | sed "s/8888/$FPROXY_PORT/g" >user.js.tmp
+		mv user.js.tmp firefox_profile/user.js
+	fi
 fi
 echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini

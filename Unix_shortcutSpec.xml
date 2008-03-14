@@ -11,17 +11,21 @@
 		applications="no"
 		startMenu="no"
 		startup="no"
+		target="$INSTALL_PATH/bin/browse.sh"
+		commandLine=""
+
+		initialState="noShow"
 		iconFile="$INSTALL_PATH/freenet.ico"
 		iconIndex="0" 
-		type="Link"
-		url="http://localhost:8888"
+		workingDirectory="$INSTALL_PATH"
+		type="Application"
 		encoding="UTF-8"
 		createForAll="false"
 		description="Open the Freenet web interface in a browser">
 
 		<createForPack name="Base" />
 	</shortcut>
-	
+
 	<shortcut
 		name="The Freenet Project Website"
 		programGroup="yes"

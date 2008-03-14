@@ -11,12 +11,11 @@
 @set FPROXY_PORT=8889
 @bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
 @move /Y welcome2.html welcome.html > NUL
+@bin\cat.exe browse.cmd | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > browse2.cmd
+@move /Y browse2.cmd browse.cmd > NUL
 :configure_fproxy
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
-
-:: Create a script for the "browse shortcut"
-@echo @start http://127.0.0.1:%FPROXY_PORT%/ > browse.cmd
 
 :: Try to detect a free, available port for fcp
 @set FCP_PORT=9481
@@ -101,8 +100,8 @@
 
 @echo Spawning up a browser
 @if not exist welcome.%ISO3_LANG%.html goto nol10n
-@start welcome.%ISO3_LANG%.html
+@browse welcome.%ISO3_LANG%.html
 @goto endl10n
 :nol10n
-@start welcome.html
+@browse welcome.html
 :endl10n

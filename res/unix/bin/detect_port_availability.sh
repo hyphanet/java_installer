@@ -17,8 +17,12 @@ then
 		FPROXY_PORT=9999
 		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT instead."
 	fi
+
 	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
 	mv welcome2.html welcome.html
+	cat bin/browse.sh | sed "s/8888/$FPROXY_PORT/g" > browse.sh
+	mv browse.sh bin/browse.sh
+
 	if test -e firefox_profile/user.js
 	then
 		cat firefox_profile/user.js | sed "s/8888/$FPROXY_PORT/g" >user.js.tmp

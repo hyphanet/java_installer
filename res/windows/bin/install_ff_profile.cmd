@@ -15,7 +15,7 @@
 
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
-@"%FIREFOX%" -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
+@%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
 
 @goto end
 :noff

@@ -8,6 +8,7 @@
 @if %COUNT% LSS 1 @set URL=http://127.0.0.1:8888/ else @set URL=%1
 
 :: Check the simple case first (FF exists and has been detected)
+@if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
 @%FIREFOX% -no-remote -p freenet "%URL%"

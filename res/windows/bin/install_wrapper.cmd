@@ -27,16 +27,16 @@
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
 
-@bin\cat bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
+@bin\cat.exe bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
 @move /Y install_service.bat bin\install_service.bat
 
-@bin\cat bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
+@bin\cat.exe bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
 @move /Y remove_service.bat bin\remove_service.bat
 
-@bin\cat bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
+@bin\cat.exe bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
 @move /Y start.cmd bin\start.cmd
 
-@bin\cat bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
+@bin\cat.exe bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
 @move /Y stop.cmd bin\stop.cmd
 
 @echo Installing the wrapper

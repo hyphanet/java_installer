@@ -116,6 +116,7 @@
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
 				<include name="bin/**/*"/>
+				<include name="firefox_profile/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="welcome.html"/>
 				<include name="welcome.*.html"/>
@@ -147,7 +148,7 @@
 
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_ff_profile.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\browse.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_frost.cmd"/>
@@ -179,10 +180,10 @@
 
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
+			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_ff_profile.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
@@ -218,10 +219,10 @@
 
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
+			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_ff_profile.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
@@ -274,16 +275,6 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
 
-		<pack name="FirefoxProfile" id="firefox-profile" required="no">
-			<description>Configure a new profile in Mozilla Firefox with performance tweaks for freenet (RECOMMENDED).</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/ff.install"/>
-			<fileset dir="res/" targetdir="$INSTALL_PATH">
-				<exclude name="*/**/.svn"/>
-				<exclude name="*/**/.svn/**"/>
-				<include name="firefox_profile/**/*"/>
-			</fileset>
-		</pack>
-		
 		<pack name="jSite" id="jsite" required="no">
 			<description>A tool to upload websites to freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite.install"/>

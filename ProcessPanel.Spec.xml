@@ -13,19 +13,6 @@
 		<executefile name="$INSTALL_PATH\bin\setup.cmd"/>
 	</job>
 
-	<job name="Setting up the Firefox Profile">
-		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_ff_profile.sh"/>
-	</job>
-	<job name="Setting up the Firefox Profile">
-		<os family="mac"/>
-		<executefile name="$INSTALL_PATH/bin/install_ff_profile.sh"/>
-	</job>
-	<job name="Setting up the Firefox Profile">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_ff_profile.cmd"/>
-	</job>
-
 	<job name="Setting the Updater up">
 		<os family="unix"/>
 		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>

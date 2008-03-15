@@ -1,5 +1,4 @@
 TODO:
-	* Create shortcuts so that the user actually uses the firefox-freenet profile
 	* Create a new user on *nix to run the node as it
 	* Double-check that the jvm is actually usable *before* starting the installer (in the launcher)
 	* Fix the macosx startup script

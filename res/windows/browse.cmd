@@ -3,9 +3,15 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
+:: Get the URL from the parameters if set
 @set COUNT=0
-@for %%x in (%*) do ( @set /A COUNT=!COUNT!+1 )
-@if %COUNT% LSS 1 @set URL=http://127.0.0.1:8888/ else @set URL=%1
+@for %%x in (%*) do @( set /A COUNT=%COUNT%+1 )
+@if %COUNT% GEQ 1 goto withURL
+@set URL=http://127.0.0.1:8888/
+@goto doneURL
+:withURL
+@set URL=%1
+:doneURL
 
 :: Check the simple case first (FF exists and has been detected)
 @if not exist firefox.location goto detectff

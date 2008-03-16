@@ -7,17 +7,17 @@
 @set COUNT=0
 @for %%x in (%*) do @( set /A COUNT=%COUNT%+1 )
 @if %COUNT% GEQ 1 goto withURL
-@set URL=http://127.0.0.1:8888/
+@set URL="http://127.0.0.1:8888/"
 @goto doneURL
 :withURL
-@set URL=%1
+@set URL="%1"
 :doneURL
 
 :: Check the simple case first (FF exists and has been detected)
 @if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
-@%FIREFOX% -no-remote -p freenet "%URL%"
+@start "" /B "%FIREFOX%" "-no-remote -p freenet %URL%"
 @exit
 
 :detectff
@@ -32,7 +32,7 @@
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
 @%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
-@%FIREFOX% -no-remote -p freenet "%URL%"
+@start "" /B "%FIREFOX%" "-no-remote -p freenet %URL%"
 @goto end
 
 :: Firefox hasn't been detected at all

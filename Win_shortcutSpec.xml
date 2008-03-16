@@ -26,9 +26,10 @@
 		programGroup="yes"
 		desktop="no"
 		applications="no"
-		startMenu="yes"
+		startMenu="no"
 		startup="no"
-		target="http://freenetproject.org"
+		target="start"
+		commandLine="http://freenetproject.org"
 		iconFile="%SystemRoot%\system32\SHELL32.dll"
 		iconIndex="13" 
 		description="It opens a browser pointing to our website">

@@ -17,8 +17,8 @@
 @if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
-@start "" /B "%FIREFOX%" "-no-remote -p freenet %URL%"
-@exit
+@start "" /B %FIREFOX% "-no-remote -p freenet %URL%"
+@goto realEnd
 
 :detectff
 @echo Detecting the location of Firefox
@@ -32,7 +32,7 @@
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
 @%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
-@start "" /B "%FIREFOX%" "-no-remote -p freenet %URL%"
+@start "" /B %FIREFOX% "-no-remote -p freenet %URL%"
 @goto end
 
 :: Firefox hasn't been detected at all
@@ -42,3 +42,4 @@
 @start "%URL%"
 :end
 @del /f firefox.reg
+:realEnd

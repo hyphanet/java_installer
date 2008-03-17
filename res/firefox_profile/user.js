@@ -29,6 +29,7 @@ user_pref("browser.safebrowsing.remoteLookups", false);
 user_pref("network.cookie.prefsMigrated", true);
 // We don't want the popup when we click submit
 user_pref("security.warn_entering_secure", false);
+user_pref("security.warn_submit_insecure", false);
 // Select the skin
 user_pref("general.skins.selectedSkin", "BlackJapanMAX");
 // Chose the default charset

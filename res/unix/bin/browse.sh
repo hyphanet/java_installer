@@ -12,7 +12,7 @@ fi
 
 browseURL()
 {
-	`cat firefox.location` -no-remote -p freenet "$1" &
+	`cat firefox.location` -no-remote -P freenet "$1" &
 }
 
 if test -e firefox.location

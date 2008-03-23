@@ -1,10 +1,10 @@
 #!/bin/sh
 
 INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-echo '#!/bin/sh' > _install_toSource.sh
-echo INSTALL_PATH=\"$INSTALL_PATH\" >> _install_toSource.sh
-echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> _install_toSource.sh
-chmod 755 _install_toSource.sh
+echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
+echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
+echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> "$HOME/_install_toSource.sh"
+chmod 755 "$HOME/_install_toSource.sh"
 alias .=
 
 cd "$INSTALL_PATH"

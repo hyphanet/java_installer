@@ -1,7 +1,7 @@
 #!/bin/sh
 
-. _install_toSource.sh
-rm -f _install_toSource.sh
+. "$HOME/_install_toSource.sh"
+rm -f "$HOME/_install_toSource.sh"
 cd "$INSTALL_PATH"
 
 # We keep application installers in case users want to perform updates

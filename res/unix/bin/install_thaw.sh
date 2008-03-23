@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. _install_toSource.sh
+. "$HOME/_install_toSource.sh"
 cd "$INSTALL_PATH"
 
 if test -e thaw.install

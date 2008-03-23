@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cd "$INSTALL_PATH"
 . _install_toSource.sh
+cd "$INSTALL_PATH"
 
 if test ! -e offline
 then

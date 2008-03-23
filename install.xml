@@ -180,24 +180,9 @@
 
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
+			<executable targetfile="$INSTALL_PATH/bin/browse.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
-			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_mdns.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_thingamablog.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_opennet.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 
 		<!-- Yes it's a rip of the unix one, but I haven't found any smarter way to do it! -->
@@ -219,25 +204,9 @@
 
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
+			<executable targetfile="$INSTALL_PATH/bin/browse.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
-			<parsable targetfile="$INSTALL_PATH/bin/1run.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_frost.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_jSite.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_librarian.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_mdns.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_stun.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_upnp.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_thaw.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_thingamablog.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_updater.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_plugins.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_opennet.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/install_startup_hook-mac.sh"/>
-			<parsable targetfile="$INSTALL_PATH/bin/cleanup.sh"/>
 		</pack>
 		
 		<pack name="UninstallStuff" id="uninstall" required="no" os="windows">

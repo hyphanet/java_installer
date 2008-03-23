@@ -1,7 +1,6 @@
 #!/bin/sh
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
-
+. _install_toSource.sh
 cd "$INSTALL_PATH"
 
 echo End >> freenet.ini

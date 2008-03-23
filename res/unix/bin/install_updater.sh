@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cd "$INSTALL_PATH"
 . _install_toSource.sh
+cd "$INSTALL_PATH"
 
 # Tweak freenet.ini before the first startup
 echo "node.updater.enabled=true" > freenet.ini

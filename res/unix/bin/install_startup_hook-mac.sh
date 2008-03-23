@@ -1,12 +1,11 @@
 #!/bin/sh
 
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 STARTUP_PATH="/Library/StartupItems/"
 SCRIPT="$STARTUP_PATH/Freenet/Freenet.sh"
 SCRIPT_PLIST="$STARTUP_PATH/Freenet/Freenet.plist"
 
-cd "$INSTALL_PATH"
 . _install_toSource.sh
+cd "$INSTALL_PATH"
 
 echo "Creating a startup script for Freenet"
 

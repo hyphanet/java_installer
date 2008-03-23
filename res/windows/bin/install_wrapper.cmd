@@ -16,6 +16,7 @@
 :configure_fproxy
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
+@echo fproxy.enablePersistentConnections=true >>freenet.ini
 
 :: Try to detect a free, available port for fcp
 @set FCP_PORT=9481

@@ -10,8 +10,8 @@ user_pref("browser.search.update", false);
 // Obvious performance tweaks
 user_pref("network.http.max-connections", 200);
 user_pref("network.http.max-connections-per-server", 200);
-user_pref("network.http.max-persistent-connections-per-server", 100);
-user_pref("network.http.max-persistent-connections-per-proxy", 100);
+user_pref("network.http.max-persistent-connections-per-server", 200);
+user_pref("network.http.max-persistent-connections-per-proxy", 200);
 // Pipelining
 user_pref("network.http.pipelining", false);
 user_pref("network.http.proxy.pipelining", false);

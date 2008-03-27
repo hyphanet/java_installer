@@ -116,7 +116,6 @@
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
 				<include name="bin/**/*"/>
-				<include name="firefox_profile/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="welcome.html"/>
 				<include name="welcome.*.html"/>

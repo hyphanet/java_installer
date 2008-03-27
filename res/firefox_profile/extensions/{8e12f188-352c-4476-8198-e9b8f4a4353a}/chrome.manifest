@@ -1,5 +1,0 @@
-skin	browser	BlackJapanMAX	jar:chrome/tmp.xpi!/browser/
-skin	communicator	BlackJapanMAX	jar:chrome/tmp.xpi!/communicator/
-skin	help	BlackJapanMAX	jar:chrome/tmp.xpi!/help/
-skin	global	BlackJapanMAX	jar:chrome/tmp.xpi!/global/
-skin	mozapps	BlackJapanMAX	jar:chrome/tmp.xpi!/mozapps/

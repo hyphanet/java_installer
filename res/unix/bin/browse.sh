@@ -17,7 +17,7 @@ browseURL()
 
 if test -e firefox.location
 then
-	`cat firefox.location` -no-remote "about:blank"
+	`cat firefox.location` -no-remote "about:blank" &
 	browseURL "$URL"
 else
 	echo Detecting the location of Firefox
@@ -28,7 +28,7 @@ else
 		then
 			echo $TRY > firefox.location
 			echo Firefox found, creating a profile for freenet
-			$TRY -no-remote "about:blank"
+			$TRY -no-remote "about:blank" &
 			$TRY -no-remote -CreateProfile "freenet $PWD/firefox_profile" >/dev/null
 			browseURL "$URL"
 			exit

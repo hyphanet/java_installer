@@ -32,7 +32,7 @@
 
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
-@start "" /B %FIREFOX% -no-remote "about:blank"
+@start "" /B %FIREFOX% -no-remote "file:%INSTALL_PATH%\dont-close-me.html"
 @%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
 @start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
 @goto end

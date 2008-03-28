@@ -28,7 +28,7 @@ else
 		then
 			echo $TRY > firefox.location
 			echo Firefox found, creating a profile for freenet
-			$TRY -no-remote "about:blank" &
+			$TRY -no-remote "file:$INSTALL_PATH/dont-close-me.html" &
 			$TRY -no-remote -CreateProfile "freenet $PWD/firefox_profile" >/dev/null
 			browseURL "$URL"
 			exit

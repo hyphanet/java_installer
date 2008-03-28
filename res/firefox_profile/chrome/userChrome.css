@@ -1,0 +1,2 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+#helpMenu, #file-menu menuitem[label="Work Offline"], #edit-menu menuitem[label="Preferences"], #navigator-toolbox menu[label="Tools"], #view-menu menuitem[label="Status Bar"], #view-menu menu[label="Sidebar"], #view-menu menu[label="Toolbars"], #bookmarks-menu { display: none !important; }

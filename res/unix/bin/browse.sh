@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd "$INSTALL_PATH"
+POSSIBLE_NAMES="firefox mozilla mozilla-firefox iceweasel"
 
 if test $# -lt 1
 then
@@ -9,4 +10,28 @@ else
 	URL="$1"
 fi
 
-java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$URL" &
+browseURL()
+{
+	`cat firefox.location` -no-remote -P freenet "$1" &
+}
+
+if test -e firefox.location
+then
+	browseURL "$URL"
+else
+	echo Detecting the location of Firefox
+	for name in $POSSIBLE_NAMES
+	do
+		TRY="`which $name`"
+		if test -n "$TRY"
+		then
+			echo $TRY > firefox.location
+			echo Firefox found, creating a profile for freenet
+			$TRY -no-remote -CreateProfile "freenet $PWD/firefox_profile" >/dev/null
+			browseURL "$URL"
+			exit
+		fi
+	done
+	echo The installer was unable to locate Mozilla Firefox on your computer
+	java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$URL" &
+fi

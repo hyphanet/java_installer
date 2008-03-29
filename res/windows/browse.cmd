@@ -17,7 +17,7 @@
 @if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
-@start "" /B %FIREFOX% "file://%INSTALL_PATH%\dont-close-me.html"
+@start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
 @start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
 @goto realEnd
 
@@ -32,7 +32,7 @@
 
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
-@start "" /B %FIREFOX% "file://%INSTALL_PATH%\dont-close-me.html"
+@start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
 @%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
 @start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
 @goto end

@@ -65,7 +65,7 @@
 
 	<variables>
 		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
-		<variable name="app-version" value="0.7-a2"/>
+		<variable name="app-version" value="0.7-rc1"/>
 		<variable name="released-on" value="not yet :þ"/>
 	</variables>
 

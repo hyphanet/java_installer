@@ -95,7 +95,7 @@
 	</shortcut>
 	
 	<shortcut
-		name="Stop the node"
+		name="Stop Freenet"
 		programGroup="yes"
 		desktop="no"
 		applications="no"
@@ -110,7 +110,7 @@
 	</shortcut>
 
 	<shortcut
-		name="Start the node"
+		name="Start Freenet"
 		programGroup="yes"
 		desktop="no"
 		applications="no"

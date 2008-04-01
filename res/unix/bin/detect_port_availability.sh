@@ -18,8 +18,6 @@ then
 		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT instead."
 	fi
 
-	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
-	mv welcome2.html welcome.html
 	cat bin/browse.sh | sed "s/8888/$FPROXY_PORT/g" > browse.sh
 	mv browse.sh bin/browse.sh
 
@@ -31,6 +29,27 @@ then
 fi
 echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
+
+# Translate if needed
+FILE="welcome.html"
+if test -e welcome.$ISO3_LANG.html
+then
+	FILE="welcome.$ISO3_LANG.html"
+fi
+cat "$FILE" | sed "s/8888/$FPROXY_PORT/g" >_welcome.html
+rm -f welcome.*html
+mv _welcome.html welcome.html
+
+# Translate if needed
+FILE="dont-close-me.html"
+if test -e dont-close-me.$ISO3_LANG.html
+then
+	FILE="dont-close-me.$ISO3_LANG.html"
+fi
+cat "$FILE" | sed "s/8888/$FPROXY_PORT/g" >_dont-close-me.html
+rm -f dont-close-me.*html
+mv _dont-close-me.html dont-close-me.html
+
 
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481

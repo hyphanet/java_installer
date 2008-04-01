@@ -9,10 +9,26 @@
 @java -jar bin\bindtest.jar %FPROXY_PORT% 
 @if %ERRORLEVEL% EQU 0 goto configure_fproxy
 @set FPROXY_PORT=8889
-@bin\cat.exe welcome.html | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > welcome2.html
-@move /Y welcome2.html welcome.html > NUL
+
+@set WELCOME_FILE=welcome.html
+@if not exist welcome.%ISO3_LANG%.html goto noWl10n
+@set WELCOME_FILE=welcome.%ISO3_LANG%.html
+:noWl10n
+@bin\cat.exe %WELCOME_FILE% | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > _welcome.html
+@del /F /Q welcome.*html
+@move /Y _welcome.html welcome.html > NUL
+
+@set DONTCLOSE_FILE=dont-close-me.html
+@if not exist dont-close-me.%ISO3_LANG%.html goto noDl10n
+@set DONTCLOSE_FILE=dont-close-me.%ISO3_LANG%.html
+:noDl10n
+@bin\cat.exe %DONTCLOSE_FILE% | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > _dont-close-me.html
+@del /F /Q dont-close-me.*html
+@move /Y _dont-close-me.html dont-close-me.html > NUL
+
 @bin\cat.exe browse.cmd | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > browse2.cmd
 @move /Y browse2.cmd browse.cmd > NUL
+
 :configure_fproxy
 @echo fproxy.enable=true >>freenet.ini
 @echo fproxy.port=%FPROXY_PORT% >>freenet.ini
@@ -100,9 +116,5 @@
 @net start freenet-darknet-%FPROXY_PORT%
 
 @echo Spawning up a browser
-@if not exist welcome.%ISO3_LANG%.html goto nol10n
-@browse welcome.%ISO3_LANG%.html
-@goto endl10n
-:nol10n
 @browse welcome.html
 :endl10n

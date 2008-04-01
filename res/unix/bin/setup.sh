@@ -4,6 +4,7 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
 echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
 echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> "$HOME/_install_toSource.sh"
+echo ISO3_LANG=\"$ISO3_LANG\" >> "$HOME/_install_toSource.sh"
 chmod 755 "$HOME/_install_toSource.sh"
 alias .=
 

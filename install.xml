@@ -121,6 +121,7 @@
 				<include name="welcome.html"/>
 				<include name="welcome.*.html"/>
 				<include name="dont-close-me.html"/>
+				<include name="dont-close-me*.html"/>
 			</fileset>
 		</pack>
 

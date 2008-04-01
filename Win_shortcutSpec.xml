@@ -97,7 +97,7 @@
 	<shortcut
 		name="Stop Freenet"
 		programGroup="yes"
-		desktop="no"
+		desktop="yes"
 		applications="no"
 		startMenu="no"
 		startup="no"
@@ -112,7 +112,7 @@
 	<shortcut
 		name="Start Freenet"
 		programGroup="yes"
-		desktop="no"
+		desktop="yes"
 		applications="no"
 		startMenu="no"
 		startup="no"

@@ -4,7 +4,7 @@
 
 	<info>
 		<appname>Freenet</appname>
-		<appversion>0.7-alpha2</appversion>
+		<appversion>0.7-rc2</appversion>
 		<url>http://freenetproject.org/</url>
 		<!-- we are 1.4 compatible but we need SHA-256 -->
 		<javaversion>1.4.2.10</javaversion>

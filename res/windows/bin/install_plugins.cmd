@@ -11,7 +11,7 @@
 @echo 	-JSTUN
 @set PLUGINS=JSTUN;%PLUGINS%
 @if exist offline goto end1
-@java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins > NUL
+@java -jar bin\sha1test.jar plugins/JSTUN.jar plugins > NUL
 :end1
 @del /F stun > NUL
 :nostun
@@ -20,7 +20,7 @@
 @echo 	-MDNSDiscovery
 @set PLUGINS=MDNSDiscovery;%PLUGINS%
 @if exist offline goto end2
-@java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar.url plugins > NUL
+@java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar plugins > NUL
 :end2
 @del /F mdns > NUL
 :nomdns
@@ -29,7 +29,7 @@
 @echo 	-UPnP
 @set PLUGINS=UPnP;%PLUGINS%
 @if exist offline goto end3
-@java -jar bin\sha1test.jar plugins/UPnP.jar.url plugins > NUL
+@java -jar bin\sha1test.jar plugins/UPnP.jar plugins > NUL
 :end3
 @del /F upnp > NUL
 :noupnp
@@ -38,7 +38,7 @@
 @echo 	-XMLLibrarian
 @set PLUGINS=XMLLibrarian;%PLUGINS%
 @if exist offline goto end4
-@java -jar bin\sha1test.jar plugins/XMLLibrarian.jar.url plugins > NUL
+@java -jar bin\sha1test.jar plugins/XMLLibrarian.jar plugins > NUL
 :end4
 @del /F xmllibrarian > NUL
 :nolibrarian

@@ -12,7 +12,7 @@ then
 	mv -f plug2 plug
 	if test ! -e offline
 	then
-		java $JOPTS -jar bin/sha1test.jar plugins/JSTUN.jar.url plugins >/dev/null 2>&1
+		java $JOPTS -jar bin/sha1test.jar plugins/JSTUN.jar plugins >/dev/null 2>&1
 	fi
 	rm -f stun
 fi

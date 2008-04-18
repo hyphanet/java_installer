@@ -40,4 +40,8 @@
                    mode="icons"
                    currentset="__empty"
                    collapsed="true" />
+  <RDF:Description RDF:about="chrome://navigator/content/navigator.xul#main-window"
+                   width="800"
+                   height="600"
+                   sizemode="normal" />
 </RDF:RDF>

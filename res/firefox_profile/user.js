@@ -37,3 +37,5 @@ user_pref("intl.charsetmenu.browser.cache", "UTF-8");
 // Prevent plugin installation from that profile
 user_pref("xpinstall.enabled", false);
 user_pref("xpinstall.whitelist.add", "");
+user_pref("plugin.scan.4xPluginFolder", false);
+user_pref("plugin.scan.SunJRE", false);

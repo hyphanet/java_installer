@@ -7,7 +7,7 @@ echo "fproxy.enablePersistentConnections=true" >> freenet.ini
 echo End >> freenet.ini
 
 # Starting the node up
-./run.sh start
+sh ./run.sh start
 
 echo "Starting up a browser"
-./bin/browse.sh "file://$INSTALL_PATH/welcome.html"
+sh ./bin/browse.sh "file://$INSTALL_PATH/welcome.html"

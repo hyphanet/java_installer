@@ -44,7 +44,6 @@ echo '}' >>  $SCRIPT_PLIST
 }
 
 function new_macosx () {
-INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 STARTUP_FILE="/Library/LaunchDaemons/org.freenetproject.freenet.plist"
 
 cd "$INSTALL_PATH"

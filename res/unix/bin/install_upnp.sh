@@ -12,7 +12,8 @@ then
 	mv -f plug2 plug
 	if test ! -e offline
 	then
-		java $JOPTS -jar bin/sha1test.jar plugins/UPnP.jar plugins >/dev/null 2>&1
+		java $JOPTS -jar bin/sha1test.jar plugins/UPnP.jar.url plugins >/dev/null 2>&1
+		mv plugins/UPnP.jar.url plugins/UPnP.jar
 	fi
 	rm -f upnp
 fi

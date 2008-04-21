@@ -13,7 +13,7 @@
 @if exist offline goto end1
 @java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins > NUL
 @del /F plugins\JSTUN.jar > NUL
-@rename plugins\JSTUN.jar.url plugins\JSTUN.jar > NUL
+@move plugins\JSTUN.jar.url plugins\JSTUN.jar > NUL
 :end1
 @del /F stun > NUL
 :nostun
@@ -24,7 +24,7 @@
 @if exist offline goto end2
 @java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar.url plugins > NUL
 @del /F plugins\MDNSDiscovery.jar > NUL
-@rename plugins\MDNSDiscovery.jar.url plugins\MDNSDiscovery.jar > NUL
+@move plugins\MDNSDiscovery.jar.url plugins\MDNSDiscovery.jar > NUL
 :end2
 @del /F mdns > NUL
 :nomdns
@@ -35,7 +35,7 @@
 @if exist offline goto end3
 @java -jar bin\sha1test.jar plugins/UPnP.jar.url plugins > NUL
 @del /F plugins\UPnP.jar > NUL
-@rename plugins\UPnP.jar.url plugins\UPnP.jar
+@move plugins\UPnP.jar.url plugins\UPnP.jar
 :end3
 @del /F upnp > NUL
 :noupnp
@@ -46,7 +46,7 @@
 @if exist offline goto end4
 @java -jar bin\sha1test.jar plugins/XMLLibrarian.jar.url plugins > NUL
 @del /F plugins\XMLLibrarian.jar > NUL
-@rename plugins\XMLLibrarian.jar.url plugins\XMLLibrarian.jar
+@move plugins\XMLLibrarian.jar.url plugins\XMLLibrarian.jar
 :end4
 @del /F xmllibrarian > NUL
 :nolibrarian

@@ -219,7 +219,6 @@
 		<pack name="AutoUpdater" id="autoupdater" required="no">
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
-			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall"/>
 		</pack>
 
 		<pack name="OpenNet" id="opennet" required="no">
@@ -230,6 +229,7 @@
 		<pack name="AutoStart" id="autostart" required="no" os="unix">
 			<description>Start the node automatically on startup. Strongly recommended.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
+			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall"/>
 		</pack>
 
 		<pack name="UPnP" id="upnp" required="no">

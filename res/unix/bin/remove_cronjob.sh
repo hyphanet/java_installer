@@ -1,7 +1,7 @@
 #!/bin/sh
 
 crontab -l > crontab.tmp
-if grep -F crontab.tmp "@reboot   \"$INSTALL_PATH/run.sh\" start"
+if grep -F "@reboot   \"$INSTALL_PATH/run.sh\" start" crontab.tmp
 then
 	echo Found service in crontab, removing it...
 	cat crontab.tmp | grep -v -F "@reboot   \"$INSTALL_PATH/run.sh\" start" - > crontab.tmp.new

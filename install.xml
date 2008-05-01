@@ -230,6 +230,7 @@
 			<description>Start the node automatically on startup. Strongly recommended.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
 			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall"/>
+			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh"/>
 		</pack>
 
 		<pack name="UPnP" id="upnp" required="no">

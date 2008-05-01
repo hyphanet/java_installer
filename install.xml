@@ -225,6 +225,11 @@
 			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/opennet.install"/>
 		</pack>
+		
+		<pack name="AutoStart" id="autostart" required="no" os="unix">
+			<description>Start the node automatically on startup. Strongly recommended.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
+		</pack>
 
 		<pack name="UPnP" id="upnp" required="no">
 			<description>A plugin enabling the node to use Universal Plug and Play to determine your external internet address and set up port forwarding on your router. Note that this involves contacting your default gateway and may be a security risk on an untrusted LAN, however it improves connectivity significantly.</description>

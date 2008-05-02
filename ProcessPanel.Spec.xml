@@ -191,6 +191,11 @@
 		<executefile name="$INSTALL_PATH/bin/install_autostart.sh"/>
 	</job>
 
+	<job name="Setting up auto-start">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_autostart.sh"/>
+	</job>
+
 	<!-- Do I have to mention that nothing ought to be below ?  -->
 	<job name="Cleaning up">
 		<os family="unix"/>

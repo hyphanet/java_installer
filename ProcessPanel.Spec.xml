@@ -2,12 +2,10 @@
 	<!-- Must be first! -->
 	<job name="Setting up the environment">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/setup.sh"/>
-	</job>
-	<job name="Setting up the environment">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/setup.sh"/>
 	</job>
+
 	<job name="Setting up the environment">
 		<os family="windows"/>
 		<executefile name="$INSTALL_PATH\bin\setup.cmd"/>
@@ -15,9 +13,6 @@
 
 	<job name="Setting the Updater up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>
-	</job>
-	<job name="Setting the Updater up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>
 	</job>
@@ -28,9 +23,6 @@
 
 	<job name="Setting Opennet up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_opennet.sh"/>
-	</job>
-	<job name="Setting Opennet up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_opennet.sh"/>
 	</job>
@@ -41,33 +33,21 @@
 
 	<job name="Setting MDNS up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>
-	</job>
-	<job name="Setting MDNS up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>
 	</job>
 	<job name="Setting JSTUN up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_stun.sh"/>
-	</job>
-	<job name="Setting JSTUN up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_stun.sh"/>
 	</job>
 	<job name="Setting UPnP up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_upnp.sh"/>
-	</job>
-	<job name="Setting UPnP up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_upnp.sh"/>
 	</job>
 	<job name="Setting Librarian up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
-	</job>
-	<job name="Setting Librarian up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
 	</job>
@@ -75,9 +55,6 @@
 	<!-- no plugin below that line! -->
 	<job name="Setting plugins up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_plugins.sh"/>
-	</job>
-	<job name="Setting plugins up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_plugins.sh"/>
 	</job>
@@ -87,9 +64,6 @@
 	</job>
 	<job name="Downloading freenet-stable-latest">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
-	</job>
-	<job name="Downloading freenet-stable-latest">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 	</job>
@@ -99,9 +73,6 @@
 	</job>
 	<job name="Downloading freenet-ext">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
-	</job>
-	<job name="Downloading freenet-ext">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
 	</job>
@@ -111,9 +82,6 @@
 	</job>
 	<job name="Detecting port availability">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-	</job>
-	<job name="Detecting port availability">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
 	</job>
@@ -123,9 +91,6 @@
 	</job>
 	<job name="Starting the node up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
-	</job>
-	<job name="Starting the node up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
 	</job>
@@ -139,9 +104,6 @@
 	<!-- Applications now  -->
 	<job name="Setting Thaw up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_thaw.sh"/>
-	</job>
-	<job name="Setting Thaw up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_thaw.sh"/>
 	</job>
@@ -151,9 +113,6 @@
 	</job>
 	<job name="Setting Thingamablog up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_thingamablog.sh"/>
-	</job>
-	<job name="Setting Thingamablog up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_thingamablog.sh"/>
 	</job>
@@ -163,9 +122,6 @@
 	</job>
 	<job name="Setting Frost up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_frost.sh"/>
-	</job>
-	<job name="Setting Frost up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_frost.sh"/>
 	</job>
@@ -175,9 +131,6 @@
 	</job>
 	<job name="Setting jSite up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_jSite.sh"/>
-	</job>
-	<job name="Setting jSite up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_jSite.sh"/>
 	</job>
@@ -188,10 +141,6 @@
 
 	<job name="Setting up auto-start">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/install_autostart.sh"/>
-	</job>
-
-	<job name="Setting up auto-start">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_autostart.sh"/>
 	</job>
@@ -199,9 +148,6 @@
 	<!-- Do I have to mention that nothing ought to be below ?  -->
 	<job name="Cleaning up">
 		<os family="unix"/>
-		<executefile name="$INSTALL_PATH/bin/cleanup.sh"/>
-	</job>
-	<job name="Cleaning up">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/cleanup.sh"/>
 	</job>

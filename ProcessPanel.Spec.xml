@@ -129,10 +129,12 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
 	</job>
+	<!--
 	<job name="Register the system service">
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_startup_hook-mac.sh"/>
 	</job>
+	-->
 
 	<!-- Applications now  -->
 	<job name="Setting Thaw up">

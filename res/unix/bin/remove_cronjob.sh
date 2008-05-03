@@ -1,10 +1,7 @@
 #!/bin/sh
 
-crontab -l > crontab.tmp
-if grep -F "@reboot   \"$INSTALL_PATH/run.sh\" start" crontab.tmp
+if grep -c " #FREENET AUTOSTART - 8888$" -gt 0
 then
 	echo Found service in crontab, removing it...
-	cat crontab.tmp | grep -v -F "@reboot   \"$INSTALL_PATH/run.sh\" start" - > crontab.tmp.new
-	crontab crontab.tmp.new
+	crontab -l | grep -v " #FREENET AUTOSTART - 8888$" | crontab -
 fi
-rm -f crontab.tmp crontab.tmp.new

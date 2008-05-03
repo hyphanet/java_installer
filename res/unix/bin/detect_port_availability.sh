@@ -21,6 +21,14 @@ then
 	cat bin/browse.sh | sed "s/8888/$FPROXY_PORT/g" > browse.sh
 	mv browse.sh bin/browse.sh
 
+	cat bin/install_autostart.sh | sed "s/8888/$FPROXY_PORT/g" > install_autostart.sh
+	mv install_autostart.sh bin/install_autostart.sh
+
+	cat bin/remove_cronjob.sh | sed "s/8888/$FPROXY_PORT/g" > remove_cronjob.sh
+	mv remove_cronjob.sh bin/remove_cronjob.sh
+
+	chmod u+rx bin/*sh
+
 	if test -e firefox_profile/user.js
 	then
 		cat firefox_profile/user.js | sed "s/8888/$FPROXY_PORT/g" >user.js.tmp

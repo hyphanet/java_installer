@@ -12,12 +12,12 @@ fi
 
 browseURL()
 {
-	`cat firefox.location` -no-remote -P freenet "$1" &
+	"`cat firefox.location`" -no-remote -P freenet "$1" &
 }
 
 if test -e firefox.location
 then
-	`cat firefox.location` "file://$INSTALL_PATH/dont-close-me.html" &
+	"`cat firefox.location`" "file://$INSTALL_PATH/dont-close-me.html" &
 	browseURL "$URL"
 else
 	echo Detecting the location of Firefox
@@ -26,10 +26,10 @@ else
 		TRY="`which $name`"
 		if test -n "$TRY"
 		then
-			echo $TRY > firefox.location
+			echo "$TRY" > firefox.location
 			echo Firefox found, creating a profile for freenet
-			$TRY "file://$INSTALL_PATH/dont-close-me.html" &
-			$TRY -no-remote -CreateProfile "freenet $PWD/firefox_profile" >/dev/null
+			"$TRY" "file://$INSTALL_PATH/dont-close-me.html" &
+			"$TRY" -no-remote -CreateProfile "freenet $PWD/firefox_profile" >/dev/null
 			browseURL "$URL"
 			exit
 		fi

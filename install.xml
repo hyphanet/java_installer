@@ -72,7 +72,6 @@
 	<resources>
 		<res src="RegistrySpec.xml" id="RegistrySpec.xml"/>
 		<res src="ProcessPanel.Spec.xml" id="ProcessPanel.Spec.xml"/> 
-		<res src="res/license/LICENSE.Freenet" id="LicencePanel.licence"/>
 
 		<res src="langpacks/fra.xml" id="packsLang.xml_fra"/>
 		<res src="langpacks/deu.xml" id="packsLang.xml_deu"/>
@@ -100,7 +99,6 @@
 
 	<panels>
 		<panel classname="CheckedHelloPanel"/>
-		<panel classname="LicencePanel"/>
 		<panel classname="TargetPanel"/> 
 		<panel classname="PacksPanel"/>
 		<panel classname="InstallPanel"/>

@@ -28,7 +28,7 @@
 :: bin\cat.exe firefox.reg | find "@=" | bin\sed.exe "s/""/|/g" | bin\sed.exe "s/.*|\(.*\)|/\1/" | bin\sed.exe "s/\\\\/\\/g" > firefox.location
 @bin\cat.exe firefox.reg | find "@=" | bin\sed.exe s/@="\(.*\)"/\1/ | bin\sed.exe "s/\\\\/\\/g" > firefox.location
 @set /P FIREFOX=<firefox.location
-@if not defined FIREFOX goto maybeff
+@if defined FIREFOX goto foundff
 
 :maybeff
 :: Try to detect firefox by checking standard locations.
@@ -36,6 +36,7 @@ if not exist c:\Program Files\Mozilla Firefox\firefox.exe goto noff
 @set FIREFOX=c:\Program Files\Mozilla Firefox\firefox.exe
 @echo c:\Program Files\Mozilla Firefox\firefox.exe > firefox.location
 
+:foundff
 :: creation of the profile
 @echo Creating a Firefox profile for freenet
 @start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"

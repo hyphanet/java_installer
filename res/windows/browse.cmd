@@ -33,6 +33,11 @@ if not exist firefox.reg goto maybeff
 
 :maybeff
 :: Try to detect firefox by checking standard locations.
+@if not exist "%ProgramFiles%\Mozilla Firefox\firefox.exe" goto maybe1
+@set FIREFOX="%ProgramFiles%\Mozilla Firefox\firefox.exe"
+@echo "%ProgramFiles%\Mozilla Firefox\firefox.exe" > firefox.location
+goto foundff
+:maybe1
 @if not exist "c:\Program Files\Mozilla Firefox\firefox.exe" goto noff
 @set FIREFOX="c:\Program Files\Mozilla Firefox\firefox.exe"
 @echo "c:\Program Files\Mozilla Firefox\firefox.exe" > firefox.location

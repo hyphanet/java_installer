@@ -29,7 +29,9 @@
 if not exist firefox.reg goto maybeff
 @bin\cat.exe firefox.reg | find "@=" | bin\sed.exe s/@="\(.*\)"/\1/ | bin\sed.exe "s/\\\\/\\/g" > firefox.location
 @set /P FIREFOX=<firefox.location
-@if defined FIREFOX goto foundff
+@if not defined FIREFOX goto maybeff
+@if exist %FIREFOX% goto foundff
+@echo Found Firefox in the registry at "%FIREFOX%" but the file does not exist
 
 :maybeff
 :: Try to detect firefox by checking standard locations.

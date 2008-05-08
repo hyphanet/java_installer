@@ -66,7 +66,8 @@
 	<variables>
 		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
 		<variable name="app-version" value="0.7.0"/>
-		<variable name="released-on" value="not yet :þ"/>
+		<variable name="released-on" value="Thursday 8 May 2008"/>
+		<!-- not yet :þ -->
 	</variables>
 
 	<resources>

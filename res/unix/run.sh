@@ -375,7 +375,7 @@ getpid() {
     then
         if [ -r "$PIDFILE" ]
         then
-            pid="`cat $PIDFILE`"
+            pid="`cat \"$PIDFILE\"`"
             if [ "X$pid" != "X" ]
             then
                 # It is possible that 'a' process with the pid exists but that it is not the

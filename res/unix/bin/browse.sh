@@ -46,6 +46,10 @@ else
 #		maybeCreateFFProfile "/Applications/Firefox.app/Contents/MacOS/firefox"
 #	fi
 
-	echo The installer was unable to locate Mozilla Firefox on your computer
+	echo The installer was unable to locate Mozilla Firefox
+	echo on your computer. Be informed that Freenet *will*
+	echo be slow for you unless you manually configure your
+	echo browser : see "http://freenetproject.org/faq.html#connections"
+	echo for detailed instructions.
 	java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$URL" &
 fi

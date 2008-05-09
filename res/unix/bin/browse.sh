@@ -24,7 +24,7 @@ else
 	for name in $POSSIBLE_NAMES
 	do
 		TRY="`which $name`"
-		if test -n "$TRY"
+		if test -x "$TRY"
 		then
 			echo "$TRY" > firefox.location
 			echo Firefox found, creating a profile for freenet

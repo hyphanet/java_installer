@@ -128,26 +128,26 @@ done
 
 # Change the current directory to the location of the script
 cd "`dirname "$REALPATH"`"
-REALDIR=`pwd`
+REALDIR="`pwd`"
 
 # If the PIDDIR is relative, set its value relative to the full REALPATH to avoid problems if
 #  the working directory is later changed.
-FIRST_CHAR=`echo $PIDDIR | cut -c1,1`
+FIRST_CHAR="`echo $PIDDIR | cut -c1,1`"
 if [ "$FIRST_CHAR" != "/" ]
 then
-    PIDDIR=$REALDIR/$PIDDIR
+    PIDDIR="$REALDIR/$PIDDIR"
 fi
 # Same test for WRAPPER_CMD
-FIRST_CHAR=`echo $WRAPPER_CMD | cut -c1,1`
+FIRST_CHAR="`echo $WRAPPER_CMD | cut -c1,1`"
 if [ "$FIRST_CHAR" != "/" ]
 then
-    WRAPPER_CMD=$REALDIR/$WRAPPER_CMD
+    WRAPPER_CMD="$REALDIR/$WRAPPER_CMD"
 fi
 # Same test for WRAPPER_CONF
-FIRST_CHAR=`echo $WRAPPER_CONF | cut -c1,1`
+FIRST_CHAR="`echo $WRAPPER_CONF | cut -c1,1`"
 if [ "$FIRST_CHAR" != "/" ]
 then
-    WRAPPER_CONF=$REALDIR/$WRAPPER_CONF
+    WRAPPER_CONF="$REALDIR/$WRAPPER_CONF"
 fi
 
 # Process ID
@@ -230,28 +230,28 @@ esac
 
 WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
 
-if [ -x $WRAPPER_TEST_CMD ]
+if [ -x "$WRAPPER_TEST_CMD" ]
 then
     WRAPPER_CMD="$WRAPPER_TEST_CMD"
 else
     if [ "$DIST_OS" = "macosx" ] # Some osx weirdness, someone please check that this still works
     then
         WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
-        if [ -x $WRAPPER_TEST_CMD ]
+        if [ -x "$WRAPPER_TEST_CMD" ]
         then
             WRAPPER_CMD="$WRAPPER_TEST_CMD"
         else
             WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
-            if [ -x $WRAPPER_TEST_CMD ]
+            if [ -x "$WRAPPER_TEST_CMD" ]
             then
                 WRAPPER_CMD="$WRAPPER_TEST_CMD"
             else
                 WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
-                if [ -x $WRAPPER_TEST_CMD ]
+                if [ -x "$WRAPPER_TEST_CMD" ]
                 then
                     WRAPPER_CMD="$WRAPPER_TEST_CMD"
                 else
-                    if [ ! -x $WRAPPER_CMD ]
+                    if [ ! -x "$WRAPPER_CMD" ]
                     then
                         echo "Unable to locate any of the following binaries:"
                         echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
@@ -266,7 +266,7 @@ else
             fi
         fi
     else
-        if [ ! -x $WRAPPER_CMD ]
+        if [ ! -x "$WRAPPER_CMD" ]
         then
             echo "Unable to locate any of the following binaries:"
             echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
@@ -290,14 +290,14 @@ then
    ANCHORPROP=
    IGNOREPROP=
 else
-   ANCHORPROP=wrapper.anchorfile=$ANCHORFILE
+   ANCHORPROP="wrapper.anchorfile=$ANCHORFILE"
    IGNOREPROP=wrapper.ignore_signals=TRUE
 fi
 
 # Build the lock file clause.  Only create a lock file if the lock directory exists on this platform.
-if [ -d $LOCKDIR ]
+if [ -d "$LOCKDIR" ]
 then
-    LOCKPROP=wrapper.lockfile=$LOCKFILE
+    LOCKPROP="wrapper.lockfile=$LOCKFILE"
 else
     LOCKPROP=
 fi
@@ -341,8 +341,8 @@ checkUser() {
                 then
                     RUN_AS_GROUP=$RUN_AS_USER
                 fi
-                touch $LOCKFILE
-                chown $RUN_AS_USER:$RUN_AS_GROUP $LOCKFILE
+                touch "$LOCKFILE"
+                chown $RUN_AS_USER:$RUN_AS_GROUP "$LOCKFILE"
             fi
         fi
 
@@ -357,9 +357,9 @@ checkUser() {
             if [ "X$pid" = "X" ]
             then
                 # Wrapper is not running so make sure the lock file is deleted.
-                if [ -f $LOCKFILE ]
+                if [ -f "$LOCKFILE" ]
                 then
-                    rm $LOCKFILE
+                    rm "$LOCKFILE"
                 fi
             fi
         fi
@@ -369,11 +369,11 @@ checkUser() {
 }
 
 getpid() {
-    if [ -f $PIDFILE ]
+    if [ -f "$PIDFILE" ]
     then
-        if [ -r $PIDFILE ]
+        if [ -r "$PIDFILE" ]
         then
-            pid=`cat $PIDFILE`
+            pid="`cat $PIDFILE`"
             if [ "X$pid" != "X" ]
             then
                 # It is possible that 'a' process with the pid exists but that it is not the
@@ -385,7 +385,7 @@ getpid() {
 		if ! kill -0 $pid 2>/dev/null
                 then
                     # This is a stale pid file.
-                    rm -f $PIDFILE
+                    rm -f "$PIDFILE"
                     echo "Removed stale pid file: $PIDFILE"
                     pid=""
                 fi
@@ -401,7 +401,7 @@ testpid() {
     if ! kill -0 $pid 2>/dev/null
     then
         # Process is gone so remove the pid file.
-        rm -f $PIDFILE
+        rm -f "$PIDFILE"
         pid=""
     fi
 }
@@ -457,8 +457,8 @@ stopit() {
                 exit 1
             fi
         else
-            rm -f $ANCHORFILE
-            if [ -f $ANCHORFILE ]
+            rm -f "$ANCHORFILE"
+            if [ -f "$ANCHORFILE" ]
             then
                 # An explanation for the failure should have been given
                 echo "Unable to stop $APP_LONG_NAME."

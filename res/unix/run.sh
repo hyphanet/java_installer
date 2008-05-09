@@ -430,8 +430,7 @@ start() {
 	    echo "Let's start the node without the wrapper, you'll have to daemonize it yourself."
             exec $NO_WRAPPER
         else                 # Otherwise use the wrapper
-            COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"
-            exec $COMMAND_LINE
+            exec "$CMDNICE" "$WRAPPER_CMD" "$WRAPPER_CONF" "wrapper.syslog.ident=$APP_NAME" "wrapper.pidfile=$PIDFILE" "$LDPROP" "wrapper.daemonize=TRUE" "$ANCHORPROP" "$IGNOREPROP" "$LOCKPROP"
         fi
     else
         echo "$APP_LONG_NAME is already running."

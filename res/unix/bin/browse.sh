@@ -39,11 +39,12 @@ else
 		maybeCreateFFProfile "`which $name 2>/dev/null`"
 	done
 
-	if test `uname -s` = "Darwin"
-	then
-		maybeCreateFFProfile "$HOME/Applications/Firefox.app/Contents/MacOS/firefox"
-		maybeCreateFFProfile "/Applications/Firefox.app/Contents/MacOS/firefox"
-	fi
+# it works but I need to figure out how to make -CreateProfile accept spaces in the path
+#	if test `uname -s` = "Darwin"
+#	then
+#		maybeCreateFFProfile "$HOME/Applications/Firefox.app/Contents/MacOS/firefox"
+#		maybeCreateFFProfile "/Applications/Firefox.app/Contents/MacOS/firefox"
+#	fi
 
 	echo The installer was unable to locate Mozilla Firefox on your computer
 	java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$URL" &

@@ -115,8 +115,10 @@ do
             fi
         done
     done
+
     # Change ":" chars back to spaces.
-    REALPATH=`echo $REALPATH | sed -e 's;:; ;g'`
+    REALPATH="`echo $REALPATH | sed -e 's;:; ;g'`"
+    SCRIPT="`echo $SCRIPT | sed -e 's;:; ;g'`"
 
     if [ "$REALPATH" = "$SCRIPT" ]
     then
@@ -127,7 +129,7 @@ do
 done
 
 # Change the current directory to the location of the script
-cd "`dirname "$REALPATH"`"
+cd "`dirname \"$REALPATH\"`"
 REALDIR="`pwd`"
 
 # If the PIDDIR is relative, set its value relative to the full REALPATH to avoid problems if
@@ -290,14 +292,14 @@ then
    ANCHORPROP=
    IGNOREPROP=
 else
-   ANCHORPROP="wrapper.anchorfile=$ANCHORFILE"
+   ANCHORPROP=wrapper.anchorfile=\"$ANCHORFILE\"
    IGNOREPROP=wrapper.ignore_signals=TRUE
 fi
 
 # Build the lock file clause.  Only create a lock file if the lock directory exists on this platform.
 if [ -d "$LOCKDIR" ]
 then
-    LOCKPROP="wrapper.lockfile=$LOCKFILE"
+    LOCKPROP=wrapper.lockfile=\"$LOCKFILE\"
 else
     LOCKPROP=
 fi
@@ -411,8 +413,8 @@ console() {
     getpid
     if [ "X$pid" = "X" ]
     then
-        COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP $ANCHORPROP $LOCKPROP"
-        exec $COMMAND_LINE
+        COMMAND_LINE="$CMDNICE \"$WRAPPER_CMD\" \"$WRAPPER_CONF\" wrapper.syslog.ident=\"$APP_NAME\" wrapper.pidfile=\"$PIDFILE\" $LDPROP $ANCHORPROP $LOCKPROP"
+        eval $COMMAND_LINE
     else
         echo "$APP_LONG_NAME is already running."
         exit 1
@@ -428,10 +430,10 @@ start() {
         then
             echo ""
 	    echo "Let's start the node without the wrapper, you'll have to daemonize it yourself."
-            exec $NO_WRAPPER
+            eval $NO_WRAPPER
         else                 # Otherwise use the wrapper
-            COMMAND_LINE="$CMDNICE $WRAPPER_CMD $WRAPPER_CONF wrapper.syslog.ident=$APP_NAME wrapper.pidfile=$PIDFILE $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"
-            exec $COMMAND_LINE
+            COMMAND_LINE="$CMDNICE \"$WRAPPER_CMD\" \"$WRAPPER_CONF\" wrapper.syslog.ident=\"$APP_NAME\" wrapper.pidfile=\"$PIDFILE\" $LDPROP wrapper.daemonize=TRUE $ANCHORPROP $IGNOREPROP $LOCKPROP"
+            eval $COMMAND_LINE
         fi
     else
         echo "$APP_LONG_NAME is already running."

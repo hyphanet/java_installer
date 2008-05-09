@@ -39,12 +39,11 @@ else
 		maybeCreateFFProfile "`which $name 2>/dev/null`"
 	done
 
-# it works but I need to figure out how to make -CreateProfile accept spaces in the path
-#	if test `uname -s` = "Darwin"
-#	then
-#		maybeCreateFFProfile "$HOME/Applications/Firefox.app/Contents/MacOS/firefox"
-#		maybeCreateFFProfile "/Applications/Firefox.app/Contents/MacOS/firefox"
-#	fi
+	if test `uname -s` = "Darwin"
+	then
+		maybeCreateFFProfile "$HOME/Applications/Firefox.app/Contents/MacOS/firefox"
+		maybeCreateFFProfile "/Applications/Firefox.app/Contents/MacOS/firefox"
+	fi
 
 	echo The installer was unable to locate Mozilla Firefox
 	echo on your computer. Be informed that Freenet *will*

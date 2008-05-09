@@ -23,7 +23,7 @@ else
 	echo Detecting the location of Firefox
 	for name in $POSSIBLE_NAMES
 	do
-		TRY="`which $name`"
+		TRY="`which $name 2>/dev/null`"
 		if test -x "$TRY"
 		then
 			echo "$TRY" > firefox.location

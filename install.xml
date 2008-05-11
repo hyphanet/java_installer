@@ -75,6 +75,7 @@
 		<res src="ProcessPanel.Spec.xml" id="ProcessPanel.Spec.xml"/> 
 
 		<res src="langpacks/fra.xml" id="packsLang.xml_fra"/>
+		<res src="langpacks/chn.xml" id="packsLang.xml_chn"/>
 		<res src="langpacks/deu.xml" id="packsLang.xml_deu"/>
 		
 		<res src="Win_shortcutSpec.xml" id="shortcutSpec.xml"/>

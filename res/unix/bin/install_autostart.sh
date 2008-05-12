@@ -13,7 +13,7 @@ then
 	if test -x `which crontab`
 	then
 		echo "Installing cron job to start Freenet on reboot..."
-		crontab -l > autostart.install
+		crontab -l 2>/dev/null > autostart.install
 		echo "@reboot   \"$INSTALL_PATH/run.sh\" start 2>&1 >/dev/null #FREENET AUTOSTART - 8888" >> autostart.install
 		if crontab autostart.install
 		then

@@ -26,7 +26,7 @@
 @regedit /E firefox.reg "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe"
 :: No I didn't find any better regexp I could do without cote-escaping.
 :: bin\cat.exe firefox.reg | find "@=" | bin\sed.exe "s/""/|/g" | bin\sed.exe "s/.*|\(.*\)|/\1/" | bin\sed.exe "s/\\\\/\\/g" > firefox.location
-if not exist firefox.reg goto maybeff
+@if not exist firefox.reg goto maybeff
 @bin\cat.exe firefox.reg | find "@=" | bin\sed.exe s/@="\(.*\)"/\1/ | bin\sed.exe "s/\\\\/\\/g" > firefox.location
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto maybeff
@@ -38,7 +38,7 @@ if not exist firefox.reg goto maybeff
 @if not exist "%ProgramFiles%\Mozilla Firefox\firefox.exe" goto maybe1
 @set FIREFOX="%ProgramFiles%\Mozilla Firefox\firefox.exe"
 @echo "%ProgramFiles%\Mozilla Firefox\firefox.exe" > firefox.location
-goto foundff
+@goto foundff
 :maybe1
 @if not exist "c:\Program Files\Mozilla Firefox\firefox.exe" goto noff
 @set FIREFOX="c:\Program Files\Mozilla Firefox\firefox.exe"

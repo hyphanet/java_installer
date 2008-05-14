@@ -116,5 +116,5 @@
 @net start freenet-darknet-%FPROXY_PORT%
 
 @echo Spawning up a browser
-@browse welcome.html
+@browse "%INSTALL_PATH%\welcome.html"
 :endl10n

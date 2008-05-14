@@ -57,7 +57,7 @@ goto foundff
 @echo The installer was unable to locate Mozilla Firefox on your computer
 @del /f firefox.location
 @echo Trying to open "%URL%"
-@start "%URL%"
+@start %URL%
 :end
 @del /f firefox.reg
 :realEnd

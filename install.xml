@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <installation version="1.0">
 
@@ -6,8 +6,7 @@
 		<appname>Freenet</appname>
 		<appversion>0.7.0 "Darknet"</appversion>
 		<url>http://freenetproject.org/</url>
-		<!-- we are 1.4 compatible but we need SHA-256 -->
-		<javaversion>1.4.2.10</javaversion>
+		<javaversion>1.5.0</javaversion>
 		<uninstaller write="yes"/>
 		<authors>
 			<author name="Ian Clarke" email="ian@freenetproject.org"/>

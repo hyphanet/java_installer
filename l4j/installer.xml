@@ -8,7 +8,7 @@
 	<customProcName>true</customProcName>
 	<icon>../res/windows/freenet.ico</icon>
 	<jre>
-		<minVersion>1.4.2</minVersion>
+		<minVersion>1.5.0</minVersion>
 	</jre>
 	<splash>
 		<file>splash.bmp</file>

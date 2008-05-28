@@ -108,10 +108,11 @@ public class Sha1Test {
 			dis = new DataInputStream(new BufferedInputStream(is));
 			File f = new File(filename);
 			os = new BufferedOutputStream(new FileOutputStream(f));
-			int b;
+			int b = 0;
 			while ((b = dis.read()) != -1) {
 				os.write(b);
 			}
+			os.flush();
 		} catch (MalformedURLException mue) {
 			System.out.println("Ouch - a MalformedURLException happened ; please report it.");
 			mue.printStackTrace();
@@ -124,6 +125,8 @@ public class Sha1Test {
 		} finally {
 			try {
 				if(is != null) is.close();
+			} catch (IOException ioe) {}
+			try {
 				if(os != null) os.close();
 			} catch (IOException ioe) {}
 		}

@@ -58,6 +58,12 @@ then
     exit 1
 fi
 
+if test ! -s freenet.ini
+then
+	exec ./bin/1run.sh
+	exit
+fi
+
 # and get java implementation too, Sun JDK or Kaffe
 JAVA_IMPL=`java -version 2>&1 | head -n 1 | cut -f1 -d' '`
 

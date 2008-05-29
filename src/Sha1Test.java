@@ -29,14 +29,14 @@ public class Sha1Test {
 				if(sha1test(path+filename)) System.exit(0);
 				get(URI2, path+filename);
 			}catch(FileNotFoundException e){
-				System.out.println("Not found, let's ignore that mirror.");
+				System.err.println("Not found, let's ignore that mirror.");
 			}
 			count++;
 			try{
 				Thread.sleep(5000);
 			}catch(InterruptedException e){}
 		}
-		System.out.println("No mirror is available at the moment, please try again later");
+		System.err.println("No mirror is available at the moment, please try again later");
 		System.exit(1);
 	}
 
@@ -114,13 +114,13 @@ public class Sha1Test {
 			}
 			os.flush();
 		} catch (MalformedURLException mue) {
-			System.out.println("Ouch - a MalformedURLException happened ; please report it.");
+			System.err.println("Ouch - a MalformedURLException happened ; please report it.");
 			mue.printStackTrace();
 			System.exit(2);
 		} catch (FileNotFoundException e) {
 			throw e;
 		} catch (IOException ioe) {
-			System.out.println("Caught :"+ioe.getMessage());
+			System.err.println("Caught :"+ioe.getMessage());
 			ioe.printStackTrace();
 		} finally {
 			try {

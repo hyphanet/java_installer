@@ -101,7 +101,7 @@
 	<panels>
 		<panel classname="CheckedHelloPanel"/>
 		<panel classname="TargetPanel"/> 
-		<panel classname="PacksPanel"/>
+		<panel classname="TreePacksPanel"/>
 		<panel classname="InstallPanel"/>
 		<panel classname="ProcessPanel"/>
 		<panel classname="ShortcutPanel"/>
@@ -124,14 +124,14 @@
 			</fileset>
 		</pack>
 
-		<pack name="License" id="license" required="yes">
+		<pack name="License" id="license" required="yes" parent="base">
 			<description>The licence files</description>
 			<file src="res/license/LICENSE.Freenet" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/LICENSE.Mantissa" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
 		</pack>
 
-		<pack name="Windows" id="windows" required="yes">
+		<pack name="Windows" id="windows" required="yes" parent="base">
 			<os family="windows"/>
 			<description>A windows specific catch-all pack</description>
 
@@ -163,7 +163,7 @@
 			<parsable targetfile="$INSTALL_PATH\bin\setup.cmd"/>
 		</pack>
 
-		<pack name="Unix" id="unix" required="yes">
+		<pack name="Unix" id="unix" required="yes" parent="base">
 			<os family="unix"/>
 			<description>An UNIX specific catch-all pack</description>
 
@@ -187,7 +187,7 @@
 		</pack>
 
 		<!-- Yes it's a rip of the unix one, but I haven't found any smarter way to do it! -->
-		<pack name="MacOSX" id="unix" required="yes">
+		<pack name="MacOSX" id="unix" required="yes" parent="base">
 			<os family="mac"/>
 			<description>An MacOSx specific catch-all pack</description>
 
@@ -215,17 +215,17 @@
 			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd"/>
 		</pack>
 		
-		<pack name="AutoUpdater" id="autoupdater" required="no">
+		<pack name="AutoUpdater" id="autoupdater" required="no" parent="base">
 			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
 		</pack>
 
-		<pack name="OpenNet" id="opennet" required="no">
+		<pack name="OpenNet" id="opennet" required="no" parent="base">
 			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/opennet.install"/>
 		</pack>
 		
-		<pack name="AutoStart" id="autostart" required="no">
+		<pack name="AutoStart" id="autostart" required="no" parent="base">
 			<os family="unix"/>
 			<os family="mac"/>
 			<description>Start the node automatically on startup. Strongly recommended.</description>
@@ -234,32 +234,40 @@
 			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh"/>
 		</pack>
 
-		<pack name="UPnP" id="upnp" required="no">
+		<pack name="Plugins" id="plugins" required="no">
+			<description>A set of plugins for freenet nodes</description>
+		</pack>
+
+		<pack name="UPnP" id="upnp" required="no" parent="plugins">
 			<description>A plugin enabling the node to use Universal Plug and Play to determine your external internet address and set up port forwarding on your router. Note that this involves contacting your default gateway and may be a security risk on an untrusted LAN, however it improves connectivity significantly.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/upnp"/>
 		</pack>
 
-		<pack name="STUN" id="stun" required="no">
+		<pack name="STUN" id="stun" required="no" parent="plugins">
 			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamic IP addresses (i.e. most nodes).</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
 
-		<pack name="MDNSDiscovery" id="mdns" required="no">
+		<pack name="MDNSDiscovery" id="mdns" required="no" parent="plugins">
 			<description>A plugin enabling the node to use Zeroconf/Bonjour/Rendez-Vous to advertise itself to compatible clients, enabling them to self-auto-configure. Note that this plugin will "announce" that you are running a node on your local subnet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/mdns"/>
 		</pack>
 
-		<pack name="XMLLibrarian" id="xmllibrarian" required="no">
+		<pack name="XMLLibrarian" id="xmllibrarian" required="no" parent="plugins">
 			<description>A plugin allowing you to search the freenet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
 
-		<pack name="jSite" id="jsite" required="no">
+		<pack name="3rd party" id="3rd party" required="no">
+			<description>A set of 3rd party tools for freenet</description>
+		</pack>
+
+		<pack name="jSite" id="jsite" required="no" parent="3rd party">
 			<description>A tool to upload websites to freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite.install"/>
 		</pack>
 
-		<pack name="thingamablog" id="thingamablog" required="no">
+		<pack name="thingamablog" id="thingamablog" required="no" parent="3rd party">
 			<description>Thingamablog is a cross-platform, standalone blogging application that makes authoring and publishing your flogs (freenet blogs) almost effortless.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thingamablog.install"/>
 		</pack>
@@ -271,7 +279,7 @@
 		</pack>
 		-->
 		
-		<pack name="thaw" id="thaw" required="no">
+		<pack name="thaw" id="thaw" required="no" parent="3rd party">
 			<description>A powerful filesharing tool designed for freenet</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thaw.install"/>
 		</pack>

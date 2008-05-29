@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @echo Setting up plugins
 @mkdir plugins 2> NUL
@@ -52,3 +53,4 @@
 :nolibrarian
 
 @echo pluginmanager.loadplugin=%PLUGINS% >> freenet.ini
+:end

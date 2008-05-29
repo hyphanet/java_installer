@@ -2,12 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
-
-@if not exist freenet.ini goto nocleanup
-@echo I found a freenet.ini file in the directory !!! it shouldn't exist! I will rename it to freenet.old.ini and go on but don't complain if it breaks : the installer is meant to be used in an empty directory!
-@rename freenet.ini freenet.old.ini > NUL
-@del /F freenet.ini > NUL
-:nocleanup
+@if exist .isInstalled goto end
 
 @echo Registering .fref file extension
 @echo Windows Registry Editor Version 5.00 >> fref.reg
@@ -31,3 +26,4 @@
 
 :: Are we in offline mode ?
 @if exist offline echo "Offline installation mode"
+:end

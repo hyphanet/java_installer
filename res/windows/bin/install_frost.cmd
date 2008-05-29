@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @if not exist frost.install goto nofrost
 @del /F frost.install > NUL
@@ -13,3 +14,4 @@
 @mkdir frost
 @java -jar bin\uncompress.jar frost.zip frost > NUL
 :nofrost
+:end

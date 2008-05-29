@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @if not exist opennet.install goto end
 @del /F opennet.install > NUL

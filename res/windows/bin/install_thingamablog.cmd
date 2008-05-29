@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @if not exist thingamablog.install goto nothingamablog
 @del /F thingamablog.install > NUL
@@ -14,3 +15,4 @@
 @echo @cd thingamablog-testing > thingamablog.cmd
 @echo @start javaw -jar thingamablog.jar >> thingamablog.cmd
 :nothingamablog
+:end

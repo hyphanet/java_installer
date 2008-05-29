@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @echo Downloading update.cmd
 @if exist offline goto end
@@ -13,3 +14,4 @@
 @echo node.updater.autoupdate=true>> freenet.ini
 @del /F update > NUL
 :noautoupdate
+:end

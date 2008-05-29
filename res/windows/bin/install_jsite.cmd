@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @if not exist jsite.install goto nojsite
 @del /F jsite.install > NUL
@@ -14,3 +15,4 @@
 @echo @cd jSite > jsite.cmd
 @echo @start javaw -jar jSite.jar >> jsite.cmd
 :nojsite
+:end

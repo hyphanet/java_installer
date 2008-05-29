@@ -2,6 +2,7 @@
 @set INSTALL_PATH=$INSTALL_PATH
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
+@if exist .isInstalled goto end
 
 @if not exist thaw.install goto nothaw 
 @del /F thaw.install > NUL
@@ -15,3 +16,4 @@
 @echo @cd Thaw >thaw.cmd
 @echo @start javaw -jar Thaw.jar >> thaw.cmd
 :nothaw
+:end

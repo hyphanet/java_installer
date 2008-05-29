@@ -73,4 +73,5 @@ echo "Please visit file://$PWD/welcome.html to configure your node"
 echo "Finished"
 
 rm -f bin/1run.sh
+touch .isInstalled
 exit 0

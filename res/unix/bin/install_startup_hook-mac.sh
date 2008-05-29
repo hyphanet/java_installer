@@ -12,7 +12,7 @@ STARTUP_PATH=""
 SCRIPT="$STARTUP_PATH/Freenet/Freenet.sh"
 SCRIPT_PLIST="$STARTUP_PATH/Freenet/Freenet.plist"
 
-. "$HOME/_install_toSource.sh"
+. "$HOME/_install_toSource.sh"|| exit 0
 cd "$INSTALL_PATH"
 
 echo "Creating a startup script for Freenet"

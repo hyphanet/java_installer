@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$HOME/_install_toSource.sh"
+. "$HOME/_install_toSource.sh"|| exit 0
 cd "$INSTALL_PATH"
 
 # FIXME if we are running as root, and they are installed use the LSB utilities, with crontab as a fallback.

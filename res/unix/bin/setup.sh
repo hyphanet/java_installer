@@ -5,6 +5,7 @@ echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
 echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
 echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> "$HOME/_install_toSource.sh"
 echo ISO3_LANG=\"$ISO3_LANG\" >> "$HOME/_install_toSource.sh"
+echo "if test -f \"$INSTALL_PATH/.isInstalled\"; then exit 1; fi" >> "$HOME/_install_toSource.sh"
 chmod 755 "$HOME/_install_toSource.sh"
 alias .=
 
@@ -12,8 +13,9 @@ cd "$INSTALL_PATH"
 
 if test -s freenet.ini
 then
-	echo "This script isn't meant to be used more than once. I will rename your freenet.ini to freenet.old.ini and go on, but don't complain if it breaks\!"
-	mv freenet.ini freenet.old.ini
+	echo "The installer isn\'t meant to run more than once in the same directory"
+	touch .isInstalled
+	exit 0
 fi
 
 # Hack to use a generic template for plugins

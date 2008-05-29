@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$HOME/_install_toSource.sh"
+. "$HOME/_install_toSource.sh"|| exit 0
 cd "$INSTALL_PATH"
 
 # Tweak freenet.ini before the first startup

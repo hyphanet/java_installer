@@ -186,7 +186,7 @@
 		</pack>
 
 		<!-- Yes it's a rip of the unix one, but I haven't found any smarter way to do it! -->
-		<pack name="MacOSX" id="unix" required="yes" parent="base">
+		<pack name="MacOSX" id="mac" required="yes" parent="base">
 			<os family="mac"/>
 			<description>An MacOSx specific catch-all pack</description>
 

@@ -10,7 +10,7 @@
 		<uninstaller write="yes"/>
 		<authors>
 			<author name="Ian Clarke" email="ian@freenetproject.org"/>
-			<author name="Florent Daignière" email="nextgens@freenetproject.org"/>
+			<author name="Florent DaigniÃ¨re" email="nextgens@freenetproject.org"/>
 			<author name="Scott Miller" email="scgmille@freenetproject.org"/>
 			<author name="Oskar Sandberg" email="oskar@freenetproject.org"/>
 			<author name="Matthew Toseland" email="toad@freenetproject.org"/>
@@ -66,7 +66,6 @@
 		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
 		<variable name="app-version" value="0.7.0 &quot;Darknet&quot;"/>
 		<variable name="released-on" value="Thursday 8 May 2008"/>
-		<!-- not yet :þ -->
 	</variables>
 
 	<resources>

@@ -15,7 +15,7 @@ fi
 if test ! -e offline
 then
 	echo "Downloading update.sh"
-	java $JOPTS -jar bin/sha1test.jar update/update.sh >/dev/null 2>&1 || exit 1
+	java $JOPTS -jar bin/sha1test.jar update/update.sh ./ "$CAFILE" >/dev/null 2>&1 || exit 1
 fi
 
 if test -e update.sh

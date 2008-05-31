@@ -9,6 +9,6 @@ then
 	if test ! -e offline
 	then
 		echo "Downloading the Opennet seednode file"
-		java $JOPTS -jar bin/sha1test.jar opennet/seednodes.fref . >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar opennet/seednodes.fref . "$CAFILE" >/dev/null 2>&1 || exit 1
 	fi
 fi

@@ -3,6 +3,7 @@
 INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
 echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
+echo CAFILE=\"$INSTALL_PATH/startssl.pem\" >> "$HOME/_install_toSource.sh"
 echo JOPTS=\" -Djava.net.preferIPv4Stack=true \" >> "$HOME/_install_toSource.sh"
 echo ISO3_LANG=\"$ISO3_LANG\" >> "$HOME/_install_toSource.sh"
 echo "if test -f \"$INSTALL_PATH/.isInstalled\"; then exit 1; fi" >> "$HOME/_install_toSource.sh"

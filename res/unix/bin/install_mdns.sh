@@ -12,7 +12,7 @@ then
 	mv -f plug2 plug
 	if test ! -e offline
 	then
-		java $JOPTS -jar bin/sha1test.jar plugins/MDNSDiscovery.jar.url plugins >/dev/null 2>&1
+		java $JOPTS -jar bin/sha1test.jar plugins/MDNSDiscovery.jar.url plugins "$CAFILE" >/dev/null 2>&1
 		mv plugins/MDNSDiscovery.jar.url plugins/MDNSDiscovery.jar
 	fi
 	rm -f mdns

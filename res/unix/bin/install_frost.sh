@@ -13,5 +13,5 @@ then
 	fi
 	echo "Unzipping frost"
 	mkdir frost
-	java $JOPTS -jar bin/uncompress.jar frost.zip frost >/dev/null 2>&1
+	java $JOPTS -jar bin/uncompress.jar frost.zip frost "$CAFILE" >/dev/null 2>&1
 fi

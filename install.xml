@@ -116,6 +116,7 @@
 				<include name="bin/**/*"/>
 				<include name="firefox_profile/**/*"/>
 				<include name="wrapper.conf"/>
+				<include name="startssl.pem"/>
 				<include name="welcome.html"/>
 				<include name="welcome.*.html"/>
 				<include name="dont-close-me.html"/>

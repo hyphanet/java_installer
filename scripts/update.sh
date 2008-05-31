@@ -206,7 +206,6 @@ else
 	fi
 fi
 
-rm -f download-temp/freenet-$RELEASE-latest.jar* download-temp/freenet-ext.jar*
-rmdir download-temp
+rm -rf download-temp
 
 cd $WHEREAMI

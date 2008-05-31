@@ -46,7 +46,7 @@
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}_sha1test"/>
-		<javac srcdir="./src" destdir="./${build}_sha1test" optimize="on" source="1.4">
+		<javac srcdir="./src" destdir="./${build}_sha1test" optimize="on" debug="on" source="1.5">
 			<classpath>
 				<pathelement location="${izPack.lib}"/>
 			</classpath>
@@ -68,7 +68,7 @@
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}_browser"/>
-		<javac srcdir="./src" destdir="./${build}_browser" optimize="on" source="1.4">
+		<javac srcdir="./src" destdir="./${build}_browser" optimize="on" debug="on" source="1.5">
 			<include name="BareBonesBrowserLaunch.java"/>
 		</javac>
 		<jar jarfile="./res/bin/browser.jar" basedir="./${build}_browser">
@@ -84,7 +84,7 @@
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}_uncompress"/>
-		<javac srcdir="./src" destdir="./${build}_uncompress" optimize="on" source="1.4">
+		<javac srcdir="./src" destdir="./${build}_uncompress" optimize="on" debug="on" source="1.5">
 			<include name="Uncompress.java"/>
 		</javac>
 		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}_uncompress">
@@ -100,7 +100,7 @@
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}_bindtest"/>
-		<javac srcdir="./src" destdir="./${build}_bindtest" optimize="on" source="1.4">
+		<javac srcdir="./src" destdir="./${build}_bindtest" optimize="on" debug="on" source="1.5">
 			<include name="BindTest.java"/>
 		</javac>
 		<jar jarfile="./res/bin/bindtest.jar" basedir="./${build}_bindtest">

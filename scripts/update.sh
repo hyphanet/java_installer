@@ -28,6 +28,7 @@ mkdir -p download-temp
 if test -d download-temp
 then
 	echo Created temporary download directory.
+	cp *.jar *.sha1 download-temp
 else
 	echo Could not create temporary download directory.
 	exit

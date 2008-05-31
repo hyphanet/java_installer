@@ -176,11 +176,10 @@ public class Sha1Test {
 			dis = new DataInputStream(new BufferedInputStream(is));
 			File f = new File(filename + (checksum ? ".sha1" : ""));
 			os = new BufferedOutputStream(new FileOutputStream(f));
-			int length = 0, offset = 0;
+			int length = 0;
 			byte[] buffer = new byte[BUFFERSIZE];
-			while((length = dis.read(buffer)) != -1) {
-				os.write(buffer,offset, length);
-				offset += length;
+			while((length = dis.read(buffer)) > -1) {
+				os.write(buffer, 0, length);
 			}
 			os.flush();
 		} catch(MalformedURLException mue) {

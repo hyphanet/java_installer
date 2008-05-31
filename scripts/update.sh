@@ -32,20 +32,22 @@ else
 	exit
 fi
 
-# see https://bugs.freenetproject.org/view.php?id=223
-# we can't afford a valid non-selfsigned SSL certificate :/
-if test `wget --version | head -n1 | cut -d" " -f3 | cut -d"." -f2` -ge 10
-then
-    NOCERT="--no-check-certificate "
-fi
-
 if test ! -x "`which wget`"
 then
 	WGET=0
 	DOWNLOADER="curl --insecure -q -f -L -O "
+	NOCERT="-k"
 else
 	WGET=1
 	DOWNLOADER="wget -o /dev/null -N "
+
+	# see https://bugs.freenetproject.org/view.php?id=223
+	# we can't afford a valid non-selfsigned SSL certificate :/
+	if test `wget --version | head -n1 | cut -d" " -f3 | cut -d"." -f2` -ge 10
+	then
+		NOCERT="--no-check-certificate "
+	fi
+
 fi
 
 if test ! -s sha1test.jar
@@ -53,12 +55,7 @@ then
 	for x in 1 2 3 4 5
 	do
 		echo Downloading sha1test.jar utility jar which will download the actual update.
-		if test $WGET -eq 1
-		then
-			$DOWNLOADER $NOCERT http://get.freenetproject.org/sha1test.jar
-		else
-			$DOWNLOADER http://get.freenetproject.org/sha1test.jar
-		fi
+		$DOWNLOADER $NOCERT https://emu.freenetproject.org/sha1test.jar
 		
 		if test -s sha1test.jar
 		then

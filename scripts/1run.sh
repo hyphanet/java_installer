@@ -13,6 +13,8 @@ then
 	exit
 fi
 
+CAFILE="startssl.pem"
+
 # We need the exec flag on /bin
 chmod a+rx bin/* lib/* &>/dev/null
 
@@ -56,15 +58,15 @@ echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
 
 echo "Downloading freenet-stable-latest.jar"
-java -jar bin/sha1test.jar freenet-stable-latest.jar "." >/dev/null || exit 1 
+java -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java -jar bin/sha1test.jar freenet-ext.jar "." >/dev/null || exit 1
+java -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh "." >/dev/null || exit 1
+java -jar bin/sha1test.jar update/update.sh "." $CAFILE >/dev/null || exit 1
 chmod a+rx "./update.sh"
 echo "Downloading seednodes.fref"
-java -jar bin/sha1test.jar opennet/seednodes.fref "." >/dev/null || exit 1
+java -jar bin/sha1test.jar opennet/seednodes.fref "." $CAFILE >/dev/null || exit 1
 
 # Starting the node up
 ./run.sh start

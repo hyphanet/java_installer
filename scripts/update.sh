@@ -34,6 +34,10 @@ else
 fi
 
 # Bundle the CA
+if test ! -f $CAFILE
+then
+# Delete the existing sha1test.jar: we want a new one to be downloaded
+rm -f sha1test.jar
 cat >$CAFILE << EOF
 -----BEGIN CERTIFICATE-----
 MIIHyTCCBbGgAwIBAgIBATANBgkqhkiG9w0BAQUFADB9MQswCQYDVQQGEwJJTDEW
@@ -80,6 +84,7 @@ um0ABj6y6koQOdjQK/W/7HW/lwLFCRsI3FU34oH7N4RDYiDK51ZLZer+bMEkkySh
 NOsF/5oirpt9P/FlUQqmMGqz9IgcgA38corog14=
 -----END CERTIFICATE-----
 EOF
+fi
 
 if test ! -x "`which wget`"
 then
@@ -112,7 +117,7 @@ fi
 # We don't need the CA file anymore
 rm -f $CAFILE
 
-if java $JOPTS -cp sha1test.jar Sha1Test update/update.sh
+if java $JOPTS -cp sha1test.jar Sha1Test update/update.sh ./ $CAFILE
 then
 	echo "Downloaded update.sh"
 	chmod +x update.sh
@@ -131,7 +136,7 @@ else
 	exit
 fi
 
-if java $JOPTS -cp sha1test.jar Sha1Test freenet-$RELEASE-latest.jar download-temp
+if java $JOPTS -cp sha1test.jar Sha1Test freenet-$RELEASE-latest.jar download-temp $CAFILE
 then
 	echo Downloaded freenet-$RELEASE-latest.jar
 else
@@ -139,7 +144,7 @@ else
 	exit
 fi
 
-if java $JOPTS -cp sha1test.jar Sha1Test freenet-ext.jar download-temp
+if java $JOPTS -cp sha1test.jar Sha1Test freenet-ext.jar download-temp $CAFILE
 then
 	echo Downloaded freenet-ext.jar
 else

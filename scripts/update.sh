@@ -114,9 +114,6 @@ then
 	fi
 fi
 
-# We don't need the CA file anymore
-rm -f $CAFILE
-
 if java $JOPTS -cp sha1test.jar Sha1Test update/update.sh ./ $CAFILE
 then
 	echo "Downloaded update.sh"

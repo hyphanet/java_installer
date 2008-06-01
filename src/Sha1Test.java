@@ -88,6 +88,8 @@ public class Sha1Test {
 				if(sha1test(path + filename))
 					System.exit(0);
 				get(uri, path + filename, false);
+				if(sha1test(path + filename))
+					System.exit(0);
 			} catch(FileNotFoundException e) {
 				System.err.println("Not found, let's ignore that mirror.");
 			} catch(SSLException ssle) {

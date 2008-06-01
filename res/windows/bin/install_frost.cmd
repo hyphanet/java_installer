@@ -9,7 +9,7 @@
 @del /F frost.install > NUL
 @if exist offline goto end
 @echo Downloading Frost
-@java -jar bin\sha1test.jar frost/frost.zip . %CAFILE% > NUL
+@java -jar bin\sha1test.jar frost.zip . %CAFILE% > NUL
 :end
 @echo Setting Frost up
 @mkdir frost

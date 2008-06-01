@@ -7,7 +7,7 @@
 
 @echo Downloading update.cmd
 @if exist offline goto end
-@java -jar bin\sha1test.jar update/update.cmd . %CAFILE% > NUL
+@java -jar bin\sha1test.jar update.cmd . %CAFILE% > NUL
 :end
 @echo node.updater.enabled=true>> freenet.ini
 

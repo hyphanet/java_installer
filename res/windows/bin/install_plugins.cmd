@@ -13,9 +13,7 @@
 @echo 	-JSTUN
 @set PLUGINS=JSTUN;%PLUGINS%
 @if exist offline goto end1
-@java -jar bin\sha1test.jar plugins/JSTUN.jar.url plugins %CAFILE% > NUL
-@if exist plugins\JSTUN.jar del /F plugins\JSTUN.jar > NUL
-@move plugins\JSTUN.jar.url plugins\JSTUN.jar > NUL
+@java -jar bin\sha1test.jar JSTUN.jar plugins %CAFILE% > NUL
 :end1
 @del /F stun > NUL
 :nostun
@@ -24,9 +22,7 @@
 @echo 	-MDNSDiscovery
 @set PLUGINS=MDNSDiscovery;%PLUGINS%
 @if exist offline goto end2
-@java -jar bin\sha1test.jar plugins/MDNSDiscovery.jar.url plugins %CAFILE% > NUL
-@if exist plugins\MDNSDiscovery.jar del /F plugins\MDNSDiscovery.jar > NUL
-@move plugins\MDNSDiscovery.jar.url plugins\MDNSDiscovery.jar > NUL
+@java -jar bin\sha1test.jar MDNSDiscovery.jar plugins %CAFILE% > NUL
 :end2
 @del /F mdns > NUL
 :nomdns
@@ -35,9 +31,7 @@
 @echo 	-UPnP
 @set PLUGINS=UPnP;%PLUGINS%
 @if exist offline goto end3
-@java -jar bin\sha1test.jar plugins/UPnP.jar.url plugins %CAFILE% > NUL
-@if exist plugins\UPnP.jar del /F plugins\UPnP.jar > NUL
-@move plugins\UPnP.jar.url plugins\UPnP.jar
+@java -jar bin\sha1test.jar UPnP.jar plugins %CAFILE% > NUL
 :end3
 @del /F upnp > NUL
 :noupnp
@@ -46,9 +40,7 @@
 @echo 	-XMLLibrarian
 @set PLUGINS=XMLLibrarian;%PLUGINS%
 @if exist offline goto end4
-@java -jar bin\sha1test.jar plugins/XMLLibrarian.jar.url plugins %CAFILE% > NUL
-@if exist plugins\XMLLibrarian.jar del /F plugins\XMLLibrarian.jar > NUL
-@move plugins\XMLLibrarian.jar.url plugins\XMLLibrarian.jar
+@java -jar bin\sha1test.jar XMLLibrarian.jar plugins %CAFILE% > NUL
 :end4
 @del /F xmllibrarian > NUL
 :nolibrarian

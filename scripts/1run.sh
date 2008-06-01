@@ -63,10 +63,10 @@ ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
 java -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update/update.sh "." $CAFILE >/dev/null || exit 1
+java -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null || exit 1
 chmod a+rx "./update.sh"
 echo "Downloading seednodes.fref"
-java -jar bin/sha1test.jar opennet/seednodes.fref "." $CAFILE >/dev/null || exit 1
+java -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null || exit 1
 
 # Starting the node up
 ./run.sh start

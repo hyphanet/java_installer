@@ -9,7 +9,7 @@ then
 	if test ! -e offline
 	then
 		echo "Downloading frost"
-		java $JOPTS -jar bin/sha1test.jar frost/frost.zip ./ >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar frost.zip ./ >/dev/null 2>&1 || exit 1
 	fi
 	echo "Unzipping frost"
 	mkdir frost

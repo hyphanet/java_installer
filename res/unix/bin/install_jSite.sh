@@ -10,6 +10,6 @@ then
 	then
 		echo "Downloading jSite"
 		mkdir jSite
-		java $JOPTS -jar bin/sha1test.jar jSite/jSite.jar jSite "$CAFILE" >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar jSite.jar jSite "$CAFILE" >/dev/null 2>&1 || exit 1
 	fi
 fi

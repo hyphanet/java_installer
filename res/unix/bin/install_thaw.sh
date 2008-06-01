@@ -10,6 +10,6 @@ then
 	then
 		echo "Downloading Thaw"
 		mkdir Thaw
-		java $JOPTS -jar bin/sha1test.jar Thaw/Thaw.jar Thaw "$CAFILE" >/dev/null 2>&1 || exit 1
+		java $JOPTS -jar bin/sha1test.jar Thaw.jar Thaw "$CAFILE" >/dev/null 2>&1 || exit 1
 	fi
 fi

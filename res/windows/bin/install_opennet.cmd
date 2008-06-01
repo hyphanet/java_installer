@@ -10,5 +10,5 @@
 
 @if exist offline goto end
 @echo Downloading the Opennet seednode file
-@java -jar bin\sha1test.jar opennet/seednodes.fref . %CAFILE% > NUL
+@java -jar bin\sha1test.jar seednodes.fref . %CAFILE% > NUL
 :end

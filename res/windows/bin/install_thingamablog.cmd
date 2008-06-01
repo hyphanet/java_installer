@@ -9,7 +9,7 @@
 @del /F thingamablog.install > NUL
 @if exist offline goto end
 @echo Downloading Thingamablog
-@java -jar bin\sha1test.jar thingamablog/thingamablog.zip . %CAFILE% > NUL
+@java -jar bin\sha1test.jar thingamablog.zip . %CAFILE% > NUL
 :end
 @echo Setting Thingamablog up
 @java -jar bin\uncompress.jar thingamablog.zip . > NUL

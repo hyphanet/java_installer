@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.HttpURLConnection;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.cert.Certificate;
@@ -25,8 +26,7 @@ import javax.net.ssl.SSLException;
 public class Sha1Test {
 
 	final static int BUFFERSIZE = 4096;
-	final static String BASE_DOWNLOAD_URL = "http://downloads.freenetproject.org/alpha/";
-	final static String BASE_CHECKSUM_URL = "https://checksums.freenetproject.org/alpha/";
+	final static String BASE_URL = "https://checksums.freenetproject.org/latest/";
 	static boolean useSecureMode = false;
 
 	public static void main(String[] args) {
@@ -168,13 +168,10 @@ public class Sha1Test {
 		BufferedOutputStream os = null;
 
 		try {
-			if(checksum)
-				url = new URL((useSecureMode ? BASE_CHECKSUM_URL : BASE_DOWNLOAD_URL) + file + ".sha1");
-			else
-				url = new URL(BASE_DOWNLOAD_URL + file);
+			url = new URL(BASE_URL + file + (checksum ? ".sha1" : ""));
 			System.out.println(url);
 			URLConnection connection = url.openConnection();
-			is = connection.getInputStream();
+			is = openConnectionCheckRedirects(connection);
 			dis = new DataInputStream(new BufferedInputStream(is));
 			File f = new File(filename + (checksum ? ".sha1" : ""));
 			os = new BufferedOutputStream(new FileOutputStream(f));
@@ -199,5 +196,53 @@ public class Sha1Test {
 			try { if(is != null) is.close(); } catch(IOException ioe) {}
 			try { if(os != null) os.close(); } catch(IOException ioe) {}
 		}
+	}
+
+	private static InputStream openConnectionCheckRedirects(URLConnection c) throws IOException
+	{
+		boolean redir;
+		int redirects = 0;
+		InputStream in = null;
+		do
+		{
+			if (c instanceof HttpURLConnection)
+			{
+				((HttpURLConnection) c).setInstanceFollowRedirects(false);
+			}
+			// We want to open the input stream before getting headers
+			// because getHeaderField() et al swallow IOExceptions.
+			in = c.getInputStream();
+			redir = false;
+			if (c instanceof HttpURLConnection)
+			{
+				HttpURLConnection http = (HttpURLConnection) c;
+				int stat = http.getResponseCode();
+				if (stat >= 300 && stat <= 307 && stat != 306 &&
+						stat != HttpURLConnection.HTTP_NOT_MODIFIED)
+				{
+					URL base = http.getURL();
+					String loc = http.getHeaderField("Location");
+					URL target = null;
+					if (loc != null)
+					{
+						target = new URL(base, loc);
+					}
+					http.disconnect();
+					// Redirection should be allowed only for HTTP and HTTPS
+					// and should be limited to 5 redirections at most.
+					if (target == null || !(target.getProtocol().equals("http")
+								|| target.getProtocol().equals("https"))
+							|| redirects >= 5)
+					{
+						throw new SecurityException("illegal URL redirect");
+					}
+					redir = true;
+					c = target.openConnection();
+					redirects++;
+				}
+			}
+		}
+		while (redir);
+		return in;
 	}
 }

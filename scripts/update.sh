@@ -4,8 +4,83 @@ CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
 echo "Updating freenet"
 
-# Attempt to use the auto-fetcher code, which will check the sha1sums.
+invert_return_code () {
+        $*
+        if test $? -ne 0
+        then
+                return 0
+        else
+                return 1
+        fi
+}
 
+# Test if two files exist: return 0 if they *both* exist
+file_exist () {
+	if test -n "$1" -a -n "$2"
+	then
+		if test -e "$1" -a -e "$2"
+		then
+			return 0
+		fi
+	fi
+
+	return 1
+}
+
+# Three functions used to compare files: return 0 if it matches
+file_cmp_comp () {
+	if file_exist "$1" "$2"
+	then
+		cmp -s "$1" "$2"
+		return $?
+	else
+		return 1
+	fi
+}
+
+file_md5sum_comp () {
+	if file_exist "$1" "$2"
+	then
+		MD5_FILE1="`cat \"$1\"|md5sum`"
+		MD5_FILE2="`cat \"$2\"|md5sum`"
+		return `test "$MD5_FILE1" = "$MD5_FILE2"`
+	else
+		return 1
+	fi
+}
+
+file_sha1sum_comp () {
+	if file_exist "$1" "$2"
+	then
+		SHA1_FILE1="`cat \"$1\"|sha1sum`"
+		SHA1_FILE2="`cat \"$2\"|sha1sum`"
+		echo $SHA1_FILE1 $SHA1_FILE2
+		return `test "$SHA1_FILE1" = "$SHA1_FILE2"`
+	else
+		return 1
+	fi
+}
+
+# Determine which one we will use
+if test ! -x "`which sha1sum`"
+then
+	if test ! -x "`which md5sum`"
+	then
+		if test ! -x "`which cmp`"
+		then
+			echo "No cmp nor md5sum nor sha1sum utility detected; Please install one of those"
+			exit 1
+		else
+			CMP="invert_return_code file_cmp_comp"
+		fi
+	else
+		CMP="invert_return_code file_md5sum_comp"
+	fi
+else
+	CMP="invert_return_code file_sha1sum_comp"
+fi
+
+# Attempt to use the auto-fetcher code, which will check the sha1sums.
 if test "$#" -gt 0
 then
 	if test "$1" = "testing"
@@ -24,11 +99,10 @@ fi
 # otherwise.
 
 mkdir -p download-temp
-
 if test -d download-temp
 then
 	echo Created temporary download directory.
-	cp *.jar *.sha1 download-temp
+	cp -f freenet-$RELEASE-latest.jar freenet-ext.jar freenet-$RELEASE-latest.jar.sha1 freenet-ext.jar.sha1 download-temp
 else
 	echo Could not create temporary download directory.
 	exit
@@ -150,63 +224,33 @@ else
 	exit
 fi
 
-cat wrapper.conf | sed 's/freenet-cvs-snapshot/freenet/g' | sed 's/freenet-stable-latest/freenet/g' | sed 's/freenet.jar.new/freenet.jar/g' | sed 's/freenet-ext.jar.new/freenet-ext.jar/g' > wrapper2.conf
+# Make sure the new files will be used (necessary to prevent 
+# the node's auto-update to play us tricks)
+cat wrapper.conf | \
+	sed 's/freenet-cvs-snapshot/freenet/g' | \
+	sed 's/freenet-stable-latest/freenet/g' | \
+	sed 's/freenet.jar.new/freenet.jar/g' | \
+	sed 's/freenet-ext.jar.new/freenet-ext.jar/g' \
+	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if test ! -x "`which cmp`"
+if $CMP freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
 then
-	if test ! -x "`which md5sum`"
-	then
-		echo No cmp or md5sum utility detected
-		echo Restarting the node as we cannot tell whether we need to.
-		./run.sh stop
-		mv download-temp/freenet-$RELEASE-latest.jar freenet-$RELEASE-latest.jar
-		rm freenet.jar
-		ln -s freenet-$RELEASE-latest.jar freenet.jar
-		mv download-temp/freenet-ext.jar freenet-ext.jar
-		./run.sh start
-	else
-		if test "`md5sum freenet.jar | cut -d ' ' -f1`" != "`md5sum download-temp/freenet-$RELEASE-latest.jar | cut -d ' ' -f1`"
-		then
-			echo Restarting node because freenet-$RELEASE-latest.jar updated.
-			./run.sh stop
-			mv download-temp/freenet-$RELEASE-latest.jar freenet-$RELEASE-latest.jar
-			rm freenet.jar
-			ln -s freenet-$RELEASE-latest.jar freenet.jar
-			mv download-temp/freenet-ext.jar freenet-ext.jar
-			./run.sh start
-		elif test "`md5sum freenet-ext.jar | cut -d ' ' -f 1`" != "`md5sum download-temp/freenet-ext.jar | cut -d ' ' -f1`"
-		then
-			echo Restarting node because freenet-ext.jar updated.
-			./run.sh stop
-			mv download-temp/freenet-ext.jar freenet-ext.jar
-			./run.sh restart
-		else
-			echo Your node is up to date.
-		fi
-	fi
+	echo Restarting node because freenet-$RELEASE-latest.jar updated.
+	./run.sh stop
+	cp download-temp/*.jar download-temp/*.sha1 .
+	rm freenet.jar
+	ln -s freenet-$RELEASE-latest.jar freenet.jar
+	./run.sh start
+elif $CMP freenet-ext.jar download-temp/freenet-ext.jar >/dev/null
+then
+	echo Restarting node because freenet-ext.jar updated.
+	./run.sh stop
+	cp download-temp/freenet-ext.jar* .
+	rm freenet.jar
+	./run.sh restart
 else
-	if cmp freenet.jar download-temp/freenet-$RELEASE-latest.jar
-	then
-		# freenet.jar is up to date
-		if cmp download-temp/freenet-ext.jar freenet-ext.jar
-		then
-			echo Your node is up to date
-		else
-			echo Restarting node because freenet-ext.jar updated.
-			./run.sh stop
-			mv download-temp/freenet-ext.jar freenet-ext.jar
-			./run.sh start
-		fi
-	else
-		echo Restarting node because freenet-$RELEASE-latest.jar updated
-		./run.sh stop
-		mv download-temp/freenet-$RELEASE-latest.jar freenet-$RELEASE-latest.jar
-		rm freenet.jar
-		ln -s freenet-$RELEASE-latest.jar freenet.jar
-		mv download-temp/freenet-ext.jar freenet-ext.jar
-		./run.sh start
-	fi
+	echo Your node is up to date.
 fi
 
 rm -rf download-temp

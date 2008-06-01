@@ -189,7 +189,7 @@ then
 	fi
 fi
 
-if java $JOPTS -cp sha1test.jar Sha1Test update/update.sh ./ $CAFILE
+if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
 then
 	echo "Downloaded update.sh"
 	chmod +x update.sh

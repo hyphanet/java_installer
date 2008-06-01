@@ -36,6 +36,7 @@ echo -----
 
 ::Initialize some stuff
 set MAGICSTRING=INDO
+set CAFILE=startssl.pem
 set RESTART=0
 set PATH=%SYSTEMROOT%\System32\;%PATH%
 set RELEASE=stable
@@ -166,7 +167,7 @@ bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 -i freenet-%RELEASE%
 if not exist freenet-%RELEASE%-latest.jar goto error4
 FOR %%I IN ("%LOCATION%freenet-%RELEASE%-latest.jar") DO if %%~zI==0 goto error4
 ::Test the new jar file for integrity.
-java -cp lib\sha1test.jar Sha1Test freenet-%RELEASE%-latest.jar > NUL
+java -cp lib\sha1test.jar Sha1Test freenet-%RELEASE%-latest.jar . %CAFILE% > NUL
 if not errorlevel 0 goto error4
 ::Everything looks good, lets install it
 copy freenet-%RELEASE%-latest.jar freenet.jar > NUL

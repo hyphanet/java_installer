@@ -10,7 +10,7 @@
 @echo Downloading Thaw
 @if exist offline goto end
 @mkdir Thaw
-@java -jar bin\sha1test.jar Thaw.jar %CAFILE% > NUL
+@java -jar bin\sha1test.jar Thaw.jar Thaw %CAFILE% > NUL
 :end
 @echo Setting Thaw up
 @echo @cd Thaw >thaw.cmd

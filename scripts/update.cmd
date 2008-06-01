@@ -102,41 +102,12 @@ if not exist bin\start.cmd goto error2
 
 echo - Freenet installation found at %LOCATION%
 echo -----
-
-:: Register .fref file extention
-if exist fref.reg goto regupdated
-echo - Registering .fref file extention
-
-echo Windows Registry Editor Version 5.00 >> fref.reg
-echo [HKEY_CLASSES_ROOT\.fref] >> fref.reg
-echo @="fref_auto_file" >> fref.reg
-echo [HKEY_CLASSES_ROOT\fref_auto_file] >> fref.reg
-echo @="Freenet node reference" >> fref.reg
-echo "EditFlags"=dword:00000000 >> fref.reg
-echo "BrowserFlags"=dword:00000008 >> fref.reg
-echo [HKEY_CLASSES_ROOT\fref_auto_file\DefaultIcon] >> fref.reg
-echo @="shell32.dll,56" >> fref.reg
-echo [HKEY_CLASSES_ROOT\fref_auto_file\shell] >> fref.reg
-echo @="Open" >> fref.reg
-regedit /s fref.reg > NUL
-FTYPE fref_auto_file=start javaw -cp "%LOCATION%\freenet.jar" freenet.tools.AddRef "%%1" > NUL
-:regupdated
-
-echo -----
 echo - Checking for Freenet JAR updates...
 
 ::Check for sha1test and download if needed.
 if not exist lib mkdir lib
 if not exist lib\sha1test.jar bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10  http://downloads.freenetproject.org/alpha/installer/sha1test.jar -O lib\sha1test.jar
 if not errorlevel 0 goto error3
-
-:: Disable password expiration on freenet's account
-if exist bin\netuser.exe goto pwupdated
-@java -cp lib\sha1test.jar Sha1Test installer/netuser.exe > NUL
-@move netuser.exe bin\ > NUL
-if not errorlevel 0 goto error3
-@bin\netuser.exe freenet /pwnexp:y >NUL
-:pwupdated
 
 if exist freenet-%RELEASE%-latest.jar.new.url del freenet-%RELEASE%-latest.jar.new.url
 bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-%RELEASE%-latest.jar.url -O freenet-%RELEASE%-latest.jar.new.url

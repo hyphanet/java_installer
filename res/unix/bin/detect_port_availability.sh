@@ -15,7 +15,16 @@ then
 	if test $? -ne 0
 	then
 		FPROXY_PORT=9999
-		echo "Can not bind fproxy to 8889: force it to $FPROXY_PORT instead."
+		java -jar bin/bindtest.jar $FPROXY_PORT
+		if test $? -ne 0
+		then
+			echo "Can not bind any socket on 127.0.0.1:"
+			echo "		IT SHOULDN'T HAPPEN\!"
+			echo ""
+			echo "Make sure your loopback interface is properly configured. Delete Freenet\'s directory and retry."
+			touch .isInstalled
+			exit 1
+		fi
 	fi
 
 	cat bin/browse.sh | sed "s/8888/$FPROXY_PORT/g" > browse.sh

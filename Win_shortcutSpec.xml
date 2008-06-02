@@ -38,63 +38,6 @@
 	</shortcut>
 
 	<shortcut
-		name="jSite"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\jsite.cmd"
-		description="This starts jSite"
-		workingDirectory="$INSTALL_PATH\"
-	>
-		<createForPack name="jSite" />
-	</shortcut>
-
-	<shortcut
-		name="Thingamablog"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\thingamablog.cmd"
-		description="This starts Thingamablog: a tool that makes authoring and publishing your flogs (freenet blogs) almost effortless"
-		workingDirectory="$INSTALL_PATH\thingamablog-testing"
-	>
-		<createForPack name="thingamablog" />
-	</shortcut>
-
-	<shortcut
-		name="Thaw"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\thaw.cmd"
-		description="This starts Thaw"
-		workingDirectory="$INSTALL_PATH\Thaw"
-	>
-		<createForPack name="thaw" />
-	</shortcut>
-
-	<shortcut
-		name="Frost"
-		programGroup="yes"
-		desktop="no"
-		applications="no"
-		startMenu="no"
-		startup="no"
-		target="$INSTALL_PATH\frost\frost.bat"
-		commandLine=""
-		description="This starts Frost"
-		workingDirectory="$INSTALL_PATH\frost"
-	>
-		<createForPack name="frost" />
-	</shortcut>
-	
-	<shortcut
 		name="Stop Freenet"
 		programGroup="yes"
 		desktop="yes"

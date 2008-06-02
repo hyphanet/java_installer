@@ -258,33 +258,6 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
 
-		<pack name="3rd party" id="3rd party" required="no">
-			<description>A set of 3rd party tools for freenet</description>
-		</pack>
-
-		<pack name="jSite" id="jsite" required="no" parent="3rd party">
-			<description>A tool to upload websites to freenet</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/jsite.install"/>
-		</pack>
-
-		<pack name="thingamablog" id="thingamablog" required="no" parent="3rd party">
-			<description>Thingamablog is a cross-platform, standalone blogging application that makes authoring and publishing your flogs (freenet blogs) almost effortless.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thingamablog.install"/>
-		</pack>
-		
-		<!--
-		<pack name="frost" id="frost" required="no">
-			<description>A message board application for freenet (http://jtcfrost.sourceforge.net/)</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/frost.install"/>
-		</pack>
-		-->
-		
-		<pack name="thaw" id="thaw" required="no" parent="3rd party">
-			<description>A powerful filesharing tool designed for freenet</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thaw.install"/>
-		</pack>
-	</packs>
-
 	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->
 	<native type="3rdparty" name="COIOSHelper.dll" stage="both" os="windows"/>
 	<native type="izpack" name="ShellLink.dll" stage="install" os="windows"/>

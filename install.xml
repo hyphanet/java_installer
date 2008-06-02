@@ -257,6 +257,7 @@
 			<description>A plugin allowing you to search the freenet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
+	</packs>
 
 	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->
 	<native type="3rdparty" name="COIOSHelper.dll" stage="both" os="windows"/>

@@ -7,7 +7,7 @@
 
 :: Keep application installers in case users want to perform updates
 @cd bin
-@del /F 1run.cmd setup.cmd detect_port_availability.cmd install_freenet-ext.cmd install_freenet-stable-latest.cmd install_plugins.cmd install_updater.cmd install_wrapper.cmd setup.cmd opennet.install offline install_frost.cmd 2> NUL > NUL
+@del /F 1run.cmd setup.cmd detect_port_availability.cmd install_freenet-ext.cmd install_freenet-stable-latest.cmd install_plugins.cmd install_updater.cmd install_wrapper.cmd setup.cmd opennet.install offline 2> NUL > NUL
 
 @echo DONE> .isInstalled
 @echo All done, please click Next

@@ -1,17 +1,18 @@
 #!/bin/sh
 
-if test ! -s bin/1run.sh
-then
-	echo 'This script should be started using ./bin/1run.sh!'
-	exit
-fi
-
 if test -s freenet.ini
 then
 	echo "This script isn\'t meant to be used more than once."
 	rm -f bin/1run.sh
 	exit
 fi
+
+if test ! -s bin/1run.sh
+then
+	echo 'This script should be started using ./bin/1run.sh!'
+	exit
+fi
+
 
 CAFILE="startssl.pem"
 
@@ -67,6 +68,24 @@ java -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null || exit 1
 chmod a+rx "./update.sh"
 echo "Downloading seednodes.fref"
 java -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null || exit 1
+
+if test -x `which crontab`
+then
+	echo "Installing cron job to start Freenet on reboot..."
+	crontab -l 2>/dev/null > autostart.install
+	echo "@reboot   \"$PWD/run.sh\" start 2>&1 >/dev/null #FREENET AUTOSTART - $FPROXY_PORT" >> autostart.install
+	if crontab autostart.install
+	then
+		echo Installed cron job.
+	fi
+fi
+
+if test -s autostart.install
+then
+	rm -f autostart.install
+else
+	echo Cron appears not to be installed, you will have to run run.sh start manually to start Freenet after a reboot.
+fi
 
 # Starting the node up
 ./run.sh start

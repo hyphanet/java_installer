@@ -14,17 +14,19 @@ then
 	then
 		echo "Installing cron job to start Freenet on reboot..."
 		crontab -l 2>/dev/null > autostart.install
-		echo "@reboot   \"$INSTALL_PATH/run.sh\" start 2>&1 >/dev/null #FREENET AUTOSTART - 8888" >> autostart.install
+		echo "@reboot   \"$PWD/run.sh\" start 2>&1 >/dev/null #FREENET AUTOSTART - 8888" >> autostart.install
 		if crontab autostart.install
 		then
 			echo Installed cron job.
-		else
-			echo Could not install cron job, you will have to run run.sh start manually to start Freenet after a reboot.
 		fi
+	fi
+
+	if test -s autostart.install
+	then
+		rm -f autostart.install
 	else
 		echo Cron appears not to be installed, you will have to run run.sh start manually to start Freenet after a reboot.
 	fi
 else
 	echo Auto-start is disabled, you will have to run run.sh start manually to start Freenet after a reboot.
 fi
-rm -f autostart.install

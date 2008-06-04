@@ -115,7 +115,6 @@
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
 				<include name="bin/**/*"/>
-				<include name="firefox_profile/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="startssl.pem"/>
 				<include name="dont-close-me.html"/>
@@ -227,6 +226,11 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
 			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall"/>
 			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh"/>
+		</pack>
+
+		<pack name="Firefox Profile" id="firefox_profile" required="yes" parent="base">
+			<description>Sets a customized firefox profile up for freenet browsing. Strongly recommended.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/firefox_profile.install"/>
 		</pack>
 
 		<pack name="Plugins" id="plugins" required="no">

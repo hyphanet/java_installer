@@ -57,7 +57,6 @@ cat "$FILE" | sed "s/8888/$FPROXY_PORT/g" >_dont-close-me.html
 rm -f dont-close-me.*html
 mv _dont-close-me.html dont-close-me.html
 
-
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
 java $JOPTS -jar bin/bindtest.jar $FCP_PORT 2>&1 >/dev/null
@@ -68,3 +67,5 @@ then
 fi
 echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
+
+sh ./bin/browse.sh "http://127.0.0.1:$FPROXY_PORT/wizard/" &

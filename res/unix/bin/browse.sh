@@ -13,7 +13,6 @@ fi
 # Wait until the installer has finished
 while test ! -f Uninstaller/install.log
 do
-	URL="http://127.0.0.1:8888/wizard/"
 	sleep 1
 done
 

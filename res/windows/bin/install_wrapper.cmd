@@ -110,6 +110,6 @@
 @echo 	- Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
 
-@start "" /B "browse" 
+@start "" /B "browse" "http://127.0.0.1:%FPROXY_PORT%/wizard"
 :endl10n
 :end

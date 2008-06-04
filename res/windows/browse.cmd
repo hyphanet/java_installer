@@ -7,7 +7,6 @@
 @set COUNT=0
 @for %%x in (%*) do @( set /A COUNT=%COUNT%+1 )
 @if %COUNT% GEQ 1 goto withURL
-@set URL="http://127.0.0.1:8888/"
 @goto doneURL
 :withURL
 @set URL="%1"
@@ -16,7 +15,6 @@
 :: Loop until the install process is over
 :beforeLoop
 @if exist Uninstaller/install.log goto begin
-@set URL="http://127.0.0.1:8888/wizard/"
 @ping -n 1 127.0.0.1>NUL
 @goto beforeLoop
 :begin

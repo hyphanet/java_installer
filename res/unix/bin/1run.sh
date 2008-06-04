@@ -9,5 +9,3 @@ echo End >> freenet.ini
 # Starting the node up
 echo "Starting Freenet 0.7..."
 nohup sh ./run.sh start 2>&1 >wrapper.log &
-
-sh ./bin/browse.sh &

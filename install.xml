@@ -64,6 +64,7 @@
 
 	<variables>
 		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
+		<variable name="InstallerFrame.logfilePath" value="$INSTALL_PATH/Uninstaller/install.log" />
 		<variable name="app-version" value="0.7.0 &quot;Darknet&quot;"/>
 		<variable name="released-on" value="Thursday 8 May 2008"/>
 	</variables>
@@ -117,8 +118,6 @@
 				<include name="firefox_profile/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="startssl.pem"/>
-				<include name="welcome.html"/>
-				<include name="welcome.*.html"/>
 				<include name="dont-close-me.html"/>
 				<include name="dont-close-me*.html"/>
 			</fileset>

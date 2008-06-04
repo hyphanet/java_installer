@@ -10,5 +10,4 @@ echo End >> freenet.ini
 echo "Starting Freenet 0.7..."
 nohup sh ./run.sh start 2>&1 >wrapper.log &
 
-echo "Starting up a browser"
-sh ./bin/browse.sh "file://$INSTALL_PATH/welcome.html"
+sh ./bin/browse.sh &

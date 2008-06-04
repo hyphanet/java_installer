@@ -13,6 +13,14 @@
 @set URL="%1"
 :doneURL
 
+:: Loop until the install process is over
+:beforeLoop
+@if exist Uninstaller/install.log goto begin
+@set URL="http://127.0.0.1:8888/wizard/"
+@ping -n 1 127.0.0.1>NUL
+@goto beforeLoop
+:begin
+
 :: Check the simple case first (FF exists and has been detected)
 @if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location

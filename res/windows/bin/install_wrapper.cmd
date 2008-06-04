@@ -13,14 +13,6 @@
 @if %ERRORLEVEL% EQU 0 goto configure_fproxy
 @set FPROXY_PORT=8889
 
-@set WELCOME_FILE=welcome.html
-@if not exist welcome.%ISO3_LANG%.html goto noWl10n
-@set WELCOME_FILE=welcome.%ISO3_LANG%.html
-:noWl10n
-@bin\cat.exe %WELCOME_FILE% | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > _welcome.html
-@del /F /Q welcome.*html
-@move /Y _welcome.html welcome.html > NUL
-
 @set DONTCLOSE_FILE=dont-close-me.html
 @if not exist dont-close-me.%ISO3_LANG%.html goto noDl10n
 @set DONTCLOSE_FILE=dont-close-me.%ISO3_LANG%.html
@@ -118,7 +110,6 @@
 @echo 	- Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
 
-@echo Spawning up a browser
-@browse welcome.html
+@start "" /B "browse" 
 :endl10n
 :end

@@ -48,16 +48,6 @@ echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 
 # Translate if needed
-FILE="welcome.html"
-if test -e welcome.$ISO3_LANG.html
-then
-	FILE="welcome.$ISO3_LANG.html"
-fi
-cat "$FILE" | sed "s/8888/$FPROXY_PORT/g" >_welcome.html
-rm -f welcome.*html
-mv _welcome.html welcome.html
-
-# Translate if needed
 FILE="dont-close-me.html"
 if test -e dont-close-me.$ISO3_LANG.html
 then

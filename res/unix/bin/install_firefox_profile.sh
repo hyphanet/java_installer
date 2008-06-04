@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$HOME/_install_toSource.sh"|| exit 0
+. "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
 if test -e firefox_profile.install

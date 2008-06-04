@@ -3,6 +3,7 @@
 INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 CAFILE="$INSTALL_PATH/startssl.pem"
 JOPTS=" -Djava.net.preferIPv4Stack=true "
+OS="`uname -s`"
 echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
 echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
 echo CAFILE=\"$CAFILE\" >> "$HOME/_install_toSource.sh"
@@ -31,7 +32,6 @@ then
 else
 	echo "Online installation mode"
 	echo "Downloading the wrapper binaries"
-	OS="`uname -s`"
 	java $JOPTS -jar bin/sha1test.jar wrapper_$OS.zip . "$CAFILE" >/dev/null
 fi
 java $JOPTS -jar bin/uncompress.jar wrapper_$OS.zip . 2>&1 >/dev/null

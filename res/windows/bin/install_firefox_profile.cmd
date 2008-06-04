@@ -10,8 +10,7 @@
 @if exist offline goto end1
 @java -jar bin\sha1test.jar firefox_profile.zip . %CAFILE% > NUL
 :end1
-@mkdir firefox_profile 2> NUL
-@java -jar bin\uncompress.jar firefox_profile.zip firefox_profile > NUL
+@java -jar bin\uncompress.jar firefox_profile.zip . > NUL
 @del /F firefox_profile.install > NUL
 
 :end

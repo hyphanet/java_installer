@@ -136,6 +136,8 @@
 			<fileset dir="res/windows/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
+				<exclude name="bin/*.exe"/>
+				<exclude name="lib/*.dll"/>
 				<include name="*/**"/>
 			</fileset>
 
@@ -164,6 +166,8 @@
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
+				<exclude name="bin/wrapper-*"/>
+				<exclude name="lib/libwrapper-*"/>
 				<include name="*/**"/>
 			</fileset>
 
@@ -188,6 +192,8 @@
 			<fileset dir="res/unix/" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
 				<exclude name="*/**/.svn/**"/>
+				<exclude name="bin/wrapper-*"/>
+				<exclude name="lib/libwrapper-*"/>
 				<include name="*/**"/>
 			</fileset>
 

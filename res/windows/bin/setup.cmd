@@ -26,5 +26,12 @@
 @del /F fref.reg
 
 :: Are we in offline mode ?
-@if exist offline echo "Offline installation mode"
+@if not exist offline goto online
+@echo "Offline installation mode"
+@goto uncompress
+@echo "Online installation mode"
+@java -jar bin\sha1test.jar wrapper_windows.zip . %CAFILE% > NUL
+:uncompress
+@java -jar bin\uncompress.jar wrapper_windows.zip . > NUL
+
 :end

@@ -15,6 +15,7 @@ fi
 
 
 CAFILE="startssl.pem"
+JOPTS="-Djava.net.preferIPv4Stack=true"
 
 # We need the exec flag on /bin
 chmod a+rx bin/* lib/* &>/dev/null
@@ -23,9 +24,6 @@ chmod a+rx bin/* lib/* &>/dev/null
 echo "node.updater.enabled=true" > freenet.ini
 echo "Enabling the auto-update feature"
 echo "node.updater.autoupdate=true" >> freenet.ini
-
-# Register plugins
-echo "pluginmanager.loadplugin=JSTUN;UPnP" >> freenet.ini
 
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy
@@ -50,8 +48,6 @@ then
 			exit 1
 		fi
 	fi
-	cat welcome.html | sed "s/8888/$FPROXY_PORT/g" >welcome2.html
-	mv welcome2.html welcome.html
 fi
 echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
@@ -68,15 +64,24 @@ echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
 
 echo "Downloading freenet-stable-latest.jar"
-java -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null || exit 1 
+java $JOPTS -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
+java $JOPTS -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
 echo "Downloading update.sh"
-java -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null || exit 1
+java $JOPTS -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null || exit 1
 chmod a+rx "./update.sh"
+
+# Register plugins
+mkdir -p plugins
+echo "pluginmanager.loadplugin=JSTUN;UPnP" >> freenet.ini
+echo "Downloading the JSTUN plugin"
+java $JOPTS -jar bin/sha1test.jar JSTUN.jar plugins "$CAFILE" >/dev/null 2>&1
+echo "Downloading the UPnP plugin"
+java $JOPTS -jar bin/sha1test.jar UPnP.jar plugins "$CAFILE" >/dev/null 2>&1
+
 echo "Downloading seednodes.fref"
-java -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null || exit 1
+java $JOPTS -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null || exit 1
 
 if test -x `which crontab`
 then
@@ -99,7 +104,7 @@ fi
 # Starting the node up
 ./run.sh start
 
-echo "Please visit file://$PWD/welcome.html to configure your node"
+echo "Please visit http://127.0.0.1:$FPROXY_PORT/wizard/ to configure your node"
 echo "Finished"
 
 rm -f bin/1run.sh

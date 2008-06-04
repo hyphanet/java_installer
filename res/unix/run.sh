@@ -58,12 +58,6 @@ then
     exit 1
 fi
 
-if test ! -s freenet.ini
-then
-	exec ./bin/1run.sh
-	exit
-fi
-
 # and get java implementation too, Sun JDK or Kaffe
 JAVA_IMPL=`java -version 2>&1 | head -n 1 | cut -f1 -d' '`
 
@@ -137,6 +131,12 @@ done
 # Change the current directory to the location of the script
 cd "`dirname \"$REALPATH\"`"
 REALDIR="`pwd`"
+
+if test ! -s freenet.ini
+then
+	exec ./bin/1run.sh
+	exit
+fi
 
 # If the PIDDIR is relative, set its value relative to the full REALPATH to avoid problems if
 #  the working directory is later changed.

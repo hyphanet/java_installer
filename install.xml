@@ -21,16 +21,6 @@
 
 	<!-- remove labels or icons on buttons ? -->
 	<guiprefs width="640" height="480" resizable="no">
-		<laf name="looks">
-			<os family="windows"/>
-			<param name="variant" value="plasticXP"/>
-		</laf>
-		<laf name="liquid">
-			<os family="unix"/>
-		</laf>
-		<laf name="liquid">
-			<os family="mac"/>
-		</laf>
 	</guiprefs>
 
 	<locale>

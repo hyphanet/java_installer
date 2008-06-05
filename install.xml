@@ -140,6 +140,7 @@
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\browse.cmd"/>
+			<parsable targetfile="$INSTALL_PATH\bin\install_firefox_profile.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_plugins.cmd"/>

@@ -24,7 +24,7 @@
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
 @start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
-@start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
+@start "" /B %FIREFOX% -no-remote -P freenet %URL%
 @goto realEnd
 
 :detectff
@@ -55,7 +55,7 @@
 @echo Creating a Firefox profile for freenet
 @start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
 @%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
-@start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
+@start "" /B %FIREFOX% -no-remote -P freenet %URL%
 @goto end
 
 :: Firefox hasn't been detected at all
@@ -63,12 +63,12 @@
 @echo The installer was unable to locate Mozilla Firefox on your computer
 @del /f firefox.location
 @echo Trying to open "%URL%"
-@start "" "%URL%"
+@start "" %URL%
 @if errorlevel 1 goto argh
 @goto end
 :argh
 @echo Starting the page failed, attempting to load directly in IE
-@start "" /B "%ProgramFiles%\Internet Explorer\iexplore.exe" "%URL%"
+@start "" /B "%ProgramFiles%\Internet Explorer\iexplore.exe" %URL%
 :end
 @del /f firefox.reg
 :realEnd

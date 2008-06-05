@@ -29,6 +29,7 @@
 @if not exist offline goto online
 @echo "Offline installation mode"
 @goto uncompress
+:online
 @echo "Online installation mode"
 @java -jar bin\sha1test.jar wrapper_windows.zip . %CAFILE% > NUL
 :uncompress

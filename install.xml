@@ -210,7 +210,7 @@
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 		</pack>
 		
-		<pack name="UninstallStuff" id="uninstall" required="no" os="windows">
+		<pack name="UninstallStuff" id="uninstall" required="no" os="windows" parent="base">
 			<description>Create uninstallation hooks in the registry</description>
 			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd"/>
 		</pack>

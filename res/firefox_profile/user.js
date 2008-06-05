@@ -31,7 +31,7 @@ user_pref("network.cookie.prefsMigrated", true);
 user_pref("security.warn_entering_secure", false);
 user_pref("security.warn_submit_insecure", false);
 // Select the skin
-user_pref("general.skins.selectedSkin", "BlackJapanMAX");
+user_pref("general.skins.selectedSkin", "w3v8");
 // Chose the default charset
 user_pref("intl.charsetmenu.browser.cache", "UTF-8");
 // Prevent plugin installation from that profile

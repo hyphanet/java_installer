@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest"
+    em:id="{7DA90D46-1B69-4cc5-9ACE-CB64D8D85B00}"
+    em:name="W3v8 for Firefox"
+    em:version="1.8.33"
+    em:internalName="w3v8"
+    em:creator="Alfred Kayser (alfredkayser@gmail.com)"
+    em:contributor="art.gnome.org"
+    em:homepageURL="http://www.geocities.com/alfredkayser/mozilla/w3v8.htm"
+    em:description="W3v8 for Firefox, based on icons from art.gnome.org. Includes support for help, inspector, downloadstatusbar, downloadmgr, calendar, quicknote, offline and toolbarext. Tested with googlebar. Also includes cutemenu icons">    
+    <em:targetApplication>
+      <Description em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}" em:minVersion="1.0" em:maxVersion="3.0.*"/>
+    </em:targetApplication>
+  </Description>
+</RDF>

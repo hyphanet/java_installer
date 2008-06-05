@@ -21,6 +21,16 @@
 
 	<!-- remove labels or icons on buttons ? -->
 	<guiprefs width="640" height="480" resizable="no">
+		<laf name="looks">
+			<os family="windows"/>
+			<param name="variant" value="plasticXP"/>
+		</laf>
+		<laf name="liquid">
+			<os family="unix"/>
+		</laf>
+		<laf name="liquid">
+			<os family="mac"/>
+		</laf>
 	</guiprefs>
 
 	<locale>
@@ -140,7 +150,6 @@
 			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
 			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\browse.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_firefox_profile.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
 			<parsable targetfile="$INSTALL_PATH\bin\install_plugins.cmd"/>

@@ -241,7 +241,8 @@ public class Sha1Test {
 					c = target.openConnection();
 					redirects++;
 				}
-			}
+			} else
+				throw new SecurityException("Huh? it's not an HttpURLConnection??");
 		}
 		while (redir);
 		return in;

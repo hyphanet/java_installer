@@ -52,6 +52,11 @@
 @move /Y stop.cmd bin\stop.cmd
 
 @echo Installing the wrapper
+@if exist autostart.install goto startupPolicyChanged
+@echo 	- Changing the startup policy of the freenet daemon to on-demand
+@bin\cat.exe wrapper.conf | bin\sed.exe "s/wrapper.ntservice.starttype=AUTO_START/wrapper.ntservice.starttype=DEMAND_START/g" > autostart.install
+@move /Y autostart.install wrapper.conf
+:startupPolicyChanged
 @echo 	- Creating a user for freenet
 :: A ugly hack to workaround password policy enforcements
 @set TMPPASSWORD=%random%%random%

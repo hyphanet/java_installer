@@ -217,12 +217,16 @@
 		</pack>
 		
 		<pack name="AutoStart" id="autostart" required="no" parent="base">
-			<os family="unix"/>
-			<os family="mac"/>
 			<description>Start the node automatically on startup. Strongly recommended.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
-			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall"/>
-			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh"/>
+			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall">
+				<os family="unix"/>
+				<os family="mac"/>
+			</executable>
+			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh">
+				<os family="unix"/>
+				<os family="mac"/>
+			</parsable>
 		</pack>
 
 		<pack name="Firefox Profile" id="firefox_profile" required="yes" parent="base">

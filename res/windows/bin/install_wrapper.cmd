@@ -25,9 +25,10 @@
 @move /Y browse2.cmd browse.cmd > NUL
 
 :configure_fproxy
-@echo fproxy.enable=true >>freenet.ini
-@echo fproxy.port=%FPROXY_PORT% >>freenet.ini
-@echo fproxy.enablePersistentConnections=true >>freenet.ini
+@echo fproxy.enable=true>>freenet.ini
+@echo fproxy.port=%FPROXY_PORT%>>freenet.ini
+@echo fproxy.enablePersistentConnections=true>>freenet.ini
+@echo node.l10n=%ISO3_LANG%>>freenet.ini
 
 :: Try to detect a free, available port for fcp
 @set FCP_PORT=9481

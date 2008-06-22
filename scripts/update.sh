@@ -150,10 +150,8 @@ fi
 
 if test ! -x "`which wget`"
 then
-	WGET=0
 	DOWNLOADER="curl --cacert $CAFILE -q -f -L -O "
 else
-	WGET=1
 	DOWNLOADER="wget -o /dev/null --ca-certificate $CAFILE -N "
 fi
 

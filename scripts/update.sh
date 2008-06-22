@@ -229,6 +229,13 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
+if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar
+then
+	cp download-temp/freenet-*.jar* .
+	rm -f freenet.jar
+	ln -s freenet-$RELEASE-latest.jar freenet.jar
+fi
+
 if file_comp freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
 then
 	echo Restarting node because freenet-$RELEASE-latest.jar updated.
@@ -246,13 +253,6 @@ then
 	./run.sh restart
 else
 	echo Your node is up to date.
-fi
-
-if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar
-then
-	cp download-temp/freenet-*.jar* .
-	rm -f freenet.jar
-	ln -s freenet-$RELEASE-latest.jar freenet.jar
 fi
 
 rm -rf download-temp

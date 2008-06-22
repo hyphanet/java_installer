@@ -2,8 +2,8 @@
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
-SHA1SUM_Sha1Test="5b69f30c827dc2e697ba043b075f1976a3fd9c2e"
-MD5SUM_Sha1Test="c46d4fb49ab86a8da3ff426e0933a63f"
+SHA1_Sha1Test="5b69f30c827dc2e697ba043b075f1976a3fd9c2e"
+MD5_Sha1Test="c46d4fb49ab86a8da3ff426e0933a63f"
 echo "Updating freenet"
 
 invert_return_code () {
@@ -29,32 +29,31 @@ file_exist () {
 	return 1
 }
 
-# Two functions used to compare files: return 0 if it matches
-file_md5sum_comp () {
-	if file_exist "$1" "$2"
+# Return the hash of a file (may be sha1 or md5) in the HASH variable
+file_hash () {
+	if test -n "$1" -a -e "$1"
 	then
-		MD5_FILE1="`cat \"$1\"|md5sum`"
-		MD5_FILE2="`cat \"$2\"|md5sum`"
-		return `test "$MD5_FILE1" = "$MD5_FILE2"`
+		HASH="`$HASH_P \"$1\" | awk '{print $1;}'`"
 	else
-		return 1
+		HASH="NOT FOUND"
 	fi
 }
 
-file_sha1sum_comp () {
+# Two functions used to compare files: return 0 if it matches
+file_comp () {
 	if file_exist "$1" "$2"
 	then
-		SHA1_FILE1="`cat \"$1\"|sha1sum`"
-		SHA1_FILE2="`cat \"$2\"|sha1sum`"
-		echo $SHA1_FILE1 $SHA1_FILE2
-		return `test "$SHA1_FILE1" = "$SHA1_FILE2"`
+		file_hash "$1"
+		HASH_FILE1="$HASH"
+		file_hash "$2"
+		HASH_FILE2="$HASH"
+		return `test "$HASH_FILE1" = "$HASH_FILE2"`
 	else
 		return 1
 	fi
 }
 
 # Determine which one we will use
-SHA1SUM=0
 if test ! -x "`which sha1sum`"
 then
 	if test ! -x "`which md5sum`"
@@ -62,11 +61,10 @@ then
 		echo "No md5sum nor sha1sum utility detected; Please install one of those"
 		exit 1
 	else
-		CMP="invert_return_code file_md5sum_comp"
+		HASH_P="md5sum"
 	fi
 else
-	CMP="invert_return_code file_sha1sum_comp"
-	SHA1SUM=1
+	HASH_P="sha1sum"
 fi
 
 # Attempt to use the auto-fetcher code, which will check the sha1sums.
@@ -160,18 +158,12 @@ else
 fi
 
 # check if sha1sum.jar is up to date
-if test $SHA1SUM -gt 0
-then
-	if test "`sha1sum sha1test.jar |awk '{print $1;}'`" != "$SHA1SUM_Sha1Test"
-	then
-		rm -f sha1test.jar
-	fi
-else
-	if test "`md5sum sha1test.jar |awk '{print $1;}'`" != "$MD5SUM_Sha1Test"
-	then
-		rm -f sha1test.jar
-	fi
-fi
+file_hash sha1test.jar
+case "$HASH" in 
+	$SHA1_Sha1Test) echo "The SHA1 of sha1test.jar matches";;
+	$MD5_Sha1Test) echo "The MD5 of sha1test.jar matches";;
+	*) echo "sha1test.jar needs to be updated"; rm -f sha1test.jar;;
+esac
 
 if test ! -s sha1test.jar
 then
@@ -198,7 +190,7 @@ then
 	chmod +x update.sh
 
 	touch update.sh update2.sh
-	if $CMP update.sh update2.sh >/dev/null
+	if file_comp update.sh update2.sh >/dev/null
 	then
 		echo "Your update.sh is up to date"
 	else
@@ -237,7 +229,7 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if $CMP freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
+if file_comp freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
 then
 	echo Restarting node because freenet-$RELEASE-latest.jar updated.
 	./run.sh stop
@@ -245,7 +237,7 @@ then
 	rm freenet.jar
 	ln -s freenet-$RELEASE-latest.jar freenet.jar
 	./run.sh start
-elif $CMP freenet-ext.jar download-temp/freenet-ext.jar >/dev/null
+elif file_comp freenet-ext.jar download-temp/freenet-ext.jar >/dev/null
 then
 	echo Restarting node because freenet-ext.jar updated.
 	./run.sh stop
@@ -254,6 +246,13 @@ then
 	./run.sh restart
 else
 	echo Your node is up to date.
+fi
+
+if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar
+then
+	cp download-temp/freenet-*.jar* .
+	rm -f freenet.jar
+	ln -s freenet-$RELEASE-latest.jar freenet.jar
 fi
 
 rm -rf download-temp

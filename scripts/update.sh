@@ -27,17 +27,7 @@ file_exist () {
 	return 1
 }
 
-# Three functions used to compare files: return 0 if it matches
-file_cmp_comp () {
-	if file_exist "$1" "$2"
-	then
-		cmp -s "$1" "$2"
-		return $?
-	else
-		return 1
-	fi
-}
-
+# Two functions used to compare files: return 0 if it matches
 file_md5sum_comp () {
 	if file_exist "$1" "$2"
 	then
@@ -66,13 +56,8 @@ if test ! -x "`which sha1sum`"
 then
 	if test ! -x "`which md5sum`"
 	then
-		if test ! -x "`which cmp`"
-		then
-			echo "No cmp nor md5sum nor sha1sum utility detected; Please install one of those"
-			exit 1
-		else
-			CMP="invert_return_code file_cmp_comp"
-		fi
+		echo "No md5sum nor sha1sum utility detected; Please install one of those"
+		exit 1
 	else
 		CMP="invert_return_code file_md5sum_comp"
 	fi
@@ -195,7 +180,7 @@ then
 	chmod +x update.sh
 
 	touch update.sh update2.sh
-	if cmp update.sh update2.sh >/dev/null 2>&1
+	if $CMP update.sh update2.sh >/dev/null
 	then
 		echo "Your update.sh is up to date"
 	else

@@ -2,6 +2,8 @@
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
+SHA1SUM_Sha1Test="5b69f30c827dc2e697ba043b075f1976a3fd9c2e"
+MD5SUM_Sha1Test="c46d4fb49ab86a8da3ff426e0933a63f"
 echo "Updating freenet"
 
 invert_return_code () {
@@ -52,6 +54,7 @@ file_sha1sum_comp () {
 }
 
 # Determine which one we will use
+SHA1SUM=0
 if test ! -x "`which sha1sum`"
 then
 	if test ! -x "`which md5sum`"
@@ -63,6 +66,7 @@ then
 	fi
 else
 	CMP="invert_return_code file_sha1sum_comp"
+	SHA1SUM=1
 fi
 
 # Attempt to use the auto-fetcher code, which will check the sha1sums.
@@ -153,6 +157,20 @@ then
 else
 	WGET=1
 	DOWNLOADER="wget -o /dev/null --ca-certificate $CAFILE -N "
+fi
+
+# check if sha1sum.jar is up to date
+if test $SHA1SUM -gt 0
+then
+	if test "`sha1sum sha1test.jar |awk '{print $1;}'`" != "$SHA1SUM_Sha1Test"
+	then
+		rm -f sha1test.jar
+	fi
+else
+	if test "`md5sum sha1test.jar |awk '{print $1;}'`" != "$MD5SUM_Sha1Test"
+	then
+		rm -f sha1test.jar
+	fi
 fi
 
 if test ! -s sha1test.jar

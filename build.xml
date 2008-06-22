@@ -40,7 +40,7 @@
 		<delete dir="${build}_bindtest"/>
 	</target>
 
-	<target name="compile_sha1test">
+	<target name="compile_sha1test" unless="skip_sha1test">
 		<!-- Create the time stamp -->
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->

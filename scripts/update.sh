@@ -3,7 +3,6 @@ WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
 SHA1_Sha1Test="5b69f30c827dc2e697ba043b075f1976a3fd9c2e"
-MD5_Sha1Test="c46d4fb49ab86a8da3ff426e0933a63f"
 echo "Updating freenet"
 
 invert_return_code () {
@@ -29,11 +28,11 @@ file_exist () {
 	return 1
 }
 
-# Return the hash of a file (may be sha1 or md5) in the HASH variable
+# Return the hash of a file in the HASH variable
 file_hash () {
 	if test -n "$1" -a -e "$1"
 	then
-		HASH="`$HASH_P \"$1\" | awk '{print $1;}'`"
+		HASH="`openssl md5 -sha1 \"$1\" | awk '{print $2;}'`"
 	else
 		HASH="NOT FOUND"
 	fi
@@ -53,18 +52,10 @@ file_comp () {
 	fi
 }
 
-# Determine which one we will use
-if test ! -x "`which sha1sum`"
+if test ! -x "`which openssl`"
 then
-	if test ! -x "`which md5sum`"
-	then
-		echo "No md5sum nor sha1sum utility detected; Please install one of those"
-		exit 1
-	else
-		HASH_P="md5sum"
-	fi
-else
-	HASH_P="sha1sum"
+	echo "No openssl utility detected; Please install it"
+	exit 1
 fi
 
 # Attempt to use the auto-fetcher code, which will check the sha1sums.

@@ -174,7 +174,7 @@ case "$DIST_OS" in
     'hp-ux' | 'hp-ux64')
         DIST_OS="hpux"
         ;;
-    'darwin')
+    'darwin' | 'oarwin')
         DIST_OS="macosx"
 	
 	#We use the 1.5 jvm if it exists

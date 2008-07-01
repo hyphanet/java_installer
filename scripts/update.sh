@@ -150,7 +150,6 @@ fi
 file_hash sha1test.jar
 case "$HASH" in 
 	$SHA1_Sha1Test) echo "The SHA1 of sha1test.jar matches";;
-	$MD5_Sha1Test) echo "The MD5 of sha1test.jar matches";;
 	*) echo "sha1test.jar needs to be updated"; rm -f sha1test.jar;;
 esac
 

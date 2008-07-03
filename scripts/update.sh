@@ -2,7 +2,7 @@
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
-SHA1_Sha1Test="5b69f30c827dc2e697ba043b075f1976a3fd9c2e"
+SHA1_Sha1Test="16bfa2d0e1f8bd7b2be79b2c26d88f47ea2164ca"
 echo "Updating freenet"
 
 invert_return_code () {

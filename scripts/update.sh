@@ -224,7 +224,7 @@ then
 	ln -s freenet-$RELEASE-latest.jar freenet.jar
 fi
 
-if file_comp freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
+if invert_return_code file_comp freenet.jar download-temp/freenet-$RELEASE-latest.jar >/dev/null
 then
 	echo Restarting node because freenet-$RELEASE-latest.jar updated.
 	./run.sh stop
@@ -232,7 +232,7 @@ then
 	rm freenet.jar
 	ln -s freenet-$RELEASE-latest.jar freenet.jar
 	./run.sh start
-elif file_comp freenet-ext.jar download-temp/freenet-ext.jar >/dev/null
+elif invert_return_code file_comp freenet-ext.jar download-temp/freenet-ext.jar >/dev/null
 then
 	echo Restarting node because freenet-ext.jar updated.
 	./run.sh stop

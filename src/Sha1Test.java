@@ -149,8 +149,7 @@ public class Sha1Test {
 
 
 			// now we compare
-			byte[] digest = new byte[160];
-			digest = hash.digest();
+			byte[] digest = hash.digest();
 
 			int i = result.indexOf(' ');
 			result = result.substring(0, i);

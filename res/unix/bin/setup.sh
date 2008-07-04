@@ -39,8 +39,26 @@ then
 else
 	echo "Online installation mode"
 	echo "Downloading the wrapper binaries"
-	java $JOPTS -jar bin/sha1test.jar wrapper_$OS.zip . "$CAFILE" >/dev/null
+	java $JOPTS -jar bin/sha1test.jar wrapper_$OS.zip . "$CAFILE" 2>jvmerror >/dev/null
 fi
+
+if test -s jvmerror 
+then
+	echo "#################################################################"
+	echo "It seems that you are using a buggy JVM..."
+	echo "The installer will refuse to run until you switch to a decent one"
+	echo "#################################################################"
+	echo "You are currently using:"
+	java -version
+	echo "#################################################################"
+	echo "The full error message is :"
+	echo "#################################################################"
+	cat jvmerror
+	touch .isInstalled
+	exit 0
+fi
+rm -f jvmerror
+
 java $JOPTS -jar bin/uncompress.jar wrapper_$OS.zip . 2>&1 >/dev/null
 # We need the exec flag on /bin
 chmod u+x bin/* lib/*

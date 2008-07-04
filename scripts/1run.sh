@@ -63,14 +63,31 @@ fi
 echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
 
+echo "Downloading update.sh"
+java $JOPTS -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null 2>jvmerror || exit 1
+if test -s jvmerror 
+then
+	echo "#################################################################"
+	echo "It seems that you are using a buggy JVM..."
+	echo "The installer will refuse to run until you switch to a decent one"
+	echo "#################################################################"
+	echo "You are currently using:"
+	java -version
+	echo "#################################################################"
+	echo "The full error message is :"
+	echo "#################################################################"
+	cat jvmerror
+	touch .isInstalled
+	exit 0
+fi
+rm -f jvmerror
+chmod a+rx "./update.sh"
+
 echo "Downloading freenet-stable-latest.jar"
 java $JOPTS -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null || exit 1 
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
 java $JOPTS -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
-echo "Downloading update.sh"
-java $JOPTS -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null || exit 1
-chmod a+rx "./update.sh"
 
 # Register plugins
 mkdir -p plugins

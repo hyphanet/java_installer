@@ -22,6 +22,13 @@ then
 	exit 0
 fi
 
+if test "X`id -u`" = "X0"
+then
+	echo "The installer isn\'t meant to be run as root"
+	touch .isInstalled
+	exit 0
+fi
+
 # Hack to use a generic template for plugins
 touch plug
 

@@ -64,7 +64,7 @@ echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
 
 echo "Downloading update.sh"
-java $JOPTS -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null 2>jvmerror || exit 1
+java $JOPTS -jar bin/sha1test.jar update.sh "." $CAFILE >/dev/null 2>jvmerror
 if test -s jvmerror 
 then
 	echo "#################################################################"
@@ -78,7 +78,7 @@ then
 	echo "#################################################################"
 	cat jvmerror
 	touch .isInstalled
-	exit 0
+	exit 1
 fi
 rm -f jvmerror
 chmod a+rx "./update.sh"

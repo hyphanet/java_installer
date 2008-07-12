@@ -4,6 +4,17 @@ INSTALL_PATH="${INSTALL_PATH:-$PWD}"
 CAFILE="$INSTALL_PATH/startssl.pem"
 JOPTS=" -Djava.net.preferIPv4Stack=true "
 OS="`uname -s`"
+
+cd "$INSTALL_PATH"
+
+rm -f "$HOME/_install_toSource.sh"
+if test -e "$HOME/_install_toSource.sh"
+then
+	echo "Please delete the freenet directory and the file \"$HOME/_install_toSource.sh\" before restarting the installer."
+	touch .isInstalled
+	exit 0
+fi
+
 echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
 echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
 echo CAFILE=\"$CAFILE\" >> "$HOME/_install_toSource.sh"
@@ -13,12 +24,11 @@ echo "if test -f \"$INSTALL_PATH/.isInstalled\"; then exit 1; fi" >> "$HOME/_ins
 chmod 755 "$HOME/_install_toSource.sh"
 alias .=
 
-cd "$INSTALL_PATH"
-
 if test -s freenet.ini
 then
 	echo "The installer isn\'t meant to run more than once in the same directory"
 	touch .isInstalled
+	rm -f "$HOME/_install_toSource.sh"
 	exit 0
 fi
 
@@ -26,6 +36,7 @@ if test "X`id -u`" = "X0"
 then
 	echo "The installer isn\'t meant to be run as root"
 	touch .isInstalled
+	rm -f "$HOME/_install_toSource.sh"
 	exit 0
 fi
 
@@ -55,6 +66,7 @@ then
 	echo "#################################################################"
 	cat jvmerror
 	touch .isInstalled
+	rm -f "$HOME/_install_toSource.sh"
 	exit 0
 fi
 rm -f jvmerror

@@ -110,6 +110,8 @@ then
 		echo Installed cron job.
 	fi
 fi
+cat bin/remove_cronjob.sh | sed "s/8888/$FPROXY_PORT/g" > remove_cronjob.sh
+mv remove_cronjob.sh bin/remove_cronjob.sh
 
 if test -s autostart.install
 then

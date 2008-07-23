@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e opennet.install
+if test -f opennet.install
 then
 	rm -f opennet.install
 	if test ! -e offline

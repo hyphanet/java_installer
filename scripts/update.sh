@@ -19,7 +19,7 @@ invert_return_code () {
 file_exist () {
 	if test -n "$1" -a -n "$2"
 	then
-		if test -e "$1" -a -e "$2"
+		if test -f "$1" -a -f "$2"
 		then
 			return 0
 		fi

@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e mdns -a -e plug
+if test -f mdns -a -e plug
 then
 	echo "Enabling the MDNSDiscovery plugin"
 	if test ! -e plugins; then mkdir plugins; fi 2>&1 >/dev/null

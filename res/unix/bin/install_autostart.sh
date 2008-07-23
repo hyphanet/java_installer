@@ -7,7 +7,7 @@ cd "$INSTALL_PATH"
 # See here: 
 # http://refspecs.linux-foundation.org/LSB_3.2.0/LSB-Core-generic/LSB-Core-generic/initsrcinstrm.html
 # http://refspecs.linux-foundation.org/LSB_3.2.0/LSB-Core-generic/LSB-Core-generic/useradd.html
-if test -e autostart.install
+if test -f autostart.install
 then
 	echo "Enabling auto-start."
 	if test -x `which crontab`

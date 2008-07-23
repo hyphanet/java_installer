@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e upnp -a -e plug
+if test -f upnp -a -e plug
 then
 	echo "Enabling the UP&P plugin"
 	if test ! -e plugins; then mkdir plugins; fi

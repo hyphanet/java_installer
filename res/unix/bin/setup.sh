@@ -8,7 +8,7 @@ OS="`uname -s`"
 cd "$INSTALL_PATH"
 
 rm -f "$HOME/_install_toSource.sh"
-if test -e "$HOME/_install_toSource.sh"
+if test -f "$HOME/_install_toSource.sh"
 then
 	echo "Please delete the freenet directory and the file \"$HOME/_install_toSource.sh\" before restarting the installer."
 	touch .isInstalled
@@ -44,7 +44,7 @@ fi
 touch plug
 
 # Are we in offline mode ?
-if test -e offline
+if test -f offline
 then
 	echo "Offline installation mode"
 else

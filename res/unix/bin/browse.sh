@@ -34,7 +34,7 @@ maybeCreateFFProfile()
 	fi
 }
 
-if test -e firefox.location
+if test -f firefox.location
 then
 	"`cat firefox.location`" "file://$INSTALL_PATH/dont-close-me.html" &
 	browseURL "$URL"

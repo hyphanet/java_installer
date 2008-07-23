@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e firefox_profile.install
+if test -f firefox_profile.install
 then
 	echo "Downloading the custom firefox profile"
 	if test ! -e offline

@@ -38,7 +38,7 @@ then
 
 	chmod u+rx bin/*sh
 
-	if test -e firefox_profile/user.js
+	if test -f firefox_profile/user.js
 	then
 		cat firefox_profile/user.js | sed "s/8888/$FPROXY_PORT/g" >user.js.tmp
 		mv user.js.tmp firefox_profile/user.js
@@ -50,7 +50,7 @@ echo "node.l10n=$ISO3_LANG" >> freenet.ini
 
 # Translate if needed
 FILE="dont-close-me.html"
-if test -e dont-close-me.$ISO3_LANG.html
+if test -f dont-close-me.$ISO3_LANG.html
 then
 	FILE="dont-close-me.$ISO3_LANG.html"
 fi

@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e stun -a -e plug
+if test -f stun -a -e plug
 then
 	echo "Enabling the STUN plugin"
 	if test ! -e plugins; then mkdir plugins; fi

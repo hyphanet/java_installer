@@ -5,7 +5,7 @@ cd "$INSTALL_PATH"
 
 # Tweak freenet.ini before the first startup
 echo "node.updater.enabled=true" > freenet.ini
-if test -e update
+if test -f update
 then
 	echo "Enabling the auto-update feature"
 	echo "node.updater.autoupdate=true" >> freenet.ini
@@ -18,7 +18,7 @@ then
 	java $JOPTS -jar bin/sha1test.jar update.sh ./ "$CAFILE" >/dev/null 2>&1 || exit 1
 fi
 
-if test -e update.sh
+if test -f update.sh
 then
 	chmod a+rx update.sh
 fi

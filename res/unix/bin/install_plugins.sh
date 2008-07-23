@@ -3,7 +3,7 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -e plug
+if test -f plug
 then
 	# Register plugins
 	echo "pluginmanager.loadplugin=`cat plug`" >> freenet.ini

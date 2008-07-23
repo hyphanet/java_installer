@@ -12,7 +12,7 @@ then
 	rm -f update
 fi
 
-if test ! -e offline
+if test ! -f offline
 then
 	echo "Downloading update.sh"
 	java $JOPTS -jar bin/sha1test.jar update.sh ./ "$CAFILE" >/dev/null 2>&1 || exit 1

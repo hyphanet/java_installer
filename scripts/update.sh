@@ -30,7 +30,7 @@ file_exist () {
 
 # Return the hash of a file in the HASH variable
 file_hash () {
-	if test -n "$1" -a -e "$1"
+	if test -n "$1" -a -f "$1"
 	then
 		HASH="`openssl md5 -sha1 \"$1\" | awk '{print $2;}'`"
 	else

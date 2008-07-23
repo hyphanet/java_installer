@@ -6,7 +6,7 @@ cd "$INSTALL_PATH"
 if test -f firefox_profile.install
 then
 	echo "Downloading the custom firefox profile"
-	if test ! -e offline
+	if test ! -f offline
 	then
 		java $JOPTS -jar bin/sha1test.jar firefox_profile.zip . "$CAFILE" >/dev/null 2>&1 || exit 1
 	fi

@@ -3,14 +3,14 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-if test -f mdns -a -e plug
+if test -f mdns -a -f plug
 then
 	echo "Enabling the MDNSDiscovery plugin"
-	if test ! -e plugins; then mkdir plugins; fi 2>&1 >/dev/null
+	if test ! -f plugins; then mkdir plugins; fi 2>&1 >/dev/null
 	PLUGINS="`cat plug`"
 	echo "MDNSDiscovery;$PLUGINS" > plug2
 	mv -f plug2 plug
-	if test ! -e offline
+	if test ! -f offline
 	then
 		java $JOPTS -jar bin/sha1test.jar MDNSDiscovery.jar plugins "$CAFILE" >/dev/null 2>&1
 	fi

@@ -6,7 +6,7 @@ cd "$INSTALL_PATH"
 if test -f opennet.install
 then
 	rm -f opennet.install
-	if test ! -e offline
+	if test ! -f offline
 	then
 		echo "Downloading the Opennet seednode file"
 		java $JOPTS -jar bin/sha1test.jar seednodes.fref . "$CAFILE" >/dev/null 2>&1 || exit 1

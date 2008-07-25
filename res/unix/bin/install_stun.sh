@@ -6,7 +6,7 @@ cd "$INSTALL_PATH"
 if test -f stun -a -f plug
 then
 	echo "Enabling the STUN plugin"
-	if test ! -f plugins; then mkdir plugins; fi
+	if test ! -d plugins; then mkdir plugins; fi
 	PLUGINS="`cat plug`"
 	echo "JSTUN;$PLUGINS" > plug2
 	mv -f plug2 plug

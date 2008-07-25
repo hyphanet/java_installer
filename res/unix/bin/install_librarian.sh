@@ -6,7 +6,7 @@ cd "$INSTALL_PATH"
 if test -f xmllibrarian -a -f plug
 then
 	echo "Enabling the XMLLibrarian plugin"
-	if test ! -f plugins; then mkdir plugins; fi
+	if test ! -d plugins; then mkdir plugins; fi
 	PLUGINS="`cat plug`"
 	echo "XMLLibrarian;$PLUGINS" > plug2
 	mv -f plug2 plug

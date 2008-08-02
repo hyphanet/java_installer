@@ -57,7 +57,12 @@ if test -s jvmerror
 then
 	echo "#################################################################"
 	echo "It seems that you are using a buggy JVM..."
-	echo "The installer will refuse to run until you switch to a decent one"
+	echo "Most versions of OpenJDK, and most other fully open source Java implementations have bugs"
+	echo "causing the installer to fail, and/or Freenet to break. Please install Sun Java 1.5 or 1.6"
+	echo "to make the installer work. On ubuntu:"
+	echo
+	echo "apt-get install sun-java6-jre"
+	echo "update-java-alternatives -s java-6-sun"
 	echo "#################################################################"
 	echo "You are currently using:"
 	java -version

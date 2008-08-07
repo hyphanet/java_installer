@@ -41,22 +41,22 @@
 @move /Y wrapper2.conf wrapper.conf > NUL
 
 @bin\cat.exe bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
-@move /Y install_service.bat bin\install_service.bat
+@move /Y install_service.bat bin\install_service.bat > NUL
 
 @bin\cat.exe bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
-@move /Y remove_service.bat bin\remove_service.bat
+@move /Y remove_service.bat bin\remove_service.bat > NUL
 
 @bin\cat.exe bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
-@move /Y start.cmd bin\start.cmd
+@move /Y start.cmd bin\start.cmd > NUL
 
 @bin\cat.exe bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
-@move /Y stop.cmd bin\stop.cmd
+@move /Y stop.cmd bin\stop.cmd > NUL
 
 @echo Installing the wrapper
 @if exist autostart.install goto startupPolicyChanged
 @echo 	- Changing the startup policy of the freenet daemon to on-demand
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/wrapper.ntservice.starttype=AUTO_START/wrapper.ntservice.starttype=DEMAND_START/g" > autostart.install
-@move /Y autostart.install wrapper.conf
+@move /Y autostart.install wrapper.conf > NUL
 :startupPolicyChanged
 @echo 	- Creating a user for freenet
 :: A ugly hack to workaround password policy enforcements

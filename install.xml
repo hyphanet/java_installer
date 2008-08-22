@@ -201,9 +201,23 @@
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 		</pack>
 		
-		<pack name="UninstallStuff" id="uninstall" required="yes" os="windows" parent="base">
-			<description>Create uninstallation hooks in the registry</description>
-			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd"/>
+		<pack name="UninstallStuff" id="uninstall" required="yes" parent="base">
+			<description>Create uninstallation hooks</description>
+			<executable targetfile="$INSTALL_PATH\Uninstaller\show_uninstall_survey.cmd" keep="true" stage="uninstall">
+				<os family="windows"/>
+			</executable>
+			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd">
+				<os family="windows"/>
+			</parsable>
+
+			<executable targetfile="$INSTALL_PATH/Uninstaller/show_uninstall_survey.sh" keep="true" stage="uninstall">
+				<os family="unix"/>
+				<os family="mac"/>
+			</executable>
+			<parsable targetfile="$INSTALL_PATH/Uninstaller/show_uninstall_survey.sh">
+				<os family="unix"/>
+				<os family="mac"/>
+			</parsable>
 		</pack>
 		
 		<pack name="AutoUpdater" id="autoupdater" required="no" parent="base">

@@ -1,4 +1,4 @@
-@set URL=http://spreadsheets.google.com/viewform?key=pARgKQ0i0ggo42b-G3If4Iw
+@set URL=http://freenetproject.org/uninstall.html
 
 @echo Trying to open "%URL%"
 @start "" "%URL%"

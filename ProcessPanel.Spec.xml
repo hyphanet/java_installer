@@ -51,6 +51,16 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
 	</job>
+	<job name="Setting KeyExplorer up">
+		<os family="unix"/>
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_keyexplorer.sh"/>
+	</job>
+	<job name="Setting ThawIndexBrowser up">
+		<os family="unix"/>
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_thawindexbrowser.sh"/>
+	</job>
 
 	<!-- no plugin below that line! -->
 	<job name="Setting plugins up">

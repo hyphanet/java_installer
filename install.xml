@@ -271,6 +271,16 @@
 			<description>A plugin allowing you to search the freenet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
 		</pack>
+
+		<pack name="KeyExplorer" id="keyexplorer" required="no" parent="plugins">
+			<description>A plugin allowing you to "view" the content of freenet keys including metadatas.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/keyexplorer"/>
+		</pack>
+
+		<pack name="ThawIndexBrowser" id="thawindexbrowser" required="no" parent="plugins">
+			<description>A plugin allowing you to "view" the content of thaw indexes from FProxy.</description>
+			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thawindexbrowser"/>
+		</pack>
 	</packs>
 
 	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->

@@ -46,7 +46,8 @@ file_comp () {
 		HASH_FILE1="$HASH"
 		file_hash "$2"
 		HASH_FILE2="$HASH"
-		return `test "$HASH_FILE1" = "$HASH_FILE2"`
+		test "$HASH_FILE1" = "$HASH_FILE2"
+		return
 	else
 		return 1
 	fi

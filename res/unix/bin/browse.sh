@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd "$INSTALL_PATH"
-POSSIBLE_NAMES="firefox mozilla mozilla-firefox iceweasel"
+POSSIBLE_NAMES="iceweasel firefox mozilla mozilla-firefox"
 
 if test $# -lt 1
 then

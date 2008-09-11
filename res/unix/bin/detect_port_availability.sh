@@ -69,4 +69,5 @@ fi
 echo "fcp.enabled=true" >> freenet.ini
 echo "fcp.port=$FCP_PORT" >> freenet.ini
 
-sh ./bin/browse.sh "http://127.0.0.1:$FPROXY_PORT/wizard/" &
+# Swallow output to avoid major problems if the installer exits before the script does.
+sh ./bin/browse.sh "http://127.0.0.1:$FPROXY_PORT/wizard/" > /dev/null &

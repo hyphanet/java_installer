@@ -230,8 +230,8 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/opennet.install"/>
 		</pack>
 		
-		<pack name="AutoStart" id="autostart" required="no" parent="base">
-			<description>Start the node automatically on startup. Strongly recommended.</description>
+		<pack name="AutoStart" id="autostart" required="no">
+			<description>Start the node automatically on startup. STRONGLY recommended. If this is turned off Freenet will be much slower: it will take a long time to get up to speed after every restart, downloads will take longer, and the node will be much less useful to the network.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
 			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall">
 				<os family="unix"/>

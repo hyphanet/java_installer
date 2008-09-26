@@ -177,7 +177,7 @@ ren freenet-%RELEASE%-latest.jar.new.url freenet-%RELEASE%-latest.jar.url
 Title Freenet Update Over HTTP Script
 ::Tell user the good news.
 echo   - Changing file permissions
-echo Y| cacls . /T /C /G freenet:f 2> NUL > NUL
+echo Y| cacls . /E /T /C /G freenet:f 2> NUL > NUL
 echo -
 echo - Freenet-%RELEASE%-snapshot.jar verified and copied to freenet.jar
 goto end
@@ -235,7 +235,7 @@ if exist freenet-%RELEASE%-latest.jar.bak del freenet-%RELEASE%-latest.jar.bak
 
 :: Maybe fix bug #2556
 echo   - Changing file permissions
-echo Y| cacls . /T /C /G freenet:f 2> NUL > NUL
+echo Y| cacls . /E /T /C /G freenet:f 2> NUL > NUL
 
 if %RESTART%==0 goto cleanup2
 echo - Restarting Freenet...

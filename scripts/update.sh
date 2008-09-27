@@ -5,6 +5,13 @@ JOPTS="-Djava.net.preferIPv4Stack=true"
 SHA1_Sha1Test="16bfa2d0e1f8bd7b2be79b2c26d88f47ea2164ca"
 echo "Updating freenet"
 
+if test -x pre-update.sh
+then
+	echo "Running the pre-update script:"
+	exec pre-update.sh
+	echo "Returning from the pre-update script"
+fi
+
 invert_return_code () {
         $*
         if test $? -ne 0

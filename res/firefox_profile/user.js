@@ -1,5 +1,6 @@
 user_pref("browser.startup.homepage", "http://127.0.0.1:8888");
 user_pref("app.update.enabled", false);
+user_pref("config.lockdown.disable_extensions", true);
 user_pref("extensions.update.notifyUser", false);
 user_pref("javascript.enabled", false);
 user_pref("security.enable_java", false);

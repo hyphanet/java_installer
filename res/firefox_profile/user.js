@@ -9,6 +9,8 @@ user_pref("security.enable_java", false);
 // See 2644: disable history
 user_pref("browser.history_expire_days", 0);
 user_pref("browser.history_expire_days.mirror", 0);
+user_pref("browser.formfill.enable", false);
+user_pref("browser.download.manager.retention", 0);
 // See 1124: Possible hint on how to not get USK's googled when miss-pasted
 user_pref("keyword.enabled", false);
 user_pref("browser.search.suggest.enabled", false);

@@ -1,3 +1,4 @@
+user_pref("browser.startup.page", 1);
 user_pref("browser.startup.homepage", "http://127.0.0.1:8888");
 user_pref("app.update.enabled", false);
 user_pref("config.lockdown.disable_extensions", true);

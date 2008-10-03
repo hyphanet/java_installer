@@ -8,7 +8,7 @@ echo "Updating freenet"
 if test -x pre-update.sh
 then
 	echo "Running the pre-update script:"
-	exec pre-update.sh
+	./pre-update.sh
 	echo "Returning from the pre-update script"
 fi
 

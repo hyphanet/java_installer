@@ -13,6 +13,8 @@ user_pref("browser.history_expire_days", 0);
 user_pref("browser.history_expire_days.mirror", 0);
 user_pref("browser.formfill.enable", false);
 user_pref("browser.download.manager.retention", 0);
+user_pref("browser.download.useDownloadDir", false);
+user_pref("dom.storage.enabled", false);
 // See 1124: Possible hint on how to not get USK's googled when miss-pasted
 user_pref("keyword.enabled", false);
 user_pref("browser.search.suggest.enabled", false);
@@ -52,6 +54,7 @@ user_pref("xpinstall.whitelist.add", "");
 user_pref("plugin.scan.4xPluginFolder", false);
 user_pref("plugin.scan.SunJRE", false);
 // Disable caching
+user_pref("browser.cache.disk.enable", false);
 user_pref("browser.cache.disk.capacity", 0);
 // Use the private-data-cleaning stuff
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);

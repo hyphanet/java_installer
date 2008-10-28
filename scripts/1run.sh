@@ -1,5 +1,20 @@
 #!/bin/sh
 
+if test "X`id -u`" = "X0"
+then
+        echo "The installer isn\'t meant to be run as root"
+	exit
+fi
+
+if test -f .isInstalled
+then
+	if test -s jvmerror
+	then
+		cat jvmerror
+	fi
+	echo "IllegalState: Delete the directory and re-unpack a fresh tarball"
+fi
+
 if test -s freenet.ini
 then
 	echo "This script isn\'t meant to be used more than once."
@@ -16,9 +31,7 @@ fi
 
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
-
-# We need the exec flag on /bin
-chmod a+rx bin/* lib/* &>/dev/null
+OS="`uname -s`"
 
 # Tweak freenet.ini before the first startup
 echo "node.updater.enabled=true" > freenet.ini
@@ -88,11 +101,18 @@ fi
 rm -f jvmerror
 chmod a+rx "./update.sh"
 
+echo "Downloading wrapper_$OS.zip"
+java $JOPTS -jar bin/sha1test.jar wrapper_$OS.zip . "$CAFILE" > /dev/null
+java $JOPTS -jar bin/uncompress.jar wrapper_$OS.zip . 2>&1 >/dev/null
+
+# We need the exec flag on /bin
+chmod u+x bin/* lib/*
+
 echo "Downloading freenet-stable-latest.jar"
-java $JOPTS -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null || exit 1 
+java $JOPTS -jar bin/sha1test.jar freenet-stable-latest.jar "." $CAFILE >/dev/null
 ln -s freenet-stable-latest.jar freenet.jar
 echo "Downloading freenet-ext.jar"
-java $JOPTS -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null || exit 1
+java $JOPTS -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null
 
 # Register plugins
 mkdir -p plugins
@@ -103,7 +123,7 @@ echo "Downloading the UPnP plugin"
 java $JOPTS -jar bin/sha1test.jar UPnP.jar plugins "$CAFILE" >/dev/null 2>&1
 
 echo "Downloading seednodes.fref"
-java $JOPTS -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null || exit 1
+java $JOPTS -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null
 
 if test -x `which crontab`
 then

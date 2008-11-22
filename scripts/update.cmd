@@ -114,6 +114,8 @@ if exist freenet-%RELEASE%-latest.jar.new.url del freenet-%RELEASE%-latest.jar.n
 bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-%RELEASE%-latest.jar.url -O freenet-%RELEASE%-latest.jar.new.url
 Title Freenet Update Over HTTP Script
 
+echo Fetched new main jar
+
 if not exist freenet-%RELEASE%-latest.jar.new.url goto error3
 FOR %%I IN ("%LOCATION%freenet-%RELEASE%-latest.jar.url") DO if %%~zI==0 goto error3
 
@@ -122,8 +124,39 @@ if not exist freenet-%RELEASE%-latest.jar.url goto update1
 
 ::Compare with current copy
 fc freenet-%RELEASE%-latest.jar.url freenet-%RELEASE%-latest.jar.new.url > NUL
-if not errorlevel 1 goto noupdate
+if not errorlevel 1 goto checkext
+goto update0
 
+:checkext
+::Main jar not updated.
+echo - Main jar not updated
+echo - Checking ext jar
+::Check for a new freenet-ext.jar.
+::Unfortunately there is no .url file for it, so we have to download the whole thing.
+if exist freenet-ext.jar.copy del freenet-ext.jar.copy
+bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-ext.jar -O freenet-ext.jar.copy
+if not exist freenet-ext.jar.copy goto error3
+FOR %%I IN ("%LOCATION%freenet-ext.jar.copy") DO if %%~zI==0 goto error3
+::Update anyway if doesn't exist...
+if not exist freenet-ext.jar goto update1
+fc freenet-ext.jar freenet-ext.jar.copy > NUL
+if errorlevel 1 goto update1
+del freenet-ext.jar.copy
+goto noupdate
+
+:update0
+echo - Main jar updated
+echo - Checking ext jar as well
+::Check for a new freenet-ext.jar.
+::Unfortunately there is no .url file for it, so we have to download the whole thing.
+if exist freenet-ext.jar.copy del freenet-ext.jar.copy
+bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-ext.jar -O freenet-ext.jar.copy
+if not exist freenet-ext.jar.copy goto error3
+FOR %%I IN ("%LOCATION%freenet-ext.jar.copy") DO if %%~zI==0 goto error3
+if not exist freenet-ext.jar goto update1
+fc freenet-ext.jar freenet-ext.jar.copy > NUL
+if errorlevel 1 goto update1
+del freenet-ext.jar.copy
 
 ::New version found, check if the node is currently running
 :update1
@@ -180,6 +213,16 @@ echo   - Changing file permissions
 echo Y| cacls . /E /T /C /G freenet:f 2> NUL > NUL
 echo -
 echo - Freenet-%RELEASE%-snapshot.jar verified and copied to freenet.jar
+
+if not exist freenet-ext.jar.copy goto end
+if exist freenet-ext.jar.bak del freenet-ext.jar.bak
+if exist freenet-ext.jar ren freenet-ext.jar freenet-ext.jar.bak
+ren freenet-ext.jar.copy freenet-ext.jar
+java -cp lib\sha1test.jar Sha1Test freenet-ext.jar . %CAFILE% > NUL
+if not errorlevel 0 goto errore4
+ren freenet-ext.jar.copy freenet-ext.jar
+echo Copied updated freenet-ext.jar
+
 goto end
 
 
@@ -214,6 +257,13 @@ echo - Error! Freenet update failed, trying to restore backup...
 if exist freenet-%RELEASE%-latest.jar del freenet-%RELEASE%-latest.jar
 if exist freenet-%RELEASE%-latest.jar.bak ren freenet-%RELEASE%-latest.jar.bak freenet-%RELEASE%-latest.jar
 if exist freenet-%RELEASE%-latest.jar.url del freenet-%RELEASE%-latest.jar.url
+goto end
+
+:Corrupt ext jar was downloaded, restore from backup
+:errore4
+echo Error! freenet-ext.jar update failed, trying to restore backup...
+if exist freenet-ext.jar del freenet-ext.jar
+if exist freenet-ext.jar.bak ren freenet-ext.jar.bak freenet-ext.jar
 goto end
 
 ::Wrapper.conf is old, downloading new version and restarting update script

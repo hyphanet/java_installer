@@ -1,6 +1,0 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-#navigator-toolbox menu[label="Tools"], #view-menu menuitem[label="Status Bar"], #view-menumenu[label="Sidebar"], #view-menu menu[label="Toolbars"], #bookmarks-menu, #helpMenu, #file-menu menuitem[label="Work Offline"], #navigator-toolbox menu[label="Tools"],#view-menu menuitem[label="Status Bar"], #view-menu menu[label="Sidebar"], #view-menumenu[label="Toolbars"], #bookmarks-menu, #history-menu, #edit-menu menuitem[label="Preferences"] { display: none!important; }
-
-#enableJavaRow, #enableJavaScriptRow, #cookiesGroup,#connectionGroup, #encryptionTab { display: none !important; }
-
-#toolbar-context-menu, #bookmarks-context-menu, #context-bookmarklink, #context-bookmarkpage, #miAddBookmark, #BookmarkAllTabs { display: none!important; }

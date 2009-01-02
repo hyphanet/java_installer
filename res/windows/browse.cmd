@@ -20,12 +20,13 @@
 @goto beforeLoop
 :begin
 
+:: Use firefox if available, since on Windows the most likely alternative is IE, and that definitely has problems with Freenet
+
 :: Check the simple case first (FF exists and has been detected)
 @if not exist firefox.location goto detectff
 @set /P FIREFOX=<firefox.location
 @if not defined FIREFOX goto detectff
-@start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
-@start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
+@start "" /B %FIREFOX% "%URL%"
 @goto realEnd
 
 :detectff
@@ -52,16 +53,11 @@
 @echo "c:\Program Files\Mozilla Firefox\firefox.exe" > firefox.location
 
 :foundff
-:: creation of the profile
-@echo Creating a Firefox profile for freenet
-@start "" /B %FIREFOX% "file:///%INSTALL_PATH%\dont-close-me.html"
-@%FIREFOX% -no-remote -CreateProfile "freenet %INSTALL_PATH%\firefox_profile" > NUL
-@start "" /B %FIREFOX% -no-remote -P freenet "%URL%"
+@start "" /B %FIREFOX% "%URL%"
 @goto end
 
 :: Firefox hasn't been detected at all
 :noff
-@echo The installer was unable to locate Mozilla Firefox on your computer
 @del /f firefox.location
 @echo Trying to open "%URL%"
 @start "" "%URL%"
@@ -69,6 +65,8 @@
 @goto end
 :argh
 @echo Starting the page failed, attempting to load directly in IE
+@echo Do not use Internet Explorer to browse Freenet, it has serious security problems
+@echo Please install an alternative browser ASAP
 @start "" /B "%ProgramFiles%\Internet Explorer\iexplore.exe" "%URL%"
 :end
 @del /f firefox.reg

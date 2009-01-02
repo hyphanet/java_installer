@@ -107,8 +107,6 @@
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="startssl.pem"/>
-				<include name="dont-close-me.html"/>
-				<include name="dont-close-me*.html"/>
 			</fileset>
 		</pack>
 

@@ -88,7 +88,7 @@
 
 @echo 	- Hiding the freenet user from the login screen
 @echo Windows Registry Editor Version 5.00 >> hide_user.reg
-@echo [HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Winlogon\SpecialAccounts\UserList] >> hide_user.reg
+@echo [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList] >> hide_user.reg
 @echo "freenet"=dword:00000000 >> hide_user.reg
 @regedit /s hide_user.reg > NUL
 @del /F hide_user.reg > NUL

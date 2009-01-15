@@ -35,15 +35,19 @@
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
 
+@echo Copying install_service.bat
 @bin\cat.exe bin\install_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > install_service.bat
 @move /Y install_service.bat bin\install_service.bat > NUL
 
+@echo Copying remove_service.bat
 @bin\cat.exe bin\remove_service.bat | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > remove_service.bat
 @move /Y remove_service.bat bin\remove_service.bat > NUL
 
+@echo Copying start.cmd
 @bin\cat.exe bin\start.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > start.cmd
 @move /Y start.cmd bin\start.cmd > NUL
 
+@echo Copying stop.cmd
 @bin\cat.exe bin\stop.cmd | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > stop.cmd
 @move /Y stop.cmd bin\stop.cmd > NUL
 

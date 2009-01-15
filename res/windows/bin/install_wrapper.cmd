@@ -13,10 +13,12 @@
 @if %ERRORLEVEL% EQU 0 goto configure_fproxy
 @set FPROXY_PORT=8889
 
+@echo Fixing port in browse.cmd
 @bin\cat.exe browse.cmd | bin\sed.exe "s/8888/%FPROXY_PORT%/g" > browse2.cmd
 @move /Y browse2.cmd browse.cmd > NUL
 
 :configure_fproxy
+@echo Setting fproxy port to %FPROXY_PORT%
 @echo fproxy.enable=true>>freenet.ini
 @echo fproxy.port=%FPROXY_PORT%>>freenet.ini
 @echo fproxy.enablePersistentConnections=true>>freenet.ini
@@ -29,6 +31,7 @@
 @echo fcp.enable=true >>freenet.ini
 @echo fcp.port=%FCP_PORT% >>freenet.ini
 
+@echo Building wrapper.conf
 @bin\cat.exe wrapper.conf | bin\sed.exe "s/darknet/darknet-%FPROXY_PORT%/g" > wrapper2.conf 
 @move /Y wrapper2.conf wrapper.conf > NUL
 
@@ -56,8 +59,10 @@
 :: trim to 12 chars (13 chars and above passwords aren't backcompatible; a warning might get displayed)
 @set PASSWORD=%TMPPASSWORD:~0,12%
 :: remove the user, just in case...
+@echo Removing old freenet user
 @net user freenet /delete 2> NUL > NUL
 :: create the user
+@echo Creating new freenet user
 @net user freenet %PASSWORD% /add /comment:"this user is used by freenet: do NOT delete it!" /expires:never /passwordchg:no /fullname:"Freenet dedicated user" > NUL
 @if %ERRORLEVEL% EQU 0 goto pwgen
 @echo Error while creating the freenet user! let's try something else...
@@ -73,7 +78,9 @@
 :pwgen
 :: We don't want the password to expire
 :: FIXME: what about that 3rd party code I haven't audited yet ? - Consider using something else
+@echo Setting password expiry
 @bin\netuser.exe freenet /pwnexp:y > NUL
+@echo Writing password to file temporarily to install service
 @echo wrapper.ntservice.account=.\freenet >> wrapper.conf
 @echo wrapper.ntservice.password=%PASSWORD%>> wrapper.password
 @type wrapper.password >> wrapper.conf
@@ -101,13 +108,16 @@
 
 @echo End >> freenet.ini
 :: It's likely that a node has already been set up; handle it
+@echo Running wrapper on wrapper.conf
 @bin\wrapper-windows-x86-32.exe -r ../wrapper.conf > NUL
+@echo Running wrapper again on wrapper.conf
 @bin\wrapper-windows-x86-32.exe -i ../wrapper.conf
 
 :: Start the node up
 @echo 	- Start the node up
 @net start freenet-darknet-%FPROXY_PORT%
 
+@echo Starting browser
 @start "" /B "browse.cmd" http://127.0.0.1:%FPROXY_PORT%/wizard/
 :endl10n
 :end

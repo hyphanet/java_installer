@@ -44,16 +44,6 @@ echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 echo "node.l10n=$ISO3_LANG" >> freenet.ini
 echo "fproxy.enableHistoryCloaking=true" >> freenet.ini
 
-# Translate if needed
-FILE="dont-close-me.html"
-if test -f dont-close-me.$ISO3_LANG.html
-then
-	FILE="dont-close-me.$ISO3_LANG.html"
-fi
-cat "$FILE" | sed "s/8888/$FPROXY_PORT/g" >_dont-close-me.html
-rm -f dont-close-me.*html
-mv _dont-close-me.html dont-close-me.html
-
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481
 java $JOPTS -jar bin/bindtest.jar $FCP_PORT 2>&1 >/dev/null

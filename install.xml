@@ -254,11 +254,6 @@
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
 		</pack>
 
-		<pack name="MDNSDiscovery" id="mdns" required="no" parent="plugins">
-			<description>A plugin enabling the node to use Zeroconf/Bonjour/Rendez-Vous to advertise itself to compatible clients, enabling them to self-auto-configure. Note that this plugin will "announce" that you are running a node on your local subnet.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/mdns"/>
-		</pack>
-
 		<pack name="XMLLibrarian" id="xmllibrarian" required="no" parent="plugins">
 			<description>A plugin allowing you to search the freenet.</description>
 			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>

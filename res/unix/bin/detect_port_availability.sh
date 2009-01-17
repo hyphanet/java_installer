@@ -42,6 +42,7 @@ fi
 echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 echo "node.l10n=$ISO3_LANG" >> freenet.ini
+echo "fproxy.enableHistoryCloaking=true" >> freenet.ini
 
 # Translate if needed
 FILE="dont-close-me.html"

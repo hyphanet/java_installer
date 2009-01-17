@@ -18,15 +18,6 @@
 @del /F stun > NUL
 :nostun
 
-@if not exist mdns goto nomdns 
-@echo 	-MDNSDiscovery
-@set PLUGINS=MDNSDiscovery;%PLUGINS%
-@if exist offline goto end2
-@java -jar bin\sha1test.jar MDNSDiscovery.jar plugins %CAFILE% > NUL
-:end2
-@del /F mdns > NUL
-:nomdns
-
 @if not exist upnp goto noupnp 
 @echo 	-UPnP
 @set PLUGINS=UPnP;%PLUGINS%

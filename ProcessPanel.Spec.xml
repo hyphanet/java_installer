@@ -31,11 +31,6 @@
 		<executefile name="$INSTALL_PATH\bin\install_opennet.cmd"/>
 	</job>
 
-	<job name="Setting MDNS up">
-		<os family="unix"/>
-		<os family="mac"/>
-		<executefile name="$INSTALL_PATH/bin/install_mdns.sh"/>
-	</job>
 	<job name="Setting JSTUN up">
 		<os family="unix"/>
 		<os family="mac"/>

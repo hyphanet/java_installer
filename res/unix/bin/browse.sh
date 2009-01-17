@@ -7,7 +7,7 @@ if test $# -lt 1
 then
 	URL="http://127.0.0.1:8888"
 else
-	URL="$1"
+	URL="`cat freenet.url.dat`"
 fi
 
 # Wait until the installer has finished

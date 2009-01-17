@@ -3,7 +3,6 @@
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 
-echo "fproxy.enablePersistentConnections=true" >> freenet.ini
 echo End >> freenet.ini
 
 # Starting the node up

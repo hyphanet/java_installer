@@ -122,6 +122,6 @@
 @net start freenet-darknet-%FPROXY_PORT%
 
 @echo Starting browser
-@start "" /B "browse.cmd" http://127.0.0.1:%FPROXY_PORT%/wizard/
+@start "" /B "browse.cmd" 
 :endl10n
 :end

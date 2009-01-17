@@ -148,7 +148,7 @@ fi
 # Starting the node up
 ./run.sh start
 
-echo "Please visit http://127.0.0.1:$FPROXY_PORT/wizard/ to configure your node"
+echo "Please visit http://127.0.0.1:$FPROXY_PORT/ to configure your node"
 echo "Finished"
 
 rm -f bin/1run.sh

@@ -3,6 +3,13 @@
 @set JAVA_HOME=$JAVA_HOME
 @cd /D %INSTALL_PATH%
 
+:: Loop until the install process is over
+:beforeLoop
+@if exist Uninstaller/install.log goto begin
+@ping -n 1 127.0.0.1>NUL
+@goto beforeLoop
+:begin
+
 :: Get the URL from the parameters if set
 @set COUNT=0
 @for %%x in (%*) do @( set /A COUNT=%COUNT%+1 )
@@ -12,13 +19,6 @@
 :withURL
 @set URL="%1"
 :doneURL
-
-:: Loop until the install process is over
-:beforeLoop
-@if exist Uninstaller/install.log goto begin
-@ping -n 1 127.0.0.1>NUL
-@goto beforeLoop
-:begin
 
 :: Use firefox if available, since on Windows the most likely alternative is IE, and that definitely has problems with Freenet
 

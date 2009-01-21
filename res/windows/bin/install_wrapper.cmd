@@ -21,7 +21,6 @@
 @echo Setting fproxy port to %FPROXY_PORT%
 @echo fproxy.enable=true>>freenet.ini
 @echo fproxy.port=%FPROXY_PORT%>>freenet.ini
-@echo fproxy.enableHistoryCloaking=true>>freenet.ini
 @echo node.l10n=%ISO3_LANG%>>freenet.ini
 
 :: Try to detect a free, available port for fcp

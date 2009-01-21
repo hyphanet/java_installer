@@ -42,7 +42,6 @@ fi
 echo "fproxy.enabled=true" >> freenet.ini
 echo "fproxy.port=$FPROXY_PORT" >> freenet.ini
 echo "node.l10n=$ISO3_LANG" >> freenet.ini
-echo "fproxy.enableHistoryCloaking=true" >> freenet.ini
 
 # Try to auto-detect the first available port for fcp
 FCP_PORT=9481

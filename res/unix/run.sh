@@ -397,6 +397,15 @@ getpid() {
                     echo "Removed stale pid file: $PIDFILE"
                     pid=""
                 fi
+		# Sometimes the pid exists and it's ours!
+		if ! test -f /proc/$pid/cwd/Freenet.pid
+		then
+                    # This is a stale pid file.
+                    rm -f "$PIDFILE"
+                    echo "Removed stale pid file2: $PIDFILE"
+                    pid=""
+		    
+		fi
             fi
         else
             echo "Cannot read $PIDFILE."

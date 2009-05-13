@@ -49,6 +49,15 @@ if "%1"=="testing" set RELEASE=testing
 if "%1"=="-testing" set RELEASE=testing
 if "%1"=="/testing" set RELEASE=testing
 
+::Check if we are on Vista/Seven if so we need to use icacls instead of cacls
+set VISTA=0
+::Vista?
+VER | findstr /l "6.0." > nul
+IF %ERRORLEVEL% EQU 0 set VISTA=1
+::Seven?
+VER | findstr /l "6.1." > nul
+IF %ERRORLEVEL% EQU 0 set VISTA=1
+
 ::Go to our location
 for %%I in (%0) do set LOCATION=%%~dpI
 cd /D %LOCATION%

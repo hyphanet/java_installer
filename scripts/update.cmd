@@ -1,5 +1,7 @@
 @echo off
 ::This script is designed for the Windows command line shell, so please don't put it into anything else! :)
+::This script may need to be run with administrator privileges.
+
 ::If you want to debug this script by adding pauses and stuff, please do it from another batch file, because
 ::if you modify this script in any way it will be detected as outdated and will be overwritten on the next run.
 ::To force a re-download of the latest Freenet.jar, simply delete freenet-%RELEASE%-latest.jar.url before running this script.
@@ -10,7 +12,7 @@
 Title Freenet Update Over HTTP Script
 echo -----
 echo - Freenet Windows update script 1.6 by Zero3Cool (zero3cool@zerosplayground.dk)
-echo - Freenet Windows update script 1.7-2.4,2.6-2.7 by Juiceman (juiceman69@gmail.com)
+echo - Freenet Windows update script 1.7-2.4,2.6-2.9 by Juiceman (juiceman69@gmail.com)
 echo - Thanks to search4answers, Michael Schierl and toad for help and feedback.
 echo -----
 echo - This script will automatically update your Freenet installation
@@ -26,6 +28,8 @@ echo -----------------------------------------------------------
 echo -----
 
 ::CHANGELOG:
+:: 2.9 - Check for file permissions
+:: 2.8 - Add detecting of Vista\Seven, use the appropriate version of cacls.
 :: 2.7 - Better error handling
 :: 2.6 - Prepare for new binary start and stop.exe's
 :: ---   Many various changes
@@ -66,7 +70,19 @@ cd /D %LOCATION%
 if not exist freenet.ini goto error2
 if not exist bin\wget.exe goto error2
 
-::if not exist wrapper.conf.bak copy wrapper.conf wrapper.conf.bak > NUL
+::Simple test to see if we have enough privileges to modify files.
+echo - Checking file permissions
+if exist writetest del writetest > NUL
+if exist writetest goto writefail
+echo test > writetest
+if not exist writetest goto writefail
+del writetest > NUL
+if exist writetest goto writefail
+
+:: Maybe fix bug #2556
+echo - Changing file permissions
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 
 ::Get the filename and skip straight to the Freenet update if this is a new updater
 for %%I in (%0) do set FILENAME=%%~nxI
@@ -225,8 +241,11 @@ if exist freenet-%RELEASE%-latest.jar.url del freenet-%RELEASE%-latest.jar.url
 ren freenet-%RELEASE%-latest.jar.new.url freenet-%RELEASE%-latest.jar.url
 Title Freenet Update Over HTTP Script
 ::Tell user the good news.
-echo   - Changing file permissions
-echo Y| cacls . /E /T /C /G freenet:f 2> NUL > NUL
+
+:: Maybe fix bug #2556
+echo - Changing file permissions
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 echo -
 echo - Freenet-%RELEASE%-snapshot.jar verified and copied to freenet.jar
 
@@ -259,7 +278,6 @@ goto veryend
 
 ::Server may be down.
 :error3
-@del /F bin\netuser.exe > NUL
 echo - Error! Could not download latest Freenet update information. Try again later.
 goto end
 
@@ -309,8 +327,9 @@ if exist freenet-%RELEASE%-latest.jar.new.url del freenet-%RELEASE%-latest.jar.n
 if exist freenet-%RELEASE%-latest.jar.bak del freenet-%RELEASE%-latest.jar.bak
 
 :: Maybe fix bug #2556
-echo    - Changing file permissions
-echo Y| cacls . /E /T /C /G freenet:f 2> NUL > NUL
+echo - Changing file permissions
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 
 if %RESTART%==0 goto cleanup2
 echo - Restarting Freenet...
@@ -334,5 +353,9 @@ copy /Y update.new.cmd update.cmd > NUL
 echo -----
 exit
 
+ ::We don't have enough privileges!
+:writefail
+echo File permissions error!  Please launch this script with administrator privileges.
+pause
 :veryend
 ::FREENET WINDOWS UPDATE SCRIPT

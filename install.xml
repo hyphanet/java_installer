@@ -184,6 +184,10 @@
 				<exclude name="lib/libwrapper-*"/>
 				<include name="*/**"/>
 			</fileset>
+            
+            <fileset dir="res/mac/" targetdir="$USER_HOME/Library/LaunchAgents">
+                <include name="*"/>
+            </fileset>
 
 			<fileset dir="offline" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>

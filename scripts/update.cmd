@@ -12,7 +12,7 @@
 Title Freenet Update Over HTTP Script
 echo -----
 echo - Freenet Windows update script 1.6 by Zero3Cool (zero3cool@zerosplayground.dk)
-echo - Freenet Windows update script 1.7-2.4,2.6-2.9 by Juiceman (juiceman69@gmail.com)
+echo - Freenet Windows update script 1.7-3.0 Juiceman (juiceman69@gmail.com)
 echo - Thanks to search4answers, Michael Schierl and toad for help and feedback.
 echo -----
 echo - This script will automatically update your Freenet installation
@@ -28,6 +28,7 @@ echo -----------------------------------------------------------
 echo -----
 
 ::CHANGELOG:
+:: 3.0 - Handle binary start/stop.exe exit conditions and use it to set restart flag.
 :: 2.9 - Check for file permissions
 :: 2.8 - Add detecting of Vista\Seven, use the appropriate version of cacls.
 :: 2.7 - Better error handling
@@ -53,8 +54,14 @@ if "%1"=="testing" set RELEASE=testing
 if "%1"=="-testing" set RELEASE=testing
 if "%1"=="/testing" set RELEASE=testing
 
+echo - Release selected is: %RELEASE%
+echo -
+
 ::Check if we are on Vista/Seven if so we need to use icacls instead of cacls
 set VISTA=0
+::Treat server 2k3/XP64 as vista as they need icacls
+VER | findstr /l "5.2." > nul
+IF %ERRORLEVEL% EQU 0 set VISTA=1
 ::Vista?
 VER | findstr /l "6.0." > nul
 IF %ERRORLEVEL% EQU 0 set VISTA=1
@@ -91,7 +98,7 @@ if %FILENAME%==update.new.cmd goto updaterok
 ::Download latest updater and verify it
 if exist update.new.cmd del update.new.cmd
 echo - Checking for newer version of this update script...
-bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/update/update.cmd -O update.new.cmd
+bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/update/update-new.cmd -O update.new.cmd
 Title Freenet Update Over HTTP Script
 
 if not exist update.new.cmd goto error1
@@ -152,6 +159,8 @@ if not exist freenet-%RELEASE%-latest.jar.url goto mainyes
 fc freenet-%RELEASE%-latest.jar.url freenet-%RELEASE%-latest.jar.new.url > NUL
 if errorlevel 1 goto mainyes
 echo    - Main jar is current.
+fc freenet-%RELEASE%-latest.jar freenet.jar > NUL
+if errorlevel 1 goto mainyes
 goto checkext
 
 :mainyes
@@ -188,18 +197,19 @@ echo    - New ext jar found!
 echo -----
 echo - New Freenet version found!  Installing now...
 echo -----
-:: FIXME  we still need to pull dynamic service name from file the new installer is going to create.
-net start | find "Freenet 0.7 darknet" > NUL
-if errorlevel 1 goto update2 > NUL
-set RESTART=1
 
 ::See if we are using the new binary stop.exe
 if not exist bin\stop.exe goto oldstopper
-call bin\stop.exe > NUL
-::  FIXME   do we need a new error handling section for the new .exe?  Will it handle errors itself?
+:newstoppper
+call bin\stop.exe /silent
+if errorlevel 0 set RESTART=1
+if errorlevel 1 goto unknownerror
 goto update2
 
 :oldstopper
+net start | find "Freenet 0.7 darknet" > NUL
+if errorlevel 1 goto update2 > NUL
+set RESTART=1
 ::Tell the user not to abort script, it gets very messy.
 echo - Shutting down Freenet...   (This may take a moment, please don't abort)
 call bin\stop.cmd > NUL
@@ -335,7 +345,8 @@ if %RESTART%==0 goto cleanup2
 echo - Restarting Freenet...
 ::See if we are using the new binary start.exe
 if not exist bin\start.exe goto oldstarter
-call bin\start.exe > NUL
+call bin\start.exe /silent
+if errorlevel 1 goto unknownerror
 goto cleanup2
 
 :oldstarter
@@ -355,7 +366,16 @@ exit
 
  ::We don't have enough privileges!
 :writefail
-echo File permissions error!  Please launch this script with administrator privileges.
+echo - File permissions error!  Please launch this script with administrator privileges.
 pause
+goto veryend
+
+:unknownerror
+echo - An unknown error has occurred.
+echo - Please scroll up and look for clues and contact support@freenetproject.org
+if exist freenet-%RELEASE%-latest.jar.new.url del freenet-%RELEASE%-latest.jar.new.url
+if exist freenet-%RELEASE%-latest.jar.bak del freenet-%RELEASE%-latest.jar.bak
+pause
+
 :veryend
 ::FREENET WINDOWS UPDATE SCRIPT

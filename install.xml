@@ -170,6 +170,16 @@
 			<executable targetfile="$INSTALL_PATH/bin/browse.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
+			
+			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall">
+				<os family="unix"/>
+				<os family="mac"/>
+			</executable>
+			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh">
+				<os family="unix"/>
+				<os family="mac"/>
+			</parsable>
+			
 		</pack>
 
 		<!-- Yes it's a rip of the unix one, but I haven't found any smarter way to do it! -->
@@ -221,57 +231,6 @@
 			</parsable>
 		</pack>
 		
-		<pack name="AutoUpdater" id="autoupdater" required="no" parent="base">
-			<description>Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/update"/>
-		</pack>
-
-		<pack name="OpenNet" id="opennet" required="no" parent="base">
-			<description>The opennet seednodes file. Used to connect quickly (but insecurely) to the network. The node will ask whether to use this after install.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/opennet.install"/>
-		</pack>
-		
-		<pack name="AutoStart" id="autostart" required="no">
-			<description>Start the node automatically on startup. STRONGLY recommended. If this is turned off Freenet will be much slower: it will take a long time to get up to speed after every restart, downloads will take longer, and the node will be much less useful to the network.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/autostart.install"/>
-			<executable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh" keep="true" stage="uninstall">
-				<os family="unix"/>
-				<os family="mac"/>
-			</executable>
-			<parsable targetfile="$INSTALL_PATH/bin/remove_cronjob.sh">
-				<os family="unix"/>
-				<os family="mac"/>
-			</parsable>
-		</pack>
-
-		<pack name="Plugins" id="plugins" required="no">
-			<description>A set of plugins for freenet nodes</description>
-		</pack>
-
-		<pack name="UPnP" id="upnp" required="no" parent="plugins">
-			<description>A plugin enabling the node to use Universal Plug and Play to determine your external internet address and set up port forwarding on your router. Note that this involves contacting your default gateway and may be a security risk on an untrusted LAN, however it improves connectivity significantly.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/upnp"/>
-		</pack>
-
-		<pack name="STUN" id="stun" required="no" parent="plugins">
-			<description>A plugin enabling the node to use STUN to determine your external internet address. Note that this involves contacting an external server so may be a security risk, however it improves connectivity significantly for nodes behind a router with dynamic IP addresses (i.e. most nodes).</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/stun"/>
-		</pack>
-
-		<pack name="XMLLibrarian" id="xmllibrarian" required="no" parent="plugins">
-			<description>A plugin allowing you to search the freenet.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/xmllibrarian"/>
-		</pack>
-
-		<pack name="KeyExplorer" id="keyexplorer" required="no" parent="plugins">
-			<description>A plugin allowing you to "view" the content of freenet keys including metadatas.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/keyexplorer"/>
-		</pack>
-
-		<pack name="ThawIndexBrowser" id="thawindexbrowser" required="no" parent="plugins">
-			<description>A plugin allowing you to "view" the content of thaw indexes from FProxy.</description>
-			<singlefile src="res/license/LICENSE.Freenet" target="$INSTALL_PATH/thawindexbrowser"/>
-		</pack>
 	</packs>
 
 	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->

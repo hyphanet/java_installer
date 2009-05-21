@@ -11,8 +11,5 @@
 :end
 @echo node.updater.enabled=true>> freenet.ini
 
-@if not exist update goto noautoupdate
-@echo node.updater.autoupdate=true>> freenet.ini
-@del /F update > NUL
 :noautoupdate
 :end

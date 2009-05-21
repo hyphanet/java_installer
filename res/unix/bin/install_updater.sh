@@ -5,12 +5,6 @@ cd "$INSTALL_PATH"
 
 # Tweak freenet.ini before the first startup
 echo "node.updater.enabled=true" > freenet.ini
-if test -f update
-then
-	echo "Enabling the auto-update feature"
-	echo "node.updater.autoupdate=true" >> freenet.ini
-	rm -f update
-fi
 
 if test ! -f offline
 then

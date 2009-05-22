@@ -7,8 +7,6 @@ cd "$INSTALL_PATH"
 # See here: 
 # http://refspecs.linux-foundation.org/LSB_3.2.0/LSB-Core-generic/LSB-Core-generic/initsrcinstrm.html
 # http://refspecs.linux-foundation.org/LSB_3.2.0/LSB-Core-generic/LSB-Core-generic/useradd.html
-if test -f autostart.install
-then
 	echo "Enabling auto-start."
 	if test -x `which crontab`
 	then
@@ -27,6 +25,3 @@ then
 	else
 		echo Cron appears not to be installed, you will have to run run.sh start manually to start Freenet after a reboot.
 	fi
-else
-	echo Auto-start is disabled, you will have to run run.sh start manually to start Freenet after a reboot.
-fi

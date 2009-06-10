@@ -12,7 +12,7 @@
 Title Freenet Update Over HTTP Script
 echo -----
 echo - Freenet Windows update script 1.6 by Zero3Cool (zero3cool@zerosplayground.dk)
-echo - Freenet Windows update script 1.7-3.0 Juiceman (juiceman69@gmail.com)
+echo - Further contributions by Juiceman (juiceman69@gmail.com)
 echo - Thanks to search4answers, Michael Schierl and toad for help and feedback.
 echo -----
 echo - This script will automatically update your Freenet installation
@@ -28,6 +28,7 @@ echo -----------------------------------------------------------
 echo -----
 
 ::CHANGELOG:
+:: 3.1 - Fix permissions by fixing invalid cacls arguments
 :: 3.0 - Handle binary start/stop.exe exit conditions and use it to set restart flag.
 :: 2.9 - Check for file permissions
 :: 2.8 - Add detecting of Vista\Seven, use the appropriate version of cacls.
@@ -88,7 +89,7 @@ if exist writetest goto writefail
 
 :: Maybe fix bug #2556
 echo - Changing file permissions
-if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f > NUL
 if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 
 ::Get the filename and skip straight to the Freenet update if this is a new updater
@@ -254,7 +255,7 @@ Title Freenet Update Over HTTP Script
 
 :: Maybe fix bug #2556
 echo - Changing file permissions
-if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f > NUL
 if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 echo -
 echo - Freenet-%RELEASE%-snapshot.jar verified and copied to freenet.jar
@@ -338,7 +339,7 @@ if exist freenet-%RELEASE%-latest.jar.bak del freenet-%RELEASE%-latest.jar.bak
 
 :: Maybe fix bug #2556
 echo - Changing file permissions
-if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f 2 > NUL > NUL
+if %VISTA%==0 echo Y| cacls . /E /T /C /G freenet:f > NUL
 if %VISTA%==1 echo y| icacls . /grant freenet:(OI)(CI)F /T /C > NUL
 
 if %RESTART%==0 goto cleanup2

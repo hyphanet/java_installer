@@ -1,5 +1,7 @@
 #!/bin/sh
 
+if [[ `uname` == "Darwin" ]]; then exit; fi
+
 . "$HOME/_install_toSource.sh" || exit 0
 cd "$INSTALL_PATH"
 

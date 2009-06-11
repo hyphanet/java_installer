@@ -192,6 +192,7 @@
 				<exclude name="*/**/.svn/**"/>
 				<exclude name="bin/wrapper-*"/>
 				<exclude name="lib/libwrapper-*"/>
+                <exclude name="bin/install_autostart.sh"/>
 				<include name="*/**"/>
 			</fileset>
             

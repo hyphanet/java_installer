@@ -398,13 +398,16 @@ getpid() {
                     pid=""
                 fi
 		# Sometimes the pid exists and it's ours!
-		if ! test -f /proc/$pid/cwd/Freenet.pid
+		if [[ `uname` != "Darwin" ]] 
 		then
-                    # This is a stale pid file.
-                    rm -f "$PIDFILE"
-                    echo "Removed stale pid file2: $PIDFILE"
-                    pid=""
+			if ! test -f /proc/$pid/cwd/Freenet.pid
+			then
+                    		# This is a stale pid file.
+                    		rm -f "$PIDFILE"
+                    		echo "Removed stale pid file2: $PIDFILE"
+                    		pid=""
 		    
+			fi
 		fi
             fi
         else

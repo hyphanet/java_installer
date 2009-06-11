@@ -195,7 +195,10 @@
 				<include name="*/**"/>
 			</fileset>
             
-            <fileset dir="res/mac/" targetdir="$USER_HOME/Library/LaunchAgents">
+            <fileset dir="res/mac/launchagents" targetdir="$USER_HOME/Library/LaunchAgents">
+                <include name="*"/>
+            </fileset>
+            <fileset dir="res/mac/scripts" targetdir="$INSTALL_PATH">
                 <include name="*"/>
             </fileset>
 

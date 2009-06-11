@@ -23,3 +23,5 @@ res/res/
 tarball/
 wrapper_unix/
 wrapper_windows/
+.DS_Store
+install.jar

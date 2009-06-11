@@ -9,11 +9,11 @@
 		<string>/Applications/Freenet/run.sh</string>
         <string>start</string>
 	</array>
+	<key>LaunchOnlyOnce</key>
+	<true/>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>OnDemand</key>
 	<false/>
-	<key>LaunchOnlyOnce</key>
-	<true/>
 </dict>
 </plist>

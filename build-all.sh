@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Dependancies:
+# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref
+# In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, XMLLibrarian.jar, KeyExplorer.jar, ThawIndexBrowser.jar
+
 JAVA_HOME=/usr/lib/jvm/java-1.5.0-sun
 PATH=$JAVA_HOME/bin/:$PATH
 

@@ -4,7 +4,7 @@
 
 	<info>
 		<appname>Freenet</appname>
-		<appversion>0.7.5 release candidate 1</appversion>
+		<appversion>0.7.5</appversion>
 		<url>http://freenetproject.org/</url>
 		<javaversion>1.5.0</javaversion>
 		<uninstaller write="yes"/>
@@ -55,7 +55,7 @@
 	<variables>
 		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
 		<variable name="InstallerFrame.logfilePath" value="$INSTALL_PATH/Uninstaller/install.log" />
-		<variable name="app-version" value="0.7.5-rc1"/>
+		<variable name="app-version" value="0.7.5"/>
 		<variable name="released-on" value="Thursday 8 May 2008"/>
 	</variables>
 

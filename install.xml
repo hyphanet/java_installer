@@ -212,8 +212,10 @@
 			<executable targetfile="$INSTALL_PATH/run.sh" type="bin" stage="never" keep="true"/>
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
 			<executable targetfile="$INSTALL_PATH/bin/browse.sh" type="bin" stage="never"/>
+			<executable targetfile="$INSTALL_PATH/StartFreenet.command" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
+			<parsable targetfile="$INSTALL_PATH/StartFreenet.command"/>
 		</pack>
 		
 		<pack name="UninstallStuff" id="uninstall" required="yes" parent="base">

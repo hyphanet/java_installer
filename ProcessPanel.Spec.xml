@@ -97,7 +97,6 @@
 
 	<job name="Setting up auto-start">
 		<os family="unix"/>
-		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_autostart.sh"/>
 	</job>
 

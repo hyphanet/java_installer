@@ -197,7 +197,7 @@ case "$DIST_ARCH" in
     'ip27' | 'mips')
         DIST_ARCH="mips"
         ;;
-    'power' | 'powerpc' | 'power_pc' | 'ppc64')
+    'powermacintosh' | 'power' | 'powerpc' | 'power_pc' | 'ppc64')
         DIST_ARCH="ppc"
         ;;
     'pa_risc' | 'pa-risc')

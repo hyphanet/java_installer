@@ -73,9 +73,9 @@ LDPROP=""
 #	# unlocked but no thread owns it.
 #
 #	## won't work on libc2.4 ... let's hope it's fixed
-#	if [[ -z "$(/lib/libc.so.6 | head -n 1 | grep 'release version 2.4')" ]]
+#	if test -z "$(/lib/libc.so.6 | head -n 1 | grep 'release version 2.4')"
 #	then
-#		if [[ -d /lib/tls ]]
+#		if test -d /lib/tls 
 #		then
 #			LDPROP="set.LD_ASSUME_KERNEL=2.4.1" 
 #		fi
@@ -398,7 +398,7 @@ getpid() {
                     pid=""
                 fi
 		# Sometimes the pid exists and it's ours!
-		if [[ `uname` != "Darwin" ]] 
+		if test `uname` != "Darwin" 
 		then
 			if ! test -f /proc/$pid/cwd/Freenet.pid
 			then

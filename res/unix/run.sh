@@ -61,28 +61,6 @@ fi
 # and get java implementation too, Sun JDK or Kaffe
 JAVA_IMPL=`java -version 2>&1 | head -n 1 | cut -f1 -d' '`
 
-# sun specific options
-LDPROP=""
-#if [ "$JAVA_IMPL" = "java" ]
-#then 
-#	echo Sun java detected.
-#	# Tell it not to use NPTL.
-#	# BAD THINGS happen if it uses NPTL.
-#	# Specifically, at least on 1.4.1. and 1.5.0b2, we get hangs
-#	# where many threads are stuck waiting for a lock to be 
-#	# unlocked but no thread owns it.
-#
-#	## won't work on libc2.4 ... let's hope it's fixed
-#	if test -z "$(/lib/libc.so.6 | head -n 1 | grep 'release version 2.4')"
-#	then
-#		if test -d /lib/tls 
-#		then
-#			LDPROP="set.LD_ASSUME_KERNEL=2.4.1" 
-#		fi
-#	fi
-#fi 
-
-
 # Get the fully qualified path to the script
 case $0 in
     /*)

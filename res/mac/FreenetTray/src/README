@@ -1,0 +1,17 @@
+About: This is a system tray item for Freenet for OS X, it is written in Objective-c using the Cocoa APIs. 
+
+Licensing: Read the LICENSE file
+
+Build instructions:
+
+You must have Xcode installed. It should build and run correctly on both Tiger and Leopard on PPC and Intel. 
+
+It has only been tested on 32-bit Intel Snow Leopard so feedback is appreciated.
+
+Changelog:
+
+1.0 - Tray has few functions: start and stop the freenest node, open the web interface and quit the tray item. 
+
+The tray item changes color based on whether or not the freenet node is running. It uses the freenet.anchor file to detect node status, so it must know where the node files are located for this to work. Paths for the node url and the location of node files are static but can be changed after first run in ~/Library/Preferences/com.freenet.tray.plist.
+
+On first launch if the program has never been run before, it will install a loginitem to start the tray when the user logs into their computer. 

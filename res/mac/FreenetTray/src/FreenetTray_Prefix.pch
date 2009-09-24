@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'Freenet Controller' target in the 'Freenet Controller' project
+//
+//  File released under the GPLv2
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

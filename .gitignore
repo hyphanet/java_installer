@@ -25,3 +25,5 @@ wrapper_unix/
 wrapper_windows/
 .DS_Store
 install.jar
+*.pbxuser
+*.mode1v3

@@ -378,7 +378,7 @@ getpid() {
 		# Sometimes the pid exists and it's ours!
 		if test `uname` != "Darwin" 
 		then
-			if ! test -f /proc/$pid/cwd/Freenet.pid
+			if test -f /proc && ! test -f /proc/$pid/cwd/Freenet.pid
 			then
                     		# This is a stale pid file.
                     		rm -f "$PIDFILE"

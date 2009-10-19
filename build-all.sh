@@ -2,7 +2,7 @@
 
 # Dependancies:
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref
-# In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, XMLLibrarian.jar, KeyExplorer.jar, ThawIndexBrowser.jar
+# In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, Library.jar, KeyExplorer.jar, ThawIndexBrowser.jar
 
 JAVA_HOME=/usr/lib/jvm/java-1.5.0-sun
 PATH=$JAVA_HOME/bin/:$PATH
@@ -50,7 +50,7 @@ cp scripts/update.sh offline/
 mkdir offline/plugins
 cp ../FreenetReleased/JSTUN.jar offline/plugins/
 cp ../FreenetReleased/UPnP.jar offline/plugins/
-cp ../FreenetReleased/XMLLibrarian.jar offline/plugins/
+cp ../FreenetReleased/Library.jar offline/plugins/
 cp ../FreenetReleased/KeyExplorer.jar offline/plugins/
 cp ../FreenetReleased/ThawIndexBrowser.jar offline/plugins/
 ant win32

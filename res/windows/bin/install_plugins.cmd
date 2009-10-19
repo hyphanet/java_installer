@@ -21,9 +21,9 @@
 :end3
 :noupnp
 
-@echo 	-XMLLibrarian
+@echo 	-Library
 @if exist offline goto end4
-@java -jar bin\sha1test.jar XMLLibrarian.jar plugins %CAFILE% > NUL
+@java -jar bin\sha1test.jar Library.jar plugins %CAFILE% > NUL
 :end4
 :nolibrarian
 
@@ -39,5 +39,5 @@
 :end4
 :nothawindexbrowser
 
-@echo pluginmanager.loadplugin=XMLLibrarian;KeyExplorer;ThawIndexBrowser >> freenet.ini
+@echo pluginmanager.loadplugin=Library;KeyExplorer;ThawIndexBrowser >> freenet.ini
 :end

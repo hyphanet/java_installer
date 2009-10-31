@@ -6,9 +6,11 @@ Build instructions:
 
 You must have Xcode installed. It should build and run correctly on both Tiger and Leopard on PPC and Intel. 
 
-It has only been tested on 32-bit Intel Snow Leopard so feedback is appreciated.
+It has only been tested on 32-bit Intel Snow Leopard and 32-bit Intel Leopard so feedback is appreciated.
 
 Changelog:
+
+1.1 - Added about panel to show copyright info, updated code to include license file inside program bundle for distribution.
 
 1.0 - Tray has few functions: start and stop the freenest node, open the web interface and quit the tray item. 
 

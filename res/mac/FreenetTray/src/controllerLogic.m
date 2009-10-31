@@ -3,6 +3,7 @@
 // This code is distributed under the GNU General
 // Public License, version 2 (or at your option any later version). See
 // http://www.gnu.org/ for further details of the GPL. */
+// Code version 1.1
 
 #import "controllerLogic.h"
 #include "UKLoginItemRegistry.h"
@@ -56,8 +57,9 @@
 	//preferencesOption = [trayMenu addItemWithTitle: @"Preferences"  
 	//										action: @selector (openPreferences:)  
 	//								 keyEquivalent: @"p"];
-
-
+	aboutPanel = [trayMenu addItemWithTitle: @"About"  
+                                     action: @selector (orderFrontStandardAboutPanel:)  
+									  keyEquivalent: @"a"];
 	quitItem = [trayMenu addItemWithTitle: @"Quit"  
 								   action: @selector (quitProgram:)  
 							keyEquivalent: @"q"];
@@ -150,7 +152,6 @@
 	[anchorFile release];
 
 }
-
 
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	

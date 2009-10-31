@@ -12,6 +12,8 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AA02AADA0FC8D74F00499DB3 /* controllerLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = AA02AAD90FC8D74F00499DB3 /* controllerLogic.m */; };
 		AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */ = {isa = PBXBuildFile; fileRef = AA2A8B9B0FE3819300C585C8 /* freenet.icns */; };
+		AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCE109CD2B400EDBB73 /* LICENSE */; };
+		AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCF109CD2B400EDBB73 /* gpl.txt */; };
 		AA6295A20FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */; };
 		AA7B6F600FDDDB5C00065772 /* FreenetTray-NotRunning-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */; };
 		AA7B6F610FDDDB5C00065772 /* FreenetTray-Running-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */; };
@@ -44,6 +46,8 @@
 		AA02AAD80FC8D74F00499DB3 /* controllerLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controllerLogic.h; sourceTree = "<group>"; };
 		AA02AAD90FC8D74F00499DB3 /* controllerLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controllerLogic.m; sourceTree = "<group>"; };
 		AA2A8B9B0FE3819300C585C8 /* freenet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = freenet.icns; sourceTree = "<group>"; };
+		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
 		AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-Selected-24.png"; sourceTree = "<group>"; };
 		AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-NotRunning-24.png"; sourceTree = "<group>"; };
 		AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-Running-24.png"; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AA433BCE109CD2B400EDBB73 /* LICENSE */,
+				AA433BCF109CD2B400EDBB73 /* gpl.txt */,
 				AA2A8B9B0FE3819300C585C8 /* freenet.icns */,
 				AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */,
 				AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */,
@@ -200,6 +206,8 @@
 				AA7B6F610FDDDB5C00065772 /* FreenetTray-Running-24.png in Resources */,
 				AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */,
 				AADFE52D103A4251007808C8 /* main.xib in Resources */,
+				AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */,
+				AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

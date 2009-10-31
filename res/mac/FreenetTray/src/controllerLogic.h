@@ -3,6 +3,7 @@
 // This code is distributed under the GNU General
 // Public License, version 2 (or at your option any later version). See
 // http://www.gnu.org/ for further details of the GPL. */
+// Code version 1.1
 
 #import <Cocoa/Cocoa.h>
 @interface controllerLogic : NSObject {
@@ -14,6 +15,7 @@
 	NSMenuItem *startStopToggle;
 	NSMenuItem *webInterfaceOption;
 	NSMenuItem *quitItem;
+    NSMenuItem *aboutPanel;
 }
 
 - (void)startFreenet:(id)sender;

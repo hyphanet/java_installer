@@ -5,7 +5,7 @@
 	<key>NSMainNibFile</key>
 	<string>main</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>All code released under GPLv2</string>
+	<string>This code is distributed under the GNU General Public License, version 2 (or at your option any later version). See http://www.gnu.org/ for further details of the GPL. Portions copyrighted by Apple and M. Uli Kusterer. See inside program bundle for LICENSE file.</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

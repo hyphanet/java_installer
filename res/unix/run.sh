@@ -531,18 +531,44 @@ dump() {
     fi
 }
 
-getMem() {
+getHardwareMemory() {
     if [ $DIST_OS = "macosx" ]
     then
-       echo $((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024)) > hardware.memory
+       return $((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))
     elif [ $DIST_OS = "freebsd" ]
     then
-       echo $((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024)) > hardware.memory
+       returno $((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
     elif [ $DIST_OS = "linux" ]
     then
-       echo $((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024)) > hardware.memory
-    fi  
+       return $((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024))
+    fi
 }
+
+setMemoryLimitIfNeeded() {
+   if [ -f memory.autolimit ]
+   then
+       echo "limit exists, returning"
+       return
+   else
+       touch memory.autolimit
+       getHardwareMemory
+       currentmem=$?
+       if [ $currentmem -le 128 ] 
+       then
+           echo "not enough memory to run"
+       elif [ $currentmem -le 512 ]
+       then
+           echo "128" > memory.autolimit
+       elif [ $currentmem -le 1024 ] 
+       then 
+           echo "192" > memory.autolimit
+       elif [ $currentmem -le 2048 ]
+       then
+           echo "256" > memory.autolimit
+       fi 
+   fi
+}
+
 
 case "$1" in
 
@@ -553,6 +579,7 @@ case "$1" in
 
     'start')
         checkUser $1 touchlock
+        setMemoryLimitIfNeeded
         start
         ;;
 

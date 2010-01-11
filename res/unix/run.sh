@@ -547,7 +547,6 @@ getHardwareMemory() {
 setMemoryLimitIfNeeded() {
    if [ -f memory.autolimit ]
    then
-       echo "limit exists, returning"
        return
    else
        touch memory.autolimit
@@ -556,16 +555,26 @@ setMemoryLimitIfNeeded() {
        if [ $currentmem -le 128 ] 
        then
            echo "not enough memory to run"
+           exit 1
        elif [ $currentmem -le 512 ]
        then
            echo "128" > memory.autolimit
+           memorylimit=128
        elif [ $currentmem -le 1024 ] 
        then 
            echo "192" > memory.autolimit
+           memorylimit=192
        elif [ $currentmem -le 2048 ]
        then
            echo "256" > memory.autolimit
+           memorylimit=256
+       elif [ $currentmem -le 4096 ]
+       then 
+           echo "512" > memory.autolimit
+           memorylimit=512
        fi 
+   mv wrapper.conf wrapper.conf.old
+   sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" wrapper.conf.old > wrapper.conf
    fi
 }
 

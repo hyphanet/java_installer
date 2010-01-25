@@ -588,7 +588,7 @@ case "$1" in
 
     'start')
         checkUser $1 touchlock
-        setMemoryLimitIfNeeded
+#        setMemoryLimitIfNeeded
         start
         ;;
 

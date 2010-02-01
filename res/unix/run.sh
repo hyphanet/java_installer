@@ -537,7 +537,7 @@ getHardwareMemory() {
        return $((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))
     elif [ $DIST_OS = "freebsd" ]
     then
-       returno $((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
+       return $((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
     elif [ $DIST_OS = "linux" ]
     then
        return $((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024))

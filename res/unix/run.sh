@@ -552,6 +552,7 @@ setMemoryLimitIfNeeded() {
        touch memory.autolimit
        getHardwareMemory
        currentmem=$?
+       echo $currentmem > memory.autolimit	
        if [ $currentmem -le 128 ] 
        then
            echo "not enough memory to run"

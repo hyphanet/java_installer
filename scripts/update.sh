@@ -166,7 +166,7 @@ then
 	for x in 1 2 3 4 5
 	do
 		echo Downloading sha1test.jar utility jar which will download the actual update.
-		$DOWNLOADER https://emu.freenetproject.org/sha1test.jar
+		$DOWNLOADER https://checksums.freenetproject.org/latest/sha1test.jar
 		
 		if test -s sha1test.jar
 		then

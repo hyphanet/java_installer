@@ -569,8 +569,7 @@ setMemoryLimitIfNeeded() {
        then
            echo "256" > memory.autolimit
            memorylimit=256
-       elif [ $currentmem -le 4096 ]
-       then 
+       else
            echo "512" > memory.autolimit
            memorylimit=512
        fi 

@@ -102,3 +102,8 @@ other code:
   to the FSF, modified BSD is compatible with GPL; we must include both 
   licenses.
 
+UNINSTALLING:
+On Windows, use Add/Remove Programs in Control Panel.
+On Linux or OS/X, use the jar in the Uninstaller directory.
+In most cases we will have created a shortcut on the start menu.
+If you want to make Freenet not start on startup, on Linux or OS/X use the remove_cronjob.sh script in bin/. However please only do this if you *absolutely have to*: Freenet functions much better if it can run more or less continually.

@@ -147,7 +147,7 @@ NOsF/5oirpt9P/FlUQqmMGqz9IgcgA38corog14=
 EOF
 fi
 
-if test ! -x "`which wget`"
+if test -x "`which curl`"
 then
 	DOWNLOADER="curl --cacert $CAFILE -q -f -L -O "
 else

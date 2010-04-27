@@ -46,6 +46,7 @@ cp bin/freenet.jar offline/freenet-stable-latest.jar
 cp bin/freenet-ext.jar offline/freenet-ext.jar
 cp bin/seednodes.fref offline/
 cp scripts/update.sh offline/
+cp res/bin/sha1test.jar offline/
 
 mkdir offline/plugins
 cp ../FreenetReleased/JSTUN.jar offline/plugins/

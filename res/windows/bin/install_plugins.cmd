@@ -27,11 +27,11 @@
 :end4
 :nolibrarian
 
-@echo 	-KeyExplorer
+@echo 	-KeyUtils
 @if exist offline goto end4
-@java -jar bin\sha1test.jar KeyExplorer.jar plugins %CAFILE% > NUL
+@java -jar bin\sha1test.jar KeyUtils.jar plugins %CAFILE% > NUL
 :end4
-:nokeyexplorer
+:nokeyutils
 
 @echo 	-ThawIndexBrowser
 @if exist offline goto end4
@@ -39,5 +39,5 @@
 :end4
 :nothawindexbrowser
 
-@echo pluginmanager.loadplugin=Library;KeyExplorer;ThawIndexBrowser >> freenet.ini
+@echo pluginmanager.loadplugin=Library;KeyUtils;ThawIndexBrowser >> freenet.ini
 :end

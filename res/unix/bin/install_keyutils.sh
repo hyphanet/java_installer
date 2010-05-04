@@ -4,9 +4,9 @@
 cd "$INSTALL_PATH"
 if test ! -d plugins; then mkdir plugins; fi 2>&1 >/dev/null
 
-	echo "Downloading the KeyExplorer plugin"
+	echo "Downloading the KeyUtils plugin"
 	if test ! -f offline
 	then
-		java $JOPTS -jar bin/sha1test.jar KeyExplorer.jar plugins "$CAFILE" >/dev/null 2>&1
+		java $JOPTS -jar bin/sha1test.jar KeyUtils.jar plugins "$CAFILE" >/dev/null 2>&1
 	fi
-	rm -f keyexplorer
+	rm -f keyutils

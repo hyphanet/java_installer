@@ -46,10 +46,10 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_librarian.sh"/>
 	</job>
-	<job name="Setting KeyExplorer up">
+	<job name="Setting KeyUtils up">
 		<os family="unix"/>
 		<os family="mac"/>
-		<executefile name="$INSTALL_PATH/bin/install_keyexplorer.sh"/>
+		<executefile name="$INSTALL_PATH/bin/install_keyutils.sh"/>
 	</job>
 	<job name="Setting ThawIndexBrowser up">
 		<os family="unix"/>

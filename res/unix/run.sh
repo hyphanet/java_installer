@@ -532,16 +532,19 @@ dump() {
 }
 
 getHardwareMemory() {
+    detected=0
     if [ $DIST_OS = "macosx" ]
     then
-       return $((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))
+       detected=$((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))
     elif [ $DIST_OS = "freebsd" ]
     then
-       return $((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
+       detected=$((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
     elif [ $DIST_OS = "linux" ]
     then
-       return $((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024))
+       detected=$((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024))
     fi
+# Exit codes only support values between 0 and 255. So use stdout.
+    echo $detected
 }
 
 setMemoryLimitIfNeeded() {
@@ -550,12 +553,14 @@ setMemoryLimitIfNeeded() {
        return
    else
        touch memory.autolimit
-       getHardwareMemory
-       currentmem=$?
+       echo OS is $DIST_OS
+       currentmem=`getHardwareMemory`
+       echo Detected memory: $currentmem
        echo $currentmem > memory.autolimit	
        if [ $currentmem -le 128 ] 
        then
            echo "not enough memory to run"
+	   rm memory.autolimit
            exit 1
        elif [ $currentmem -le 512 ]
        then
@@ -588,7 +593,10 @@ case "$1" in
 
     'start')
         checkUser $1 touchlock
-#        setMemoryLimitIfNeeded
+	if test "$DIST_OS" != "macosx"
+	then
+	        setMemoryLimitIfNeeded
+	fi
         start
         ;;
 

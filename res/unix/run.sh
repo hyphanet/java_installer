@@ -465,7 +465,7 @@ stopit() {
         fi
 
         # We can not predict how long it will take for the wrapper to
-        #  actually stop as it depends on settings in wrapper.conf.
+        #  actually stop as it depends on settings in $WRAPPER_CONF
         #  Loop until it does.
         savepid=$pid
         CNT=0
@@ -578,8 +578,8 @@ setMemoryLimitIfNeeded() {
            echo "512" > memory.autolimit
            memorylimit=512
        fi 
-   mv wrapper.conf wrapper.conf.old
-   sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" wrapper.conf.old > wrapper.conf
+   mv $WRAPPER_CONF ${WRAPPER_CONF}.old
+   sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" ${WRAPPER_CONF}.old > $WRAPPER_CONF
    fi
 }
 

@@ -144,7 +144,7 @@ LOCKFILE="$LOCKDIR/$APP_NAME"
 pid=""
 
 # Resolve the os
-DIST_OS=`uname -s | tr [:upper:] [:lower:] | tr -d [:blank:]`
+DIST_OS=`uname -s | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
 case "$DIST_OS" in
     'sunos')
         DIST_OS="solaris"
@@ -167,7 +167,7 @@ case "$DIST_OS" in
 esac
 
 # Resolve the architecture
-DIST_ARCH=`uname -m | tr [:upper:] [:lower:] | tr -d [:blank:]`
+DIST_ARCH=`uname -m | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
 case "$DIST_ARCH" in
     'amd64' | 'ia32' | 'ia64' | 'i386' | 'i486' | 'i586' | 'i686' | 'x86_64')
         DIST_ARCH="x86"
@@ -190,7 +190,7 @@ case "$DIST_ARCH" in
 esac
 
 # Check if we are running on 64bit platform, seems like a workaround for now...
-DIST_BIT=`uname -m | tr [:upper:] [:lower:] | tr -d [:blank:]`
+DIST_BIT=`uname -m | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
 case "$DIST_BIT" in
     'amd64' | 'ia64' | 'x86_64' | 'ppc64')
         DIST_BIT="64"

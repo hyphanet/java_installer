@@ -16,6 +16,7 @@
 	NSMenuItem *webInterfaceOption;
 	NSMenuItem *quitItem;
     NSMenuItem *aboutPanel;
+	NSMutableURLRequest *nodeRequest;
 }
 
 - (void)startFreenet:(id)sender;

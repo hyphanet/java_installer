@@ -220,7 +220,7 @@
 			<executable targetfile="$INSTALL_PATH/StartFreenet.command" type="bin" stage="never"/>
 			<executable targetfile="/Applications/FreenetTray.app/Contents/MacOS/FreenetTray" type="bin" stage="never"/>
 			<parsable targetfile="/Applications/FreenetTray.app/Contents/Resources/defaults.plist" type="xml"/>
-			<parsable targetfile="~/Library/LaunchAgents/com.freenet.startup.plist" type="xml"/>
+			<parsable targetfile="$USER_HOME/Library/LaunchAgents/com.freenet.startup.plist" type="xml"/>
 			<executable targetfile="$INSTALL_PATH/startTray.sh" type="bin" stage="never"/>
 			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 

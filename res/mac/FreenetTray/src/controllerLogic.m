@@ -120,9 +120,9 @@
 	//get users preferred location of node files and put it in a string
 	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
-	//NSLog(@"%@",nodeFilesLocation);
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
+	NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
 		//file manager for reading anchor file
@@ -146,7 +146,6 @@
 - (void)startFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string
 	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
-    NSLog(@"%@",nodeFilesLocation);
 	//make a new string to store the absolute path to the run script
 	NSMutableString *runScript = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[runScript appendString:@"/run.sh"];
@@ -156,7 +155,7 @@
 	[anchorFile appendString:@"/Freenet.anchor"];
 	NSLog(@"%@", anchorFile);
 	//load arguments into an array for use later by run.sh script
-	NSArray * startArguments = [NSArray arrayWithObject:@"start"];
+	NSArray * startArguments = [NSArray arrayWithObjects:runScript,@"start",nil];
 	//file manager for reading anchor file
 	NSFileManager *fileManager;
 	fileManager = [NSFileManager defaultManager];
@@ -174,7 +173,7 @@
 		//nstask to start freenet
 		NSTask *startFreenet;
 		startFreenet = [[NSTask alloc] init];
-		[startFreenet setLaunchPath:runScript];
+		[startFreenet setLaunchPath:@"/bin/sh"];
 		[startFreenet setArguments:startArguments];
 		[startFreenet launch];
 		[startFreenet terminate];
@@ -188,9 +187,11 @@
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	
 	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+
 	//make a new string to store the absolute path of the anchor file
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
+	NSLog(@"%@", anchorFile);
 	//store location of the rm command so we can reference it
 	NSString *rmCommand = @"/bin/rm";
 	//set arguments to rm command to be anchor file

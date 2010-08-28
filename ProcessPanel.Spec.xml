@@ -106,6 +106,10 @@
 		<executefile name="$INSTALL_PATH/bin/1run.sh"/>
 	</job>
 
+	<job name="Mac tray startup">
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/startTray.sh"/>
+	</job>
 	<!-- Do I have to mention that nothing ought to be below ?  -->
 	<job name="Cleaning up">
 		<os family="unix"/>
@@ -116,4 +120,5 @@
 		<os family="windows"/>
 		<executefile name="$INSTALL_PATH\bin\cleanup.cmd"/>
 	</job>
+
 </processing>

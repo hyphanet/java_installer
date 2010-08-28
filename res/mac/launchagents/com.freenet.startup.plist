@@ -6,7 +6,7 @@
 	<string>com.freenet.startup.plist</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Applications/Freenet/run.sh</string>
+		<string>$INSTALL_PATH/run.sh</string>
         <string>start</string>
 	</array>
 	<key>LaunchOnlyOnce</key>

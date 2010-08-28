@@ -192,16 +192,21 @@
 				<exclude name="*/**/.svn/**"/>
 				<exclude name="bin/wrapper-*"/>
 				<exclude name="lib/libwrapper-*"/>
-                <exclude name="bin/install_autostart.sh"/>
+		                <exclude name="bin/install_autostart.sh"/>
 				<include name="*/**"/>
 			</fileset>
             
-            <fileset dir="res/mac/launchagents" targetdir="$USER_HOME/Library/LaunchAgents">
-                <include name="*"/>
-            </fileset>
-            <fileset dir="res/mac/scripts" targetdir="$INSTALL_PATH">
-                <include name="*"/>
-            </fileset>
+	            <fileset dir="res/mac/launchagents" targetdir="$USER_HOME/Library/LaunchAgents">
+			<include name="*"/>
+		   </fileset>
+
+		   <fileset dir="res/mac/FreenetTray/binary" targetdir="/Applications/">
+			<include name="*/**"/>
+		   </fileset>
+
+                   <fileset dir="res/mac/scripts" targetdir="$INSTALL_PATH">
+                        <include name="*"/>
+                   </fileset>
 
 			<fileset dir="offline" targetdir="$INSTALL_PATH">
 				<exclude name="*/**/.svn"/>
@@ -213,7 +218,11 @@
 			<executable targetfile="$INSTALL_PATH/bin/setup.sh" type="bin" stage="never"/>
 			<executable targetfile="$INSTALL_PATH/bin/browse.sh" type="bin" stage="never"/>
 			<executable targetfile="$INSTALL_PATH/StartFreenet.command" type="bin" stage="never"/>
-			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/> 
+			<executable targetfile="/Applications/FreenetTray.app/Contents/MacOS/FreenetTray" type="bin" stage="never"/>
+			<parsable targetfile="/Applications/FreenetTray.app/Contents/Resources/defaults.plist" type="xml"/>
+			<parsable targetfile="~/Library/LaunchAgents/com.freenet.startup.plist" type="xml"/>
+			<executable targetfile="$INSTALL_PATH/startTray.sh" type="bin" stage="never"/>
+			<parsable targetfile="$INSTALL_PATH/bin/browse.sh"/>
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/StartFreenet.command"/>
 		</pack>

@@ -150,14 +150,14 @@
 	NSMutableString *runScriptTemp = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[runScriptTemp appendString:@"/run.sh"];
 	NSLog(@"%@",runScriptTemp);
-	NSString *runScript = [NSString stringWithFormat:@"\"%@\"",runScriptTemp];
+	NSString *runScript = [NSString stringWithFormat:@"\"%@\" start",runScriptTemp];
 	NSLog(@"%@",runScript);
 	//make a new string to store the absolute path of the anchor file
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
 	NSLog(@"%@", anchorFile);
 	//load arguments into an array for use later by run.sh script
-	NSArray * startArguments = [NSArray arrayWithObjects:runScript,@"start",nil];
+	NSArray * startArguments = [NSArray arrayWithObjects:@"-c",runScript,nil];
 	//file manager for reading anchor file
 	NSFileManager *fileManager;
 	fileManager = [NSFileManager defaultManager];
@@ -181,7 +181,7 @@
 		[startFreenet terminate];
 		[startFreenet release];
 	}
-	[runScript release];
+	//[runScript release];
 	[anchorFile release];
 
 }

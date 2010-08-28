@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>FreenetTray</string>
 	<key>CFBundleExecutable</key>
 	<string>FreenetTray</string>
 	<key>CFBundleIconFile</key>

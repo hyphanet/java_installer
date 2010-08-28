@@ -122,7 +122,7 @@
 	//make a new string to store the absolute path of the anchor file
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
-	NSLog(@"%@", anchorFile);
+	//NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
 		//file manager for reading anchor file
@@ -149,13 +149,13 @@
 	//make a new string to store the absolute path to the run script
 	NSMutableString *runScriptTemp = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[runScriptTemp appendString:@"/run.sh"];
-	NSLog(@"%@",runScriptTemp);
+	//NSLog(@"%@",runScriptTemp);
 	NSString *runScript = [NSString stringWithFormat:@"\"%@\" start",runScriptTemp];
-	NSLog(@"%@",runScript);
+	//NSLog(@"%@",runScript);
 	//make a new string to store the absolute path of the anchor file
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
-	NSLog(@"%@", anchorFile);
+	//NSLog(@"%@", anchorFile);
 	//load arguments into an array for use later by run.sh script
 	NSArray * startArguments = [NSArray arrayWithObjects:@"-c",runScript,nil];
 	//file manager for reading anchor file
@@ -189,11 +189,10 @@
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	
 	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
-
 	//make a new string to store the absolute path of the anchor file
 	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
 	[anchorFile appendString:@"/Freenet.anchor"];
-	NSLog(@"%@", anchorFile);
+	//NSLog(@"%@", anchorFile);
 	//store location of the rm command so we can reference it
 	NSString *rmCommand = @"/bin/rm";
 	//set arguments to rm command to be anchor file

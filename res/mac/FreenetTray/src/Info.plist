@@ -9,7 +9,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>FreenetTray</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>

@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
-<!-- ant build file for the freenet installer -->
-
-<project name="Freenet" default="dist" basedir=".">
+<project name="Freenet installer" default="dist" basedir=".">
 	<description>
-		This file builds the freenet installer...
+This file builds the freenet installer...
 	</description>
 
 	<property name="config" value="install.xml"/>
@@ -14,20 +12,30 @@
 	<property name="launch4j.dir" location="lib/launch4j/" />
 
 	<available file="${izPack.lib}" property="izPack_available" />
-	<fail unless="izPack_available" status="1"
-		message="You need to download izPack and to put standalone-compiler.jar into lib/" />
-
 	<available file="${launch4j.dir}" property="launch4j_available" />
-	<fail unless="launch4j_available" status="1"
-		message="You need to download launch4j and to put it into lib/" />
-
-	<taskdef name="izpack" classpath="${izPack.lib}" classname="com.izforge.izpack.ant.IzPackTask"/>
 
 	<!-- ================================================== -->
 
-	<target name="dist" description="generate the distribution" depends="compile_sha1test, compile_browser, compile_uncompress, compile_bindtest">
+	<target name="check-izpack">
+		<fail unless="izPack_available" status="1"
+			message="You need to download izPack and to put standalone-compiler.jar into lib/" />
+	</target>
+
+	<target name="check-launch4j">
+		<fail unless="launch4j_available" status="1"
+			message="You need to download launch4j and to put it into lib/" />
+	</target>
+
+	<target name="dist" description="generate the distribution" depends="compile, check-izpack">
 		<echo message="Build the installer"/>
+		<taskdef name="izpack" classpath="${izPack.lib}" classname="com.izforge.izpack.ant.IzPackTask"/>
 		<izpack input="${config}" output="${dest}" baseDir="${basedir}"/>
+	</target>
+
+	<target name="win32" depends="dist, check-launch4j">
+		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar
+		    :${launch4j.dir}/lib/xstream.jar" />
+		<launch4j configFile="./l4j/installer.xml" />
 	</target>
 
 	<!-- ================================================== -->
@@ -40,6 +48,8 @@
 		<delete dir="${build}_bindtest"/>
 	</target>
 
+	<target name="compile" depends="compile_sha1test, compile_browser, compile_uncompress, compile_bindtest"/>
+
 	<target name="compile_sha1test" unless="skip_sha1test">
 		<!-- Create the time stamp -->
 		<tstamp/>
@@ -47,10 +57,6 @@
 
 		<mkdir dir="${build}_sha1test"/>
 		<javac srcdir="./src" destdir="./${build}_sha1test" optimize="on" debug="on" source="1.5">
-			<classpath>
-				<pathelement location="${izPack.lib}"/>
-			</classpath>
-
 			<include name="gnu/**/*.java"/>
 			<include name="freenet/support/HexUtil"/>
 			<include name="Sha1Test.java"/>
@@ -77,7 +83,7 @@
 			</manifest>
 		</jar>
 	</target>
-	
+
 	<target name="compile_uncompress">
 		<!-- Create the time stamp -->
 		<tstamp/>
@@ -110,11 +116,4 @@
 		</jar>
 	</target>
 
-	<!-- ================================================== -->
-
-	<target name="win32" depends="dist">
-		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar
-		    :${launch4j.dir}/lib/xstream.jar" />
-		<launch4j configFile="./l4j/installer.xml" />
-	</target>
 </project>

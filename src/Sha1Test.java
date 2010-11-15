@@ -1,4 +1,3 @@
-import freenet.support.HexUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -154,10 +153,19 @@ public class Sha1Test {
 			int i = result.indexOf(' ');
 			result = result.substring(0, i);
 
-			return result.equalsIgnoreCase(HexUtil.bytesToHex(digest));
+			return result.equalsIgnoreCase(bytesToHex(digest));
 		} catch(Exception e) {
 			return false;
 		}
+	}
+
+	public static final String bytesToHex(byte[] bs) {
+		StringBuilder sb = new StringBuilder(bs.length * 2);
+		for (int i = 0; i < bs.length; i++) {
+			sb.append(Character.forDigit((bs[i] >>> 4) & 0xf, 16));
+			sb.append(Character.forDigit(bs[i] & 0xf, 16));
+		}
+		return sb.toString();
 	}
 
 	public static void get(String file, String filename, boolean checksum) throws FileNotFoundException, SSLException {

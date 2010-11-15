@@ -42,10 +42,6 @@ This file builds the freenet installer...
 	<target name="clean" description="Delete the installer">
 		<delete file="${dest}"/>
 		<delete dir="${build}"/>
-		<delete dir="${build}_sha1test"/>
-		<delete dir="${build}_browser"/>
-		<delete dir="${build}_uncompress"/>
-		<delete dir="${build}_bindtest"/>
 	</target>
 
 	<target name="compile" depends="compile_sha1test, compile_browser, compile_uncompress, compile_bindtest"/>
@@ -55,13 +51,13 @@ This file builds the freenet installer...
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
 
-		<mkdir dir="${build}_sha1test"/>
-		<javac srcdir="./src" destdir="./${build}_sha1test" optimize="on" debug="on" source="1.5">
+		<mkdir dir="${build}/sha1test"/>
+		<javac srcdir="./src" destdir="./${build}/sha1test" optimize="on" debug="on" source="1.5">
 			<include name="gnu/**/*.java"/>
 			<include name="freenet/support/HexUtil"/>
 			<include name="Sha1Test.java"/>
 		</javac>
-		<jar jarfile="./res/bin/sha1test.jar" basedir="./${build}_sha1test">
+		<jar jarfile="./res/bin/sha1test.jar" basedir="./${build}/sha1test">
 			<manifest>
 				<attribute name="Main-Class" value="Sha1Test"/>
 			</manifest>
@@ -73,11 +69,11 @@ This file builds the freenet installer...
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
 
-		<mkdir dir="${build}_browser"/>
-		<javac srcdir="./src" destdir="./${build}_browser" optimize="on" debug="on" source="1.5">
+		<mkdir dir="${build}/browser"/>
+		<javac srcdir="./src" destdir="./${build}/browser" optimize="on" debug="on" source="1.5">
 			<include name="BareBonesBrowserLaunch.java"/>
 		</javac>
-		<jar jarfile="./res/bin/browser.jar" basedir="./${build}_browser">
+		<jar jarfile="./res/bin/browser.jar" basedir="./${build}/browser">
 			<manifest>
 				<attribute name="Main-Class" value="BareBonesBrowserLaunch"/>
 			</manifest>
@@ -89,11 +85,11 @@ This file builds the freenet installer...
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
 
-		<mkdir dir="${build}_uncompress"/>
-		<javac srcdir="./src" destdir="./${build}_uncompress" optimize="on" debug="on" source="1.5">
+		<mkdir dir="${build}/uncompress"/>
+		<javac srcdir="./src" destdir="./${build}/uncompress" optimize="on" debug="on" source="1.5">
 			<include name="Uncompress.java"/>
 		</javac>
-		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}_uncompress">
+		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}/uncompress">
 			<manifest>
 				<attribute name="Main-Class" value="Uncompress$Test"/>
 			</manifest>
@@ -105,11 +101,11 @@ This file builds the freenet installer...
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
 
-		<mkdir dir="${build}_bindtest"/>
-		<javac srcdir="./src" destdir="./${build}_bindtest" optimize="on" debug="on" source="1.5">
+		<mkdir dir="${build}/bindtest"/>
+		<javac srcdir="./src" destdir="./${build}/bindtest" optimize="on" debug="on" source="1.5">
 			<include name="BindTest.java"/>
 		</javac>
-		<jar jarfile="./res/bin/bindtest.jar" basedir="./${build}_bindtest">
+		<jar jarfile="./res/bin/bindtest.jar" basedir="./${build}/bindtest">
 			<manifest>
 				<attribute name="Main-Class" value="BindTest"/>
 			</manifest>

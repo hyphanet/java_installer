@@ -154,12 +154,6 @@ case "$DIST_OS" in
         ;;
     'darwin' | 'oarwin')
         DIST_OS="macosx"
-	
-	#We use the 1.5 jvm if it exists
-	if [ -d /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/ ]
-	then
-		export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home"
-	fi
         ;;
     'unix_sv')
         DIST_OS="unixware"

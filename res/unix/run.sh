@@ -130,7 +130,7 @@ then
     WRAPPER_CMD="$REALDIR/$WRAPPER_CMD"
 fi
 # Same test for WRAPPER_CONF
-FIRST_CHAR="`echo $WRAPPER_CONF | cut -c1,1`"
+FIRST_CHAR="`echo \"$WRAPPER_CONF\" | cut -c1,1`"
 if [ "$FIRST_CHAR" != "/" ]
 then
     WRAPPER_CONF="$REALDIR/$WRAPPER_CONF"
@@ -578,8 +578,8 @@ setMemoryLimitIfNeeded() {
            echo "512" > memory.autolimit
            memorylimit=512
        fi 
-   mv $WRAPPER_CONF ${WRAPPER_CONF}.old
-   sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" ${WRAPPER_CONF}.old > $WRAPPER_CONF
+   mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
+   sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"
    fi
 }
 

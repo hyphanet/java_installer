@@ -1,4 +1,15 @@
 #!/bin/sh
+
+# help output
+if test "$#" -gt 0
+then
+	if test "$1" = "--help"
+		then echo "freenet update script."
+		echo "Usage: ./update.sh [--help] [testing]"
+		exit
+	fi
+fi
+
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"

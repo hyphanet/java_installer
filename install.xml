@@ -6,7 +6,7 @@
 		<appname>Freenet</appname>
 		<appversion>0.7.5</appversion>
 		<url>http://freenetproject.org/</url>
-		<javaversion>1.5.0</javaversion>
+		<javaversion>1.6.0</javaversion>
 		<uninstaller write="yes"/>
 		<authors>
 			<author name="Ian Clarke" email="ian@freenetproject.org"/>

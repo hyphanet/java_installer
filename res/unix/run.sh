@@ -222,6 +222,8 @@ then
 else
     if [ "$DIST_OS" = "macosx" ] # Some osx weirdness, someone please check that this still works
     then
+	# We don't have a binary for OS/X on 64-bit at present.
+	DIST_BIT="32"
         WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
         if [ -x "$WRAPPER_TEST_CMD" ]
         then

@@ -45,7 +45,7 @@
 	</shortcut>
 
 	<shortcut
-		name="Uninstaller"
+		name="Uninstall Freenet"
 		programGroup="yes"
 		desktop="no"
 		applications="no"

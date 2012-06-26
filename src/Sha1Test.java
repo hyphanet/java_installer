@@ -25,7 +25,7 @@ import javax.net.ssl.SSLException;
 public class Sha1Test {
 
 	final static int BUFFERSIZE = 4096;
-	final static String BASE_URL = "https://checksums.freenetproject.org/latest/";
+	final static String BASE_URL = "https://downloads.freenetproject.org/latest/";
 	static boolean useSecureMode = false;
 
 	public static void main(String[] args) {

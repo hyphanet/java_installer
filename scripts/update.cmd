@@ -149,7 +149,7 @@ if not exist update_temp mkdir update_temp
 ::Download latest updater and verify it
 if exist update_temp\update.new.cmd del update_temp\update.new.cmd
 echo - Checking for newer version of this update script...
-bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/update/update-new.cmd -O update_temp\update.new.cmd
+bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/update/update-new.cmd -O update_temp\update.new.cmd
 Title Freenet Update Over HTTP Script
 
 if not exist update_temp\update.new.cmd goto error1
@@ -197,7 +197,7 @@ echo -----
 
 ::Check for sha1test and download if needed.
 if not exist lib mkdir lib
-if not exist lib\sha1test.jar bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://checksums.freenetproject.org/latest/sha1test.jar -O lib\sha1test.jar
+if not exist lib\sha1test.jar bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://downloads.freenetproject.org/latest/sha1test.jar -O lib\sha1test.jar
 if not errorlevel 0 goto error3
 if not exist lib\sha1test.jar goto error3
 
@@ -217,7 +217,7 @@ echo - Checking main jar
 if exist freenet-%RELEASE%-latest.jar.url.bak del freenet-%RELEASE%-latest.jar.url.bak
 if exist freenet-%RELEASE%-latest.jar.url copy freenet-%RELEASE%-latest.jar.url freenet-%RELEASE%-latest.jar.url.bak > NUL
 if exist freenet-%RELEASE%-latest.jar.new.url del freenet-%RELEASE%-latest.jar.new.url
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-%RELEASE%-latest.jar.url -O freenet-%RELEASE%-latest.jar.new.url
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/freenet-%RELEASE%-latest.jar.url -O freenet-%RELEASE%-latest.jar.new.url
 Title Freenet Update Over HTTP Script
 
 if not exist freenet-%RELEASE%-latest.jar.new.url goto maincheckfail
@@ -251,7 +251,7 @@ echo - Checking ext jar
 if exist freenet-ext.jar.sha1.bak del freenet-ext.jar.sha1.bak
 if exist freenet-ext.jar.sha1 copy freenet-ext.jar.sha1 freenet-ext.jar.sha1.bak > NUL
 if exist freenet-ext.jar.sha1.new del freenet-ext.jar.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/freenet-ext.jar.sha1 -O freenet-ext.jar.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/freenet-ext.jar.sha1 -O freenet-ext.jar.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist freenet-ext.jar.sha1.new goto extcheckfail
@@ -286,7 +286,7 @@ echo - Checking wrapper .exe
 if exist wrapper-windows-x86-32.exe.sha1.bak del wrapper-windows-x86-32.exe.sha1.bak
 if exist wrapper-windows-x86-32.exe.sha1 copy wrapper-windows-x86-32.exe.sha1 wrapper-windows-x86-32.exe.sha1.bak > NUL
 if exist wrapper-windows-x86-32.exe.sha1.new del wrapper-windows-x86-32.exe.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/installer/wrapper-windows-x86-32.exe.sha1 -O wrapper-windows-x86-32.exe.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/installer/wrapper-windows-x86-32.exe.sha1 -O wrapper-windows-x86-32.exe.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist wrapper-windows-x86-32.exe.sha1.new goto wrapperexecheckfail
@@ -322,7 +322,7 @@ echo - Checking wrapper .dll
 if exist wrapper-windows-x86-32.dll.sha1.bak del wrapper-windows-x86-32.dll.sha1.bak
 if exist wrapper-windows-x86-32.dll.sha1 copy wrapper-windows-x86-32.dll.sha1 wrapper-windows-x86-32.dll.sha1.bak > NUL
 if exist wrapper-windows-x86-32.dll.sha1.new del wrapper-windows-x86-32.dll.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/installer/wrapper-windows-x86-32.dll.sha1 -O wrapper-windows-x86-32.dll.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/installer/wrapper-windows-x86-32.dll.sha1 -O wrapper-windows-x86-32.dll.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist wrapper-windows-x86-32.dll.sha1.new goto wrapperdllcheckfail
@@ -359,7 +359,7 @@ echo - Checking start.exe
 if exist start.exe.sha1.bak del start.exe.sha1.bak
 if exist start.exe.sha1 copy start.exe.sha1 start.exe.sha1.bak > NUL
 if exist start.exe.sha1.new del start.exe.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/installer/start.exe.sha1 -O start.exe.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/installer/start.exe.sha1 -O start.exe.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist start.exe.sha1.new goto startexecheckfail
@@ -395,7 +395,7 @@ echo - Checking stop.exe
 if exist stop.exe.sha1.bak del stop.exe.sha1.bak
 if exist stop.exe.sha1 copy stop.exe.sha1 stop.exe.sha1.bak > NUL
 if exist stop.exe.sha1.new del stop.exe.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/installer/stop.exe.sha1 -O stop.exe.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/installer/stop.exe.sha1 -O stop.exe.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist stop.exe.sha1.new goto stopexecheckfail
@@ -435,7 +435,7 @@ if not exist ..\installid.dat goto traycheckend
 ::Get the tray utility and put it in the \bin directory
 ::We don't need to exit the program because it's not running since it's not even installed.
 echo - Downloading freenettray.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/freenettray.exe -O freenettray.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/freenettray.exe -O freenettray.exe
 Title Freenet Update Over HTTP Script
 
 if not exist freenettray.exe goto traycheckfail
@@ -484,7 +484,7 @@ echo - Checking freenettray.exe
 if exist freenettray.exe.sha1.bak del freenettray.exe.sha1.bak
 if exist freenettray.exe.sha1 copy freenettray.exe.sha1 freenettray.exe.sha1.bak > NUL
 if exist freenettray.exe.sha1.new del freenettray.exe.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/freenettray.exe.sha1 -O freenettray.exe.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/freenettray.exe.sha1 -O freenettray.exe.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist freenettray.exe.sha1.new goto traycheckfail
@@ -523,7 +523,7 @@ echo - Checking freenetlauncher.exe
 if exist freenetlauncher.exe.sha1.bak del freenetlauncher.exe.sha1.bak
 if exist freenetlauncher.exe.sha1 copy freenetlauncher.exe.sha1 freenetlauncher.exe.sha1.bak > NUL
 if exist freenetlauncher.exe.sha1.new del freenetlauncher.exe.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/installer/freenetlauncher.exe.sha1 -O freenetlauncher.exe.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/installer/freenetlauncher.exe.sha1 -O freenetlauncher.exe.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist freenetlauncher.exe.sha1.new goto launchercheckfail
@@ -557,7 +557,7 @@ set LAUNCHERUPDATED=1
 if exist seednodes.fref.sha1.bak del seednodes.fref.sha1.bak
 if exist seednodes.fref.sha1 copy seednodes.fref.sha1 seednodes.fref.sha1.bak > NUL
 if exist seednodes.fref.sha1.new del seednodes.fref.sha1.new
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/opennet/seednodes.fref.sha1 -O seednodes.fref.sha1.new
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/opennet/seednodes.fref.sha1 -O seednodes.fref.sha1.new
 Title Freenet Update Over HTTP Script
 
 if not exist seednodes.fref.sha1.new goto seedcheckfail
@@ -632,7 +632,7 @@ if exist freenet-%RELEASE%-latest.jar.url.bak ren freenet-%RELEASE%-latest.jar.u
 if NOT %EXTJARUPDATED%==1 goto extjardownloadend
 if exist freenet-ext.jar.sha1 del freenet-ext.jar.sha1
 if exist freenet-ext.jar del freenet-ext.jar
-..\bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/freenet-ext.jar -O freenet-ext.jar
+..\bin\wget.exe -o NUL -c --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/freenet-ext.jar -O freenet-ext.jar
 Title Freenet Update Over HTTP Script
 if not exist freenet-ext.jar goto extjardownloadfailed
 FOR %%I IN ("freenet-ext.jar") DO if %%~zI==0 goto extjardownloadfailed
@@ -655,7 +655,7 @@ if exist freenet-ext.jar.sha1.bak ren freenet-ext.jar.sha1.bak freenet-ext.jar.s
 if NOT %WRAPPEREXEUPDATED%==1 goto wrapperexedownloadend
 if exist wrapper-windows-x86-32.exe.sha1 del wrapper-windows-x86-32.exe.sha1
 if exist wrapper-windows-x86-32.exe del wrapper-windows-x86-32.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/wrapper-windows-x86-32.exe -O wrapper-windows-x86-32.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/wrapper-windows-x86-32.exe -O wrapper-windows-x86-32.exe
 Title Freenet Update Over HTTP Script
 if not exist wrapper-windows-x86-32.exe goto wrapperexedownloadfailed
 FOR %%I IN ("wrapper-windows-x86-32.exe") DO if %%~zI==0 goto wrapperexedownloadfailed
@@ -678,7 +678,7 @@ if exist wrapper-windows-x86-32.exe.sha1.bak ren wrapper-windows-x86-32.exe.sha1
 if NOT %WRAPPERDLLUPDATED%==1 goto wrapperdlldownloadend
 if exist wrapper-windows-x86-32.dll.sha1 del wrapper-windows-x86-32.dll.sha1
 if exist wrapper-windows-x86-32.dll del wrapper-windows-x86-32.dll
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/wrapper-windows-x86-32.dll -O wrapper-windows-x86-32.dll
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/wrapper-windows-x86-32.dll -O wrapper-windows-x86-32.dll
 Title Freenet Update Over HTTP Script
 if not exist wrapper-windows-x86-32.dll goto wrapperdlldownloadfailed
 FOR %%I IN ("wrapper-windows-x86-32.dll") DO if %%~zI==0 goto wrapperdlldownloadfailed
@@ -701,7 +701,7 @@ if exist wrapper-windows-x86-32.dll.sha1.bak ren wrapper-windows-x86-32.dll.sha1
 if NOT %STARTEXEUPDATED%==1 goto startexedownloadend
 if exist start.exe.sha1 del start.exe.sha1
 if exist start.exe del start.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/start.exe -O start.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/start.exe -O start.exe
 Title Freenet Update Over HTTP Script
 if not exist start.exe goto startexedownloadfailed
 FOR %%I IN ("start.exe") DO if %%~zI==0 goto startexedownloadfailed
@@ -724,7 +724,7 @@ if exist start.exe.sha1.bak ren start.exe.sha1.bak start.exe.sha1
 if NOT %STOPEXEUPDATED%==1 goto stopexedownloadend
 if exist stop.exe.sha1 del stop.exe.sha1
 if exist stop.exe del stop.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/stop.exe -O stop.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/stop.exe -O stop.exe
 Title Freenet Update Over HTTP Script
 if not exist stop.exe goto stopexedownloadfailed
 FOR %%I IN ("stop.exe") DO if %%~zI==0 goto stopexedownloadfailed
@@ -747,7 +747,7 @@ if exist stop.exe.sha1.bak ren stop.exe.sha1.bak stop.exe.sha1
 if NOT %TRAYUTILITYUPDATED%==1 goto traydownloadend
 if exist freenettray.exe.sha1 del freenettray.exe.sha1
 if exist freenettray.exe del freenettray.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/freenettray.exe -O freenettray.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/freenettray.exe -O freenettray.exe
 Title Freenet Update Over HTTP Script
 if not exist freenettray.exe goto traydownloadfailed
 FOR %%I IN ("freenettray.exe") DO if %%~zI==0 goto traydownloadfailed
@@ -770,7 +770,7 @@ if exist freenettray.exe.sha1.bak ren freenettray.exe.sha1.bak freenettray.exe.j
 if NOT %LAUNCHERUPDATED%==1 goto launcherdownloadend
 if exist freenetlauncher.exe.sha1 del freenetlauncher.exe.sha1
 if exist freenetlauncher.exe del freenetlauncher.exe
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://checksums.freenetproject.org/latest/freenetlauncher.exe -O freenetlauncher.exe
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/latest/freenetlauncher.exe -O freenetlauncher.exe
 Title Freenet Update Over HTTP Script
 if not exist freenetlauncher.exe goto launcherdownloadfailed
 FOR %%I IN ("freenetlauncher.exe") DO if %%~zI==0 goto launcherdownloadfailed
@@ -794,7 +794,7 @@ if exist freenetlauncher.exe.sha1.bak ren freenetlauncher.exe.sha1.bak freenetla
 if NOT %SEEDUPDATED%==1 goto seeddownloadend
 if exist seednodes.fref.sha1 del seednodes.fref.sha1
 if exist seednodes.fref del seednodes.fref
-..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/opennet/seednodes.fref -O seednodes.fref
+..\bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/opennet/seednodes.fref -O seednodes.fref
 Title Freenet Update Over HTTP Script
 if not exist seednodes.fref goto seeddownloadfailed
 FOR %%I IN ("seednodes.fref") DO if %%~zI==0 goto seeddownloadfailed
@@ -1067,7 +1067,7 @@ goto veryend
 :newwrapper
 if exist wrapper.conf ren wrapper.conf wrapper.conf.bak
 :: This will set the memory settings back to default, but it can't be helped.
-bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 http://downloads.freenetproject.org/alpha/update/wrapper.conf -O wrapper.conf
+bin\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/update/wrapper.conf -O wrapper.conf
 if not exist wrapper.conf goto wrappererror
 if exist wrapper.password type wrapper.password >> wrapper.conf
 start update.cmd

@@ -537,7 +537,7 @@ getHardwareMemory() {
        detected=$((`sysctl hw.physmem | sed s/"hw.physmem: "//`/1024/1024))
     elif [ $DIST_OS = "linux" ]
     then
-       detected=$((`cat /proc/meminfo | grep MemTotal | sed s/"MemTotal:        "// | sed s/kB//`/1024))
+       detected=$((`cat /proc/meminfo | grep MemTotal | awk '{print $2}'`/1024))
     fi
 # Exit codes only support values between 0 and 255. So use stdout.
     echo $detected

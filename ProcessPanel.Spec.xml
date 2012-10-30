@@ -85,6 +85,15 @@
 		<os family="windows"/>
 		<executefile name="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
 	</job>
+	<job name="Downloading bcprov">
+		<os family="unix"/>
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_bcprov.sh"/>
+	</job>
+	<job name="Downloading bcprov">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_bcprov.cmd"/>
+	</job>
 	<job name="Detecting port availability">
 		<os family="unix"/>
 		<os family="mac"/>

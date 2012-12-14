@@ -115,8 +115,7 @@
 }
 
 - (void)checkNodeStatus:(id)sender {
-	// this may not be necessary
-	NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
+
 	//get users preferred location of node files and put it in a string
 	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
@@ -124,6 +123,7 @@
 	//NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
+        NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
 		//file manager for reading anchor file
 		NSFileManager *fileManager;
 		fileManager = [NSFileManager defaultManager];
@@ -136,9 +136,10 @@
 			// otherwise we run NodeNotRunning which will display the Not Running image to the user, this should be 100% reliable, the node won't run without that anchor file
 			[self performSelectorOnMainThread:@selector(nodeNotRunning:) withObject:nil waitUntilDone:NO];
 		}
+        [autoreleasepool release];
 		sleep(5);
 	}
-	[autoreleasepool release];
+	
 }
 
 - (void)startFreenet:(id)sender {
@@ -169,14 +170,8 @@
 	}	
 	else {
 		//nstask to start freenet
-		NSTask *startFreenet;
-		startFreenet = [[NSTask alloc] init];
-		[startFreenet setLaunchPath:@"/bin/sh"];
-		[startFreenet setArguments:startArguments];
-		[startFreenet launch];
-		[startFreenet terminate];
-		[startFreenet release];
-	}
+        [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:startArguments];
+    }
 	
 }
 
@@ -195,15 +190,9 @@
 	fileManager = [NSFileManager defaultManager];
 	if([fileManager isReadableFileAtPath:anchorFile]) {
 		// since we found the anchor file and the user wants to stop freenet, we set an NSTask to delete the file, which should cause the node to stop
-		NSTask *stopFreenet;
-		stopFreenet = [[NSTask alloc] init];
-		[stopFreenet setLaunchPath:@"/bin/sh"];
-		[stopFreenet setArguments:stopArguments];
-		[stopFreenet launch];
-		[stopFreenet terminate];
-		[stopFreenet release];
-	}
-	else {
+        [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:stopArguments];
+    
+    } else {
 		//if user wants to stop freenet but anchor file doesn't exist, either node isn't running or files aren't where they should be. Either way we can't do anything but throw an error box up on the screen
 		NSAlert *alert = [[NSAlert alloc] init];
 		[alert addButtonWithTitle:@"OK"];
@@ -212,7 +201,7 @@
 		[alert setAlertStyle:NSWarningAlertStyle];
 		[alert runModal];
 		[alert release];
-		}
+    }
 }
 
 - (void)openWebInterface:(id)sender {

@@ -75,7 +75,7 @@
 	//								 keyEquivalent: @"p"];
 	// opens the standard about panel with info sourced from the info.plist file
 	aboutPanel = [trayMenu addItemWithTitle: @"About"  
-                                     action: @selector (orderFrontStandardAboutPanel:)  
+                                     action: @selector (showAboutPanel:)  
 									  keyEquivalent: @"a"];
 	// ends the program
 	quitItem = [trayMenu addItemWithTitle: @"Quit"  
@@ -209,6 +209,11 @@
 	NSString *nodeURL = [[NSUserDefaults standardUserDefaults] valueForKey:@"nodeurl"];
 	// This is a method to open the fproxy page in users default browser.
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:nodeURL]];
+}
+
+-(void)showAboutPanel:(id)sender {
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+    [NSApp orderFrontStandardAboutPanel:sender];
 }
 
 - (void) dealloc {

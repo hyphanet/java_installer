@@ -22,6 +22,7 @@
 - (void)startFreenet:(id)sender;
 - (void)stopFreenet:(id)sender;
 - (void)openWebInterface:(id)sender;
+- (void)showAboutPanel:(id)sender;
 - (void)checkNodeStatus:(id)sender;
 - (void)nodeRunning:(id)sender;
 - (void)nodeNotRunning:(id)sender;

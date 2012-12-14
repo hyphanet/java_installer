@@ -118,10 +118,9 @@
 	// this may not be necessary
 	NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
 	//get users preferred location of node files and put it in a string
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
@@ -139,28 +138,25 @@
 		}
 		sleep(5);
 	}
-	[anchorFile release];
 	[autoreleasepool release];
 }
 
 - (void)startFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path to the run script
-	NSMutableString *runScriptTemp = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[runScriptTemp appendString:@"/run.sh"];
-	//NSLog(@"%@",runScriptTemp);
-	NSString *runScript = [NSString stringWithFormat:@"\"%@\" start",runScriptTemp];
-	//NSLog(@"%@",runScript);
+	NSString *runScript = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/run.sh start"];
+	
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+    NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
+    
 	//load arguments into an array for use later by run.sh script
 	NSArray * startArguments = [NSArray arrayWithObjects:@"-c",runScript,nil];
-	//file manager for reading anchor file
-	NSFileManager *fileManager;
-	fileManager = [NSFileManager defaultManager];
+	
+    //file manager for reading anchor file
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+    
 	if([fileManager isReadableFileAtPath:anchorFile]) {
 		// user wants to start freenet, but anchor file is already there. Either node crashed or node file location is wrong.
 		NSAlert *alert = [[NSAlert alloc] init];
@@ -181,17 +177,14 @@
 		[startFreenet terminate];
 		[startFreenet release];
 	}
-	//[runScript release];
-	[anchorFile release];
-
+	
 }
 
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
 	//store location of the rm command so we can reference it
 	NSString *rmCommand = @"/bin/rm";
@@ -220,8 +213,6 @@
 		[alert runModal];
 		[alert release];
 		}
-	[anchorFile release];
-	[rmCommand release];
 }
 
 - (void)openWebInterface:(id)sender {

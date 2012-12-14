@@ -186,10 +186,10 @@
 	//make a new string to store the absolute path of the anchor file
 	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
-	//store location of the rm command so we can reference it
-	NSString *rmCommand = @"/bin/rm";
-	//set arguments to rm command to be anchor file
-	NSArray *rmArguments = [NSArray arrayWithObject:anchorFile];
+	//make a new string to store the absolute path to the stop script
+	NSString *stopScript = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/run.sh stop"];
+	//load arguments into an array for use later by run.sh script
+	NSArray *stopArguments = [NSArray arrayWithObjects:@"-c", stopScript, nil];
 	//file manager for reading anchor file
 	NSFileManager *fileManager;
 	fileManager = [NSFileManager defaultManager];
@@ -197,8 +197,8 @@
 		// since we found the anchor file and the user wants to stop freenet, we set an NSTask to delete the file, which should cause the node to stop
 		NSTask *stopFreenet;
 		stopFreenet = [[NSTask alloc] init];
-		[stopFreenet setLaunchPath:rmCommand];
-		[stopFreenet setArguments:rmArguments];
+		[stopFreenet setLaunchPath:@"/bin/sh"];
+		[stopFreenet setArguments:stopArguments];
 		[stopFreenet launch];
 		[stopFreenet terminate];
 		[stopFreenet release];

@@ -75,7 +75,7 @@
 	//								 keyEquivalent: @"p"];
 	// opens the standard about panel with info sourced from the info.plist file
 	aboutPanel = [trayMenu addItemWithTitle: @"About"  
-                                     action: @selector (orderFrontStandardAboutPanel:)  
+                                     action: @selector (showAboutPanel:)  
 									  keyEquivalent: @"a"];
 	// ends the program
 	quitItem = [trayMenu addItemWithTitle: @"Quit"  
@@ -115,16 +115,15 @@
 }
 
 - (void)checkNodeStatus:(id)sender {
-	// this may not be necessary
-	NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
+
 	//get users preferred location of node files and put it in a string
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
+        NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
 		//file manager for reading anchor file
 		NSFileManager *fileManager;
 		fileManager = [NSFileManager defaultManager];
@@ -137,30 +136,28 @@
 			// otherwise we run NodeNotRunning which will display the Not Running image to the user, this should be 100% reliable, the node won't run without that anchor file
 			[self performSelectorOnMainThread:@selector(nodeNotRunning:) withObject:nil waitUntilDone:NO];
 		}
+        [autoreleasepool release];
 		sleep(5);
 	}
-	[anchorFile release];
-	[autoreleasepool release];
+	
 }
 
 - (void)startFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path to the run script
-	NSMutableString *runScriptTemp = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[runScriptTemp appendString:@"/run.sh"];
-	//NSLog(@"%@",runScriptTemp);
-	NSString *runScript = [NSString stringWithFormat:@"\"%@\" start",runScriptTemp];
-	//NSLog(@"%@",runScript);
+	NSString *runScript = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/run.sh start"];
+	
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+    NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
+    
 	//load arguments into an array for use later by run.sh script
 	NSArray * startArguments = [NSArray arrayWithObjects:@"-c",runScript,nil];
-	//file manager for reading anchor file
-	NSFileManager *fileManager;
-	fileManager = [NSFileManager defaultManager];
+	
+    //file manager for reading anchor file
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+    
 	if([fileManager isReadableFileAtPath:anchorFile]) {
 		// user wants to start freenet, but anchor file is already there. Either node crashed or node file location is wrong.
 		NSAlert *alert = [[NSAlert alloc] init];
@@ -173,44 +170,29 @@
 	}	
 	else {
 		//nstask to start freenet
-		NSTask *startFreenet;
-		startFreenet = [[NSTask alloc] init];
-		[startFreenet setLaunchPath:@"/bin/sh"];
-		[startFreenet setArguments:startArguments];
-		[startFreenet launch];
-		[startFreenet terminate];
-		[startFreenet release];
-	}
-	//[runScript release];
-	[anchorFile release];
-
+        [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:startArguments];
+    }
+	
 }
 
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	
-	NSMutableString *nodeFilesLocation = (NSMutableString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
-	NSMutableString *anchorFile = [[NSMutableString alloc] initWithString:nodeFilesLocation];
-	[anchorFile appendString:@"/Freenet.anchor"];
+	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
-	//store location of the rm command so we can reference it
-	NSString *rmCommand = @"/bin/rm";
-	//set arguments to rm command to be anchor file
-	NSArray *rmArguments = [NSArray arrayWithObject:anchorFile];
+	//make a new string to store the absolute path to the stop script
+	NSString *stopScript = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/run.sh stop"];
+	//load arguments into an array for use later by run.sh script
+	NSArray *stopArguments = [NSArray arrayWithObjects:@"-c", stopScript, nil];
 	//file manager for reading anchor file
 	NSFileManager *fileManager;
 	fileManager = [NSFileManager defaultManager];
 	if([fileManager isReadableFileAtPath:anchorFile]) {
 		// since we found the anchor file and the user wants to stop freenet, we set an NSTask to delete the file, which should cause the node to stop
-		NSTask *stopFreenet;
-		stopFreenet = [[NSTask alloc] init];
-		[stopFreenet setLaunchPath:rmCommand];
-		[stopFreenet setArguments:rmArguments];
-		[stopFreenet launch];
-		[stopFreenet terminate];
-		[stopFreenet release];
-	}
-	else {
+        [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:stopArguments];
+    
+    } else {
 		//if user wants to stop freenet but anchor file doesn't exist, either node isn't running or files aren't where they should be. Either way we can't do anything but throw an error box up on the screen
 		NSAlert *alert = [[NSAlert alloc] init];
 		[alert addButtonWithTitle:@"OK"];
@@ -219,9 +201,7 @@
 		[alert setAlertStyle:NSWarningAlertStyle];
 		[alert runModal];
 		[alert release];
-		}
-	[anchorFile release];
-	[rmCommand release];
+    }
 }
 
 - (void)openWebInterface:(id)sender {
@@ -229,6 +209,11 @@
 	NSString *nodeURL = [[NSUserDefaults standardUserDefaults] valueForKey:@"nodeurl"];
 	// This is a method to open the fproxy page in users default browser.
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:nodeURL]];
+}
+
+-(void)showAboutPanel:(id)sender {
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+    [NSApp orderFrontStandardAboutPanel:sender];
 }
 
 - (void) dealloc {

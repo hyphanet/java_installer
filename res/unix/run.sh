@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 #
 # Copyright (c) 1999, 2006 Tanuki Software Inc.
@@ -579,6 +579,16 @@ setMemoryLimitIfNeeded() {
    fi
 }
 
+useLatestJVMOnOSX() {
+    LATESTJVM=`/usr/libexec/java_home -v 1.6+`
+    echo Latest JVM is $LATESTJVM
+    mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
+
+    grep -q ^set.JAVA_HOME= "${WRAPPER_CONF}.old" && sed "s|set.JAVA_HOME=.*|set.JAVA_HOME=$LATESTJVM|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF" || sed  "1i\\
+         set.JAVA_HOME=$LATESTJVM	
+         ;s|wrapper.java.command=java|wrapper.java.command=%JAVA_HOME%/bin/java|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"  
+
+}
 
 case "$1" in
 
@@ -589,10 +599,11 @@ case "$1" in
 
     'start')
         checkUser $1 touchlock
-	if test "$DIST_OS" != "macosx"
-	then
-	        setMemoryLimitIfNeeded
-	fi
+        setMemoryLimitIfNeeded
+	      if test "$DIST_OS" == "macosx"
+	      then
+             useLatestJVMOnOSX
+	      fi
         start
         ;;
 

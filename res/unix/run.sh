@@ -583,14 +583,11 @@ useLatestJVMOnOSX() {
     LATESTJVM=`/usr/libexec/java_home -v 1.6+`
     echo Latest JVM is $LATESTJVM
     mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
-    local summary=$(sed -n "s/^set.JAVA_HOME=\(.*\)/\1/p" "${WRAPPER_CONF}.old")
-    if [ -n "$summary" ]; then
-	       sed "s|set.JAVA_HOME=.*|set.JAVA_HOME=$LATESTJVM|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"  
-    else
-         sed "1i\\
+
+    grep -q ^set.JAVA_HOME= "${WRAPPER_CONF}.old" && sed "s|set.JAVA_HOME=.*|set.JAVA_HOME=$LATESTJVM|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF" || sed  "1i\\
          set.JAVA_HOME=$LATESTJVM	
          ;s|wrapper.java.command=java|wrapper.java.command=%JAVA_HOME%/bin/java|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"  
-    fi
+
 }
 
 case "$1" in

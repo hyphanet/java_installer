@@ -235,7 +235,7 @@ ECHO - Checking for Freenet JAR updates...
 ECHO -----
 
 ::Check for sha1test and download if needed.
-IF NOT EXIST updater\sha1test.jar updater\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://checksums.freenetproject.org/latest/sha1test.jar -O updater\sha1test.jar
+IF NOT EXIST updater\sha1test.jar updater\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://downloads.freenetproject.org/latest/sha1test.jar -O updater\sha1test.jar
 IF NOT ERRORLEVEL 0 GOTO error3
 IF NOT EXIST updater\sha1test.jar GOTO error3
 
@@ -278,7 +278,7 @@ GOTO promptloop3
 :promptloop3out
 ::User wants to try to download a new certificate
 IF EXIST startssl.pem.new DEL startssl.pem.new
-..\updater\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://checksums.freenetproject.org/latest/startssl.pem -O startssl.pem.new
+..\updater\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10  https://downloads.freenetproject.org/latest/startssl.pem -O startssl.pem.new
 IF NOT ERRORLEVEL 0 GOTO error3
 IF NOT EXIST startssl.pem.new GOTO error3
 ::File should not be smaller than 2760 bytes

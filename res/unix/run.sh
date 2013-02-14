@@ -553,7 +553,7 @@ setMemoryLimitIfNeeded() {
        currentmem=`getHardwareMemory`
        echo Detected memory: $currentmem
        echo $currentmem > memory.autolimit	
-       if [ $currentmem -le 128 ] 
+       if [ $currentmem -le 256 ]
        then
            echo "not enough memory to run"
 	   rm memory.autolimit

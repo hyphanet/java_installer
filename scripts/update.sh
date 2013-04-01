@@ -110,6 +110,7 @@ if test ! -f $CAFILE
 then
 # Delete the existing sha1test.jar: we want a new one to be downloaded
 rm -f sha1test.jar
+fi
 cat >$CAFILE << EOF
 -----BEGIN CERTIFICATE-----
 MIIELzCCAxegAwIBAgILBAAAAAABL07hNwIwDQYJKoZIhvcNAQEFBQAwVzELMAkG
@@ -158,7 +159,6 @@ DKqC5JlR3XC321Y9YeRq4VzW9v493kHMB65jUr9TU/Qr6cf9tveCX4XSQRjbgbME
 HMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
 -----END CERTIFICATE-----
 EOF
-fi
 
 if test -x "`which curl`"
 then

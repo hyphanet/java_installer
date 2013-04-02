@@ -162,7 +162,10 @@ EOF
 
 if test -x "`which curl`"
 then
-	DOWNLOADER="curl --cacert $CAFILE -q -f -L -O "
+	# Pin the certificate file.
+	# Curl will use the system --capath if we don't specify one.
+	# FIXME --capath . is safe, /var/empty would be more obvious but might break if some future curl checks existence?
+	DOWNLOADER="curl --capath . --cacert $CAFILE -q -f -L -O "
 else
 	DOWNLOADER="wget -o /dev/null --ca-certificate $CAFILE -N "
 fi

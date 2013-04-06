@@ -600,7 +600,7 @@ case "$1" in
     'start')
         checkUser $1 touchlock
         setMemoryLimitIfNeeded
-	      if test "$DIST_OS" == "macosx"
+	      if test "$DIST_OS" = "macosx"
 	      then
              useLatestJVMOnOSX
 	      fi

@@ -4,9 +4,6 @@
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-147.jar
 # In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
-JAVA_HOME=/usr/lib/jvm/java-1.5.0-sun
-PATH=$JAVA_HOME/bin/:$PATH
-
 test -e bin/freenet.jar || exit
 test -e bin/freenet-ext.jar || exit
 test -e bin/bcprov-jdk15on-147.jar || exit

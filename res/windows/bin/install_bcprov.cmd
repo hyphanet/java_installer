@@ -6,6 +6,6 @@
 @if exist .isInstalled goto end
 
 @if exist offline goto end
-@echo Downloading bcprov-jdk15on-147.jar
-@java -jar bin\sha1test.jar bcprov-jdk15on-147.jar . %CAFILE% > NUL
+@echo Downloading bcprov-jdk15on-149.jar
+@java -jar bin\sha1test.jar bcprov-jdk15on-149.jar . %CAFILE% > NUL
 :end

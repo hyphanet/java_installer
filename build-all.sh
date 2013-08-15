@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Dependancies:
-# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-147.jar
+# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar
 # In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
 test -e bin/freenet.jar || exit
 test -e bin/freenet-ext.jar || exit
-test -e bin/bcprov-jdk15on-147.jar || exit
+test -e bin/bcprov-jdk15on-149.jar || exit
 test -e bin/seednodes.fref || exit
 
 rm -rf offline/*
@@ -42,7 +42,7 @@ touch offline/offline
 cp dist/wrapper_*.zip* offline/
 cp bin/freenet.jar offline/freenet-stable-latest.jar
 cp bin/freenet-ext.jar offline/freenet-ext.jar
-cp bin/bcprov-jdk15on-147.jar offline/bcprov-jdk15on-147.jar
+cp bin/bcprov-jdk15on-149.jar offline/bcprov-jdk15on-149.jar
 cp bin/seednodes.fref offline/
 cp scripts/update.sh offline/
 cp res/bin/sha1test.jar offline/

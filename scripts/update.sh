@@ -231,12 +231,12 @@ else
 	exit
 fi
 
-if test ! -s bcprov-jdk15on-147.jar
+if test ! -s bcprov-jdk15on-149.jar
 then
-	echo Downloading bcprov-jdk15on-147.jar
-	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-147.jar . $CAFILE
+	echo Downloading bcprov-jdk15on-149.jar
+	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-149.jar . $CAFILE
 	then
-		echo Could not download bcprov-jdk15on-147.jar needed for new jar
+		echo Could not download bcprov-jdk15on-149.jar needed for new jar
 		exit
 	fi
 fi
@@ -253,10 +253,15 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if ! grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null
+if ! grep bcprov-jdk15on-149.jar wrapper.conf > /dev/null
 then
-	echo Adding bcprov-jdk15on-147.jar to wrapper.conf
-	echo "wrapper.java.classpath.3=bcprov-jdk15on-147.jar" >> wrapper.conf
+	echo Adding bcprov-jdk15on-149.jar to wrapper.conf
+	if grep wrapper.conf bcprov-jdk15on-147.jar; then
+		cat wrapper.conf | sed "s/bcprov-jdk15on-147/bcprov-jdk15on-149" > wrapper.conf.new
+		mv wrapper.conf.new wrapper.conf
+	else
+		echo "wrapper.java.classpath.3=bcprov-jdk15on-149.jar" >> wrapper.conf
+	fi
 fi
 
 if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar

@@ -272,6 +272,14 @@ else
 	fi
 fi
 
+# Deduplicate options - fix really hideously bad situations caused by buggy update scripts
+if (cat wrapper.conf | grep "wrapper.java.classpath." | sort | uniq | sed "s/^wrapper.java.classpath.[0-9]*=//" | (y=0; while read x; do y=$((y+1)); echo "wrapper.java.classpath.$y=$x"; done); cat wrapper.conf | sed "/wrapper.java.classpath.[0-9]*=/d") > wrapper.conf.new; then
+	echo De-duplicating wrapper.conf classpath
+	mv wrapper.conf.new wrapper.conf
+else
+	rm wrapper.conf.new
+fi
+
 if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar
 then
 	cp download-temp/freenet-*.jar* .

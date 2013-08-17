@@ -204,9 +204,13 @@ ECHO -----
 
 IF NOT EXIST bcprov-jdk15on-149.jar updater\wget.exe -o NUL --timeout=5 --tries=5 --waitretry=10 https://downloads.freenetproject.org/alpha/deps/bcprov-jdk15on-149.jar -O bcprov-jdk15on-149.jar
 
+:: If it has bcprov 149 we are OK.
 FIND "bcprov-jdk15on-149.jar" %WRAPPER% > NUL
 IF NOT ERRORLEVEL 1 GOTO checkeddeps
-:: We can simply append to wrapper.conf, no need to clobber it.
+:: If it has bcprov 147 we need a new wrapper.conf
+FIND "bcprov-jdk15on-147.jar" %WRAPPER% > NUL
+IF NOT ERRORLEVEL 1 GOTO error5
+:: If it has neither, we can simply append to wrapper.conf, no need to clobber it.
 ECHO wrapper.java.classpath.3=bcprov-jdk15on-149.jar >> %WRAPPER%
 
 :checkeddeps
@@ -1013,7 +1017,7 @@ IF ERRORLEVEL 1 GOTO beginfilecopy
 ::Much cleaner way of giving us a 5 second pause to make sure the node is shut down.
 ::Found at http://www.allenware.com/icsw/icswref.htm#WaitsFixedPing
 ::Insert delay of 5 =6-1 seconds
-PING -n 6 127.0.0.1 > NUL
+PING -n 6 localhost > NUL
 CALL ..\bin\stop.cmd > NUL
 GOTO safetycheck
 
@@ -1027,7 +1031,7 @@ PAUSE
 ::Let's give the node a few seconds to shutdown cleanly
 ECHO - Continuing in 15 seconds...
 ::Insert delay of 15 =16-1 seconds
-PING -n 16 127.0.0.1 > NUL
+PING -n 16 localhost > NUL
 
 ::Ok Freenet is stopped, it is safe to copy files.
 :beginfilecopy
@@ -1142,7 +1146,7 @@ IF NOT EXIST ..\tray_die.dat ECHO "" >> ..\tray_die.dat
 ::Much cleaner way of giving us a 15 second pause to make sure the tray is shut down.
 ::Found at http://www.allenware.com/icsw/icswref.htm#WaitsFixedPing
 ::Insert delay of 15 =16-1 seconds
-PING -n 16 127.0.0.1 > NUL
+PING -n 16 localhost > NUL
 IF EXIST ..\bin\freenettray.exe DEL ..\bin\freenettray.exe
 COPY freenettray.exe ..\bin\freenettray.exe > NUL
 ::Update the startup folder also

@@ -5,19 +5,19 @@
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
-source freenet-scripts-common || exit
-readConfig || exit
+source freenet-scripts-common || exit 1
+readConfig || exit 1
 
-test -e bin/freenet.jar || exit
-test -e bin/freenet-ext.jar || exit
-test -e bin/bcprov-jdk15on-149.jar || exit
-test -e bin/seednodes.fref || exit
+test -e bin/freenet.jar || exit 2
+test -e bin/freenet-ext.jar || exit 3
+test -e bin/bcprov-jdk15on-149.jar || exit 4
+test -e bin/seednodes.fref || exit 5
 
 rm -rf offline/*
 rm -f *.exe *.jar *.sig
 ant clean
-ant win32
-mv install.jar new_installer.jar
+ant win32 || exit 6
+mv install.jar new_installer.jar || exit 7
 mkdir dist
 cp ./res/bin/sha1test.jar dist
 mv install*exe* new_installer.* dist
@@ -26,7 +26,7 @@ mv install*exe* new_installer.* dist
 rm -rf wrapper_windows
 cp -a res/windows wrapper_windows
 cd wrapper_windows
-zip -9 -q -r wrapper_windows.zip . -i bin/*.exe -i lib/*.dll
+zip -9 -q -r wrapper_windows.zip . -i bin/*.exe -i lib/*.dll || exit 8
 sha1sum wrapper_windows.zip >wrapper_windows.zip.sha1
 mv wrapper_windows.zip* ../dist
 cd ..
@@ -35,51 +35,51 @@ cd ..
 rm -rf wrapper_unix
 cp -a res/unix wrapper_unix
 cd wrapper_unix
-zip -9 -q -r wrapper_Linux.zip . -i bin/wrapper-linux-* -i lib/libwrapper-linux-*
-zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-* -i lib/libwrapper-macosx-*
+zip -9 -q -r wrapper_Linux.zip . -i bin/wrapper-linux-* -i lib/libwrapper-linux-* || exit 9
+zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-* -i lib/libwrapper-macosx-* || exit 10
 sha1sum wrapper_Linux.zip >wrapper_Linux.zip.sha1
 sha1sum wrapper_Darwin.zip >wrapper_Darwin.zip.sha1
 mv wrapper_*.zip* ../dist
 cd ..
 
 touch offline/offline
-cp dist/wrapper_*.zip* offline/
-cp bin/freenet.jar offline/freenet-stable-latest.jar
-cp bin/freenet-ext.jar offline/freenet-ext.jar
-cp bin/bcprov-jdk15on-149.jar offline/bcprov-jdk15on-149.jar
-cp bin/seednodes.fref offline/
-cp scripts/update.sh offline/
-cp res/bin/sha1test.jar offline/
+cp dist/wrapper_*.zip* offline/ || exit 11
+cp bin/freenet.jar offline/freenet-stable-latest.jar || exit 12
+cp bin/freenet-ext.jar offline/freenet-ext.jar || exit 13
+cp bin/bcprov-jdk15on-149.jar offline/bcprov-jdk15on-149.jar || exit 14
+cp bin/seednodes.fref offline/ || exit 15
+cp scripts/update.sh offline/ || exit 16
+cp res/bin/sha1test.jar offline/ || exit 17
 
 mkdir offline/plugins
-cp $releaseDir/JSTUN.jar offline/plugins/
-cp $releaseDir/UPnP.jar offline/plugins/
-cp $releaseDir/Library.jar offline/plugins/
-cp $releaseDir/KeyUtils.jar offline/plugins/
-cp $releaseDir/ThawIndexBrowser.jar offline/plugins/
-ant win32
+cp $releaseDir/JSTUN.jar offline/plugins/ || exit 18
+cp $releaseDir/UPnP.jar offline/plugins/ || exit 19
+cp $releaseDir/Library.jar offline/plugins/ || exit 20
+cp $releaseDir/KeyUtils.jar offline/plugins/ || exit 21
+cp $releaseDir/ThawIndexBrowser.jar offline/plugins/ || exit 22
+ant win32 || exit 23
 
-mv install.jar new_installer_offline.jar
-mv install.exe install_offline.exe
-mv -f install_offline.* new_installer_offline.* dist/
+mv install.jar new_installer_offline.jar || exit 23
+mv install.exe install_offline.exe || exit 24
+mv -f install_offline.* new_installer_offline.* dist/ || exit 25
 
 # update da-tarball
 rm -rf tarball
 mkdir -p tarball
 cd tarball
 mkdir -p freenet/bin freenet/lib
-cp ../res/unix/bin/remove_cronjob.sh freenet/bin/
-cp ../res/bin/*jar freenet/bin/
-cp ../scripts/1run.sh freenet/bin/
-cp ../res/wrapper.conf freenet/
-cp ../res/unix/run.sh freenet/
+cp ../res/unix/bin/remove_cronjob.sh freenet/bin/ || exit 26
+cp ../res/bin/*jar freenet/bin/ || exit 27
+cp ../scripts/1run.sh freenet/bin/ || exit 28
+cp ../res/wrapper.conf freenet/ || exit 29
+cp ../res/unix/run.sh freenet/ || exit 30
 rm -rf freenet/license
-cp -a ../res/license freenet/license
-cp ../res/startssl.pem freenet/
+cp -a ../res/license freenet/license || exit 31
+cp ../res/startssl.pem freenet/ || exit 32
 chmod a+rx -R freenet/bin freenet/lib
-tar czf freenet07.tar.gz freenet
-sha1sum freenet07.tar.gz >freenet07.tar.gz.sha1
-mv freenet07.tar.gz* ../dist/
+tar czf freenet07.tar.gz freenet || exit 33
+sha1sum freenet07.tar.gz >freenet07.tar.gz.sha1 || exit 34
+mv freenet07.tar.gz* ../dist/ || exit 35
 cd ..
 rm -f freenet-ext.jar freenet-stable-latest.jar
 chmod a+r dist/*

@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # Dependancies:
+# ~/.freenetrc pointing to $releaseDir
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar
-# In ../FreenetReleased/ : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
+# In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
+
+source freenet-scripts-common || exit
+readConfig || exit
 
 test -e bin/freenet.jar || exit
 test -e bin/freenet-ext.jar || exit
@@ -48,11 +52,11 @@ cp scripts/update.sh offline/
 cp res/bin/sha1test.jar offline/
 
 mkdir offline/plugins
-cp ../FreenetReleased/JSTUN.jar offline/plugins/
-cp ../FreenetReleased/UPnP.jar offline/plugins/
-cp ../FreenetReleased/Library.jar offline/plugins/
-cp ../FreenetReleased/KeyUtils.jar offline/plugins/
-cp ../FreenetReleased/ThawIndexBrowser.jar offline/plugins/
+cp $releaseDir/JSTUN.jar offline/plugins/
+cp $releaseDir/UPnP.jar offline/plugins/
+cp $releaseDir/Library.jar offline/plugins/
+cp $releaseDir/KeyUtils.jar offline/plugins/
+cp $releaseDir/ThawIndexBrowser.jar offline/plugins/
 ant win32
 
 mv install.jar new_installer_offline.jar

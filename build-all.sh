@@ -84,3 +84,4 @@ cd ..
 rm -f freenet-ext.jar freenet-stable-latest.jar
 chmod a+r dist/*
 
+echo Successfully completed non-Windows installer build

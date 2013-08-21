@@ -2,7 +2,7 @@
 
 # Dependancies:
 # ~/.freenetrc pointing to $releaseDir
-# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar
+# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar, wrapper.jar (version corresponding to the native wrapper binaries)
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
 source freenet-scripts-common || exit 1
@@ -11,6 +11,7 @@ readConfig || exit 1
 test -e bin/freenet.jar || exit 2
 test -e bin/freenet-ext.jar || exit 3
 test -e bin/bcprov-jdk15on-149.jar || exit 4
+test -e bin/wrapper.jar || exit 36
 test -e bin/seednodes.fref || exit 5
 
 rm -rf offline/*
@@ -47,6 +48,7 @@ cp dist/wrapper_*.zip* offline/ || exit 11
 cp bin/freenet.jar offline/freenet-stable-latest.jar || exit 12
 cp bin/freenet-ext.jar offline/freenet-ext.jar || exit 13
 cp bin/bcprov-jdk15on-149.jar offline/bcprov-jdk15on-149.jar || exit 14
+cp bin/wrapper.jar offline/wrapper.jar || exit 37
 cp bin/seednodes.fref offline/ || exit 15
 cp scripts/update.sh offline/ || exit 16
 cp res/bin/sha1test.jar offline/ || exit 17

@@ -90,9 +90,18 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_bcprov.sh"/>
 	</job>
+	<job name="Downloading wrapper jar">
+		<os family="unix"/>
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_wrapperjar.sh"/>
+	</job>
 	<job name="Downloading bcprov">
 		<os family="windows"/>
 		<executefile name="$INSTALL_PATH\bin\install_bcprov.cmd"/>
+	</job>
+	<job name="Downloading wrapper jar">
+		<os family="windows"/>
+		<executefile name="$INSTALL_PATH\bin\install_wrapperjar.cmd"/>
 	</job>
 	<job name="Detecting port availability">
 		<os family="unix"/>

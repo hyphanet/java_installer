@@ -241,6 +241,15 @@ then
 	fi
 fi
 
+if test ! -s wrapper.jar
+then
+	echo Downloading wrapper.jar
+	if ! java $JOPTS -cp sha1test.jar Sha1Test wrapper.jar . $CAFILE
+	then
+		echo Could not download wrapper.jar needed for new jar
+		exit
+	fi
+fi
 	
 
 # Make sure the new files will be used (necessary to prevent 
@@ -271,6 +280,22 @@ else
 		mv wrapper.conf.new wrapper.conf
 	fi
 fi
+
+if ! grep wrapper.jar wrapper.conf > /dev/null
+then
+	echo Adding wrapper.jar to wrapper.conf
+	if (((echo wrapper.jar; cat wrapper.conf | grep "wrapper.java.classpath." | sed "s/^wrapper.java.classpath.[0-9]*=//") | (y=0; while read x; do y=$((y+1)); echo "wrapper.java.classpath.$y=$x"; done); cat wrapper.conf | sed "/wrapper.java.classpath.[0-9]*=/d") > wrapper.conf.new) && mv wrapper.conf.new wrapper.conf
+	then
+		echo Successfully added wrapper.jar to wrapper.conf
+	else
+		echo Failed to update your wrapper.conf
+		echo Please manaully add wrapper.java.classpath.1=wrapper.jar to the beginning of your wrapper.conf and renumber the other similar lines
+		echo Then re-run the script.
+		echo This might be caused by not having sed installed
+		exit 
+	fi
+fi
+	
 
 if ! file_exist freenet-ext.jar freenet-$RELEASE-latest.jar
 then

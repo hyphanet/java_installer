@@ -250,7 +250,8 @@ then
 		exit
 	fi
 fi
-	
+
+dos2unix wrapper.conf > /dev/null 2>&1
 
 # Make sure the new files will be used (necessary to prevent 
 # the node's auto-update to play us tricks)

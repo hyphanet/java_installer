@@ -91,4 +91,5 @@ cd ..
 rm -f freenet-ext.jar freenet-stable-latest.jar
 chmod a+r dist/*
 
+rm -Rf wrapper_unix wrapper_windows
 echo Successfully completed non-Windows installer build

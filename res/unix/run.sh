@@ -163,9 +163,12 @@ esac
 # Resolve the architecture
 DIST_ARCH=`uname -m | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
 case "$DIST_ARCH" in
-    'amd64' | 'ia32' | 'ia64' | 'i386' | 'i486' | 'i586' | 'i686' | 'x86_64')
+    'amd64' | 'ia32' | 'i386' | 'i486' | 'i586' | 'i686' | 'x86_64')
         DIST_ARCH="x86"
         ;;
+    'ia64' | 'ia-64')
+	DIST_ARCH="ia64"
+	;;
     'ip27' | 'mips')
         DIST_ARCH="mips"
         ;;

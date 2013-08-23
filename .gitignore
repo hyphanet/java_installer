@@ -3,7 +3,6 @@ bin/freenet-ext.jar
 bin/freenet.jar
 bin/seednodes.fref
 bin/sha1test.jar
-bin/wrapper.jar
 bin/bcprov-jdk15on-149.jar
 build/
 lib/

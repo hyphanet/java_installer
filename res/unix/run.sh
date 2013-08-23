@@ -184,6 +184,13 @@ case "$DIST_ARCH" in
     '9000/800')
         DIST_ARCH="parisc"
         ;;
+    armv*)
+        if [ -z "`readelf -A /proc/self/exe | grep Tag_ABI_VFP_args`" ] ; then
+            DIST_ARCH="armel"
+        else
+            DIST_ARCH="armhf"
+        fi
+        ;;
 esac
 
 # Check if we are running on 64bit platform, seems like a workaround for now...

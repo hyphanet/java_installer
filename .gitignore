@@ -5,7 +5,7 @@ bin/seednodes.fref
 bin/sha1test.jar
 bin/bcprov-jdk15on-149.jar
 build/
-lib/
+/lib/
 offline/
 res/bin/
 res/res/

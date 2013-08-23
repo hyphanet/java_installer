@@ -28,6 +28,8 @@ rm -rf wrapper_windows
 cp -a res/windows wrapper_windows
 cd wrapper_windows
 zip -9 -q -r wrapper_windows.zip . -i bin/*.exe -i lib/*.dll || exit 8
+cp ../bin/wrapper.jar .
+zip -9 -q -r wrapper_windows.zip wrapper.jar || exit 8
 sha1sum wrapper_windows.zip >wrapper_windows.zip.sha1
 mv wrapper_windows.zip* ../dist
 cd ..
@@ -36,8 +38,11 @@ cd ..
 rm -rf wrapper_unix
 cp -a res/unix wrapper_unix
 cd wrapper_unix
+cp ../bin/wrapper.jar . || exit 9
 zip -9 -q -r wrapper_Linux.zip . -i bin/wrapper-linux-* -i lib/libwrapper-linux-* || exit 9
-zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-* -i lib/libwrapper-macosx-* || exit 10
+zip -9 -q -r wrapper_Linux.zip wrapper.jar || exit 9
+zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-*-i lib/libwrapper-macosx-* || exit 10
+zip -9 -q -r wrapper_Darwin.zip wrapper.jar || exit 10
 sha1sum wrapper_Linux.zip >wrapper_Linux.zip.sha1
 sha1sum wrapper_Darwin.zip >wrapper_Darwin.zip.sha1
 mv wrapper_*.zip* ../dist

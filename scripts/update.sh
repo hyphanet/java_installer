@@ -16,6 +16,10 @@ JOPTS="-Djava.net.preferIPv4Stack=true"
 SHA1_Sha1Test="ec6877a2551065d954e44dc6e78502bfe1fe6015"
 echo "Updating freenet"
 
+#Set working directory to freenet install directory
+install_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $install_dir
+
 if test -x pre-update.sh
 then
 	echo "Running the pre-update script:"

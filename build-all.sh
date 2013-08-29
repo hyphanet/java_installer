@@ -64,6 +64,7 @@ cp $releaseDir/UPnP.jar offline/plugins/ || exit 19
 cp $releaseDir/Library.jar offline/plugins/ || exit 20
 cp $releaseDir/KeyUtils.jar offline/plugins/ || exit 21
 cp $releaseDir/ThawIndexBrowser.jar offline/plugins/ || exit 22
+# Re-run to generate offline installer.
 ant win32 || exit 23
 
 mv install.jar new_installer_offline.jar || exit 23

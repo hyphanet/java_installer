@@ -41,7 +41,7 @@ cd wrapper_unix
 cp ../bin/wrapper.jar . || exit 9
 zip -9 -q -r wrapper_Linux.zip . -i bin/wrapper-linux-* -i lib/libwrapper-linux-* || exit 9
 zip -9 -q -r wrapper_Linux.zip wrapper.jar || exit 9
-zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-*-i lib/libwrapper-macosx-* || exit 10
+zip -9 -q -r wrapper_Darwin.zip . -i bin/wrapper-macosx-* -i lib/libwrapper-macosx-* || exit 10
 zip -9 -q -r wrapper_Darwin.zip wrapper.jar || exit 10
 sha1sum wrapper_Linux.zip >wrapper_Linux.zip.sha1
 sha1sum wrapper_Darwin.zip >wrapper_Darwin.zip.sha1

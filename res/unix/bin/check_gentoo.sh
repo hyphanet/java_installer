@@ -1,6 +1,6 @@
 #!/bin/bash
-#. "$HOME/_install_toSource.sh" || exit 0
-#cd "$INSTALL_PATH"
+. "$HOME/_install_toSource.sh" || exit 0
+cd "$INSTALL_PATH"
 if test ! -f /etc/os-release; then exit; fi
 source /etc/os-release
 if test "$NAME" = "Gentoo" || test "$NAME" = "Arch Linux"; then

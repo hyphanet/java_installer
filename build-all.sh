@@ -5,6 +5,8 @@
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar, wrapper.jar (version corresponding to the native wrapper binaries)
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
+mkdir offline
+
 source freenet-scripts-common || exit 1
 readConfig || exit 1
 

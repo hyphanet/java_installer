@@ -7,7 +7,7 @@
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar, wrapper.jar (version corresponding to the native wrapper binaries)
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
-mkdir offline
+mkdir -p offline
 
 source freenet-scripts-common || exit 1
 readConfig || exit 1
@@ -23,7 +23,7 @@ rm -f *.exe *.jar *.sig
 ant clean
 ant win32 || exit 6
 mv install.jar new_installer.jar || exit 7
-mkdir dist
+mkdir -p dist
 cp ./res/bin/sha1test.jar dist
 mv install*exe* new_installer.* dist
 
@@ -62,7 +62,7 @@ cp bin/seednodes.fref offline/ || exit 15
 cp scripts/update.sh offline/ || exit 16
 cp res/bin/sha1test.jar offline/ || exit 17
 
-mkdir offline/plugins
+mkdir -p offline/plugins
 cp $releaseDir/JSTUN.jar offline/plugins/ || exit 18
 cp $releaseDir/UPnP.jar offline/plugins/ || exit 19
 cp $releaseDir/Library.jar offline/plugins/ || exit 20

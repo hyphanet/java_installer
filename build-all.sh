@@ -71,6 +71,8 @@ cp $releaseDir/ThawIndexBrowser.jar offline/plugins/ || exit 22
 # Re-run to generate offline installer.
 ant win32 || exit 23
 
+ant sign || exit
+
 mv install.jar new_installer_offline.jar || exit 23
 mv install.exe install_offline.exe || exit 24
 mv -f install_offline.* new_installer_offline.* dist/ || exit 25

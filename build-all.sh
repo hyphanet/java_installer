@@ -75,13 +75,6 @@ mv install.jar new_installer_offline.jar || exit 23
 mv install.exe install_offline.exe || exit 24
 mv -f install_offline.* new_installer_offline.* dist/ || exit 25
 
-# Set Permissions attribute in the jar
-# See http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/manifest.html
-# This matches the JNLP permissions level.
-# TODO: Is there a way to set this from within IzPack?
-echo 'Permissions: all-permissions' > manifest
-jar umf manifest dist/new_installer_offline.jar
-
 # update da-tarball
 rm -rf tarball
 mkdir -p tarball

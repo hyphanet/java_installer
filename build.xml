@@ -4,9 +4,12 @@
 This file builds the freenet installer...
 	</description>
 
-	<property name="keystore" value="$HOME/.gnupg/freenet/code-signing/code-signing.jks"/>
+	<property environment="env"/>
+	<property name="keystore" value="${env.HOME}/.gnupg/freenet/code-signing/code-signing.jks"/>
 	<property name="keystore_alias" value="freenet"/>
 	<property name="keystore_pass" value=""/>
+	<property name="key_pass" value=""/>
+	<!-- TODO: Allow separate configuration of these values. -->
 
 	<property name="config" value="install.xml"/>
 	<property name="dest" value="install.jar"/>
@@ -51,7 +54,7 @@ This file builds the freenet installer...
 
 	<target name="sign" description="Sign the distribution" depends="dist">
 		<echo message="Signing the installer"/>
-		<signjar jar="${dest}" strict="true" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
+		<signjar jar="${dest}" strict="true" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
 	</target>
 
 	<target name="win32" depends="dist, check-launch4j">

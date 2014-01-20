@@ -4,6 +4,10 @@
 This file builds the freenet installer...
 	</description>
 
+	<property name="keystore" value="$HOME/.gnupg/freenet/code-signing/code-signing.jks"/>
+	<property name="keystore_alias" value="freenet"/>
+	<property name="keystore_pass" value=""/>
+
 	<property name="config" value="install.xml"/>
 	<property name="dest" value="install.jar"/>
 	<property name="build" value="build"/>
@@ -30,6 +34,24 @@ This file builds the freenet installer...
 		<echo message="Build the installer"/>
 		<taskdef name="izpack" classpath="${izPack.lib}" classname="com.izforge.izpack.ant.IzPackTask"/>
 		<izpack input="${config}" output="${dest}" baseDir="${basedir}"/>
+		<jar jarfile="${dest}" update="true">
+			<manifest>
+				<attribute name="Permissions" value="all-permissions"/>
+				<section name="common">
+					<attribute name="Specification-Title" value="Freenet"/>
+					<attribute name="Specification-Version" value="0.7.5"/>
+					<attribute name="Specification-Vendor" value="freenetproject.org"/>
+					<attribute name="Implementation-Title" value="Freenet"/>
+					<attribute name="Implementation-Version" value="0.7.5 ${git.revision}"/>
+					<attribute name="Implementation-Vendor" value="freenetproject.org"/>
+				</section>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="sign" description="Sign the distribution" depends="dist">
+		<echo message="Signing the installer"/>
+		<signjar jar="${dest}" strict="true" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
 	</target>
 
 	<target name="win32" depends="dist, check-launch4j">

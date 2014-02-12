@@ -41,6 +41,7 @@ This file builds the freenet installer...
 			<manifest>
 				<attribute name="Permissions" value="all-permissions"/>
 				<section name="common">
+					<attribute name="Application-Name" value="Freenet"/>
 					<attribute name="Specification-Title" value="Freenet"/>
 					<attribute name="Specification-Version" value="0.7.5"/>
 					<attribute name="Specification-Vendor" value="freenetproject.org"/>

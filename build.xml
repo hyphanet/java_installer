@@ -53,10 +53,12 @@ This file builds the freenet installer...
 		</jar>
 	</target>
 
+	<!-- Note that this requires environment variables. They are set by the release-installer script. -->
 	<target name="sign" description="Sign the distribution" depends="dist">
 		<echo message="Signing the installer"/>
 		<signjar jar="${dest}" strict="false" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
 		<!-- TODO: Should have strict="true", but some versions of jarsigner do not support it. -->
+		<verifyjar jar="${dest}" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}"/>
 	</target>
 
 	<target name="win32" depends="dist, check-launch4j">

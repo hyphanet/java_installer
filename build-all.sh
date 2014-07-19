@@ -2,7 +2,6 @@
 
 # Dependancies:
 # izPack (version 4 or later?): standalone-compiler.jar in lib/
-# launch4java in lib/launch4j/
 # ~/.freenetrc pointing to $releaseDir
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-149.jar, wrapper.jar (version corresponding to the native wrapper binaries)
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
@@ -17,26 +16,6 @@ test -e bin/freenet-ext.jar || exit 3
 test -e bin/bcprov-jdk15on-149.jar || exit 4
 test -e bin/wrapper.jar || exit 36
 test -e bin/seednodes.fref || exit 5
-
-rm -rf offline/*
-rm -f *.exe *.jar *.sig
-ant clean
-ant win32 || exit 6
-mv install.jar new_installer.jar || exit 7
-mkdir -p dist
-cp ./res/bin/sha1test.jar dist
-mv install*exe* new_installer.* dist
-
-# update wrapper_windows.zip
-rm -rf wrapper_windows
-cp -a res/windows wrapper_windows
-cd wrapper_windows
-zip -9 -q -r wrapper_windows.zip . -i bin/*.exe -i lib/*.dll || exit 8
-cp ../bin/wrapper.jar .
-zip -9 -q -r wrapper_windows.zip wrapper.jar || exit 8
-sha1sum wrapper_windows.zip >wrapper_windows.zip.sha1
-mv wrapper_windows.zip* ../dist
-cd ..
 
 # update wrapper_linux.zip
 rm -rf wrapper_unix
@@ -68,13 +47,10 @@ cp $releaseDir/UPnP.jar offline/plugins/ || exit 19
 cp $releaseDir/Library.jar offline/plugins/ || exit 20
 cp $releaseDir/KeyUtils.jar offline/plugins/ || exit 21
 cp $releaseDir/ThawIndexBrowser.jar offline/plugins/ || exit 22
-# Re-run to generate offline installer.
-ant win32 || exit 23
 
 ant sign || exit
 
 mv install.jar new_installer_offline.jar || exit 23
-mv install.exe install_offline.exe || exit 24
 mv -f install_offline.* new_installer_offline.* dist/ || exit 25
 
 # update da-tarball

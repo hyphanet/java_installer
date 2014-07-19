@@ -16,21 +16,14 @@ This file builds the freenet installer...
 	<property name="build" value="build"/>
 
 	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
-	<property name="launch4j.dir" location="lib/launch4j/" />
 
 	<available file="${izPack.lib}" property="izPack_available" />
-	<available file="${launch4j.dir}" property="launch4j_available" />
 
 	<!-- ================================================== -->
 
 	<target name="check-izpack">
 		<fail unless="izPack_available" status="1"
 			message="You need to download izPack and to put standalone-compiler.jar into lib/" />
-	</target>
-
-	<target name="check-launch4j">
-		<fail unless="launch4j_available" status="1"
-			message="You need to download launch4j and to put it into lib/" />
 	</target>
 
 	<target name="dist" description="generate the distribution" depends="compile, check-izpack">
@@ -59,12 +52,6 @@ This file builds the freenet installer...
 		<signjar jar="${dest}" strict="false" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
 		<!-- TODO: Should have strict="true", but some versions of jarsigner do not support it. -->
 		<verifyjar jar="${dest}" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}"/>
-	</target>
-
-	<target name="win32" depends="dist, check-launch4j">
-		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar
-		    :${launch4j.dir}/lib/xstream.jar" />
-		<launch4j configFile="./l4j/installer.xml" />
 	</target>
 
 	<!-- ================================================== -->

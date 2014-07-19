@@ -74,7 +74,6 @@
 
     <str id="base.description" txt="Un pack contenant les composants de base de freenet."/>
     <str id="license.description" txt="Un pack contenant les fichiers de licence de freenet."/>
-    <str id="windows.description" txt="Un pack contenant des scripts pour Windows."/>
     <str id="unix.description" txt="Un pack contenant des scripts."/>
     <str id="uninstall.description" txt="Un pack permettant de configurer l'outil de désinstallation."/>
     <str id="autoupdater.description" txt="Un pack permettant au noeud de se tenir à jour automatiquement via freenet. Il est conseillé de l'installer."/>

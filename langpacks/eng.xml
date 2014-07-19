@@ -75,7 +75,6 @@
 
     <str id="base.description" txt="The base files."/>
     <str id="license.description" txt="The licence files."/>
-    <str id="windows.description" txt="A windows specific catch-all pack."/>
     <str id="unix.description" txt="An UNIX specific catch-all pack."/>
     <str id="uninstall.description" txt="Create uninstallation hooks in the registry."/>
     <str id="autoupdater.description" txt="Allow the node to auto-update over freenet securely. It's advised that you enable it to keep your node up-to-date."/>

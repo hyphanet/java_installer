@@ -6,29 +6,16 @@
 		<executefile name="$INSTALL_PATH/bin/setup.sh"/>
 	</job>
 
-	<job name="Setting up the environment">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\setup.cmd"/>
-	</job>
-
 	<job name="Setting the Updater up">
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_updater.sh"/>
-	</job>
-	<job name="Setting the Updater up">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_updater.cmd"/>
 	</job>
 
 	<job name="Setting Opennet up">
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_opennet.sh"/>
-	</job>
-	<job name="Setting the Opennet up">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_opennet.cmd"/>
 	</job>
 
 	<job name="Setting JSTUN up">
@@ -63,27 +50,15 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_plugins.sh"/>
 	</job>
-	<job name="Setting plugins up">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_plugins.cmd"/>
-	</job>
 	<job name="Downloading freenet-stable-latest">
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-stable-latest.sh"/>
 	</job>
-	<job name="Downloading freenet-stable-latest">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
-	</job>
 	<job name="Downloading freenet-ext">
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_freenet-ext.sh"/>
-	</job>
-	<job name="Downloading freenet-ext">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
 	</job>
 	<job name="Downloading bcprov">
 		<os family="unix"/>
@@ -95,22 +70,10 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_wrapperjar.sh"/>
 	</job>
-	<job name="Downloading bcprov">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_bcprov.cmd"/>
-	</job>
-	<job name="Downloading wrapper jar">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_wrapperjar.cmd"/>
-	</job>
 	<job name="Detecting port availability">
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/detect_port_availability.sh"/>
-	</job>
-	<job name="Register the system service">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\install_wrapper.cmd"/>
 	</job>
 
 	<job name="Setting up auto-start">
@@ -138,10 +101,6 @@
 		<os family="unix"/>
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/cleanup.sh"/>
-	</job>
-	<job name="Cleaning up">
-		<os family="windows"/>
-		<executefile name="$INSTALL_PATH\bin\cleanup.cmd"/>
 	</job>
 
 </processing>

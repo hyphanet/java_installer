@@ -76,7 +76,6 @@
 
     <str id="base.description" txt="主程序."/>
     <str id="license.description" txt="授权档."/>
-    <str id="windows.description" txt="窗口环境特有的「包罗万有」包."/>
     <str id="unix.description" txt="UNIX 环境特有的「包罗万有」包."/>
     <str id="uninstall.description" txt="在登录文件上建立反安装数据."/>
     <str id="autoupdater.description" txt="容许节点安全地自动更新. 我们非常你启用这个选项, 以保持你的节点在最新版本."/>

@@ -83,11 +83,6 @@
 		<res src="res/img/border7.png" id="Installer.image.7"/>
 	</resources>
 
-	<!-- The listeners section for CustomActions -->
-	<listeners>
-		<listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener" os="windows"/>
-	</listeners>
-
 	<panels>
 		<panel classname="CheckedHelloPanel"/>
 		<panel classname="TargetPanel"/> 
@@ -115,36 +110,6 @@
 			<file src="res/license/LICENSE.Freenet" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/LICENSE.Mantissa" targetdir="$INSTALL_PATH"/>
 			<file src="res/license/README" targetdir="$INSTALL_PATH"/>
-		</pack>
-
-		<pack name="Windows" id="windows" required="yes" parent="base">
-			<os family="windows"/>
-			<description>A windows specific catch-all pack</description>
-
-			<fileset dir="res/windows/" targetdir="$INSTALL_PATH">
-				<exclude name="*/**/.svn"/>
-				<exclude name="*/**/.svn/**"/>
-				<exclude name="bin/*.exe"/>
-				<exclude name="lib/*.dll"/>
-				<include name="*/**"/>
-			</fileset>
-
-			<fileset dir="offline" targetdir="$INSTALL_PATH">
-				<exclude name="*/**/.svn"/>
-				<exclude name="*/**/.svn/**"/>
-				<include name="*/**"/>
-			</fileset>
-
-			<executable targetfile="$INSTALL_PATH\bin\remove_service.bat" keep="true" stage="uninstall"/>
-			<parsable targetfile="$INSTALL_PATH\bin\cleanup.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\browse.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-ext.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_freenet-stable-latest.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_plugins.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_updater.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_wrapper.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\install_opennet.cmd"/>
-			<parsable targetfile="$INSTALL_PATH\bin\setup.cmd"/>
 		</pack>
 
 		<pack name="Unix" id="unix" required="yes" parent="base">
@@ -226,17 +191,5 @@
 			<parsable targetfile="$INSTALL_PATH/bin/setup.sh"/> 
 			<parsable targetfile="$INSTALL_PATH/StartFreenet.command"/>
 		</pack>
-		
-		<pack name="UninstallStuff" id="uninstall" required="yes" parent="base">
-			<description>Create uninstallation hooks</description>
-			<parsable targetfile="$INSTALL_PATH\Uninstaller\uninstall.cmd">
-				<os family="windows"/>
-			</parsable>
-		</pack>
-		
 	</packs>
-
-	<!-- The native libraries to add  http://svn.berlios.de/svnroot/repos/izpack/izpack-src/trunk/src/native/ -->
-	<native type="3rdparty" name="COIOSHelper.dll" stage="both" os="windows"/>
-	<native type="izpack" name="ShellLink.dll" stage="install" os="windows"/>
 </installation>

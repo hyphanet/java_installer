@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/Applications/FreenetTray.app/Contents/MacOS/FreenetTray &
+$USER_HOME/Applications/FreenetTray.app/Contents/MacOS/FreenetTray &

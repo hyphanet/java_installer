@@ -41,7 +41,7 @@ echo "node.updater.autoupdate=true" >> freenet.ini
 echo "Detecting tcp-ports availability..."
 # Try to auto-detect the first available port for fproxy
 FPROXY_PORT=8888
-java -jar bin/bindtest.jar $FPROXY_PORT &>/dev/null
+java -jar bin/bindtest.jar $FPROXY_PORT > /dev/null 2>&1
 if test $? -ne 0
 then
 	FPROXY_PORT=8889

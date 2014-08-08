@@ -17,6 +17,10 @@ test -e bin/bcprov-jdk15on-149.jar || exit 4
 test -e bin/wrapper.jar || exit 36
 test -e bin/seednodes.fref || exit 5
 
+mkdir -p dist
+
+ant compile
+
 # update wrapper_linux.zip
 rm -rf wrapper_unix
 cp -a res/unix wrapper_unix

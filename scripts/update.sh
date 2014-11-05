@@ -270,7 +270,8 @@ mv wrapper2.conf wrapper.conf
 
 if ! grep bcprov-jdk15on-149.jar wrapper.conf > /dev/null
 then
-	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null; then
+	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null
+	then
 		echo Updating wrapper.conf to bouncycastle 1.49
 		cat wrapper.conf | sed "s/bcprov-jdk15on-147/bcprov-jdk15on-149/" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
@@ -280,7 +281,8 @@ then
 	fi
 else
 	echo wrapper.conf contains up to date bouncycastle jar v1.49
-	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null; then
+	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null
+	then
 		echo wrapper.conf contains both bouncycastle 147 and 149, deleting 147
 		cat wrapper.conf | sed "/bcprov-jdk15on-147/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf

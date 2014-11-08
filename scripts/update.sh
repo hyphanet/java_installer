@@ -211,12 +211,12 @@ else
 	exit
 fi
 
-if test ! -s bcprov-jdk15on-149.jar
+if test ! -s bcprov-jdk15on-151.jar
 then
-	echo Downloading bcprov-jdk15on-149.jar
-	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-149.jar . $CAFILE
+	echo Downloading bcprov-jdk15on-151.jar
+	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-151.jar . $CAFILE
 	then
-		echo Could not download bcprov-jdk15on-149.jar needed for new jar
+		echo Could not download bcprov-jdk15on-151.jar needed for new jar
 		exit
 	fi
 fi
@@ -243,21 +243,27 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if ! grep bcprov-jdk15on-149.jar wrapper.conf > /dev/null
+if ! grep bcprov-jdk15on-151.jar wrapper.conf > /dev/null
 then
-	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null; then
-		echo Updating wrapper.conf to bouncycastle 1.49
-		cat wrapper.conf | sed "s/bcprov-jdk15on-147/bcprov-jdk15on-149/" > wrapper.conf.new
+	if grep bcprov-jdk15on wrapper.conf > /dev/null; then
+		echo Updating wrapper.conf to bouncycastle 1.51
+		cat wrapper.conf | sed "s/bcprov-jdk15on-147/bcprov-jdk15on-151/" > wrapper.conf.new
+		cat wrapper.conf | sed "s/bcprov-jdk15on-149/bcprov-jdk15on-151/" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	else
-		echo Adding bcprov-jdk15on-149.jar to wrapper.conf
-		echo "wrapper.java.classpath.3=bcprov-jdk15on-149.jar" >> wrapper.conf
+		echo Adding bcprov-jdk15on-151.jar to wrapper.conf
+		echo "wrapper.java.classpath.3=bcprov-jdk15on-151.jar" >> wrapper.conf
 	fi
 else
-	echo wrapper.conf contains up to date bouncycastle jar v1.49
+	echo wrapper.conf contains up to date bouncycastle jar v1.51
 	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null; then
-		echo wrapper.conf contains both bouncycastle 147 and 149, deleting 147
+		echo wrapper.conf contains both bouncycastle 147 and 151, deleting 147
 		cat wrapper.conf | sed "/bcprov-jdk15on-147/d" > wrapper.conf.new
+		mv wrapper.conf.new wrapper.conf
+	fi
+	if grep bcprov-jdk15on-149.jar wrapper.conf > /dev/null; then
+		echo wrapper.conf contains both bouncycastle 149 and 151, deleting 149
+		cat wrapper.conf | sed "/bcprov-jdk15on-149/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	fi
 fi

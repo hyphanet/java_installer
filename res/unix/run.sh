@@ -158,6 +158,9 @@ case "$DIST_OS" in
     'unix_sv')
         DIST_OS="unixware"
         ;;
+    'freebsd' | 'openbsd' | 'netbsd')
+        DIST_OS="freebsd"
+        ;;
 esac
 
 # Resolve the architecture

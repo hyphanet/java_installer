@@ -382,7 +382,7 @@ getpid() {
                     pid=""
                 fi
 		# Sometimes the pid exists and it's ours!
-		if test `uname` != "Darwin" 
+		if [ "$DIST_OS" = "linux" ]
 		then
 			if ! test -f /proc/$pid/cwd/Freenet.pid
 			then

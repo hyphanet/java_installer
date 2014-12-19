@@ -12,7 +12,7 @@ then
 	then
 		cat jvmerror
 	fi
-	echo "IllegalState: Delete the directory and re-unpack a fresh tarball"
+	echo "Illegal State: Delete the directory and re-unpack a fresh tarball"
 fi
 
 if test -s freenet.ini

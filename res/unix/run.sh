@@ -98,6 +98,8 @@ do
 		if head -1 "$candidate"|grep '^#' >/dev/null 2>&1
 		then
 			echo "Your java executable at $candidate is a script... looking for alternatives..."
+		elif echo "$candidate"|grep -i 'gcj' >/dev/null 2>&1
+			echo "Freenet won't work well with GCJ, ignoring $candidate"
 		else
 			if test -n "$JAVA_HOME" -a "$JAVA_HOME/bin/java" != "$candidate"
 			then

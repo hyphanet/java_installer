@@ -58,6 +58,31 @@ then
     exit 1
 fi
 
+# Resolve the os
+DIST_OS=`uname -s | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
+case "$DIST_OS" in
+    'sunos')
+        DIST_OS="solaris"
+        ;;
+    'hp-ux' | 'hp-ux64')
+        DIST_OS="hpux"
+        ;;
+    'darwin' | 'oarwin')
+        DIST_OS="macosx"
+        ;;
+    'unix_sv')
+        DIST_OS="unixware"
+        ;;
+    'freebsd' | 'openbsd' | 'netbsd')
+        DIST_OS="freebsd"
+        ;;
+esac
+
+if [ "$DIST_OS" = "macosx" ]
+then
+    JAVA_HOME=`/usr/libexec/java_home -v 1.6+`
+fi
+
 JAVA_REAL_IMPL="java"
 # Attempt to second-guess the user and find a JRE we can actually use...
 # The wrapper needs an ELF binary... some distros are using a shell wrapper
@@ -172,26 +197,6 @@ PIDFILE="$PIDDIR/$APP_NAME.pid"
 LOCKDIR="$REALDIR"
 LOCKFILE="$LOCKDIR/$APP_NAME"
 pid=""
-
-# Resolve the os
-DIST_OS=`uname -s | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
-case "$DIST_OS" in
-    'sunos')
-        DIST_OS="solaris"
-        ;;
-    'hp-ux' | 'hp-ux64')
-        DIST_OS="hpux"
-        ;;
-    'darwin' | 'oarwin')
-        DIST_OS="macosx"
-        ;;
-    'unix_sv')
-        DIST_OS="unixware"
-        ;;
-    'freebsd' | 'openbsd' | 'netbsd')
-        DIST_OS="freebsd"
-        ;;
-esac
 
 # Resolve the architecture
 DIST_ARCH=`uname -m | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
@@ -622,17 +627,6 @@ setMemoryLimitIfNeeded() {
    fi
 }
 
-useLatestJVMOnOSX() {
-    LATESTJVM=`/usr/libexec/java_home -v 1.6+`
-    echo Latest JVM is $LATESTJVM
-    mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
-
-    grep -q ^set.JAVA_HOME= "${WRAPPER_CONF}.old" && sed "s|set.JAVA_HOME=.*|set.JAVA_HOME=$LATESTJVM|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF" || sed  "1i\\
-         set.JAVA_HOME=$LATESTJVM	
-         ;s|wrapper.java.command=java|wrapper.java.command=%JAVA_HOME%/bin/java|g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"  
-
-}
-
 case "$1" in
 
     'console')
@@ -643,10 +637,6 @@ case "$1" in
     'start')
         checkUser $1 touchlock
         setMemoryLimitIfNeeded
-	      if test "$DIST_OS" = "macosx"
-	      then
-             useLatestJVMOnOSX
-	      fi
         start
         ;;
 

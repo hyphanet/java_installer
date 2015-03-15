@@ -58,8 +58,38 @@ then
     exit 1
 fi
 
+JAVA_REAL_IMPL="java"
+# Attempt to second-guess the user and find a JRE we can actually use...
+# The wrapper needs an ELF binary... some distros are using a shell wrapper
+# see bug #6217
+#
+# /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java SuSE
+# /usr/lib/jvm/java-7-openjdk/jre/bin/java Debian
+CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java /usr/lib/jvm/java-8-openjdk/jre/bin/java /usr/lib/jvm/java-7-openjdk/jre/bin/java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java"
+for candidate in $CANDIDATES
+do
+	if test -s "$candidate"
+	then
+		if head -1 "$candidate"|grep '^#' >/dev/null 2>&1
+		then
+			echo "Your java executable at $candidate is a script... looking for alternatives..."
+		else
+			if test -n "$JAVA_HOME" -a "$JAVA_HOME/bin/java" != "$candidate"
+			then
+				echo "Your JAVA_HOME seems to be incompatible with your PATH, ignoring it."
+				unset JAVA_HOME
+			fi
+			echo "Your java executable at $candidate seems suitable"
+			ESCAPED_CANDIDATE=`echo "$candidate"|sed 's/\(\/\)/\\\\\1/g'`
+			sed -i "s/^wrapper.java.command=.*$/wrapper.java.command=$ESCAPED_CANDIDATE/" wrapper.conf
+			JAVA_REAL_IMPL="$candidate"
+			break
+		fi
+	fi
+done
+
 # and get java implementation too, Sun JDK or Kaffe
-JAVA_IMPL=`java -version 2>&1 | head -n 1 | cut -f1 -d' '`
+JAVA_IMPL=`$JAVA_REAL_IMPL -version 2>&1 | head -n 1 | cut -f1 -d' '`
 
 # Get the fully qualified path to the script
 case $0 in
@@ -255,7 +285,7 @@ else
 			#
 			# We need -Djava.net.preferIPv4Stack=true on FreeBSD, otherwise recent jvms thow an IllegalArgumentException when we create the socket
 			#
-                        NO_WRAPPER="java -Djava.net.preferIPv4Stack=true -cp freenet-ext.jar:freenet.jar:bcprov-jdk15on-151.jar freenet.node.NodeStarter"
+                        NO_WRAPPER="$JAVA_REAL_IMPL -Djava.net.preferIPv4Stack=true -cp freenet-ext.jar:freenet.jar:bcprov-jdk15on-151.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi
@@ -266,7 +296,7 @@ else
             echo "Unable to locate any of the following binaries:"
             echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
             echo "  $WRAPPER_CMD"
-            NO_WRAPPER="java -cp freenet-ext.jar:freenet.jar:bcprov-jdk15on-151.jar freenet.node.NodeStarter"
+            NO_WRAPPER="$JAVA_REAL_IMPL -cp freenet-ext.jar:freenet.jar:bcprov-jdk15on-151.jar freenet.node.NodeStarter"
         fi
     fi
 fi

@@ -99,6 +99,7 @@
 				<include name="bin/**/*"/>
 				<include name="wrapper.conf"/>
 				<include name="startssl.pem"/>
+				<include name="freenet.ico"/>
 			</fileset>
 		</pack>
 

@@ -16,4 +16,22 @@ do
 	sleep 1
 done
 
+startFreenet() {
+	./run.sh start
+	sleep 5
+}
+
+PID=
+if test -e Freenet.pid
+then
+	PID=`cat Freenet.pid`
+	# This might still fail in the real-world but should cover most cases
+	if ! kill -0 $PID 2>/dev/null
+	then
+		startFreenet
+	fi
+else
+	startFreenet
+fi
+
 java -Djava.net.preferIPv4Stack=true -cp bin/browser.jar BareBonesBrowserLaunch "$URL" &

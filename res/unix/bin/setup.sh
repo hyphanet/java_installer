@@ -16,10 +16,10 @@ then
 fi
 
 echo '#!/bin/sh' > "$HOME/_install_toSource.sh"
-echo INSTALL_PATH=\"$INSTALL_PATH\" >> "$HOME/_install_toSource.sh"
-echo CAFILE=\"$CAFILE\" >> "$HOME/_install_toSource.sh"
-echo JOPTS=\"$JOPTS\" >> "$HOME/_install_toSource.sh"
-echo ISO3_LANG=\"$ISO3_LANG\" >> "$HOME/_install_toSource.sh"
+echo "INSTALL_PATH=\"$INSTALL_PATH\"" >> "$HOME/_install_toSource.sh"
+echo "CAFILE=\"$CAFILE\"" >> "$HOME/_install_toSource.sh"
+echo "JOPTS=\"$JOPTS\"" >> "$HOME/_install_toSource.sh"
+echo "ISO3_LANG=\"$ISO3_LANG\"" >> "$HOME/_install_toSource.sh"
 echo "if test -f \"$INSTALL_PATH/.isInstalled\"; then exit 1; fi" >> "$HOME/_install_toSource.sh"
 chmod 755 "$HOME/_install_toSource.sh"
 alias .=

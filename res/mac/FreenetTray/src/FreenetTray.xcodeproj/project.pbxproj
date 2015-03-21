@@ -10,7 +10,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AA02AADA0FC8D74F00499DB3 /* controllerLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = AA02AAD90FC8D74F00499DB3 /* controllerLogic.m */; };
+		AA02AADA0FC8D74F00499DB3 /* FNNodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */; };
 		AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */ = {isa = PBXBuildFile; fileRef = AA2A8B9B0FE3819300C585C8 /* freenet.icns */; };
 		AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCE109CD2B400EDBB73 /* LICENSE */; };
 		AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCF109CD2B400EDBB73 /* gpl.txt */; };
@@ -45,8 +45,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* FreenetTray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreenetTray.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA02AAD80FC8D74F00499DB3 /* controllerLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controllerLogic.h; sourceTree = "<group>"; };
-		AA02AAD90FC8D74F00499DB3 /* controllerLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controllerLogic.m; sourceTree = "<group>"; };
+		AA02AAD80FC8D74F00499DB3 /* FNNodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNNodeController.h; sourceTree = "<group>"; };
+		AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNNodeController.m; sourceTree = "<group>"; };
 		AA2A8B9B0FE3819300C585C8 /* freenet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = freenet.icns; sourceTree = "<group>"; };
 		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
@@ -85,8 +85,8 @@
 				AAB1222B1044BCF700F2027C /* UKLoginItemRegistry.m */,
 				AAB122271044BCEA00F2027C /* LoginItemsAE.c */,
 				AAB122281044BCEA00F2027C /* LoginItemsAE.h */,
-				AA02AAD80FC8D74F00499DB3 /* controllerLogic.h */,
-				AA02AAD90FC8D74F00499DB3 /* controllerLogic.m */,
+				AA02AAD80FC8D74F00499DB3 /* FNNodeController.h */,
+				AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -236,9 +236,9 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */,
-				AA02AADA0FC8D74F00499DB3 /* controllerLogic.m in Sources */,
 				AAB122291044BCEA00F2027C /* LoginItemsAE.c in Sources */,
 				AAB1222C1044BCF700F2027C /* UKLoginItemRegistry.m in Sources */,
+				AA02AADA0FC8D74F00499DB3 /* FNNodeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

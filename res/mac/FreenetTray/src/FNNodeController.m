@@ -5,14 +5,13 @@
 // http://www.gnu.org/ for further details of the GPL. */
 // Code version 1.1
 
-#import "controllerLogic.h"
-#include "UKLoginItemRegistry.h"
+#import "FNNodeController.h"
+//#import "UKLoginItemRegistry.h"
 
-@implementation controllerLogic
+@implementation FNNodeController
  
 - (void)awakeFromNib { 
-	// set this class to be NSApp delegate
-	[NSApp setDelegate:self];
+
 	// load factory defaults for node location variables, sourced from defaults.plist
 	NSString *defaultsPlist = [[NSBundle mainBundle]
 							   pathForResource:@"defaults" ofType:@"plist"];
@@ -28,9 +27,8 @@
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	//check for plist, if it isn't there this is first launch and we set defaults and setup autostart/loginitem
 	if(! [fileManager isReadableFileAtPath:preferencesPlist]) {
-		//NSLog(@"preferences not found");
-		NSDictionary *appDefaults = [NSDictionary dictionary];
-		[defaults registerDefaults:appDefaults];
+		NSLog(@"preferences not found");
+		[defaults registerDefaults:defaultsPlistDict];
 		//retrieve value for specific keys from the defaults.plist object we created earlier, then shove them into the userdefaults object so they get stored on the users machine later by the synchronize method
 		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeURLKey] forKey:FNNodeURLKey];
 		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeInstallationDirectoryKey] forKey:FNNodeInstallationDirectoryKey];
@@ -48,7 +46,7 @@
 }
 
 - (void) addLoginItem {
-	[UKLoginItemRegistry addLoginItemWithPath:[[NSBundle mainBundle] bundlePath] hideIt: NO];
+	//[UKLoginItemRegistry addLoginItemWithPath:[[NSBundle mainBundle] bundlePath] hideIt: NO];
 }
 
 - (void)initializeSystemTray:(id)sender {
@@ -226,8 +224,4 @@
 	[NSApp terminate:self];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:FNNodeFirstLaunchKey];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
 @end

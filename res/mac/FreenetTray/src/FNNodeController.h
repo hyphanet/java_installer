@@ -6,7 +6,7 @@
 // Code version 1.1
 
 #import <Cocoa/Cocoa.h>
-@interface controllerLogic : NSObject {
+@interface FNNodeController : NSObject {
 	NSStatusItem *trayItem;
 	NSMenu *trayMenu;
 	NSImage *trayImageRunning;

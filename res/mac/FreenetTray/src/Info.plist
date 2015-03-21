@@ -5,7 +5,7 @@
 	<key>NSMainNibFile</key>
 	<string>main</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>This code is distributed under the GNU General Public License, version 2 (or at your option any later version). See http://www.gnu.org/ for further details of the GPL. Portions copyrighted by Apple and M. Uli Kusterer. See inside program bundle for LICENSE file.</string>
+	<string>See LICENSE file included with the source code</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleDisplayName</key>

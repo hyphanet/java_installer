@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */ = {isa = PBXBuildFile; fileRef = AA2A8B9B0FE3819300C585C8 /* freenet.icns */; };
 		AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCE109CD2B400EDBB73 /* LICENSE */; };
 		AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCF109CD2B400EDBB73 /* gpl.txt */; };
+		AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5677041ABD345D00BBC0D3 /* FNConstants.m */; };
 		AA5D45CD110DF9BC00A81617 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA5D45CC110DF9BC00A81617 /* defaults.plist */; };
 		AA6295A20FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */; };
 		AA7B6F600FDDDB5C00065772 /* FreenetTray-NotRunning-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */; };
@@ -49,6 +50,8 @@
 		AA2A8B9B0FE3819300C585C8 /* freenet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = freenet.icns; sourceTree = "<group>"; };
 		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
+		AA5677031ABD345D00BBC0D3 /* FNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNConstants.h; sourceTree = "<group>"; };
+		AA5677041ABD345D00BBC0D3 /* FNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNConstants.m; sourceTree = "<group>"; };
 		AA5D45CC110DF9BC00A81617 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-Selected-24.png"; sourceTree = "<group>"; };
 		AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-NotRunning-24.png"; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AA5677031ABD345D00BBC0D3 /* FNConstants.h */,
+				AA5677041ABD345D00BBC0D3 /* FNConstants.m */,
 				AAB1222A1044BCF700F2027C /* UKLoginItemRegistry.h */,
 				AAB1222B1044BCF700F2027C /* UKLoginItemRegistry.m */,
 				AAB122271044BCEA00F2027C /* LoginItemsAE.c */,
@@ -230,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */,
 				AA02AADA0FC8D74F00499DB3 /* controllerLogic.m in Sources */,
 				AAB122291044BCEA00F2027C /* LoginItemsAE.c in Sources */,
 				AAB1222C1044BCF700F2027C /* UKLoginItemRegistry.m in Sources */,

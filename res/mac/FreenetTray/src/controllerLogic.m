@@ -32,10 +32,10 @@
 		NSDictionary *appDefaults = [NSDictionary dictionary];
 		[defaults registerDefaults:appDefaults];
 		//retrieve value for specific keys from the defaults.plist object we created earlier, then shove them into the userdefaults object so they get stored on the users machine later by the synchronize method
-		[defaults setValue:[defaultsPlistDict objectForKey:@"nodeurl"] forKey:@"nodeurl"];
-		[defaults setValue:[defaultsPlistDict objectForKey:@"nodepath"] forKey:@"nodepath"];
+		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeURLKey] forKey:FNNodeURLKey];
+		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeInstallationDirectoryKey] forKey:FNNodeInstallationDirectoryKey];
 		// set a flag so we know this is the first launch, can be referenced later
-		[defaults setBool:YES forKey:@"firstlaunch"];
+		[defaults setBool:YES forKey:FNNodeFirstLaunchKey];
 		// take the defaults we just setup and cause them to be written to disk
 		[defaults synchronize];
 		// since this is the first launch, we add a login item for the user. if they delete that login item it wont be added again
@@ -117,7 +117,7 @@
 - (void)checkNodeStatus:(id)sender {
 
 	//get users preferred location of node files and put it in a string
-	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
 	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
@@ -144,7 +144,7 @@
 
 - (void)startFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string
-	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
 	//make a new string to store the absolute path to the run script
 	NSString *runScript = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/run.sh start"];
 	
@@ -177,7 +177,7 @@
 
 - (void)stopFreenet:(id)sender {
 	//get users preferred location of node files and put it in a string	
-	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:@"nodepath"] stringByStandardizingPath];
+	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
 	NSString *anchorFile = [NSString stringWithFormat:@"%@%@", nodeFilesLocation, @"/Freenet.anchor"];
 	//NSLog(@"%@", anchorFile);
@@ -206,7 +206,7 @@
 
 - (void)openWebInterface:(id)sender {
 	//load the URL of our node from the preferences
-	NSString *nodeURL = [[NSUserDefaults standardUserDefaults] valueForKey:@"nodeurl"];
+	NSString *nodeURL = [[NSUserDefaults standardUserDefaults] valueForKey:FNNodeURLKey];
 	// This is a method to open the fproxy page in users default browser.
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:nodeURL]];
 }
@@ -227,7 +227,7 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstlaunch"];
+	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:FNNodeFirstLaunchKey];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

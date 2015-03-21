@@ -10,8 +10,10 @@
 
 
 @import Cocoa;
+@class FNNodeController;
 
-@interface FNAppDelegate : NSObject <NSApplicationDelegate>
-
+@interface FNAppDelegate : NSObject <NSApplicationDelegate> {
+    FNNodeController *nodeController;
+}
 @end
 

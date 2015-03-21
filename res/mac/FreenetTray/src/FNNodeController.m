@@ -13,39 +13,15 @@
 
 @implementation FNNodeController
  
-- (void)awakeFromNib { 
-
-	// load factory defaults for node location variables, sourced from defaults.plist
-	NSString *defaultsPlist = [[NSBundle mainBundle]
-							   pathForResource:@"defaults" ofType:@"plist"];
-	NSDictionary *defaultsPlistDict = [NSDictionary dictionaryWithContentsOfFile:defaultsPlist];
-	//find our preferences plist if one exists, 
-	//note that this name will change depending on what this application calls itself in the bundleidentifier item in info.plist
-	//this is just the easiest way to tell if it exists
-	NSString *preferencesLocation = @"~/Library/Preferences/com.freenet.tray.plist";
-	NSString *preferencesPlist = [preferencesLocation stringByStandardizingPath];
-	//get standard user defaults for use a few lines down
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	//file manager for reading plist
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	//check for plist, if it isn't there this is first launch and we set defaults and setup autostart/loginitem
-	if(! [fileManager isReadableFileAtPath:preferencesPlist]) {
-		NSLog(@"preferences not found");
-		[defaults registerDefaults:defaultsPlistDict];
-		//retrieve value for specific keys from the defaults.plist object we created earlier, then shove them into the userdefaults object so they get stored on the users machine later by the synchronize method
-		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeURLKey] forKey:FNNodeURLKey];
-		[defaults setValue:[defaultsPlistDict objectForKey:FNNodeInstallationDirectoryKey] forKey:FNNodeInstallationDirectoryKey];
-		// set a flag so we know this is the first launch, can be referenced later
-		[defaults setBool:YES forKey:FNNodeFirstLaunchKey];
-		// take the defaults we just setup and cause them to be written to disk
-		[defaults synchronize];
-		// since this is the first launch, we add a login item for the user. if they delete that login item it wont be added again
-		[self addLoginItem];
-	}	
-	// spawn a thread to keep the node status indicator updated in realtime. The method called here cannot be run again while this thread is running
-	[NSThread detachNewThreadSelector:@selector(checkNodeStatus:) toTarget:self withObject:nil];
-	//start the tray item
-	[self initializeSystemTray:nil];
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // spawn a thread to keep the node status indicator updated in realtime. The method called here cannot be run again while this thread is running
+        [NSThread detachNewThreadSelector:@selector(checkNodeStatus:) toTarget:self withObject:nil];
+        //start the tray item
+        [self initializeSystemTray:nil];
+    }
+    return self;
 }
 
 - (void) addLoginItem {

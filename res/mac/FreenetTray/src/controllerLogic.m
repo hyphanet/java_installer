@@ -137,7 +137,7 @@
 			[self performSelectorOnMainThread:@selector(nodeNotRunning:) withObject:nil waitUntilDone:NO];
 		}
         [autoreleasepool release];
-		sleep(5);
+		[NSThread sleepForTimeInterval:5]; 
 	}
 	
 }

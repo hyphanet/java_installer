@@ -28,6 +28,5 @@
 - (void)nodeNotRunning:(id)sender;
 - (void)initializeSystemTray:(id)sender;
 - (void)quitProgram:(id)sender;
-uint sleep();
 - (void) addLoginItem;
 @end

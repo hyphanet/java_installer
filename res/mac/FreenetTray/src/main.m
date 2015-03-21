@@ -5,12 +5,11 @@
 // http://www.gnu.org/ for further details of the GPL. */
 // Code version 1.1
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
-int main(int argc, char *argv[])
-{
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	return NSApplicationMain(argc,  (const char **) argv);
-	[pool release];
+int main(int argc, char *argv[]) {
+	@autoreleasepool {
+    	return NSApplicationMain(argc,  (const char **) argv);
+    }
 }
 

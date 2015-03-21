@@ -5,7 +5,8 @@
 // http://www.gnu.org/ for further details of the GPL. */
 // Code version 1.1
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 @interface FNNodeController : NSObject {
 	NSStatusItem *trayItem;
 	NSMenu *trayMenu;

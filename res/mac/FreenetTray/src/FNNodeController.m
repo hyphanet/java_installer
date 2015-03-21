@@ -6,7 +6,7 @@
 // Code version 1.1
 
 #import "FNNodeController.h"
-//#import "UKLoginItemRegistry.h"
+#import "NSBundle+LoginItem.h"
 
 @implementation FNNodeController
  
@@ -46,7 +46,7 @@
 }
 
 - (void) addLoginItem {
-	//[UKLoginItemRegistry addLoginItemWithPath:[[NSBundle mainBundle] bundlePath] hideIt: NO];
+    [[NSBundle mainBundle] addToLoginItems];
 }
 
 - (void)initializeSystemTray:(id)sender {

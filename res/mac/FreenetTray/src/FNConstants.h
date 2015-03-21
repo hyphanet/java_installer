@@ -15,6 +15,8 @@
 
 FOUNDATION_EXPORT NSString *const FNWebDomain;
 
+FOUNDATION_EXPORT NSTimeInterval const FNNodeCheckTimeInterval;
+
 #pragma mark - NSUserDefaults keys
 
 FOUNDATION_EXPORT NSString *const FNStartAtLaunchKey;
@@ -22,3 +24,16 @@ FOUNDATION_EXPORT NSString *const FNStartAtLaunchKey;
 FOUNDATION_EXPORT NSString *const FNNodeURLKey;
 FOUNDATION_EXPORT NSString *const FNNodeInstallationDirectoryKey;
 FOUNDATION_EXPORT NSString *const FNNodeFirstLaunchKey;
+
+#pragma mark - Custom NSNotifications
+
+FOUNDATION_EXPORT NSString *const FNNodeStateRunningNotification;
+FOUNDATION_EXPORT NSString *const FNNodeStateNotRunningNotification;
+
+#pragma mark - Node state
+
+typedef NS_ENUM(NSInteger, FNNodeState) {
+    FNNodeStateUnknown    = -1,
+    FNNodeStateNotRunning =  0,
+    FNNodeStateRunning    =  1
+};

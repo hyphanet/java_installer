@@ -15,6 +15,8 @@
 
 NSString *const FNWebDomain = @"freenetproject.org";
 
+NSTimeInterval const FNNodeCheckTimeInterval = 1;
+
 #pragma mark - NSUserDefaults keys
 
 NSString *const FNStartAtLaunchKey = @"startatlaunch";
@@ -22,3 +24,8 @@ NSString *const FNStartAtLaunchKey = @"startatlaunch";
 NSString *const FNNodeURLKey = @"nodeurl";
 NSString *const FNNodeInstallationDirectoryKey = @"nodepath";
 NSString *const FNNodeFirstLaunchKey = @"firstlaunch";
+
+#pragma mark - Custom NSNotifications
+
+NSString *const FNNodeStateRunningNotification    = @"FNNodeStateRunningNotification";
+NSString *const FNNodeStateNotRunningNotification = @"FNNodeStateNotRunningNotification";

@@ -11,9 +11,11 @@
 
 @import Cocoa;
 @class FNNodeController;
+@class FNDropdownMenuController;
 
 @interface FNAppDelegate : NSObject <NSApplicationDelegate> {
     FNNodeController *nodeController;
+    FNDropdownMenuController *dropdownMenuController;
 }
 @end
 

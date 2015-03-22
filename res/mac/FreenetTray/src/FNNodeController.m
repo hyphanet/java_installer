@@ -9,7 +9,7 @@
 */
 
 #import "FNNodeController.h"
-#import "NSBundle+LoginItem.h"
+
 
 @implementation FNNodeController
  
@@ -17,81 +17,12 @@
     self = [super init];
     if (self) {
         // spawn a thread to keep the node status indicator updated in realtime. The method called here cannot be run again while this thread is running
-        [NSThread detachNewThreadSelector:@selector(checkNodeStatus:) toTarget:self withObject:nil];
-        //start the tray item
-        [self initializeSystemTray:nil];
+        [NSThread detachNewThreadSelector:@selector(checkNodeStatus) toTarget:self withObject:nil];
     }
     return self;
 }
 
-- (void) addLoginItem {
-    [[NSBundle mainBundle] addToLoginItems];
-}
-
-- (void)initializeSystemTray:(id)sender {
-	// load some images into memory
-	trayImageRunning = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FreenetTray-Running-24" ofType:@"png"]];
-	trayImageNotRunning = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FreenetTray-NotRunning-24" ofType:@"png"]];
-	trayHighlightImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FreenetTray-Selected-24" ofType:@"png"]];
-	// create an NSMenu to hold our menu options, and populate it with our initial items
-	// this is not the best way to create a GUI, but there are only a few items so it isn't necessary to use interface builder
-	// there are some strange bugs/behavior when you try to modify NSMenuItems that were created in interface builder, so these are created in code instead
-	trayMenu = [[[NSMenu alloc] initWithTitle:@""] retain];
-	// this item is changed later on in reaction to the node status
-	startStopToggle = [trayMenu addItemWithTitle: @"Start Freenet"  
-						action: @selector (startFreenet:)  
-				 keyEquivalent: @"s"];
-	// opens the node url in the users default browser
-	webInterfaceOption = [trayMenu addItemWithTitle: @"Open Web Interface"  
-											 action: @selector (openWebInterface:)  
-									  keyEquivalent: @"w"];
-	[trayMenu addItem:[NSMenuItem separatorItem]];
-	//not currently implemented so commented out
-	//preferencesOption = [trayMenu addItemWithTitle: @"Preferences"  
-	//										action: @selector (openPreferences:)  
-	//								 keyEquivalent: @"p"];
-	// opens the standard about panel with info sourced from the info.plist file
-	aboutPanel = [trayMenu addItemWithTitle: @"About"  
-                                     action: @selector (showAboutPanel:)  
-									  keyEquivalent: @"a"];
-	// ends the program
-	quitItem = [trayMenu addItemWithTitle: @"Quit"  
-								   action: @selector (quitProgram:)  
-							keyEquivalent: @"q"];
-	// create an NSStatusItem and load some images, strings and variables into it. Icon size area is square, but can be made to fit longer images
-    trayItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-	// sets the image that will be displayed when the menu bar item is clicked
-	[trayItem setAlternateImage:trayHighlightImage];
-	//no title
-	[trayItem setTitle:@""];
-	[trayItem setToolTip:@"Freenet Menu"];
-	// this can be turned off if highlighting isn't needed
-	[trayItem setHighlightMode:YES];
-	// set our previously created NSMenu to be the main menu of this NSStatusItem
-	[trayItem setMenu:trayMenu];
-	// enable our NSStatusItem
-	[trayItem setEnabled:YES];
-}
-
--(void)nodeRunning:(id)sender {
-	//node was running so change the image to reflect that
-	[trayItem setImage:trayImageRunning];
-	//change the title of the main menu option
-	[startStopToggle setTitle:@"Stop Freenet"];
-	// change the action of the main menu option
-	[startStopToggle setAction:@selector(stopFreenet:)];
-}
-
--(void)nodeNotRunning:(id)sender {
-	//node was not running so set image accordingly 
-	[trayItem setImage:trayImageNotRunning];
-	//change the title of the main menu option
-	[startStopToggle setTitle:@"Start Freenet"];
-	// change the action of the main menu option
-	[startStopToggle setAction:@selector(startFreenet:)];
-}
-
-- (void)checkNodeStatus:(id)sender {
+- (void)checkNodeStatus {
 
 	//get users preferred location of node files and put it in a string
 	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
@@ -106,20 +37,34 @@
 		fileManager = [NSFileManager defaultManager];
 		//if the anchor file exists, the node should be running.
 		if([fileManager isReadableFileAtPath:anchorFile]) {
-			// if we find the anchor file we run the NodeRunning method, this can be a false positive, node may be stopped even if this file exists
-			[self performSelectorOnMainThread:@selector(nodeRunning:) withObject:nil waitUntilDone:NO];
+			/* 
+                If we find the anchor file we we send an FNNodeStateRunningNotification 
+                event and save the node state here.
+                
+                This can be a false positive, the node may be stopped even if 
+                this file exists, but normally it should be accurate.
+            */
+            self.currentNodeState = FNNodeStateRunning;
+			[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateRunningNotification object:nil];
 		}
 		else {
-			// otherwise we run NodeNotRunning which will display the Not Running image to the user, this should be 100% reliable, the node won't run without that anchor file
-			[self performSelectorOnMainThread:@selector(nodeNotRunning:) withObject:nil waitUntilDone:NO];
+			/* 
+                Otherwise we send a FNNodeStateNotRunningNotification event and
+                save the node state here.
+                 
+                This should be 100% accurate, the node won't run without that 
+                anchor file being present
+            */
+            self.currentNodeState = FNNodeStateNotRunning;
+			[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateNotRunningNotification object:nil];
 		}
         [autoreleasepool release];
-		[NSThread sleepForTimeInterval:5]; 
+		[NSThread sleepForTimeInterval:FNNodeCheckTimeInterval]; 
 	}
 	
 }
 
-- (void)startFreenet:(id)sender {
+- (void)startFreenet {
 	//get users preferred location of node files and put it in a string
 	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
 	//make a new string to store the absolute path to the run script
@@ -152,7 +97,7 @@
 	
 }
 
-- (void)stopFreenet:(id)sender {
+- (void)stopFreenet {
 	//get users preferred location of node files and put it in a string	
 	NSString *nodeFilesLocation = (NSString*)[[[NSUserDefaults standardUserDefaults] objectForKey:FNNodeInstallationDirectoryKey] stringByStandardizingPath];
 	//make a new string to store the absolute path of the anchor file
@@ -179,28 +124,6 @@
 		[alert runModal];
 		[alert release];
     }
-}
-
-- (void)openWebInterface:(id)sender {
-	//load the URL of our node from the preferences
-	NSString *nodeURL = [[NSUserDefaults standardUserDefaults] valueForKey:FNNodeURLKey];
-	// This is a method to open the fproxy page in users default browser.
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:nodeURL]];
-}
-
--(void)showAboutPanel:(id)sender {
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-    [NSApp orderFrontStandardAboutPanel:sender];
-}
-
-- (void) dealloc {
-	[trayMenu release];
-	[trayItem release];
-	[super dealloc];
-}
-
-- (void)quitProgram:(id)sender {
-	[NSApp terminate:self];
 }
 
 @end

@@ -12,6 +12,9 @@
 #import "FNAppDelegate.h"
 
 #import "FNNodeController.h"
+#import "FNDropdownMenuController.h"
+
+#import "NSBundle+LoginItem.h"
 
 @interface FNAppDelegate ()
     
@@ -42,13 +45,14 @@
             Since this is the first launch, we add a login item for the user. If 
             they delete that login item it wont be added again.
         */
-		[nodeController addLoginItem];
-	}	
+		[[NSBundle mainBundle] addToLoginItems];
+	}
+    dropdownMenuController = [[[FNDropdownMenuController alloc] init] retain];
+    dropdownMenuController.nodeController = nodeController;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:FNNodeFirstLaunchKey];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 @end

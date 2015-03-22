@@ -13,13 +13,13 @@
 		AA02AADA0FC8D74F00499DB3 /* FNNodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */; };
 		AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */ = {isa = PBXBuildFile; fileRef = AA2A8B9B0FE3819300C585C8 /* freenet.icns */; };
 		AA3C129C1ABD425100413379 /* FNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C129B1ABD425100413379 /* FNAppDelegate.m */; };
+		AA3C12A01ABE16BD00413379 /* FNDropdownMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C129E1ABE16BD00413379 /* FNDropdownMenuController.m */; };
+		AA3C12A11ABE16BD00413379 /* FNDropdownMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3C129F1ABE16BD00413379 /* FNDropdownMenu.xib */; };
+		AA3C12A51ABE32B100413379 /* TrayIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C12A41ABE32B100413379 /* TrayIcon.m */; };
 		AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCE109CD2B400EDBB73 /* LICENSE */; };
 		AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCF109CD2B400EDBB73 /* gpl.txt */; };
 		AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5677041ABD345D00BBC0D3 /* FNConstants.m */; };
 		AA5D45CD110DF9BC00A81617 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA5D45CC110DF9BC00A81617 /* defaults.plist */; };
-		AA6295A20FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */; };
-		AA7B6F600FDDDB5C00065772 /* FreenetTray-NotRunning-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */; };
-		AA7B6F610FDDDB5C00065772 /* FreenetTray-Running-24.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */; };
 		AADFE52D103A4251007808C8 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADFE52C103A4251007808C8 /* main.xib */; };
 /* End PBXBuildFile section */
 
@@ -48,15 +48,17 @@
 		AA2A8B9B0FE3819300C585C8 /* freenet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = freenet.icns; sourceTree = "<group>"; };
 		AA3C129A1ABD425100413379 /* FNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAppDelegate.h; sourceTree = "<group>"; };
 		AA3C129B1ABD425100413379 /* FNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAppDelegate.m; sourceTree = "<group>"; };
+		AA3C129D1ABE16BD00413379 /* FNDropdownMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNDropdownMenuController.h; sourceTree = "<group>"; };
+		AA3C129E1ABE16BD00413379 /* FNDropdownMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNDropdownMenuController.m; sourceTree = "<group>"; };
+		AA3C129F1ABE16BD00413379 /* FNDropdownMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FNDropdownMenu.xib; sourceTree = "<group>"; };
 		AA3C12A21ABE1DD100413379 /* FNProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNProtocols.h; sourceTree = "<group>"; };
+		AA3C12A31ABE32B100413379 /* TrayIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrayIcon.h; sourceTree = "<group>"; };
+		AA3C12A41ABE32B100413379 /* TrayIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrayIcon.m; sourceTree = "<group>"; };
 		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
 		AA5677031ABD345D00BBC0D3 /* FNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNConstants.h; sourceTree = "<group>"; };
 		AA5677041ABD345D00BBC0D3 /* FNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNConstants.m; sourceTree = "<group>"; };
 		AA5D45CC110DF9BC00A81617 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
-		AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-Selected-24.png"; sourceTree = "<group>"; };
-		AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-NotRunning-24.png"; sourceTree = "<group>"; };
-		AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FreenetTray-Running-24.png"; sourceTree = "<group>"; };
 		AA86025C0FCA62AC00AE7291 /* FreenetTray_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreenetTray_Prefix.pch; sourceTree = "<group>"; };
 		AADFE52C103A4251007808C8 /* main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,9 @@
 				AA3C129B1ABD425100413379 /* FNAppDelegate.m */,
 				AA02AAD80FC8D74F00499DB3 /* FNNodeController.h */,
 				AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */,
+				AA3C129D1ABE16BD00413379 /* FNDropdownMenuController.h */,
+				AA3C129E1ABE16BD00413379 /* FNDropdownMenuController.m */,
+				AA3C129F1ABE16BD00413379 /* FNDropdownMenu.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -117,6 +122,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AA3C12A31ABE32B100413379 /* TrayIcon.h */,
+				AA3C12A41ABE32B100413379 /* TrayIcon.m */,
 				AA5677031ABD345D00BBC0D3 /* FNConstants.h */,
 				AA5677041ABD345D00BBC0D3 /* FNConstants.m */,
 				AA3C12A21ABE1DD100413379 /* FNProtocols.h */,
@@ -133,9 +140,6 @@
 				AA433BCE109CD2B400EDBB73 /* LICENSE */,
 				AA433BCF109CD2B400EDBB73 /* gpl.txt */,
 				AA2A8B9B0FE3819300C585C8 /* freenet.icns */,
-				AA7B6F5E0FDDDB5C00065772 /* FreenetTray-NotRunning-24.png */,
-				AA7B6F5F0FDDDB5C00065772 /* FreenetTray-Running-24.png */,
-				AA6295A00FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				AADFE52C103A4251007808C8 /* main.xib */,
@@ -205,9 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				AA6295A20FDC2DC300FA3EA8 /* FreenetTray-Selected-24.png in Resources */,
-				AA7B6F600FDDDB5C00065772 /* FreenetTray-NotRunning-24.png in Resources */,
-				AA7B6F610FDDDB5C00065772 /* FreenetTray-Running-24.png in Resources */,
+				AA3C12A11ABE16BD00413379 /* FNDropdownMenu.xib in Resources */,
 				AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */,
 				AADFE52D103A4251007808C8 /* main.xib in Resources */,
 				AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */,
@@ -258,6 +260,8 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */,
+				AA3C12A51ABE32B100413379 /* TrayIcon.m in Sources */,
+				AA3C12A01ABE16BD00413379 /* FNDropdownMenuController.m in Sources */,
 				AA3C129C1ABD425100413379 /* FNAppDelegate.m in Sources */,
 				AA02AADA0FC8D74F00499DB3 /* FNNodeController.m in Sources */,
 			);

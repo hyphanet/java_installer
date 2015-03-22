@@ -10,12 +10,17 @@
 
 @import Cocoa;
 
-@interface FNNodeController : NSObject
 
-@property enum FNNodeState currentNodeState;
+@interface TrayIcon : NSObject
 
-- (void)startFreenet;
-- (void)stopFreenet;
-- (void)checkNodeStatus;
+// Drawing Methods
++ (void)drawRunningIcon;
++ (void)drawNotRunningIcon;
++ (void)drawHighlightedIcon;
+
+// Generated Images
++ (NSImage*)imageOfRunningIcon;
++ (NSImage*)imageOfNotRunningIcon;
++ (NSImage*)imageOfHighlightedIcon;
 
 @end

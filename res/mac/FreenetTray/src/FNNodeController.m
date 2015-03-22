@@ -31,13 +31,13 @@
 	//NSLog(@"%@", anchorFile);
 	// start a continuous loop to set the status indicator, this whole method (checkNodeStatus) should be started from a separate thread so it doesn't block main app
 	while (1) {
-        NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
+        @autoreleasepool {
 		//file manager for reading anchor file
-		NSFileManager *fileManager;
-		fileManager = [NSFileManager defaultManager];
-		//if the anchor file exists, the node should be running.
-		if([fileManager isReadableFileAtPath:anchorFile]) {
-			/* 
+			NSFileManager *fileManager;
+			fileManager = [NSFileManager defaultManager];
+			//if the anchor file exists, the node should be running.
+			if([fileManager isReadableFileAtPath:anchorFile]) {
+				/* 
                 If we find the anchor file we we send an FNNodeStateRunningNotification 
                 event and save the node state here.
                 
@@ -45,10 +45,10 @@
                 this file exists, but normally it should be accurate.
             */
             self.currentNodeState = FNNodeStateRunning;
-			[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateRunningNotification object:nil];
-		}
-		else {
-			/* 
+				[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateRunningNotification object:nil];
+			}
+			else {
+				/* 
                 Otherwise we send a FNNodeStateNotRunningNotification event and
                 save the node state here.
                  
@@ -56,9 +56,9 @@
                 anchor file being present
             */
             self.currentNodeState = FNNodeStateNotRunning;
-			[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateNotRunningNotification object:nil];
-		}
-        [autoreleasepool release];
+				[[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStateNotRunningNotification object:nil];
+			}
+        }
 		[NSThread sleepForTimeInterval:FNNodeCheckTimeInterval]; 
 	}
 	
@@ -88,7 +88,6 @@
 		[alert setInformativeText:@"Your node is already running!"];
 		[alert setAlertStyle:NSWarningAlertStyle];
 		[alert runModal];
-		[alert release];
 	}	
 	else {
 		//nstask to start freenet
@@ -122,7 +121,6 @@
 		[alert setInformativeText:@"Your freenet node was not running!"];
 		[alert setAlertStyle:NSWarningAlertStyle];
 		[alert runModal];
-		[alert release];
     }
 }
 

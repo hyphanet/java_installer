@@ -32,7 +32,7 @@
     [defaults registerDefaults:defaultsPlistDict];
  
     
-    nodeController = [[[FNNodeController alloc] init] retain];
+    nodeController = [[FNNodeController alloc] init];
 
 	/* 
         Check for first launch key, if it isn't there this is first launch and 
@@ -47,7 +47,7 @@
         */
 		[[NSBundle mainBundle] addToLoginItems];
 	}
-    dropdownMenuController = [[[FNDropdownMenuController alloc] init] retain];
+    dropdownMenuController = [[FNDropdownMenuController alloc] init];
     dropdownMenuController.nodeController = nodeController;
 }
 

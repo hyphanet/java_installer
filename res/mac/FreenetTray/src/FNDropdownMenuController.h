@@ -13,12 +13,12 @@
 
 @interface FNDropdownMenuController : NSObject <FNNodeStateProtocol>
 
-@property (retain) FNNodeController *nodeController;
+@property FNNodeController *nodeController;
 
-@property (retain) NSStatusItem *statusItem;
+@property NSStatusItem *statusItem;
 
-@property (retain) IBOutlet NSMenu *dropdownMenu;
-@property (retain) IBOutlet NSMenuItem *toggleNodeStateMenuItem;
+@property NSMenu *dropdownMenu;
+@property NSMenuItem *toggleNodeStateMenuItem;
 
 
 -(IBAction)toggleNodeState:(id)sender;

@@ -8,8 +8,10 @@
     
 */
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FNProtocols.h"
-    #import "FNConstants.h"
-#endif
+#import <Foundation/Foundation.h>
+
+@protocol FNNodeStateProtocol <NSObject>
+@required
+-(void)nodeStateRunning:(NSNotification*)notification;
+-(void)nodeStateNotRunning:(NSNotification*)notification;
+@end

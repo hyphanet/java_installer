@@ -48,6 +48,7 @@
 		AA2A8B9B0FE3819300C585C8 /* freenet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = freenet.icns; sourceTree = "<group>"; };
 		AA3C129A1ABD425100413379 /* FNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAppDelegate.h; sourceTree = "<group>"; };
 		AA3C129B1ABD425100413379 /* FNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAppDelegate.m; sourceTree = "<group>"; };
+		AA3C12A21ABE1DD100413379 /* FNProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNProtocols.h; sourceTree = "<group>"; };
 		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
 		AA5677031ABD345D00BBC0D3 /* FNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNConstants.h; sourceTree = "<group>"; };
@@ -77,8 +78,6 @@
 			children = (
 				AA3C129A1ABD425100413379 /* FNAppDelegate.h */,
 				AA3C129B1ABD425100413379 /* FNAppDelegate.m */,
-				AA5677031ABD345D00BBC0D3 /* FNConstants.h */,
-				AA5677041ABD345D00BBC0D3 /* FNConstants.m */,
 				AA02AAD80FC8D74F00499DB3 /* FNNodeController.h */,
 				AA02AAD90FC8D74F00499DB3 /* FNNodeController.m */,
 			);
@@ -118,6 +117,9 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AA5677031ABD345D00BBC0D3 /* FNConstants.h */,
+				AA5677041ABD345D00BBC0D3 /* FNConstants.m */,
+				AA3C12A21ABE1DD100413379 /* FNProtocols.h */,
 				AA86025C0FCA62AC00AE7291 /* FreenetTray_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);

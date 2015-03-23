@@ -13,17 +13,27 @@ This file builds the freenet installer...
 
 	<property name="config" value="install.xml"/>
 	<property name="dest" value="install.jar"/>
+	<property name="bundle_dir" value="Freenet.app"/>
+	<property name="bundle_file" value="${bundle_dir}.zip"/>
 	<property name="build" value="build"/>
 
 	<property name="izPack.lib" value="lib/standalone-compiler.jar"/>
-
 	<available file="${izPack.lib}" property="izPack_available" />
+
+	<property name="bundler.lib" value="lib/appbundler-1.0.jar" />
+	<property name="bundler.class" value="com.oracle.appbundler.AppBundlerTask"/>
+	<available file="${bundler.lib}" property="bundler_available" />
 
 	<!-- ================================================== -->
 
 	<target name="check-izpack">
 		<fail unless="izPack_available" status="1"
 			message="You need to download izPack and to put standalone-compiler.jar into lib/" />
+	</target>
+
+	<target name="check-bundler">
+		<fail unless="bundler_available" status="1"
+			message="You need to download bundler (http://java.net/projects/appbundler) and put it into ${bundler.lib}" />
 	</target>
 
 	<target name="dist" description="generate the distribution" depends="compile, check-izpack">
@@ -46,6 +56,33 @@ This file builds the freenet installer...
 		</jar>
 	</target>
 
+	<target name="bundle" depends="dist, clean-bundle, check-bundler">
+		<taskdef name="bundleapp" classname="${bundler.class}" classpath="${bundler.lib}" />
+		<mkdir dir="${bundle_dir}"/>
+		<bundleapp outputdirectory="${bundle_dir}" name="Freenet"
+			displayname="Freenet Installer"
+			identifier="org.freenet.installer"
+			mainclassname="com.izforge.izpack.installer.Installer">
+			<classpath file="${dest}" />
+		</bundleapp>
+		<!-- For some reason the permissions are not kept ... so this is necessary -->
+		<chmod file="${bundle_dir}/${bundle_dir}/Contents/MacOS/JavaAppLauncher" perm="a+rx" />
+		<tar destfile="${bundle_dir}.tar">
+			<tarfileset dir="${bundle_dir}" filemode="755" username="freenet" group="freenet">
+				<include name="**"/>
+			</tarfileset>
+		</tar>
+		<zip destfile="${bundle_file}" preserve0permissions="true">
+			    <tarfileset src="${bundle_dir}.tar"/>
+		</zip>
+	</target>
+
+	<target name="clean-bundle">
+		<delete file="${bundle_file}"/>
+		<delete file="${bundle_dir}.tar"/>
+		<delete dir="${bundle_dir}"/>
+	</target>
+
 	<!-- Note that this requires environment variables. They are set by the release-installer script. -->
 	<target name="sign" description="Sign the distribution" depends="dist">
 		<echo message="Signing the installer"/>
@@ -55,7 +92,7 @@ This file builds the freenet installer...
 	</target>
 
 	<!-- ================================================== -->
-	<target name="clean" description="Delete the installer">
+	<target name="clean" description="Delete the installer" depends="clean-bundle">
 		<delete file="${dest}"/>
 		<delete dir="${build}"/>
 	</target>

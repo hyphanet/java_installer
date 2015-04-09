@@ -82,7 +82,7 @@ if [ "$DIST_OS" = "macosx" ]
 then
 	# If there's a modern (1.8+) JVM, use that...
 	JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
-	if test -ne $JAVA_HOME/bin/java
+	if test -e "$JAVA_HOME/bin/java"
 	then
 		# otherwise hope for the best
 		JAVA_HOME="`/usr/libexec/java_home -v 1.6+`"

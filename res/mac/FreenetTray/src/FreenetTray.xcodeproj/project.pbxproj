@@ -22,6 +22,7 @@
 		AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5677041ABD345D00BBC0D3 /* FNConstants.m */; };
 		AA5D45CD110DF9BC00A81617 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA5D45CC110DF9BC00A81617 /* defaults.plist */; };
 		AADFE52D103A4251007808C8 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADFE52C103A4251007808C8 /* main.xib */; };
+		AAEF3AEE1AD6313800A4B475 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AAEF3AED1AD6313800A4B475 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,7 @@
 		AA5D45CC110DF9BC00A81617 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		AA86025C0FCA62AC00AE7291 /* FreenetTray_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreenetTray_Prefix.pch; sourceTree = "<group>"; };
 		AADFE52C103A4251007808C8 /* main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
+		AAEF3AED1AD6313800A4B475 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				AA5D45CC110DF9BC00A81617 /* defaults.plist */,
 				AA433BCE109CD2B400EDBB73 /* LICENSE */,
+				AAEF3AED1AD6313800A4B475 /* README.md */,
 				AA433BCF109CD2B400EDBB73 /* gpl.txt */,
 				AA2A8B9B0FE3819300C585C8 /* freenet.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -217,6 +220,7 @@
 				AA3C12A11ABE16BD00413379 /* FNDropdownMenu.xib in Resources */,
 				AA2A8B9C0FE3819300C585C8 /* freenet.icns in Resources */,
 				AADFE52D103A4251007808C8 /* main.xib in Resources */,
+				AAEF3AEE1AD6313800A4B475 /* README.md in Resources */,
 				AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */,
 				AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */,
 				AA5D45CD110DF9BC00A81617 /* defaults.plist in Resources */,

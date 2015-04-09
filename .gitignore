@@ -15,3 +15,5 @@ wrapper_unix/
 install.jar
 *.pbxuser
 *.mode1v3
+# MacTray CocoaPods build directory
+Pods

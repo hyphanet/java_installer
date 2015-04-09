@@ -11,12 +11,22 @@
 
 #import "FNNodeController.h"
 
+#import "FNFCPWrapper.h"
+
+@interface FNNodeController()
+@property FNFCPWrapper *fcpWrapper;
+@end
 
 @implementation FNNodeController
  
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.currentNodeState = FNNodeStateUnknown;
+        self.fcpWrapper = [[FNFCPWrapper alloc] init];
+        self.fcpWrapper.delegate = self;
+        self.fcpWrapper.dataSource = self;
+        [self.fcpWrapper nodeStateLoop];
         // spawn a thread to keep the node status indicator updated in realtime. The method called here cannot be run again while this thread is running
         [NSThread detachNewThreadSelector:@selector(checkNodeStatus) toTarget:self withObject:nil];
     }
@@ -123,6 +133,23 @@
 		[alert setAlertStyle:NSWarningAlertStyle];
 		[alert runModal];
     }
+}
+
+#pragma mark - FNFCPWrapperDelegate methods
+
+-(void)didReceiveNodeHello:(NSDictionary *)nodeHello {
+    //NSLog(@"Node hello: %@", nodeHello);
+}
+
+-(void)didReceiveNodeStats:(NSDictionary *)nodeStats {
+    [[NSNotificationCenter defaultCenter] postNotificationName:FNNodeStatsReceivedNotification object:nodeStats];
+}
+
+#pragma mark - FNFCPWrapperDataSource methods
+
+-(NSURL *)nodeFCPURL {
+    NSString *nodeFCPURLString = [[NSUserDefaults standardUserDefaults] valueForKey:FNNodeFCPURLKey];
+    return [NSURL URLWithString:nodeFCPURLString];
 }
 
 @end

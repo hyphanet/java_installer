@@ -23,6 +23,7 @@ FOUNDATION_EXPORT NSTimeInterval const FNNodeCheckTimeInterval;
 FOUNDATION_EXPORT NSString *const FNStartAtLaunchKey;
 
 FOUNDATION_EXPORT NSString *const FNNodeFProxyURLKey;
+FOUNDATION_EXPORT NSString *const FNNodeFCPURLKey;
 FOUNDATION_EXPORT NSString *const FNNodeInstallationDirectoryKey;
 FOUNDATION_EXPORT NSString *const FNNodeFirstLaunchKey;
 
@@ -30,6 +31,8 @@ FOUNDATION_EXPORT NSString *const FNNodeFirstLaunchKey;
 
 FOUNDATION_EXPORT NSString *const FNNodeStateRunningNotification;
 FOUNDATION_EXPORT NSString *const FNNodeStateNotRunningNotification;
+
+FOUNDATION_EXPORT NSString *const FNNodeStatsReceivedNotification;
 
 #pragma mark - Node state
 

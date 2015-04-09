@@ -45,6 +45,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nodeStateRunning:) name:FNNodeStateRunningNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nodeStateNotRunning:) name:FNNodeStateNotRunningNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNodeStats:) name:FNNodeStatsReceivedNotification object:nil];
+
+    
 }
 
 
@@ -104,5 +108,13 @@
     [self setMenuBarImage:[TrayIcon imageOfNotRunningIcon]];
 
 }
+
+#pragma mark - FNNodeStatsProtocol methods
+
+-(void)didReceiveNodeStats:(NSNotification*)notification {
+    //NSDictionary *nodeStats = notification.object;
+    //NSLog(@"Node stats: %@", nodeStats);
+}
+
 
 @end

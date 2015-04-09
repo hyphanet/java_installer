@@ -23,6 +23,7 @@ NSTimeInterval const FNNodeCheckTimeInterval = 1;
 NSString *const FNStartAtLaunchKey = @"startatlaunch";
 
 NSString *const FNNodeFProxyURLKey = @"nodeurl";
+NSString *const FNNodeFCPURLKey = @"nodefcpurl";
 NSString *const FNNodeInstallationDirectoryKey = @"nodepath";
 NSString *const FNNodeFirstLaunchKey = @"firstlaunch";
 
@@ -30,3 +31,5 @@ NSString *const FNNodeFirstLaunchKey = @"firstlaunch";
 
 NSString *const FNNodeStateRunningNotification    = @"FNNodeStateRunningNotification";
 NSString *const FNNodeStateNotRunningNotification = @"FNNodeStateNotRunningNotification";
+
+NSString *const FNNodeStatsReceivedNotification = @"FNNodeStatsReceivedNotification";

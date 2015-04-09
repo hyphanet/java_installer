@@ -16,6 +16,7 @@
 		AA3C12A01ABE16BD00413379 /* FNDropdownMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C129E1ABE16BD00413379 /* FNDropdownMenuController.m */; };
 		AA3C12A11ABE16BD00413379 /* FNDropdownMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA3C129F1ABE16BD00413379 /* FNDropdownMenu.xib */; };
 		AA3C12A51ABE32B100413379 /* TrayIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C12A41ABE32B100413379 /* TrayIcon.m */; };
+		AA3C12A81ABE7B4300413379 /* FNFCPWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C12A71ABE7B4300413379 /* FNFCPWrapper.m */; };
 		AA433BD0109CD2B400EDBB73 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCE109CD2B400EDBB73 /* LICENSE */; };
 		AA433BD1109CD2B400EDBB73 /* gpl.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA433BCF109CD2B400EDBB73 /* gpl.txt */; };
 		AA5677051ABD345D00BBC0D3 /* FNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5677041ABD345D00BBC0D3 /* FNConstants.m */; };
@@ -54,6 +55,8 @@
 		AA3C12A21ABE1DD100413379 /* FNProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNProtocols.h; sourceTree = "<group>"; };
 		AA3C12A31ABE32B100413379 /* TrayIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrayIcon.h; sourceTree = "<group>"; };
 		AA3C12A41ABE32B100413379 /* TrayIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrayIcon.m; sourceTree = "<group>"; };
+		AA3C12A61ABE7B4300413379 /* FNFCPWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNFCPWrapper.h; sourceTree = "<group>"; };
+		AA3C12A71ABE7B4300413379 /* FNFCPWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNFCPWrapper.m; sourceTree = "<group>"; };
 		AA433BCE109CD2B400EDBB73 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AA433BCF109CD2B400EDBB73 /* gpl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gpl.txt; sourceTree = "<group>"; };
 		AA5677031ABD345D00BBC0D3 /* FNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNConstants.h; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				AA3C129D1ABE16BD00413379 /* FNDropdownMenuController.h */,
 				AA3C129E1ABE16BD00413379 /* FNDropdownMenuController.m */,
 				AA3C129F1ABE16BD00413379 /* FNDropdownMenu.xib */,
+				AA3C12A61ABE7B4300413379 /* FNFCPWrapper.h */,
+				AA3C12A71ABE7B4300413379 /* FNFCPWrapper.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				AA3C12A01ABE16BD00413379 /* FNDropdownMenuController.m in Sources */,
 				AA3C129C1ABD425100413379 /* FNAppDelegate.m in Sources */,
 				AA02AADA0FC8D74F00499DB3 /* FNNodeController.m in Sources */,
+				AA3C12A81ABE7B4300413379 /* FNFCPWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

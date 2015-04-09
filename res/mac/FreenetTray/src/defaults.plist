@@ -6,6 +6,8 @@
 	<true/>
 	<key>nodepath</key>
 	<string>$INSTALL_PATH</string>
+	<key>nodefcpurl</key>
+	<string>tcp://127.0.0.1:9481</string>
 	<key>nodeurl</key>
 	<string>http://127.0.0.1:8888</string>
 </dict>

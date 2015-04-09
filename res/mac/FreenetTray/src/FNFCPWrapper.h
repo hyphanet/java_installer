@@ -9,14 +9,14 @@
     
 */
 
-@import Cocoa;
+@import Foundation;
 
-@interface FNNodeController : NSObject <FNFCPWrapperDelegate, FNFCPWrapperDataSource>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
-@property enum FNNodeState currentNodeState;
+@interface FNFCPWrapper : NSObject <GCDAsyncSocketDelegate>
+@property id<FNFCPWrapperDelegate> delegate;
+@property id<FNFCPWrapperDataSource> dataSource;
 
-- (void)startFreenet;
-- (void)stopFreenet;
-- (void)checkNodeStatus;
+-(void)nodeStateLoop;
 
 @end

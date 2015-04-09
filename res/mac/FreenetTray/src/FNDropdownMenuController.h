@@ -12,7 +12,7 @@
 @import Cocoa;
 @class FNNodeController;
 
-@interface FNDropdownMenuController : NSObject <FNNodeStateProtocol>
+@interface FNDropdownMenuController : NSObject <FNNodeStateProtocol, FNNodeStatsProtocol>
 
 @property FNNodeController *nodeController;
 

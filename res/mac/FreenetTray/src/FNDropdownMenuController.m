@@ -25,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"FNDropdownMenu" owner:self topLevelObjects:nil];
+        [NSBundle loadNibNamed:@"FNDropdownMenu" owner:self];
     }
     return self;
 }

@@ -5,7 +5,7 @@
 	<key>NSMainNibFile</key>
 	<string>main</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>See LICENSE file included with the source code</string>
+	<string>See the LICENSE file inside the app bundle or included with the source code for details</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleDisplayName</key>

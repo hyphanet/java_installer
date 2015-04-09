@@ -22,7 +22,7 @@ NSTimeInterval const FNNodeCheckTimeInterval = 1;
 
 NSString *const FNStartAtLaunchKey = @"startatlaunch";
 
-NSString *const FNNodeURLKey = @"nodeurl";
+NSString *const FNNodeFProxyURLKey = @"nodeurl";
 NSString *const FNNodeInstallationDirectoryKey = @"nodepath";
 NSString *const FNNodeFirstLaunchKey = @"firstlaunch";
 

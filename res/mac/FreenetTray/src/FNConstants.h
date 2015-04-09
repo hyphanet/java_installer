@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSTimeInterval const FNNodeCheckTimeInterval;
 
 FOUNDATION_EXPORT NSString *const FNStartAtLaunchKey;
 
-FOUNDATION_EXPORT NSString *const FNNodeURLKey;
+FOUNDATION_EXPORT NSString *const FNNodeFProxyURLKey;
 FOUNDATION_EXPORT NSString *const FNNodeInstallationDirectoryKey;
 FOUNDATION_EXPORT NSString *const FNNodeFirstLaunchKey;
 

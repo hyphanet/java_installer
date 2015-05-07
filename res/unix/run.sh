@@ -58,6 +58,55 @@ then
     exit 1
 fi
 
+# Get the fully qualified path to the script
+case $0 in
+    /*)
+        SCRIPT="$0"
+        ;;
+    *)
+        PWD=`pwd`
+        SCRIPT="$PWD/$0"
+        ;;
+esac
+
+# Resolve the true real path without any sym links.
+CHANGED=true
+while [ "X$CHANGED" != "X" ]
+do
+    # Change spaces to ":" so the tokens can be parsed.
+    SCRIPT=`echo $SCRIPT | sed -e 's; ;:;g'`
+    # Get the real path to this script, resolving any symbolic links
+    TOKENS=`echo $SCRIPT | sed -e 's;/; ;g'`
+    REALPATH=
+    for C in $TOKENS; do
+        REALPATH="$REALPATH/$C"
+        while [ -h "$REALPATH" ] ; do
+            LS="`ls -ld "$REALPATH"`"
+            LINK="`expr "$LS" : '.*-> \(.*\)$'`"
+            if expr "$LINK" : '/.*' > /dev/null; then
+                REALPATH="$LINK"
+            else
+                REALPATH="`dirname "$REALPATH"`""/$LINK"
+            fi
+        done
+    done
+
+    # Change ":" chars back to spaces.
+    REALPATH="`echo $REALPATH | sed -e 's;:; ;g'`"
+    SCRIPT="`echo $SCRIPT | sed -e 's;:; ;g'`"
+
+    if [ "$REALPATH" = "$SCRIPT" ]
+    then
+        CHANGED=""
+    else
+        SCRIPT="$REALPATH"
+    fi
+done
+
+# Change the current directory to the location of the script
+cd "`dirname \"$REALPATH\"`"
+REALDIR="`pwd`"
+
 # Resolve the os
 DIST_OS=`uname -s | tr [:upper:] [:lower:] | tr -d " \t\r\n"`
 case "$DIST_OS" in
@@ -115,7 +164,7 @@ do
 			fi
 			echo "Your java executable at $candidate seems suitable"
 			ESCAPED_CANDIDATE=`echo "$candidate"|sed 's/\(\/\)/\\\\\1/g'`
-			sed -i "s/^wrapper.java.command=.*$/wrapper.java.command=$ESCAPED_CANDIDATE/" wrapper.conf
+			sed -i "s/^wrapper.java.command=.*$/wrapper.java.command=$ESCAPED_CANDIDATE/" "$REALDIR/wrapper.conf"
 			JAVA_REAL_IMPL="$candidate"
 			break
 		fi
@@ -125,54 +174,6 @@ done
 # and get java implementation too, Sun JDK or Kaffe
 JAVA_IMPL=`$JAVA_REAL_IMPL -version 2>&1 | head -n 1 | cut -f1 -d' '`
 
-# Get the fully qualified path to the script
-case $0 in
-    /*)
-        SCRIPT="$0"
-        ;;
-    *)
-        PWD=`pwd`
-        SCRIPT="$PWD/$0"
-        ;;
-esac
-
-# Resolve the true real path without any sym links.
-CHANGED=true
-while [ "X$CHANGED" != "X" ]
-do
-    # Change spaces to ":" so the tokens can be parsed.
-    SCRIPT=`echo $SCRIPT | sed -e 's; ;:;g'`
-    # Get the real path to this script, resolving any symbolic links
-    TOKENS=`echo $SCRIPT | sed -e 's;/; ;g'`
-    REALPATH=
-    for C in $TOKENS; do
-        REALPATH="$REALPATH/$C"
-        while [ -h "$REALPATH" ] ; do
-            LS="`ls -ld "$REALPATH"`"
-            LINK="`expr "$LS" : '.*-> \(.*\)$'`"
-            if expr "$LINK" : '/.*' > /dev/null; then
-                REALPATH="$LINK"
-            else
-                REALPATH="`dirname "$REALPATH"`""/$LINK"
-            fi
-        done
-    done
-
-    # Change ":" chars back to spaces.
-    REALPATH="`echo $REALPATH | sed -e 's;:; ;g'`"
-    SCRIPT="`echo $SCRIPT | sed -e 's;:; ;g'`"
-
-    if [ "$REALPATH" = "$SCRIPT" ]
-    then
-        CHANGED=""
-    else
-        SCRIPT="$REALPATH"
-    fi
-done
-
-# Change the current directory to the location of the script
-cd "`dirname \"$REALPATH\"`"
-REALDIR="`pwd`"
 
 if test ! -s freenet.ini
 then

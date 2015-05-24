@@ -1,6 +1,6 @@
 /* 
     Copyright (C) 2015 Stephen Oliver <steve@infincia.com>
-
+    
     This code is distributed under the GNU General Public License, version 2 
     (or at your option any later version).
     
@@ -10,8 +10,14 @@
     
 */
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FNProtocols.h"
-    #import "FNConstants.h"
-#endif
+@import Foundation;
+
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
+
+@interface FNFCPWrapper : NSObject <GCDAsyncSocketDelegate>
+@property id<FNFCPWrapperDelegate> delegate;
+@property id<FNFCPWrapperDataSource> dataSource;
+
+-(void)nodeStateLoop;
+
+@end

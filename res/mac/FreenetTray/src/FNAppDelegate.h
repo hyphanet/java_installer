@@ -10,8 +10,14 @@
     
 */
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FNProtocols.h"
-    #import "FNConstants.h"
-#endif
+
+@import Cocoa;
+@class FNNodeController;
+@class FNDropdownMenuController;
+
+@interface FNAppDelegate : NSObject <NSApplicationDelegate> {
+    FNNodeController *nodeController;
+    FNDropdownMenuController *dropdownMenuController;
+}
+@end
+

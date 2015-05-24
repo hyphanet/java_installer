@@ -10,8 +10,19 @@
     
 */
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FNProtocols.h"
-    #import "FNConstants.h"
-#endif
+@import Cocoa;
+
+
+@interface TrayIcon : NSObject
+
+// Drawing Methods
++ (void)drawRunningIcon;
++ (void)drawNotRunningIcon;
++ (void)drawHighlightedIcon;
+
+// Generated Images
++ (NSImage*)imageOfRunningIcon;
++ (NSImage*)imageOfNotRunningIcon;
++ (NSImage*)imageOfHighlightedIcon;
+
+@end

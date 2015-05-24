@@ -1,16 +1,20 @@
-//
-//  main.m
-// This code is distributed under the GNU General
-// Public License, version 2 (or at your option any later version). See
-// http://www.gnu.org/ for further details of the GPL. */
-// Code version 1.1
+/* 
+    Copyright (C) 2015 Stephen Oliver <steve@infincia.com>
 
-#import <Cocoa/Cocoa.h>
+    This code is distributed under the GNU General Public License, version 2 
+    (or at your option any later version).
+    
+    3rd party libraries may be distributed under an alternate Open Source license.
+    
+    See the LICENSE file included with this code for details.
+    
+*/
 
-int main(int argc, char *argv[])
-{
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	return NSApplicationMain(argc,  (const char **) argv);
-	[pool release];
+@import Cocoa;
+
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        return NSApplicationMain(argc,  (const char **) argv);
+    }
 }
 

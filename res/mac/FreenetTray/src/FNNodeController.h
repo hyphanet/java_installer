@@ -10,8 +10,14 @@
     
 */
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import "FNProtocols.h"
-    #import "FNConstants.h"
-#endif
+@import Cocoa;
+
+@interface FNNodeController : NSObject <FNFCPWrapperDelegate, FNFCPWrapperDataSource>
+
+@property enum FNNodeState currentNodeState;
+
+- (void)startFreenet;
+- (void)stopFreenet;
+- (void)checkNodeStatus;
+
+@end

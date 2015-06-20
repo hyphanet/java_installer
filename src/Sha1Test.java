@@ -92,7 +92,8 @@ public class Sha1Test {
 			} catch(FileNotFoundException e) {
 				System.err.println("Not found, let's ignore that mirror.");
 			} catch(SSLException ssle) {
-				System.err.println("An SSL exception has occured:" + ssle.getMessage());
+				System.err.println("An SSL exception has occured:" + ssle.getMessage() + "," + ssle.getCause());
+				System.err.println("This can happen if you are using an old JVM.");
 				System.exit(5);
 			}
 			count++;

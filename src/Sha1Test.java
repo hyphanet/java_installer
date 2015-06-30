@@ -92,8 +92,18 @@ public class Sha1Test {
 			} catch(FileNotFoundException e) {
 				System.err.println("Not found, let's ignore that mirror.");
 			} catch(SSLException ssle) {
-				System.err.println("An SSL exception has occured:" + ssle.getMessage() + "," + ssle.getCause());
-				System.err.println("This can happen if you are using an old JVM.");
+				System.err.println("An SSL exception has occurred: " + ssle.getMessage());
+				Throwable cause = ssle.getCause();
+				if (cause != null) {
+					while (cause.getCause() != null)
+						cause = cause.getCause();
+					System.err.println("Cause: " + cause.getMessage());
+					if (cause.getMessage() == "Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)") {
+						System.err.println("Your JVM is so old it will no longer communicate with default Apache SSL.");
+						System.err.println("This was fixed in OpenJDK 8 and IcedTea >=2.5.3 .");
+						System.err.println("Your distro may have backported a fix if you try upgrading your JVM.");
+					}
+				}
 				System.exit(5);
 			}
 			count++;

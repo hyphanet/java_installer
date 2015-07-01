@@ -11,8 +11,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.HttpURLConnection;
+import java.security.InvalidParameterException;
+import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.util.Collection;
@@ -26,6 +29,7 @@ public class Sha1Test {
 
 	final static int BUFFERSIZE = 4096;
 	final static String BASE_URL = "https://downloads.freenetproject.org/latest/";
+	final static int DHKEYSIZE = 2048;
 	static boolean useSecureMode = false;
 
 	public static void main(String[] args) {
@@ -34,6 +38,21 @@ public class Sha1Test {
 		final String path = (args.length < 2 ? "." : args[1]) + "/";
 		if(uri == null)
 			System.exit(2);
+
+		// After Apache upgrade, check for http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7044060
+		try {
+			KeyPairGenerator.getInstance("DH").initialize(DHKEYSIZE);
+		} catch(NoSuchAlgorithmException f) {
+			System.err.println("Failed to find Diffie Helman key pair generator: " + f.getMessage());
+			System.exit(2);
+		} catch(InvalidParameterException e) {
+			System.err.println("Failed to initialize a DH key pair: '" + e.getMessage() + "'");
+			System.err.println("A key size of " + DHKEYSIZE + " is required for " + BASE_URL);
+			System.err.println("The limit was increased to 2048 in OpenJDK 8 and IcedTea >=2.5.3 .");
+			System.err.println("You may have a backported fix if you try upgrading your JVM.");
+			System.exit(2);
+		}
+
 		if(args.length > 2) {
 			useSecureMode = true;
 			FileInputStream fis = null;
@@ -98,11 +117,6 @@ public class Sha1Test {
 					while (cause.getCause() != null)
 						cause = cause.getCause();
 					System.err.println("Cause: " + cause.getMessage());
-					if (cause.getMessage() == "Prime size must be multiple of 64, and can only range from 512 to 1024 (inclusive)") {
-						System.err.println("Your JVM is so old it will no longer communicate with default Apache SSL.");
-						System.err.println("This was fixed in OpenJDK 8 and IcedTea >=2.5.3 .");
-						System.err.println("Your distro may have backported a fix if you try upgrading your JVM.");
-					}
 				}
 				System.exit(5);
 			}

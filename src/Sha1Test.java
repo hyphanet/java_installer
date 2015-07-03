@@ -42,10 +42,10 @@ public class Sha1Test {
 		// After Apache upgrade, check for http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7044060
 		try {
 			KeyPairGenerator.getInstance("DH").initialize(DHKEYSIZE);
-		} catch(NoSuchAlgorithmException f) {
+		} catch (NoSuchAlgorithmException f) {
 			System.err.println("Failed to find Diffie Helman key pair generator: " + f.getMessage());
 			System.exit(2);
-		} catch(InvalidParameterException e) {
+		} catch (InvalidParameterException e) {
 			System.err.println("Failed to initialize a DH key pair: '" + e.getMessage() + "'");
 			System.err.println("A key size of " + DHKEYSIZE + " is required for " + BASE_URL);
 			System.err.println("The limit was increased to 2048 in OpenJDK 8 and IcedTea >=2.5.3 .");

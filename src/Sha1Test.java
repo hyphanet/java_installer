@@ -39,7 +39,7 @@ public class Sha1Test {
 		if(uri == null)
 			System.exit(2);
 
-		// After Apache upgrade, check for http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7044060
+		// See http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7044060
 		try {
 			KeyPairGenerator.getInstance("DH").initialize(DHKEYSIZE);
 		} catch (NoSuchAlgorithmException f) {

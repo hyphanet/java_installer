@@ -49,7 +49,7 @@ public class Sha1Test {
 			System.err.println("Failed to initialize a DH key pair: '" + e.getMessage() + "'");
 			System.err.println("A key size of " + DHKEYSIZE + " is required for " + BASE_URL);
 			System.err.println("The key size limit was removed in OpenJDK 8 and IcedTea >= 2.5.3.");
-			System.err.println("You may have a backported fix if you try upgrading your JVM.");
+			System.err.println("Please upgrade your JVM.");
 			System.exit(2);
 		}
 

@@ -247,9 +247,7 @@ if ! grep bcprov-jdk15on-152.jar wrapper.conf > /dev/null
 then
 	if grep bcprov-jdk15on wrapper.conf > /dev/null; then
 		echo Updating wrapper.conf to bouncycastle 1.52
-		cat wrapper.conf | sed "s/bcprov-jdk15on-147/bcprov-jdk15on-152/" > wrapper.conf.new
-		cat wrapper.conf | sed "s/bcprov-jdk15on-149/bcprov-jdk15on-152/" > wrapper.conf.new
-		cat wrapper.conf | sed "s/bcprov-jdk15on-151/bcprov-jdk15on-152/" > wrapper.conf.new
+		cat wrapper.conf | sed 's/bcprov-jdk15on-[0-9]*/bcprov-jdk15on-152/g' > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	else
 		echo Adding bcprov-jdk15on-152.jar to wrapper.conf

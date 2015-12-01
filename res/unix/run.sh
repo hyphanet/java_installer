@@ -145,7 +145,18 @@ JAVA_REAL_IMPL="java"
 #
 # /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java SuSE
 # /usr/lib/jvm/java-7-openjdk/jre/bin/java Debian
-CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java /usr/lib/jvm/java-8-openjdk/jre/bin/java /usr/lib/jvm/java-7-openjdk/jre/bin/java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java"
+CANDIDATES="$JAVA_HOME/bin/java
+`which java`
+/etc/java-config-2/current-system-vm/bin/java
+/usr/lib/jvm/java-default-runtime/bin/java
+/usr/lib/jvm/java-8-openjdk/jre/bin/java
+/usr/lib/jvm/java-7-openjdk/jre/bin/java
+/usr/lib64/jvm/jre-1.8.0-openjdk/bin/java
+/usr/lib64/jvm/jre-1.7.0-openjdk/bin/java"
+
+# set IFS to newline in portable way to split the vertical CANDIDATES list, allows for whitespace in paths
+set -f; IFS='
+'
 for candidate in $CANDIDATES
 do
 	if test -s "$candidate"
@@ -170,6 +181,7 @@ do
 		fi
 	fi
 done
+set +f; unset IFS
 
 # and get java implementation too, Sun JDK or Kaffe
 JAVA_IMPL=`$JAVA_REAL_IMPL -version 2>&1 | head -n 1 | cut -f1 -d' '`

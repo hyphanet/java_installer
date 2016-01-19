@@ -144,9 +144,13 @@ JAVA_REAL_IMPL="java"
 # see bug #6217
 #
 # /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java SuSE
-# /usr/lib/jvm/java-7-openjdk/jre/bin/java Debian
+# /usr/lib/jvm/java-7-openjdk/jre/bin/java Debian (old)
+# /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java Debian (new)
 # /usr/local/openjdk7/jre/bin/java FreeBSD
-CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java /usr/lib/jvm/java-8-openjdk/jre/bin/java /usr/lib/jvm/java-7-openjdk/jre/bin/java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java /usr/local/openjdk8/jre/bin/java /usr/local/openjdk7/jre/bin/java"
+DEB_ARCH="amd64 i386"
+DEB_CANDIDATES=""
+for version in 8 7; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk/jre/bin/java"; for arch in $DEB_ARCH; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk-$arch/jre/bin/java";done;done
+CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java $DEB_CANDIDATES /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java /usr/local/openjdk8/jre/bin/java /usr/local/openjdk7/jre/bin/java"
 for candidate in $CANDIDATES
 do
 	if test -s "$candidate"

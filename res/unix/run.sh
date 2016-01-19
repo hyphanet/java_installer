@@ -145,7 +145,8 @@ JAVA_REAL_IMPL="java"
 #
 # /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java SuSE
 # /usr/lib/jvm/java-7-openjdk/jre/bin/java Debian
-CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java /usr/lib/jvm/java-8-openjdk/jre/bin/java /usr/lib/jvm/java-7-openjdk/jre/bin/java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java"
+# /usr/local/openjdk7/jre/bin/java FreeBSD
+CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java /usr/lib/jvm/java-8-openjdk/jre/bin/java /usr/lib/jvm/java-7-openjdk/jre/bin/java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java /usr/local/openjdk8/jre/bin/java /usr/local/openjdk7/jre/bin/java"
 for candidate in $CANDIDATES
 do
 	if test -s "$candidate"

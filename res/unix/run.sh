@@ -169,7 +169,8 @@ do
 			fi
 			echo "Your java executable at $candidate seems suitable"
 			ESCAPED_CANDIDATE=`echo "$candidate"|sed 's/\(\/\)/\\\\\1/g'`
-			sed -i "s/^wrapper.java.command=.*$/wrapper.java.command=$ESCAPED_CANDIDATE/" "$REALDIR/wrapper.conf"
+			sed "s/^wrapper.java.command=.*$/wrapper.java.command=$ESCAPED_CANDIDATE/" "$REALDIR/wrapper.conf" > "$REALDIR/wrapper.conf.bak"
+			mv "$REALDIR/wrapper.conf.bak" "$REALDIR/wrapper.conf"
 			JAVA_REAL_IMPL="$candidate"
 			break
 		fi

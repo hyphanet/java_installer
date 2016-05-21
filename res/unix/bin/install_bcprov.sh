@@ -5,6 +5,6 @@ cd "$INSTALL_PATH"
 
 if test ! -f offline
 then
-	echo "Downloading bcprov-jdk15on-152.jar"
-	java $JOPTS -jar bin/sha1test.jar bcprov-jdk15on-152.jar "$INSTALL_PATH" "$CAFILE" >/dev/null 2>&1 || exit 1
+	echo "Downloading bcprov-jdk15on-154.jar"
+	java $JOPTS -jar bin/sha1test.jar bcprov-jdk15on-154.jar "$INSTALL_PATH" "$CAFILE" >/dev/null 2>&1 || exit 1
 fi

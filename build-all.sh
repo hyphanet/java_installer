@@ -8,7 +8,7 @@
 
 mkdir -p offline
 
-source freenet-scripts-common || exit 1
+source ../scripts/freenet-scripts-common || exit 1
 
 test -e bin/freenet.jar || exit 2
 test -e bin/freenet-ext.jar || exit 3

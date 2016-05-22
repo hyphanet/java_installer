@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Dependancies:
+# Dependencies:
 # izPack (version 4 or later?): standalone-compiler.jar in lib/
 # ~/.freenetrc pointing to $releaseDir
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-154.jar, wrapper.jar (version corresponding to the native wrapper binaries)

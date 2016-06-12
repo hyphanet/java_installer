@@ -105,7 +105,7 @@ This file builds the freenet installer...
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}/sha1test"/>
-		<javac srcdir="./src" destdir="./${build}/sha1test" optimize="on" debug="on" source="1.6" includeantruntime="off">
+		<javac srcdir="./src" destdir="./${build}/sha1test" optimize="on" debug="on" source="1.7" includeantruntime="off">
 			<include name="gnu/**/*.java"/>
 			<include name="freenet/support/HexUtil"/>
 			<include name="Sha1Test.java"/>
@@ -123,7 +123,7 @@ This file builds the freenet installer...
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}/browser"/>
-		<javac srcdir="./src" destdir="./${build}/browser" optimize="on" debug="on" source="1.6" includeantruntime="off">
+		<javac srcdir="./src" destdir="./${build}/browser" optimize="on" debug="on" source="1.7" includeantruntime="off">
 			<include name="BareBonesBrowserLaunch.java"/>
 		</javac>
 		<jar jarfile="./res/bin/browser.jar" basedir="./${build}/browser">
@@ -139,7 +139,7 @@ This file builds the freenet installer...
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}/uncompress"/>
-		<javac srcdir="./src" destdir="./${build}/uncompress" optimize="on" debug="on" source="1.6" includeantruntime="off">
+		<javac srcdir="./src" destdir="./${build}/uncompress" optimize="on" debug="on" source="1.7" includeantruntime="off">
 			<include name="Uncompress.java"/>
 		</javac>
 		<jar jarfile="./res/bin/uncompress.jar" basedir="./${build}/uncompress">
@@ -155,7 +155,7 @@ This file builds the freenet installer...
 		<!-- Create the build directory structure used by compile -->
 
 		<mkdir dir="${build}/bindtest"/>
-		<javac srcdir="./src" destdir="./${build}/bindtest" optimize="on" debug="on" source="1.6" includeantruntime="off">
+		<javac srcdir="./src" destdir="./${build}/bindtest" optimize="on" debug="on" source="1.7" includeantruntime="off">
 			<include name="BindTest.java"/>
 		</javac>
 		<jar jarfile="./res/bin/bindtest.jar" basedir="./${build}/bindtest">

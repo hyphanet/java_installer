@@ -10,6 +10,10 @@ then
 	fi
 fi
 
+# ensure that this script is not overwritten (the shell sticks to the inode)
+mv "$0" "$0".old
+cp -p "$0".old "$0" # preserve permissions
+
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"

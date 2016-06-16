@@ -10,6 +10,9 @@ then
 	fi
 fi
 
+# avoid changing the running script (the shell sticks to the inode)
+mv "$0" "$0".old && cp -p "$0".old "$0"
+
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"

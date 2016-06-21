@@ -16,7 +16,7 @@ mv "$0" "$0".old && cp -p "$0".old "$0"
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
-SHA1_Sha1Test="ec6877a2551065d954e44dc6e78502bfe1fe6015"
+SHA1_Sha1Test="f5cdc75ae6eb6d2de15e26f2ea8590eeb8d9eb66"
 echo "Updating freenet"
 
 # Set working directory to Freenet install directory so that the script can

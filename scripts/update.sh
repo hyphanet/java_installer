@@ -255,6 +255,17 @@ then
 	fi
 fi
 
+### delicate: updating the update script itself ###
+# ensure that update.sh does not mutate itself while running
+# emergency rescue: on erroneous EXIT recover update.sh from a tmp-file
+# (only replaces the file if a tmp-file exists)
+recover_update_sh () {
+	cp update_tmp.sh update.sh
+}
+trap recover_update_sh EXIT
+# rename the current script to ensure that we do not override what we are executing
+mv $0 update_tmp.sh && cp update_tmp.sh update.sh
+# update update.sh with sha1test.jar
 if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
 then
 	echo "Downloaded update.sh"
@@ -273,6 +284,15 @@ else
 	echo "Could not download new update.sh."
 	exit
 fi
+# replace the exit trap by a trap which removes the tmp-file
+remove_update_tmp_sh () {
+	if test -s update.sh; then # safe to kill the tempfile
+		rm update_tmp.sh
+	fi
+}
+trap remove_update_tmp_sh EXIT
+### / updating the update script ###
+
 
 if java $JOPTS -cp sha1test.jar Sha1Test freenet-$RELEASE-latest.jar download-temp $CAFILE
 then

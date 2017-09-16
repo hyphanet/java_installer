@@ -264,7 +264,7 @@ recover_update_sh () {
 }
 trap recover_update_sh EXIT
 # rename the current script to ensure that we do not override what we are executing
-mv $0 update_tmp.sh && cp update_tmp.sh update.sh
+mv -- "$0" update_tmp.sh && cp update_tmp.sh update.sh
 # update update.sh with sha1test.jar
 if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
 then

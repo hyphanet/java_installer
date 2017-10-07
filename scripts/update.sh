@@ -256,7 +256,6 @@ then
 fi
 
 ### delicate: updating the update script itself ###
-# ensure that update.sh does not mutate itself while running
 # emergency rescue: on erroneous EXIT recover update.sh from a tmp-file
 # (only replaces the file if a tmp-file exists)
 recover_update_sh () {

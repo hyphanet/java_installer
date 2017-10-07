@@ -260,11 +260,11 @@ fi
 # emergency rescue: on erroneous EXIT recover update.sh from a tmp-file
 # (only replaces the file if a tmp-file exists)
 recover_update_sh () {
-	cp update_tmp.sh update.sh
+	cp update_tmp.sh "$0"
 }
 trap recover_update_sh EXIT
 # rename the current script to ensure that we do not override what we are executing
-mv -- "$0" update_tmp.sh && cp update_tmp.sh update.sh
+mv -- "$0" update_tmp.sh && cp -- update_tmp.sh "$0"
 # update update.sh with sha1test.jar
 if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
 then

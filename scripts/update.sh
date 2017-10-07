@@ -16,7 +16,6 @@ mv "$0" "$0".old && cp -p "$0".old "$0"
 WHEREAMI="`pwd`"
 CAFILE="startssl.pem"
 JOPTS="-Djava.net.preferIPv4Stack=true"
-SHA1_Sha1Test="f5cdc75ae6eb6d2de15e26f2ea8590eeb8d9eb66"
 echo "Updating freenet"
 
 # Set working directory to Freenet install directory so that the script can
@@ -91,7 +90,9 @@ then
 	if test "$1" = "testing"
 	then
 		RELEASE="testing"
-		echo "WARNING! you're downloading an UNSTABLE snapshot version of freenet."
+		# echo "WARNING! you're downloading an UNSTABLE snapshot version of freenet."
+		echo "ERROR! downloading testing versions is currently broken."
+		exit 1
 	else
 		RELEASE="stable"
 	fi
@@ -114,11 +115,6 @@ else
 fi
 
 # Bundle the CA
-if test ! -f $CAFILE
-then
-# Delete the existing sha1test.jar: we want a new one to be downloaded
-rm -f sha1test.jar
-fi
 cat >$CAFILE << EOF
 -----BEGIN CERTIFICATE-----
 MIIDdTCCAl2gAwIBAgILBAAAAAABFUtaw5QwDQYJKoZIhvcNAQEFBQAwVzELMAkG
@@ -224,110 +220,101 @@ then
 	# Pin the certificate file.
 	# Curl will use the system --capath if we don't specify one.
 	# FIXME --capath / is safe (there shouldn't be any certs in it, regular users can't write to it, etc), /var/empty would be more obvious but might break if some future curl checks existence?
-	DOWNLOADER="curl --capath / --cacert $CAFILE -q -f -L -O "
+	DOWNLOADER="curl --capath / --cacert $CAFILE -q -f -L -o "
 else
-	DOWNLOADER="wget -o /dev/null --ca-certificate $CAFILE -N "
+	DOWNLOADER="wget -o /dev/null --ca-certificate $CAFILE -N -O "
 fi
 
-# check if sha1sum.jar is up to date
-file_hash sha1test.jar
-case "$HASH" in 
-	$SHA1_Sha1Test) echo "The SHA1 of sha1test.jar matches";;
-	*) echo "sha1test.jar needs to be updated"; rm -f sha1test.jar;;
-esac
+# FIXME: re-activate updating of the update script. Currently this
+#        only works over Freenet. Needs to be implemented without
+#        relying on the lost infrastructure. Ideally go to TUF.
 
-if test ! -s sha1test.jar
-then
-	for x in 1 2 3 4 5
-	do
-		echo Downloading sha1test.jar utility jar which will download the actual update.
-		$DOWNLOADER https://downloads.freenetproject.org/latest/sha1test.jar
-		
-		if test -s sha1test.jar
-		then
-			break
-		fi
-	done
-	if test ! -s sha1test.jar
-	then
-		echo Could not download Sha1Test. The servers may be offline?
-		exit
-	fi
-fi
+# ### delicate: updating the update script itself ###
+# # emergency rescue: on erroneous EXIT recover update.sh from a tmp-file
+# # (only replaces the file if a tmp-file exists)
+# recover_update_sh () {
+# 	cp update_tmp.sh "$0"
+# }
+# trap recover_update_sh EXIT
+# # rename the current script to ensure that we do not override what we are executing
+# mv -- "$0" update_tmp.sh && cp -- update_tmp.sh "$0"
+# # update update.sh
+# # FIXME: use new downloader
+# if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
+# then
+# 	echo "Downloaded update.sh"
+# 	chmod +x update.sh
+# 
+# 	touch update.sh update2.sh
+# 	if file_comp update.sh update2.sh >/dev/null
+# 	then
+# 		echo "Your update.sh is up to date"
+# 	else
+# 		cp update.sh update2.sh
+# 		exec ./update.sh $RELEASE
+# 		exit
+# 	fi
+# else
+# 	echo "Could not download new update.sh."
+# 	exit
+# fi
+# # replace the exit trap by a trap which removes the tmp-file
+# remove_update_tmp_sh () {
+# 	if test -s update.sh; then # safe to kill the tempfile
+# 		rm update_tmp.sh
+# 	fi
+# }
+# trap remove_update_tmp_sh EXIT
+# ### / updating the update script ###
 
-### delicate: updating the update script itself ###
-# emergency rescue: on erroneous EXIT recover update.sh from a tmp-file
-# (only replaces the file if a tmp-file exists)
-recover_update_sh () {
-	cp update_tmp.sh "$0"
+# Download a fred update
+download_fred_update () {
+    ## TODO: Replace with clean TUF setup. This is just a bandaid and can
+    ##       be broken by changes in Github at any time.
+    LATEST_RELEASE_URL="`curl -w "%{url_effective}\n" -I -L -s -S https://github.com/freenet/fred/releases/latest -o /dev/null`"
+    LATEST_TAG="`echo ${LATEST_RELEASE_URL} | sed s,.*/,,`"
+    LATEST_DOWNLOAD_URL="https://github.com/freenet/fred/releases/download/${LATEST_TAG}/freenet-${LATEST_TAG}.jar"
+    wget -N -O download-temp/freenet-$RELEASE-latest.jar.sig "${LATEST_DOWNLOAD_URL}".sig || curl -q -f -L -o download-temp/freenet-$RELEASE-latest.jar.sig "${LATEST_DOWNLOAD_URL}".sig
+    wget -N -O download-temp/freenet-$RELEASE-latest.jar "${LATEST_DOWNLOAD_URL}" || curl -q -f -L -o download-temp/freenet-$RELEASE-latest.jar "${LATEST_DOWNLOAD_URL}"
 }
-trap recover_update_sh EXIT
-# rename the current script to ensure that we do not override what we are executing
-mv -- "$0" update_tmp.sh && cp -- update_tmp.sh "$0"
-# update update.sh with sha1test.jar
-if java $JOPTS -cp sha1test.jar Sha1Test update.sh ./ $CAFILE
-then
-	echo "Downloaded update.sh"
-	chmod +x update.sh
 
-	touch update.sh update2.sh
-	if file_comp update.sh update2.sh >/dev/null
-	then
-		echo "Your update.sh is up to date"
-	else
-		cp update.sh update2.sh
-		exec ./update.sh $RELEASE
-		exit
-	fi
-else
-	echo "Could not download new update.sh."
-	exit
-fi
-# replace the exit trap by a trap which removes the tmp-file
-remove_update_tmp_sh () {
-	if test -s update.sh; then # safe to kill the tempfile
-		rm update_tmp.sh
-	fi
-}
-trap remove_update_tmp_sh EXIT
-### / updating the update script ###
-
-
-if java $JOPTS -cp sha1test.jar Sha1Test freenet-$RELEASE-latest.jar download-temp $CAFILE
+# if java $JOPTS -cp sha1test.jar Sha1Test freenet-$RELEASE-latest.jar download-temp $CAFILE
+if download_fred_update
 then
 	echo Downloaded freenet-$RELEASE-latest.jar
 else
 	echo Could not download new freenet-$RELEASE-latest.jar.
-	exit
+	exit 1
 fi
 
-if java $JOPTS -cp sha1test.jar Sha1Test freenet-ext.jar download-temp $CAFILE
-then
-	echo Downloaded freenet-ext.jar
-else
-	echo Could not download new freenet-ext.jar.
-	exit
-fi
-
-if test ! -s bcprov-jdk15on-154.jar
-then
-	echo Downloading bcprov-jdk15on-154.jar
-	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-154.jar . $CAFILE
-	then
-		echo Could not download bcprov-jdk15on-154.jar needed for new jar
-		exit
-	fi
-fi
-
-if test ! -s wrapper.jar
-then
-	echo Downloading wrapper.jar
-	if ! java $JOPTS -cp sha1test.jar Sha1Test wrapper.jar . $CAFILE
-	then
-		echo Could not download wrapper.jar needed for new jar
-		exit
-	fi
-fi
+# FIXME: re-implement updating of other components without the lost infrastructure
+# if java $JOPTS -cp sha1test.jar Sha1Test freenet-ext.jar download-temp $CAFILE
+# then
+# 	echo Downloaded freenet-ext.jar
+# else
+# 	echo Could not download new freenet-ext.jar.
+# 	exit 1
+# fi
+# 
+# if test ! -s bcprov-jdk15on-154.jar
+# then
+# 	echo Downloading bcprov-jdk15on-154.jar
+# 	if ! java $JOPTS -cp sha1test.jar Sha1Test bcprov-jdk15on-154.jar . $CAFILE
+# 	then
+# 		echo Could not download bcprov-jdk15on-154.jar needed for new jar
+# 		exit
+# 	fi
+# fi
+# 
+# if test ! -s wrapper.jar
+# then
+# 	echo Downloading wrapper.jar
+# 	if ! java $JOPTS -cp sha1test.jar Sha1Test wrapper.jar . $CAFILE
+# 	then
+# 		echo Could not download wrapper.jar needed for new jar
+# 		exit
+# 	fi
+# fi
 
 dos2unix wrapper.conf > /dev/null 2>&1
 

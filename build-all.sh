@@ -3,7 +3,7 @@
 # Dependencies:
 # izPack (version 4 or later?): standalone-compiler.jar in lib/
 # ~/.freenetrc pointing to $releaseDir
-# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-154.jar, wrapper.jar (version corresponding to the native wrapper binaries)
+# In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-1.59.jar, wrapper.jar (version corresponding to the native wrapper binaries)
 # In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
 
 mkdir -p offline
@@ -12,7 +12,7 @@ source ../scripts/freenet-scripts-common || exit 1
 
 test -e bin/freenet.jar || exit 2
 test -e bin/freenet-ext.jar || exit 3
-test -e bin/bcprov-jdk15on-154.jar || exit 4
+test -e bin/bcprov-jdk15on-1.59.jar || exit 4
 test -e bin/wrapper.jar || exit 36
 test -e bin/seednodes.fref || exit 5
 
@@ -38,7 +38,9 @@ touch offline/offline
 cp dist/wrapper_*.zip* offline/ || exit 11
 cp bin/freenet.jar offline/freenet-stable-latest.jar || exit 12
 cp bin/freenet-ext.jar offline/freenet-ext.jar || exit 13
-cp bin/bcprov-jdk15on-154.jar offline/bcprov-jdk15on-154.jar || exit 14
+cp bin/bcprov-jdk15on-1.59.jar offline/ || exit 14
+cp bin/jna-4.2.2.jar offline/ || exit
+cp bin/jna-platform-4.2.2.jar offline || exit
 cp bin/wrapper.jar offline/wrapper.jar || exit 37
 cp bin/seednodes.fref offline/ || exit 15
 cp scripts/update.sh offline/ || exit 16

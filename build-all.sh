@@ -10,11 +10,11 @@ mkdir -p offline
 
 source ../scripts/freenet-scripts-common || exit 1
 
-test -e bin/freenet.jar || exit 2
-test -e bin/freenet-ext.jar || exit 3
-test -e bin/bcprov-jdk15on-1.59.jar || exit 4
-test -e bin/wrapper.jar || exit 36
-test -e bin/seednodes.fref || exit 5
+touch -c bin/freenet.jar || exit
+touch -c bin/freenet-ext.jar || exit
+touch -c bin/bcprov-jdk15on-1.59.jar || exit
+touch -c bin/wrapper.jar || exit
+touch -c bin/seednodes.fref || exit
 
 mkdir -p dist
 

@@ -328,36 +328,53 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if ! grep bcprov-jdk15on-154.jar wrapper.conf > /dev/null
+if ! grep jna-4.2.2.jar wrapper.conf > /dev/null
+then
+   echo Adding jna-4.2.2.jar to wrapper.conf
+   echo "wrapper.java.classpath.5=jna-4.2.2.jar" >> wrapper.conf
+fi
+
+if ! grep jna-platform-4.2.2.jar wrapper.conf > /dev/null
+then
+   echo Adding jna-platform-4.2.2.jar to wrapper.conf
+   echo "wrapper.java.classpath.6=jna-platform-4.2.2.jar" >> wrapper.conf
+fi
+
+if ! grep bcprov-jdk15on-159.jar wrapper.conf > /dev/null
 then
 	if grep bcprov-jdk15on wrapper.conf > /dev/null; then
-		echo Updating wrapper.conf to bouncycastle 1.54
-		cat wrapper.conf | sed 's/bcprov-jdk15on-[0-9]*/bcprov-jdk15on-154/g' > wrapper.conf.new
+		echo Updating wrapper.conf to bouncycastle 1.59
+		cat wrapper.conf | sed 's/bcprov-jdk15on-[0-9]*/bcprov-jdk15on-159/g' > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	else
-		echo Adding bcprov-jdk15on-154.jar to wrapper.conf
-		echo "wrapper.java.classpath.3=bcprov-jdk15on-154.jar" >> wrapper.conf
+		echo Adding bcprov-jdk15on-159.jar to wrapper.conf
+		echo "wrapper.java.classpath.3=bcprov-jdk15on-159.jar" >> wrapper.conf
 	fi
 else
-	echo wrapper.conf contains up to date bouncycastle jar v1.54
+	echo wrapper.conf contains up to date bouncycastle jar v1.59
 	if grep bcprov-jdk15on-147.jar wrapper.conf > /dev/null; then
-		echo wrapper.conf contains both bouncycastle 147 and 154, deleting 147
+		echo wrapper.conf contains both bouncycastle 147 and 159, deleting 147
 		cat wrapper.conf | sed "/bcprov-jdk15on-147/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	fi
 	if grep bcprov-jdk15on-149.jar wrapper.conf > /dev/null; then
-		echo wrapper.conf contains both bouncycastle 149 and 154, deleting 149
+		echo wrapper.conf contains both bouncycastle 149 and 159, deleting 149
 		cat wrapper.conf | sed "/bcprov-jdk15on-149/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	fi
 	if grep bcprov-jdk15on-151.jar wrapper.conf > /dev/null; then
-		echo wrapper.conf contains both bouncycastle 151 and 154, deleting 151
+		echo wrapper.conf contains both bouncycastle 151 and 159, deleting 151
 		cat wrapper.conf | sed "/bcprov-jdk15on-151/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	fi
 	if grep bcprov-jdk15on-152.jar wrapper.conf > /dev/null; then
-		echo wrapper.conf contains both bouncycastle 152 and 154, deleting 152
+		echo wrapper.conf contains both bouncycastle 152 and 159, deleting 152
 		cat wrapper.conf | sed "/bcprov-jdk15on-152/d" > wrapper.conf.new
+		mv wrapper.conf.new wrapper.conf
+	fi
+	if grep bcprov-jdk15on-154.jar wrapper.conf > /dev/null; then
+		echo wrapper.conf contains both bouncycastle 154 and 159, deleting 154
+		cat wrapper.conf | sed "/bcprov-jdk15on-154/d" > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	fi
 fi

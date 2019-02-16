@@ -4,7 +4,7 @@
 # izPack (version 4 or later?): standalone-compiler.jar in lib/
 # ~/.freenetrc pointing to $releaseDir
 # In bin/ : freenet.jar, freenet-ext.jar, seednodes.fref, bcprov-jdk15on-1.59.jar, wrapper.jar (version corresponding to the native wrapper binaries)
-# In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar
+# In $releaseDir : JSTUN.jar, UPnP.jar, Library.jar, KeyUtils.jar, ThawIndexBrowser.jar, Sharesite.jar
 
 mkdir -p offline
 
@@ -52,6 +52,7 @@ cp $releaseDir/UPnP.jar offline/plugins/ || exit 19
 cp $releaseDir/Library.jar offline/plugins/ || exit 20
 cp $releaseDir/KeyUtils.jar offline/plugins/ || exit 21
 cp $releaseDir/ThawIndexBrowser.jar offline/plugins/ || exit 22
+cp $releaseDir/Sharesite.jar offline/plugins/ || exit 22
 
 ant sign || exit
 

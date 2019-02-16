@@ -116,11 +116,13 @@ java $JOPTS -jar bin/sha1test.jar freenet-ext.jar "." $CAFILE >/dev/null
 
 # Register plugins
 mkdir -p plugins
-echo "pluginmanager.loadplugin=JSTUN;UPnP" >> freenet.ini
+echo "pluginmanager.loadplugin=JSTUN;UPnP;Sharesite" >> freenet.ini
 echo "Downloading the JSTUN plugin"
 java $JOPTS -jar bin/sha1test.jar JSTUN.jar plugins "$CAFILE" >/dev/null 2>&1
 echo "Downloading the UPnP plugin"
 java $JOPTS -jar bin/sha1test.jar UPnP.jar plugins "$CAFILE" >/dev/null 2>&1
+echo "Downloading the Sharesite plugin"
+java $JOPTS -jar bin/sha1test.jar Sharesite.jar plugins "$CAFILE" >/dev/null 2>&1
 
 echo "Downloading seednodes.fref"
 java $JOPTS -jar bin/sha1test.jar seednodes.fref "." $CAFILE >/dev/null

@@ -340,15 +340,15 @@ then
    echo "wrapper.java.classpath.6=jna-platform-4.2.2.jar" >> wrapper.conf
 fi
 
-if ! grep bcprov-jdk15on-159.jar wrapper.conf > /dev/null
+if ! grep bcprov-jdk15on-1.59.jar wrapper.conf > /dev/null
 then
 	if grep bcprov-jdk15on wrapper.conf > /dev/null; then
 		echo Updating wrapper.conf to bouncycastle 1.59
-		cat wrapper.conf | sed 's/bcprov-jdk15on-[0-9]*/bcprov-jdk15on-159/g' > wrapper.conf.new
+		cat wrapper.conf | sed 's/bcprov-jdk15on-[0-9]*/bcprov-jdk15on-1.59/g' > wrapper.conf.new
 		mv wrapper.conf.new wrapper.conf
 	else
-		echo Adding bcprov-jdk15on-159.jar to wrapper.conf
-		echo "wrapper.java.classpath.3=bcprov-jdk15on-159.jar" >> wrapper.conf
+		echo Adding bcprov-jdk15on-1.59.jar to wrapper.conf
+		echo "wrapper.java.classpath.3=bcprov-jdk15on-1.59.jar" >> wrapper.conf
 	fi
 else
 	echo wrapper.conf contains up to date bouncycastle jar v1.59

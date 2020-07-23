@@ -328,17 +328,28 @@ cat wrapper.conf | \
 	> wrapper2.conf
 mv wrapper2.conf wrapper.conf
 
-if ! grep jna-4.2.2.jar wrapper.conf > /dev/null
+if ! grep jna-4.5.2.jar wrapper.conf > /dev/null
 then
-   echo Adding jna-4.2.2.jar to wrapper.conf
-   echo "wrapper.java.classpath.5=jna-4.2.2.jar" >> wrapper.conf
+   echo Adding jna-4.5.2.jar to wrapper.conf
+   echo "wrapper.java.classpath.5=jna-4.5.2.jar" >> wrapper.conf
+fi
+if grep jna-4.2.2.jar wrapper.conf > /dev/null; then
+	echo wrapper.conf contains both jna 4.2.2 and 4.5.2, deleting 4.2.2
+	cat wrapper.conf | sed "/jna-4.2.2.jar/d" > wrapper.conf.new
+	mv wrapper.conf.new wrapper.conf
 fi
 
-if ! grep jna-platform-4.2.2.jar wrapper.conf > /dev/null
+if ! grep jna-platform-4.5.2.jar wrapper.conf > /dev/null
 then
-   echo Adding jna-platform-4.2.2.jar to wrapper.conf
-   echo "wrapper.java.classpath.6=jna-platform-4.2.2.jar" >> wrapper.conf
+   echo Adding jna-platform-4.5.2.jar to wrapper.conf
+   echo "wrapper.java.classpath.6=jna-platform-4.5.2.jar" >> wrapper.conf
 fi
+if grep jna-platform-4.2.2.jar wrapper.conf > /dev/null; then
+	echo wrapper.conf contains both jna-platform 4.2.2 and 4.5.2, deleting 4.2.2
+	cat wrapper.conf | sed "/jna-platform-4.2.2.jar/d" > wrapper.conf.new
+	mv wrapper.conf.new wrapper.conf
+fi
+
 
 if ! grep bcprov-jdk15on-1.59.jar wrapper.conf > /dev/null
 then

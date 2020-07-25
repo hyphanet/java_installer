@@ -39,8 +39,8 @@ cp dist/wrapper_*.zip* offline/ || exit 11
 cp bin/freenet.jar offline/freenet-stable-latest.jar || exit 12
 cp bin/freenet-ext.jar offline/freenet-ext.jar || exit 13
 cp bin/bcprov-jdk15on-1.59.jar offline/ || exit 14
-cp bin/jna-4.2.2.jar offline/ || exit
-cp bin/jna-platform-4.2.2.jar offline || exit
+cp bin/jna-4.5.2.jar offline/ || exit
+cp bin/jna-platform-4.5.2.jar offline || exit
 cp bin/wrapper.jar offline/wrapper.jar || exit 37
 cp bin/seednodes.fref offline/ || exit 15
 cp scripts/update.sh offline/ || exit 16

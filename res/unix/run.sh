@@ -269,7 +269,7 @@ esac
 
 # Decide on the wrapper binary to use.
 # 64bit wrapper by default on 64bit platforms, because
-# they might not have 32bit emulation libs installed. 
+# they might not have 32bit emulation libs installed.
 # For macosx, we also want to look for universal binaries.
 
 WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
@@ -280,8 +280,7 @@ then
 else
     if [ "$DIST_OS" = "macosx" ] # Some osx weirdness, someone please check that this still works
     then
-	# We don't have a binary for OS/X on 64-bit at present.
-	DIST_BIT="32"
+	DIST_BIT="64"
         WRAPPER_TEST_CMD="$WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
         if [ -x "$WRAPPER_TEST_CMD" ]
         then
@@ -364,7 +363,7 @@ checkUser() {
                 exit 1
             fi
         fi
-    
+
         if [ "`$IDEXE -u -n`" = "$RUN_AS_USER" ]
         then
             # Already running as the configured user.  Avoid password prompts by not calling su.
@@ -381,7 +380,7 @@ checkUser() {
         then
             if [ "X$2" != "X" ]
             then
-                # Resolve the primary group 
+                # Resolve the primary group
                 RUN_AS_GROUP=`groups $RUN_AS_USER | awk '{print $3}' | tail -1`
                 if [ "X$RUN_AS_GROUP" = "X" ]
                 then
@@ -444,7 +443,7 @@ getpid() {
                     		rm -f "$PIDFILE"
                     		echo "Removed stale pid file2: $PIDFILE"
                     		pid=""
-		    
+
 			fi
 		fi
             fi
@@ -476,7 +475,7 @@ console() {
         exit 1
     fi
 }
- 
+
 start() {
     echo "Starting $APP_LONG_NAME..."
     getpid
@@ -496,7 +495,7 @@ start() {
         exit 1
     fi
 }
- 
+
 stopit() {
     echo "Stopping $APP_LONG_NAME..."
     getpid
@@ -616,7 +615,7 @@ setMemoryLimitIfNeeded() {
        echo OS is $DIST_OS
        currentmem=`getHardwareMemory`
        echo Detected memory: $currentmem
-       echo $currentmem > memory.autolimit	
+       echo $currentmem > memory.autolimit
        if [ $currentmem -le 256 ]
        then
            echo "not enough memory to run"
@@ -626,8 +625,8 @@ setMemoryLimitIfNeeded() {
        then
            echo "128" > memory.autolimit
            memorylimit=128
-       elif [ $currentmem -le 1024 ] 
-       then 
+       elif [ $currentmem -le 1024 ]
+       then
            echo "192" > memory.autolimit
            memorylimit=192
        elif [ $currentmem -le 2048 ]
@@ -637,7 +636,7 @@ setMemoryLimitIfNeeded() {
        else
            echo "512" > memory.autolimit
            memorylimit=512
-       fi 
+       fi
    mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
    sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"
    fi

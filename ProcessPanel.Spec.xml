@@ -43,6 +43,11 @@
 		<os family="mac"/>
 		<executefile name="$INSTALL_PATH/bin/install_thawindexbrowser.sh"/>
 	</job>
+    <job name="Setting Sharesite up">
+		<os family="unix"/>
+		<os family="mac"/>
+		<executefile name="$INSTALL_PATH/bin/install_sharesite.sh"/>
+	</job>
 
 	<!-- no plugin below that line! -->
 	<job name="Setting plugins up">

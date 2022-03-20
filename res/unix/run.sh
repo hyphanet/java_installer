@@ -129,7 +129,7 @@ esac
 
 if [ "$DIST_OS" = "macosx" ]
 then
-	# If there's a modern (1.8+) JVM, use that...
+	# If there's a modern (9+) JVM, use that...
 	JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
 	if ! test -e "$JAVA_HOME/bin/java"
 	then
@@ -149,7 +149,7 @@ JAVA_REAL_IMPL="java"
 # /usr/local/openjdk7/jre/bin/java FreeBSD
 DEB_ARCH="amd64 i386"
 DEB_CANDIDATES=""
-for version in 8 7; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk/jre/bin/java"; for arch in $DEB_ARCH; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk-$arch/jre/bin/java";done;done
+for version in 18 17 16 15 14 13 12 11 10 9; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk/jre/bin/java"; for arch in $DEB_ARCH; do DEB_CANDIDATES="$DEB_CANDIDATES /usr/lib/jvm/java-$version-openjdk-$arch/jre/bin/java";done;done
 CANDIDATES="$JAVA_HOME/bin/java `which java` /etc/java-config-2/current-system-vm/bin/java /usr/lib/jvm/java-default-runtime/bin/java $DEB_CANDIDATES /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java /usr/lib64/jvm/jre-1.7.0-openjdk/bin/java /usr/local/openjdk8/jre/bin/java /usr/local/openjdk7/jre/bin/java"
 for candidate in $CANDIDATES
 do

@@ -304,7 +304,7 @@ else
 			#
 			# We need -Djava.net.preferIPv4Stack=true on FreeBSD, otherwise recent jvms thow an IllegalArgumentException when we create the socket
 			#
-                        NO_WRAPPER="$JAVA_REAL_IMPL -Djava.net.preferIPv4Stack=true -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.2.2.jar:jna-platform-4.2.2.jar freenet.node.NodeStarter"
+                        NO_WRAPPER="$JAVA_REAL_IMPL -Djava.net.preferIPv4Stack=true -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi
@@ -315,7 +315,7 @@ else
             echo "Unable to locate any of the following binaries:"
             echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
             echo "  $WRAPPER_CMD"
-            NO_WRAPPER="$JAVA_REAL_IMPL -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.2.2.jar:jna-platform-4.2.2.jar freenet.node.NodeStarter"
+            NO_WRAPPER="$JAVA_REAL_IMPL -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar freenet.node.NodeStarter"
         fi
     fi
 fi

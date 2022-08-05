@@ -350,6 +350,11 @@ if grep jna-platform-4.2.2.jar wrapper.conf > /dev/null; then
 	mv wrapper.conf.new wrapper.conf
 fi
 
+if ! grep pebble-3.1.5.jar wrapper.conf > /dev/null
+then
+   echo Adding pebble-3.1.5.jar to wrapper.conf
+   echo "wrapper.java.classpath.7=pebble-3.1.5.jar" >> wrapper.conf
+fi
 
 if ! grep bcprov-jdk15on-1.59.jar wrapper.conf > /dev/null
 then

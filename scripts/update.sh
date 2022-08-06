@@ -356,6 +356,18 @@ then
    echo "wrapper.java.classpath.7=pebble-3.1.5.jar" >> wrapper.conf
 fi
 
+if ! grep unbescape-1.1.6.RELEASE.jar wrapper.conf > /dev/null
+then
+   echo Adding unbescape-1.1.6.RELEASE.jar to wrapper.conf
+   echo "wrapper.java.classpath.8=unbescape-1.1.6.RELEASE.jar" >> wrapper.conf
+fi
+
+if ! grep slf4j-api-1.7.25.jar wrapper.conf > /dev/null
+then
+   echo Adding slf4j-api-1.7.25.jar wrapper.conf
+   echo "wrapper.java.classpath.9=slf4j-api-1.7.25.jar" >> wrapper.conf
+fi
+
 if ! grep bcprov-jdk15on-1.59.jar wrapper.conf > /dev/null
 then
 	if grep bcprov-jdk15on wrapper.conf > /dev/null; then

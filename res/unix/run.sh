@@ -590,7 +590,7 @@ dump() {
 }
 
 getHardwareMemory() {
-    detected=0
+    detected=8192 # fallback, MiB
     if [ $DIST_OS = "macosx" ]
     then
        detected=$((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))

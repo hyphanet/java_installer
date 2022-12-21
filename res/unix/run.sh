@@ -637,8 +637,8 @@ setMemoryLimitIfNeeded() {
            echo "512" > memory.autolimit
            memorylimit=512
        else
-           echo "768" > memory.autolimit
-           memorylimit=768
+           echo "1024" > memory.autolimit
+           memorylimit=1024
        fi
    mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
    sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"

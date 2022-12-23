@@ -301,10 +301,7 @@ else
                         echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
                         echo "  $WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
                         echo "  $WRAPPER_CMD"
-			#
-			# We need -Djava.net.preferIPv4Stack=true on FreeBSD, otherwise recent jvms thow an IllegalArgumentException when we create the socket
-			#
-                        NO_WRAPPER="$JAVA_REAL_IMPL  -Xmx1500m -Xss512k -Dnetworkaddress.cache.ttl=0 -Dnetworkaddress.cache.negative.ttl=0 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED  -Djava.net.preferIPv4Stack=true -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
+                        NO_WRAPPER="$JAVA_REAL_IMPL  -Xmx1500m -Xss512k -Dnetworkaddress.cache.ttl=0 -Dnetworkaddress.cache.negative.ttl=0 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi

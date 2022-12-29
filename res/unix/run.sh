@@ -301,10 +301,7 @@ else
                         echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
                         echo "  $WRAPPER_CMD-$DIST_OS-universal-$DIST_BIT"
                         echo "  $WRAPPER_CMD"
-			#
-			# We need -Djava.net.preferIPv4Stack=true on FreeBSD, otherwise recent jvms thow an IllegalArgumentException when we create the socket
-			#
-                        NO_WRAPPER="$JAVA_REAL_IMPL -Djava.net.preferIPv4Stack=true -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
+                        NO_WRAPPER="$JAVA_REAL_IMPL  -Xmx1500m -Xss512k -Dnetworkaddress.cache.ttl=0 -Dnetworkaddress.cache.negative.ttl=0 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
                     fi
                 fi
             fi
@@ -315,7 +312,7 @@ else
             echo "Unable to locate any of the following binaries:"
             echo "  $WRAPPER_CMD-$DIST_OS-$DIST_ARCH-$DIST_BIT"
             echo "  $WRAPPER_CMD"
-            NO_WRAPPER="$JAVA_REAL_IMPL -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
+            NO_WRAPPER="$JAVA_REAL_IMPL  -Xmx1500m -Xss512k -Dnetworkaddress.cache.ttl=0 -Dnetworkaddress.cache.negative.ttl=0 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED  -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter"
         fi
     fi
 fi
@@ -590,7 +587,7 @@ dump() {
 }
 
 getHardwareMemory() {
-    detected=0
+    detected=8192 # fallback, MiB
     if [ $DIST_OS = "macosx" ]
     then
        detected=$((`sysctl hw.memsize | sed s/"hw.memsize: "//`/1024/1024))
@@ -637,8 +634,8 @@ setMemoryLimitIfNeeded() {
            echo "512" > memory.autolimit
            memorylimit=512
        else
-           echo "768" > memory.autolimit
-           memorylimit=768
+           echo "1024" > memory.autolimit
+           memorylimit=1024
        fi
    mv "$WRAPPER_CONF" "${WRAPPER_CONF}.old"
    sed "s/wrapper.java.maxmemory=.*/wrapper.java.maxmemory=$memorylimit/g" "${WRAPPER_CONF}.old" > "$WRAPPER_CONF"

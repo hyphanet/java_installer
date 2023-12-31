@@ -238,6 +238,9 @@ case "$DIST_ARCH" in
     '9000/800')
         DIST_ARCH="parisc"
         ;;
+    'aarch64')
+        DIST_ARCH="arm"  # 64 bit ARM
+		;;
     armv*)
         if [ -z "`readelf -A /proc/self/exe | grep Tag_ABI_VFP_args`" ] ; then
             DIST_ARCH="armel"
@@ -262,6 +265,9 @@ case "$DIST_BIT" in
 #    '9000/800')
 #       DIST_BIT="64"
 #        ;;
+    'aarch64')
+        DIST_BIT="64"
+        ;;
     *) # In any other case default to 32
         DIST_BIT="32"
         ;;

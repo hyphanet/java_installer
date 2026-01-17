@@ -86,9 +86,9 @@ This file builds the freenet installer...
 	<!-- Note that this requires environment variables. They are set by the release-installer script. -->
 	<target name="sign" description="Sign the distribution" depends="dist">
 		<echo message="Signing the installer"/>
-		<signjar jar="${dest}" strict="false" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
-		<!-- TODO: Should have strict="true", but some versions of jarsigner do not support it. -->
-		<verifyjar jar="${dest}" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}"/>
+		<signjar jar="${dest}" strict="true" tsaurl="http://timestamp.comodoca.com/rfc3161" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}" sigalg="SHA256withRSA" digestalg="SHA-256"/>
+		<!--disabled verifyjar, because it fails with method not found: likely a version incompatibility-->
+		<!--<verifyjar jar="${dest}" alias="${keystore_alias}" keystore="${keystore}" storepass="${keystore_pass}" keypass="${key_pass}"/>-->
 	</target>
 
 	<!-- ================================================== -->
